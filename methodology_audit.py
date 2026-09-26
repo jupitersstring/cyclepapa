@@ -87,6 +87,25 @@ def _instpct(t, g):
           f"{inb:.2%} in band; {int((~v.between(0, 2.0)).sum())} outliers")
 
 
+@measure("Master dollar volume and Yahoo earnings growth (fallback inputs)",
+         "pew_avg_dollar_volume is a DAILY USD dollar volume (the blindspot / "
+         "elite-book liquidity fallback where the weekly panel lacks the name: "
+         "weekly = 5x daily); yf_earnings_growth is Yahoo's single-quarter "
+         "growth, consumed only as the LAST resort in the Lynch growth chain and "
+         "capped at the band's top (0.50), so its 100%-cap artifact cannot fire.")
+def _fallbacks(t, g):
+    v = pd.to_numeric(g.get("pew_avg_dollar_volume"), errors="coerce")
+    v = v[v > 0]
+    if len(v) >= 50:
+        med = float(v.median())
+        check("pew_avg_dollar_volume is a plausible daily USD amount (median $1k-$100M)",
+              1e3 <= med <= 1e8, f"median {med:,.0f}")
+    e = pd.to_numeric(g.get("yf_earnings_growth"), errors="coerce").dropna()
+    if len(e) >= 50:
+        check("yf_earnings_growth is fraction-scale (median |x| < 5)", float(e.abs().median()) < 5,
+              f"median |x| = {float(e.abs().median()):.3f}")
+
+
 @measure("Beaten-down / drawdown family",
          "A name tagged 'beaten down N%' must actually be materially below "
          "its high when the direct 52w measure exists — proxy lenses must "
@@ -742,6 +761,7 @@ def _figure_coverage(t, g):
     consumed &= set(g.columns)          # only master-fed figures
     CHECKED = {
         "yf_institution_pct",   # own suite: fraction scale + band
+        "pew_avg_dollar_volume", "yf_earnings_growth",   # own suite: fallback inputs
         # identity / valuation-consistency suite
         "market_cap", "price", "shares_outstanding", "enterprise_value",
         "ebitda_ttm", "revenue_ttm", "net_income_ttm", "fcf_ttm", "cfo_ttm",

@@ -19,12 +19,18 @@ import event_study_base as es
 
 
 def _prices() -> pd.DataFrame:
+    """The weekly panel, ONCE, with only the columns this snapshot uses, and
+    only the last ~6 years (every measure here looks back <= 5 years) — the
+    full 8-column, full-history panel read twice was ~4 GB and was killed by
+    the OS beside the other pipelines."""
     import price_hygiene                                  # blank isolated unit/scale spike weeks
+    cols = ["symbol", "week", "open", "high", "low", "close", "volume", "dvol"]
     if os.path.exists(es.PRICES):
-        p = pd.read_parquet(es.PRICES)
+        p = pd.read_parquet(es.PRICES, columns=cols)
     else:
-        p = pd.concat([pd.read_parquet(f) for f in sorted(glob.glob("fmp_price_parts/*.parquet"))],
+        p = pd.concat([pd.read_parquet(f, columns=cols) for f in sorted(glob.glob("fmp_price_parts/*.parquet"))],
                       ignore_index=True)
+    p = p[p["week"] >= p["week"].max() - pd.Timedelta(weeks=320)]
     return price_hygiene.clean_weekly(p).drop(columns=["px_spike"])
 
 
@@ -63,6 +69,7 @@ def _cp_latest(g: pd.DataFrame):
 def build(out: str = "base_snapshot.csv") -> pd.DataFrame:
     from multiprocessing import Pool
     p = es.attach_usd(_prices())
+    raw = p[["symbol", "week", "close", "dvol"]].copy()      # kept for the change-point pass
     groups = [g for _, g in p.groupby("symbol", sort=False)]
     del p
     with Pool(4) as pool:
@@ -93,7 +100,6 @@ def build(out: str = "base_snapshot.csv") -> pd.DataFrame:
                 .where(d["bs_ebit_ttm"].notna() & d["bs_ebit_ttm_2y"].notna())
         d = d.drop(columns=["bs_rev_ttm", "bs_rev_ttm_2y", "bs_ebit_ttm", "bs_ebit_ttm_2y"])
     # change-point ignition measures (the study's CP features carried lift)
-    raw = _prices()[["symbol", "week", "close", "dvol"]]
     raw = raw[raw["symbol"].isin(set(d["symbol"]))]
     cgroups = [g for _, g in raw.groupby("symbol", sort=False)]
     del raw
