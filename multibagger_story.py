@@ -645,9 +645,12 @@ def main(workers: int = 4) -> None:
     import pyarrow.parquet as pq
     import shutil
     parts_dir = "mb_panel_parts"
+    samp = pd.read_parquet("base_panel_pit.parquet", columns=["symbol", "w_cc"]).drop_duplicates("symbol")
+    if os.environ.get("MB_ASSEMBLE_ONLY") and glob.glob(os.path.join(parts_dir, "part_*.parquet")):
+        print("story: assembling from existing parts", flush=True)
+        return _assemble(parts_dir, samp)
     shutil.rmtree(parts_dir, ignore_errors=True)
     os.makedirs(parts_dir)
-    samp = pd.read_parquet("base_panel_pit.parquet", columns=["symbol", "w_cc"]).drop_duplicates("symbol")
     syms = set(samp["symbol"])
     if os.environ.get("MB_MAX"):                      # smoke test on a subset
         syms = set(sorted(syms)[: int(os.environ["MB_MAX"])])
@@ -678,6 +681,13 @@ def main(workers: int = 4) -> None:
                 print(f"  {i}/{len(groups)}", flush=True)
     flush()
     del groups
+    _assemble(parts_dir, samp)
+
+
+def _assemble(parts_dir: str, samp: pd.DataFrame) -> None:
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+    import shutil
     # pass 1: union schema + market-relative strength (median 26w return per month x market)
     files = sorted(glob.glob(os.path.join(parts_dir, "part_*.parquet")))
     cols = []
