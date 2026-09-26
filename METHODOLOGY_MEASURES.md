@@ -9,6 +9,10 @@ stops matching that spirit.
 
 Yields/growth/margins are FRACTIONS (0.25 = 25%) everywhere; a consumer comparing against percent-scale numbers is broken.
 
+## Institutional ownership (Yahoo)
+
+A FRACTION of shares outstanding (0-1; up to ~1.5 on US names where 13F holdings overlap / lent shares are double-counted). Consumed by the coiled-base perception leg as 'thinly owned' (<= 0.30), so a percent-scale value would silently break it.
+
 ## Beaten-down / drawdown family
 
 A name tagged 'beaten down N%' must actually be materially below its high when the direct 52w measure exists — proxy lenses must never override a present, contradicting primary.
