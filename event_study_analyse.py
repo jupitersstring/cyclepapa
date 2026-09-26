@@ -34,7 +34,27 @@ PRICE_F = ["vol_ratio", "range_ratio", "pos_in_range", "dist_high", "lows_slope"
            "updown_vol", "obv_div", "dvol_trend", "rs26", "prior_dd", "base_len_36", "size_dvol"]
 FUND_F = ["rev_g_base", "ebit_g_base", "ebit_turned", "gm_delta_base", "rev_accel", "coil_rev", "coil_ebit"]
 PERC_F = ["n_analysts", "buy_share", "buy_share_d12", "upgrades_12m", "downgrades_12m",
-          "initiations_12m", "months_since_up", "beats_4q", "surprise_4q"]
+          "initiations_12m", "months_since_up", "beats_4q", "surprise_4q",
+          "beats_2y", "ignored_beats_2y", "react_beats_mean", "last_react",
+          "pt_n_12m", "pt_prem_12m", "pt_rev_6m"]
+
+
+def _w(d):
+    """Case-control weight (1 for cases, inverse sampling fraction for controls)."""
+    return d["w_cc"] if "w_cc" in d.columns else pd.Series(1.0, index=d.index)
+
+
+def wmean(x, w):
+    m = x.notna() & w.notna()
+    return float(np.average(x[m], weights=w[m])) if m.any() and w[m].sum() > 0 else np.nan
+
+
+def wmedian(x, w):
+    m = x.notna()
+    if not m.any():
+        return np.nan
+    o = np.argsort(x[m].to_numpy()); xs = x[m].to_numpy()[o]; ws = w[m].to_numpy()[o]
+    c = np.cumsum(ws); return float(xs[np.searchsorted(c, c[-1] / 2)])
 
 
 def _q_edges(train: pd.Series, q=5):
@@ -60,7 +80,8 @@ def episodes(d: pd.DataFrame, ev: str) -> pd.Series:
 
 def lift_table(d, feats, ev="ev2x_13w"):
     tr = d["week"] < SPLIT
-    base = d[ev].mean()
+    W = _w(d)
+    base = wmean(d[ev], W)
     rows = []
     for f in feats:
         if f not in d.columns or d[f].notna().mean() < 0.02:
@@ -74,10 +95,13 @@ def lift_table(d, feats, ev="ev2x_13w"):
                 s = dd[bb == q]
                 if len(s) < 200:
                     continue
+                ws = _w(s)
+                rate = wmean(s[ev], ws)
                 rows.append({"feature": f, "part": part, "quintile": int(q) + 1, "n": len(s),
                              "events": int(s[ev].sum()), "symbols_w_event": s.loc[s[ev] == 1, "symbol"].nunique(),
-                             "rate": s[ev].mean(), "lift": s[ev].mean() / base if base else np.nan,
-                             "med_fwd52": s["fwd_52w"].median(), "p_dd40": (s["fwd_dd_52w"] <= -0.40).mean(),
+                             "rate": rate, "lift": rate / base if base else np.nan,
+                             "med_fwd52": wmedian(s["fwd_52w"], ws),
+                             "p_dd40": wmean((s["fwd_dd_52w"] <= -0.40).astype(float).where(s["fwd_dd_52w"].notna()), ws),
                              "coverage": d[f].notna().mean()})
     return pd.DataFrame(rows)
 
@@ -106,20 +130,21 @@ def model(d, feats, ev="ev2x_13w"):
     te = (d["week"] >= SPLIT) & d[ev].notna()
     X = rank_matrix(d, feats, tr)
     m = LogisticRegression(C=0.3, max_iter=2000, class_weight="balanced")
-    m.fit(X[tr], d.loc[tr, ev])
+    m.fit(X[tr], d.loc[tr, ev], sample_weight=_w(d)[tr])
     p = pd.Series(m.predict_proba(X)[:, 1], index=d.index)
-    res = {"auc_train": roc_auc_score(d.loc[tr, ev], p[tr]) if d.loc[tr, ev].nunique() > 1 else np.nan,
-           "auc_test": roc_auc_score(d.loc[te, ev], p[te]) if d.loc[te, ev].nunique() > 1 else np.nan,
-           "base_test": d.loc[te, ev].mean()}
+    W = _w(d)
+    res = {"auc_train": roc_auc_score(d.loc[tr, ev], p[tr], sample_weight=W[tr]) if d.loc[tr, ev].nunique() > 1 else np.nan,
+           "auc_test": roc_auc_score(d.loc[te, ev], p[te], sample_weight=W[te]) if d.loc[te, ev].nunique() > 1 else np.nan,
+           "base_test": wmean(d.loc[te, ev], W[te])}
     for top in (0.01, 0.05, 0.10):
         # precision within each month's top slice (a deployable, cross-sectional rank)
         dt = d[te].assign(p=p[te])
         dt["rk"] = dt.groupby(dt["week"].dt.to_period("M"))["p"].rank(pct=True, ascending=False)
         sel = dt[dt["rk"] <= top]
-        res[f"prec_top{int(top*100)}"] = sel[ev].mean()
+        res[f"prec_top{int(top*100)}"] = wmean(sel[ev], _w(sel))
         res[f"lift_top{int(top*100)}"] = sel[ev].mean() / res["base_test"] if res["base_test"] else np.nan
         res[f"n_top{int(top*100)}"] = len(sel)
-        res[f"med_fwd52_top{int(top*100)}"] = sel["fwd_52w"].median()
+        res[f"med_fwd52_top{int(top*100)}"] = wmedian(sel["fwd_52w"], _w(sel))
     coef = pd.Series(m.coef_[0], index=X.columns).sort_values()
     return res, coef, p
 
@@ -129,20 +154,22 @@ def clusters(d, feats, ev="ev2x_13w", k=10):
     tr = d["week"] < SPLIT
     X = rank_matrix(d, feats, tr)
     X = X[[c for c in X.columns if not c.endswith("_na")]]
-    km = KMeans(n_clusters=k, n_init=10, random_state=7).fit(X[tr])
+    W = _w(d)
+    km = KMeans(n_clusters=k, n_init=10, random_state=7).fit(X[tr], sample_weight=W[tr])
     lab = pd.Series(km.predict(X), index=d.index)
-    base_tr, base_te = d.loc[tr, ev].mean(), d.loc[~tr, ev].mean()
+    base_tr, base_te = wmean(d.loc[tr, ev], W[tr]), wmean(d.loc[~tr, ev], W[~tr])
     rows = []
     for c in range(k):
         m = lab == c
         cen = pd.Series(km.cluster_centers_[c], index=X.columns)
         top = cen.sub(0.5).abs().sort_values(ascending=False).head(5)
+        r_tr, r_te = wmean(d.loc[m & tr, ev], W[m & tr]), wmean(d.loc[m & ~tr, ev], W[m & ~tr])
         rows.append({"cluster": c, "n": int(m.sum()),
-                     "rate_train": d.loc[m & tr, ev].mean(), "lift_train": d.loc[m & tr, ev].mean() / base_tr,
-                     "rate_test": d.loc[m & ~tr, ev].mean(), "lift_test": d.loc[m & ~tr, ev].mean() / base_te,
+                     "rate_train": r_tr, "lift_train": r_tr / base_tr,
+                     "rate_test": r_te, "lift_test": r_te / base_te,
                      "events_test": int(d.loc[m & ~tr, ev].sum()),
-                     "med_fwd52": d.loc[m, "fwd_52w"].median(),
-                     "p_dd40": (d.loc[m, "fwd_dd_52w"] <= -0.40).mean(),
+                     "med_fwd52": wmedian(d.loc[m, "fwd_52w"], W[m]),
+                     "p_dd40": wmean((d.loc[m, "fwd_dd_52w"] <= -0.40).astype(float), W[m]),
                      "signature": "; ".join(f"{f} {'HIGH' if cen[f] > 0.5 else 'LOW'} ({cen[f]:.2f})"
                                             for f in top.index)})
     # typology of the events themselves
@@ -159,6 +186,64 @@ def clusters(d, feats, ev="ev2x_13w", k=10):
                     "signature": "; ".join(f"{f} {'HIGH' if cen[f] > 0.5 else 'LOW'} ({cen[f]:.2f})"
                                            for f in top.index)})
     return pd.DataFrame(rows).sort_values("lift_train", ascending=False), pd.DataFrame(typ)
+
+
+def reconstruct_archetypes(d: pd.DataFrame) -> dict:
+    """Point-in-time Coiled Base / Base Ignition as the live code defines them
+    (archetype_tags.py), rebuilt from base-month features, plus design variants.
+    Ignition thresholds are the TRAIN-period 85th percentiles of base-months
+    (the live code uses ~the top 15% of current bases)."""
+    tr = d["week"] < SPLIT
+    q85 = lambda c: d.loc[tr, c].quantile(0.85)
+    g = lambda c: d[c] if c in d.columns else pd.Series(np.nan, index=d.index)
+    time_ok = (g("pos_in_range") >= 0.25)
+    coil_n = ((g("coil_rev") >= np.log(1.30)).astype(int) + (g("coil_ebit") >= np.log(1.50)).astype(int)
+              + (g("ebit_turned") == 1).astype(int)
+              + ((g("gm_delta_base") >= 0.02) & (g("rev_g_base") > 0)).astype(int))
+    beat_ok = g("beats_4q") >= 3
+    perc = [(~(g("n_analysts") > 3)),
+            ((g("buy_share") <= 0.5) & beat_ok),
+            ((g("months_since_up") >= 12) & (g("upgrades_12m") == 0) & (g("n_analysts") >= 3)),
+            ((g("pt_prem_12m") <= 0.10) & (coil_n >= 1)),
+            (g("ignored_beats_2y") >= 2)]
+    perc_n = sum(x.fillna(False).astype(int) for x in perc)
+    sent_turn = ((g("buy_share_d12") >= 0.10) | ((g("upgrades_12m") - g("downgrades_12m")) >= 2)
+                 | (g("pt_rev_6m") >= 0.05) | (g("initiations_12m") >= 1)).fillna(False)
+    ign = [(g("dvol_trend") >= q85("dvol_trend")), (g("updown_vol") >= q85("updown_vol")),
+           ((g("rs26") >= 0.10) & (g("r26") >= 0.10)), sent_turn, (g("last_react") >= 0.10)]
+    ign_n = sum(x.fillna(False).astype(int) for x in ign)
+    ign_vol = (ign[0] | ign[1]).fillna(False)
+    coiled = time_ok & (coil_n >= 1) & (perc_n >= 1)
+    out = {
+        "all base-months": pd.Series(True, index=d.index),
+        "coil only (>=1 coil leg)": (coil_n >= 1),
+        "coil >= 2 legs": (coil_n >= 2),
+        "Coiled Base (time+coil+perception)": coiled,
+        "Base Ignition (coiled + >=2 ignition, >=1 volume)": coiled & (ign_n >= 2) & ign_vol,
+        "ignition only (>=2 incl volume, no coil)": (ign_n >= 2) & ign_vol,
+        "Coiled + fallen angel (prior_dd <= 0.6)": coiled & (g("prior_dd") <= 0.60),
+        "Ignition + fallen angel": coiled & (ign_n >= 2) & ign_vol & (g("prior_dd") <= 0.60),
+    }
+    return {k: v.fillna(False) for k, v in out.items()}
+
+
+def archetype_table(d, variants, ev="ev2x_13w"):
+    tr = d["week"] < SPLIT; W = _w(d)
+    base_tr, base_te = wmean(d.loc[tr, ev], W[tr]), wmean(d.loc[~tr, ev], W[~tr])
+    rows = []
+    for name, m in variants.items():
+        r_tr, r_te = wmean(d.loc[m & tr, ev], W[m & tr]), wmean(d.loc[m & ~tr, ev], W[m & ~tr])
+        rows.append({"variant": name, "months": int(m.sum()),
+                     "share_of_bases": float(W[m].sum() / W.sum()),
+                     "rate_train": r_tr, "lift_train": r_tr / base_tr if base_tr else np.nan,
+                     "rate_test": r_te, "lift_test": r_te / base_te if base_te else np.nan,
+                     "events_test": int(d.loc[m & ~tr, ev].sum()),
+                     "symbols_test": d.loc[m & ~tr & (d[ev] == 1), "symbol"].nunique(),
+                     "ev2x_26w_test": wmean(d.loc[m & ~tr, "ev2x_26w"], W[m & ~tr]),
+                     "med_fwd52": wmedian(d.loc[m, "fwd_52w"], W[m]),
+                     "mean_fwd52": wmean(d.loc[m, "fwd_52w"].clip(-1, 10), W[m]),
+                     "p_dd40": wmean((d.loc[m, "fwd_dd_52w"] <= -0.40).astype(float), W[m])})
+    return pd.DataFrame(rows)
 
 
 def main():
@@ -183,10 +268,10 @@ def main():
     for ev in EVENTS:
         sub = d[d[ev].notna()]
         ep = episodes(sub, ev)
-        L.append(f"- {ev}: rate {sub[ev].mean():.4%}; event month-ends {int(sub[ev].sum()):,}; "
+        L.append(f"- {ev}: rate {wmean(sub[ev], _w(sub)):.4%}; event month-ends {int(sub[ev].sum()):,}; "
                  f"distinct episodes {int(ep.nunique()):,}; symbols {sub.loc[sub[ev] == 1, 'symbol'].nunique():,}")
-    L.append(f"- cost of the typical base: median 52w fwd return {d['fwd_52w'].median():.1%}; "
-             f"P(52w drawdown <= -40%) {(d['fwd_dd_52w'] <= -0.4).mean():.1%}\n")
+    L.append(f"- cost of the typical base: median 52w fwd return {wmedian(d['fwd_52w'], _w(d)):.1%}; "
+             f"P(52w drawdown <= -40%) {wmean((d['fwd_dd_52w'] <= -0.4).astype(float), _w(d)):.1%}\n")
     # 3 univariate
     lt = lift_table(d, feats)
     lt.to_csv("base_breakout_lift.csv", index=False)
@@ -223,6 +308,18 @@ def main():
                      f"median 52w fwd {res[f'med_fwd52_top{top}']:.1%}")
         L.append("- strongest positive weights: " + ", ".join(f"{k} {v:+.2f}" for k, v in coef.tail(8)[::-1].items()))
         L.append("- strongest negative weights: " + ", ".join(f"{k} {v:+.2f}" for k, v in coef.head(6).items()) + "\n")
+    # 4b archetypes, reconstructed point-in-time
+    L.append("## 4. The archetypes, reconstructed point-in-time (weighted, fit <= 2018 / test 2019+)\n")
+    at = archetype_table(d, reconstruct_archetypes(d))
+    at.to_csv("base_breakout_archetypes.csv", index=False)
+    L.append("| variant | base-months | share | lift train | lift test | 2x/13w rate test | 2x/26w rate test | "
+             "events test (symbols) | median fwd52 | mean fwd52 | P(dd<=-40%) |")
+    L.append("|---|---|---|---|---|---|---|---|---|---|---|")
+    for r in at.itertuples():
+        L.append(f"| {r.variant} | {r.months:,} | {r.share_of_bases:.1%} | {r.lift_train:.2f} | {r.lift_test:.2f} | "
+                 f"{r.rate_test:.2%} | {r.ev2x_26w_test:.2%} | {r.events_test} ({r.symbols_test}) | "
+                 f"{r.med_fwd52:.1%} | {r.mean_fwd52:.1%} | {r.p_dd40:.1%} |")
+    L.append("")
     # 6 clusters
     L.append("## 6. Clusters (k-means on rank features, fit on train)\n")
     for label, fs in (("price + fundamentals", [f for f in PRICE_F + FUND_F if f in d.columns]),

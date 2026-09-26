@@ -60,7 +60,8 @@ def fetch(sym: str) -> dict:
             "is": _get("income-statement", {"symbol": sym, "period": "quarter", "limit": 80}),
             "gh": _get("grades-historical", {"symbol": sym, "limit": 500}),
             "gr": _get("grades", {"symbol": sym, "limit": 2000}),
-            "er": _get("earnings", {"symbol": sym, "limit": 100})}
+            "er": _get("earnings", {"symbol": sym, "limit": 100}),
+            "pt": _get("price-target-news", {"symbol": sym, "limit": 1000})}
 
 
 def _ttm_frame(rows) -> pd.DataFrame:
@@ -94,7 +95,23 @@ def _asof(frame: pd.DataFrame, t: pd.Timestamp):
     return f.iloc[-1] if len(f) else None
 
 
-def features_for(sym: str, weeks: pd.Series, r104: pd.Series, raw: dict) -> pd.DataFrame:
+def _reactions(er: pd.DataFrame, px: pd.DataFrame) -> pd.DataFrame:
+    """Price reaction to each report: close of the first week ending >= report
+    day + 1 vs the close of the last week ending before the report day (covers
+    pre-open, intraday and after-close reports alike)."""
+    if not len(er) or px is None or not len(px):
+        return pd.DataFrame(columns=["date", "beat", "react"])
+    wk = px["week"].to_numpy(); cl = px["close"].to_numpy(float)
+    rows = []
+    for d, a, e in zip(er["date"], er["a"], er["e"]):
+        i_after = np.searchsorted(wk, np.datetime64(d + pd.Timedelta(days=1)))
+        i_before = np.searchsorted(wk, np.datetime64(d)) - 1
+        if 0 <= i_before < len(cl) and i_after < len(cl) and cl[i_before] > 0:
+            rows.append({"date": d, "beat": float(a > e), "react": cl[i_after] / cl[i_before] - 1})
+    return pd.DataFrame(rows)
+
+
+def features_for(sym: str, weeks: pd.Series, r104: pd.Series, raw: dict, px=None) -> pd.DataFrame:
     out = pd.DataFrame(index=weeks.index)
     ttm = _ttm_frame(raw["is"])
     gh = pd.DataFrame(raw["gh"])
@@ -117,6 +134,14 @@ def features_for(sym: str, weeks: pd.Series, r104: pd.Series, raw: dict) -> pd.D
         er["a"] = pd.to_numeric(er.get("epsActual"), errors="coerce")
         er["e"] = pd.to_numeric(er.get("epsEstimated"), errors="coerce")
         er = er.dropna(subset=["a", "e"]).sort_values("date")
+    rx = _reactions(er, px)
+    pt = pd.DataFrame(raw.get("pt") or [])
+    if len(pt):
+        pt["date"] = pd.to_datetime(pt["publishedDate"], errors="coerce", utc=True).dt.tz_localize(None)
+        pt["tgt"] = pd.to_numeric(pt.get("adjPriceTarget", pt.get("priceTarget")), errors="coerce")
+        pt["px"] = pd.to_numeric(pt.get("priceWhenPosted"), errors="coerce")
+        pt = pt.dropna(subset=["date", "tgt"]).sort_values("date")
+        pt = pt[pt["tgt"] > 0]
     rows = []
     for idx, t in weeks.items():
         rec = {}
@@ -160,20 +185,62 @@ def features_for(sym: str, weeks: pd.Series, r104: pd.Series, raw: dict) -> pd.D
                 rec["beats_4q"] = float((q["a"] > q["e"]).sum())
                 den = q["e"].abs().where(q["e"].abs() > 0.01)
                 rec["surprise_4q"] = float(((q["a"] - q["e"]) / den).clip(-2, 2).mean())
+        # IGNORED EVIDENCE: beats inside the base the price did not reward, and
+        # the latest reaction (a first strong positive reaction = trigger)
+        if len(rx):
+            w = rx[(rx["date"] <= t) & (rx["date"] > t - pd.Timedelta(weeks=104))]
+            b = w[w["beat"] == 1]
+            if len(w) >= 3:
+                rec["beats_2y"] = float(len(b))
+                rec["ignored_beats_2y"] = float((b["react"] <= 0).sum())
+                rec["react_beats_mean"] = float(b["react"].mean()) if len(b) else np.nan
+            last = rx[rx["date"] <= t].tail(1)
+            if len(last) and (t - last["date"].iloc[0]).days <= 92:
+                rec["last_react"] = float(last["react"].iloc[0])
+        # DISBELIEF / TARGET MOMENTUM from dated individual price targets
+        if len(pt):
+            w12 = pt[(pt["date"] <= t) & (pt["date"] > t - pd.Timedelta(days=365))]
+            prev = pt[(pt["date"] <= t - pd.Timedelta(days=183)) & (pt["date"] > t - pd.Timedelta(days=548))]
+            rec["pt_n_12m"] = float(len(w12))
+            if len(w12):
+                prem = (w12["tgt"] / w12["px"].where(w12["px"] > 0) - 1).dropna()
+                if len(prem):
+                    rec["pt_prem_12m"] = float(prem.clip(-0.9, 5).median())
+            recent = pt[(pt["date"] <= t) & (pt["date"] > t - pd.Timedelta(days=183))]
+            if len(recent) and len(prev):
+                rec["pt_rev_6m"] = float(recent["tgt"].median() / prev["tgt"].median() - 1)
         rows.append(rec)
     return pd.DataFrame(rows, index=weeks.index)
 
 
-def main(workers: int = 6) -> None:
+def main(workers: int = 6, n_controls: int = 8000, seed: int = 11) -> None:
+    """CASE-CONTROL design: every symbol with at least one base-month explosion
+    (any label) is a CASE and gets full point-in-time features; a random sample
+    of the other symbols are CONTROLS, weighted by the inverse sampling fraction
+    (w_cc) so population rates and lifts are recovered unbiasedly. Cuts the
+    fetch several-fold without discarding a single event."""
     d = pd.read_parquet(PANEL)
+    ev_any = (d[["ev2x_13w", "ev3x_13w", "ev2x_26w"]].fillna(0).max(axis=1) == 1)
+    cases = set(d.loc[ev_any, "symbol"])
+    others = sorted(set(d["symbol"]) - cases)
+    rng = np.random.default_rng(seed)
+    ctrl = set(rng.choice(others, size=min(n_controls, len(others)), replace=False)) if others else set()
+    d = d[d["symbol"].isin(cases | ctrl)].copy()
+    d["w_cc"] = np.where(d["symbol"].isin(cases), 1.0, len(others) / max(1, len(ctrl)))
     syms = d["symbol"].unique().tolist()
-    print(f"pit: {len(syms)} symbols, {len(d)} base-months", flush=True)
+    print(f"pit: {len(cases)} case symbols + {len(ctrl)} controls (of {len(others)}); "
+          f"{len(d)} base-months", flush=True)
+    px_all = pd.read_parquet("fmp_weekly_prices.parquet", columns=["symbol", "week", "close"])
+    px_all = px_all[px_all["symbol"].isin(syms)]
+    px_by = {k: g.sort_values("week") for k, g in px_all.groupby("symbol")}
+    del px_all
     feats = []
     with ThreadPoolExecutor(max_workers=workers) as ex:
         for i, raw in enumerate(ex.map(fetch, syms), 1):
             g = d[d["symbol"] == raw["symbol"]]
             with np.errstate(divide="ignore", invalid="ignore"):
-                feats.append(features_for(raw["symbol"], g["week"], g["r104"], raw))
+                feats.append(features_for(raw["symbol"], g["week"], g["r104"], raw,
+                                          px_by.get(raw["symbol"])))
             if i % 1000 == 0:
                 s = fc.cache_stats()
                 print(f"  pit {i}/{len(syms)} | hit_rate={s['hit_rate']}", flush=True)
