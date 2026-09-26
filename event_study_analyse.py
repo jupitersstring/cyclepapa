@@ -30,6 +30,7 @@ import pandas as pd
 PANEL = "base_panel_pit.parquet"
 SPLIT = pd.Timestamp("2019-01-01")
 EVENTS = ["ev2x_13w", "ev3x_13w", "ev2x_26w"]
+CP_F = ["cp_dvol_cusum", "cp_dvol_z13", "cp_vol_regime", "cp_slope_brk", "cp_price_up13"]
 PRICE_F = ["vol_ratio", "range_ratio", "pos_in_range", "dist_high", "lows_slope", "r13", "r26",
            "updown_vol", "obv_div", "dvol_trend", "rs26", "prior_dd", "base_len_36", "size_dvol"]
 FUND_F = ["rev_g_base", "ebit_g_base", "ebit_turned", "gm_delta_base", "rev_accel", "coil_rev", "coil_ebit"]
@@ -248,13 +249,117 @@ def archetype_table(d, variants, ev="ev2x_13w"):
     return pd.DataFrame(rows)
 
 
+def _cusum_up(z, k=0.5):
+    s_, m_ = 0.0, 0.0
+    for v in z:
+        s_ = max(0.0, s_ + v - k); m_ = max(m_, s_)
+    return m_
+
+
+def _cp_one(args):
+    """Change-point statistics for one symbol's base-months (weeks <= t only)."""
+    sym, rows, px = args
+    out = {}
+    if px is None or len(px) < 120:
+        return out
+    wk = px["week"].to_numpy(); lp = np.log(px["close"].to_numpy(float))
+    ldv = np.log(np.maximum(px["dvol"].to_numpy(float), 1.0))
+    ret = np.diff(lp, prepend=np.nan)
+    try:
+        import ruptures as rpt
+    except ImportError:
+        rpt = None
+    for idx, t in rows:
+        i = int(np.searchsorted(wk, np.datetime64(t), side="right")) - 1
+        if i < 104:
+            continue
+        rec = {}
+        base_dv, last_dv = ldv[i - 103:i - 25], ldv[i - 25:i + 1]
+        mu, sd = base_dv.mean(), base_dv.std()
+        if sd > 0:
+            z = (last_dv - mu) / sd
+            rec["cp_dvol_cusum"] = _cusum_up(z)
+            rec["cp_dvol_z13"] = float((ldv[i - 12:i + 1].mean() - mu) / sd)
+        r_all = ret[i - 103:i + 1]
+        vb = np.nanstd(r_all[:-13])
+        if vb > 0:
+            rec["cp_vol_regime"] = float(np.nanstd(r_all[-13:]) / vb)
+            s26 = np.polyfit(np.arange(26), lp[i - 25:i + 1], 1)[0]
+            s78 = np.polyfit(np.arange(78), lp[i - 103:i - 25], 1)[0]
+            rec["cp_slope_brk"] = float((s26 - s78) / vb)
+        if rpt is not None:
+            seg = lp[i - 103:i + 1]
+            try:
+                bk = rpt.Pelt(model="l2", min_size=6).fit(seg.reshape(-1, 1)).predict(pen=np.var(seg) * 3 + 1e-6)
+                cps = [b for b in bk[:-1] if b >= len(seg) - 13]
+                rec["cp_price_up13"] = float(bool(cps) and seg[cps[-1]:].mean() > seg[:cps[-1]].mean())
+            except Exception:
+                pass
+        out[idx] = rec
+    return out
+
+
+def add_changepoint_features(d: pd.DataFrame) -> pd.DataFrame:
+    """Statistical change detection on each stock's own weekly series:
+    CUSUM / z-score shifts in dollar volume, volatility regime, price-slope
+    break, and a PELT change point in price in the last 13 weeks."""
+    from multiprocessing import Pool
+    px = pd.read_parquet("fmp_weekly_prices.parquet", columns=["symbol", "week", "close", "dvol"])
+    px = px[px["symbol"].isin(d["symbol"].unique())]
+    by = {k: g.sort_values("week") for k, g in px.groupby("symbol")}
+    del px
+    jobs = [(sym, list(zip(g.index, g["week"])), by.get(sym)) for sym, g in d.groupby("symbol")]
+    res = {}
+    with Pool(4) as pool:
+        for r in pool.imap_unordered(_cp_one, jobs, chunksize=32):
+            res.update(r)
+    cp = pd.DataFrame.from_dict(res, orient="index")
+    return d.join(cp)
+
+
+_BIO_IND = r"biotechnolog|pharmaceutic|drug manufactur"
+_BIO_NAME = r"therapeut|biopharm|biosci|pharma|oncolog|genomic|genetic"
+
+
+def bio_flags(symbols) -> pd.Series:
+    """Drug developer (the live engine's rule: biotech / pharma / drug-maker
+    industry, or a health-care name that reads like one). Clinical-stage names
+    explode on BINARY trial / regulatory events — a different mechanism from
+    value accreting under a flat price — so they are analysed separately.
+    Industry from the master; FMP profile for names not in it (delisted)."""
+    import os
+    syms = pd.Index(pd.unique(pd.Series(list(symbols))))
+    m = pd.read_csv("asymmetry_global.csv", usecols=["symbol", "industry", "sector", "name"],
+                    low_memory=False).drop_duplicates("symbol").set_index("symbol").reindex(syms)
+    miss = m["industry"].isna()
+    if miss.any():
+        import fmp_client as fc
+        for sym in syms[miss.values]:
+            try:
+                pr = fc.get_json("profile", {"symbol": sym}, ttl=fc.TTL_SLOW) or []
+            except fc.FMPError:
+                pr = []
+            if pr:
+                m.loc[sym, ["industry", "sector", "name"]] = [pr[0].get("industry"), pr[0].get("sector"),
+                                                             pr[0].get("companyName")]
+    ind = m["industry"].fillna("").str.lower(); sec = m["sector"].fillna("").str.lower()
+    nm = m["name"].fillna("").str.lower()
+    return (ind.str.contains(_BIO_IND) | (sec.str.contains("health") & nm.str.contains(_BIO_NAME)))
+
+
 def main():
     d = pd.read_parquet(PANEL)
     d = d[d["ev2x_13w"].notna()].copy()
     prem = pd.read_csv("base_premise.csv")
-    feats = [f for f in PRICE_F + FUND_F + PERC_F if f in d.columns]
+    d = add_changepoint_features(d)
+    feats = [f for f in PRICE_F + CP_F + FUND_F + PERC_F if f in d.columns]
+    d["is_bio"] = d["symbol"].map(bio_flags(d["symbol"].unique())).fillna(False)
+    d_bio = d[d["is_bio"]].copy()
+    d = d[~d["is_bio"]].copy()                  # MAIN results: ex drug developers
     L = []
     L.append("# Base-breakout event study — 'goes nowhere for 2 years, then triples in 3 months'\n")
+    L.append(f"_All sections below exclude drug developers ({d_bio['symbol'].nunique():,} biotech / pharma "
+             f"symbols, {len(d_bio):,} base-months), analysed separately in section 7._\n")
     # 1 premise
     L.append("## 1. Premise: how often does an explosion come out of a flat base?\n")
     for a, b, lbl in (("ev2x", "ev2x_in_base", "2x in 13w, strict base"),
@@ -337,6 +442,22 @@ def main():
         L.append("\n**Typology of the explosions themselves**\n")
         for r in typ.itertuples():
             L.append(f"- type {r.type}: {r.events} events / {r.symbols} symbols — {r.signature}")
+        L.append("")
+    # 7 biotech separately
+    L.append("## 7. Drug developers (biotech / pharma), analysed separately\n")
+    if len(d_bio) > 1000:
+        Wb = _w(d_bio)
+        for ev in EVENTS:
+            L.append(f"- {ev}: biotech rate {wmean(d_bio[ev], Wb):.3%} vs non-biotech {wmean(d[ev], _w(d)):.3%}")
+        L.append(f"- median 52w fwd: biotech {wmedian(d_bio['fwd_52w'], Wb):.1%} vs {wmedian(d['fwd_52w'], _w(d)):.1%}; "
+                 f"P(dd<=-40%): {wmean((d_bio['fwd_dd_52w'] <= -0.4).astype(float), Wb):.1%} vs "
+                 f"{wmean((d['fwd_dd_52w'] <= -0.4).astype(float), _w(d)):.1%}")
+        atb = archetype_table(d_bio, reconstruct_archetypes(d_bio))
+        L.append("\n| variant (biotech only) | base-months | lift train | lift test | median fwd52 | P(dd<=-40%) |")
+        L.append("|---|---|---|---|---|---|")
+        for r in atb.itertuples():
+            L.append(f"| {r.variant} | {r.months:,} | {r.lift_train:.2f} | {r.lift_test:.2f} | "
+                     f"{r.med_fwd52:.1%} | {r.p_dd40:.1%} |")
         L.append("")
     L.append("## Caveats\n")
     L.append("- Survivorship: delisted names are included where FMP still serves their price history; "

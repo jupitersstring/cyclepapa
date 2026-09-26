@@ -6804,7 +6804,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'kullamagie_score', 'cundill_score',
                      'analyst_rerating_score', 'asleep_score',
                      'inst_accum_score', 'inst_accum_accelerating',
-                     'biotech_deep_value_score', 'biotech_cash_runway_yrs'] if c in df.columns]
+                     'biotech_deep_value_score', 'biotech_cash_runway_yrs',
+                     'coiled_base_score'] if c in df.columns]
     _scrub_cols = arch_cols + _GATED_SCORES
     # exported so books can drop preferred / warrant / unit lines too
     df['non_common_flag'] = _is_noncommon.fillna(False).astype(int).values
