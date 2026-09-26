@@ -38,19 +38,11 @@ while IFS= read -r cmd; do
     echo "    FAILED (tail follows)"; tail -5 /tmp/regen_book.log; failed+=("$cmd")
   fi
 done <<'BOOKS'
-build_archetype_book.py
-build_forensic_xr_book.py
-build_truly_xr_book.py
-build_segment_detail_book.py
 build_elite_country_book.py
-build_harvard_workbook.py --top-n 50
-build_country_workbook.py
-build_nms_book.py --top-n 100 --per-region-n 25
-build_nms_candidates_book.py
-build_nms_candidates_book.py --midcap-plus
 build_country_archetype_book.py --n 30
+build_country_archetype_book.py --n 30 --gate "fcf_yield>5%" --out country_archetype_fcf5.xlsx
 build_country_archetype_inflection_book.py --n 30
-build_otc_archetype_book.py --n 30
+build_country_workbook.py
 top_n_by_country.py --n 30 --out-csv top_n_by_country.csv --out-xlsx top_n_by_country.xlsx
 top_n_by_country.py --n 30 --sort-by inflection --out-csv top_n_by_country_inflection.csv --out-xlsx top_n_by_country_inflection.xlsx
 top_n_by_country.py --n 30 --otc-mode otc --out-csv top_n_otc.csv --out-xlsx top_n_otc.xlsx
@@ -63,6 +55,15 @@ build_country_archetype_book.py --max-pb 1.05 --out country_archetype_pb_sub1.xl
 build_country_archetype_book.py --max-ret-12m 0.0 --out country_archetype_ret12m_neg.xlsx
 build_country_archetype_inflection_book.py --otc-mode otc --out country_archetype_inflection_otc.xlsx
 build_country_archetype_inflection_book.py --min-mcap 2e9 --min-names 10 --out country_archetype_inflection_midcap_plus.xlsx
+build_archetype_book.py
+build_forensic_xr_book.py
+build_truly_xr_book.py
+build_segment_detail_book.py
+build_harvard_workbook.py --top-n 50
+build_nms_book.py --top-n 100 --per-region-n 25
+build_nms_candidates_book.py
+build_nms_candidates_book.py --midcap-plus
+build_otc_archetype_book.py --n 30
 BOOKS
 
 echo
