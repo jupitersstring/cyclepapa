@@ -123,6 +123,18 @@ def load():
     d = pd.read_parquet(PANEL)
     d["week"] = pd.to_datetime(d["week"])
     d["w_cc"] = d["w_cc"].fillna(1.0)
+    # common stock only: the engine's non-common flag where the name is in the
+    # current universe; for delisted lines the symbol pattern (preferred
+    # series -P/-PA.., warrants -W/-WS/-WT, units -U, rights -R/-RT, and the
+    # separator-less 5-letter Nasdaq W/U/R lines)
+    import os
+    nc = set()
+    if os.path.exists("archetype_tags.csv"):
+        a = pd.read_csv("archetype_tags.csv", usecols=["symbol", "non_common_flag"], low_memory=False)
+        nc = set(a.loc[a["non_common_flag"] == 1, "symbol"])
+    pat = d["symbol"].str.contains(r"[-.](?:P[A-Z]?|W|WS|WT|U|R|RT)$|\.PR", regex=True) | \
+        d["symbol"].str.match(r"^[A-Z]{4}[WUR]$")
+    d = d[~(d["symbol"].isin(nc) | pat)].copy()
     from event_study_analyse import bio_flags
     bio = bio_flags(d["symbol"].unique())
     d["bio"] = d["symbol"].map(bio).fillna(False).astype(bool)

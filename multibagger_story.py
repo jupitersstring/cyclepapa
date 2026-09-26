@@ -159,6 +159,7 @@ def quarterly_story(raw: dict, raw2: dict) -> pd.DataFrame:
     f["share_g1"] = _safe_div(t["shares"], sh4) - 1
     f["share_g3"] = _safe_div(t["shares"], sh12) - 1
     f["ebit_ttm"], f["ni_ttm"], f["ebitda_ttm"] = ebit, ni, t["ebitda"]
+    f["shares"] = t["shares"]            # for return decomposition (per-share fundamentals)
 
     CF = _frame(raw2.get("cf"), ["operatingCashFlow", "capitalExpenditure", "freeCashFlow",
                                  "stockBasedCompensation", "commonStockRepurchased", "commonDividendsPaid",
@@ -318,6 +319,11 @@ def outcomes(idx: np.ndarray, cv: np.ndarray, hv: np.ndarray, delisted: bool) ->
             hit = bool(len(seg) and np.nanmax(seg) >= mult * c0) if len(seg) else False
             complete = (i + h < n) or delisted
             rec[key] = 1.0 if hit else (0.0 if complete else np.nan)
+        # the largest multiple HELD (4 weeks) within 24 / 60 months: 3x vs 10x
+        for key, h in (("fwd_mult_24", 104), ("fwd_mult_60", 260)):
+            s_ = hv[i + HOLD:min(n, i + h + 1)]
+            if len(s_) and np.isfinite(s_).any() and ((i + h < n) or delisted):
+                rec[key] = float(np.nanmax(s_) / c0)
         seg = hv[i + HOLD:min(n, i + 157)]
         if len(seg):
             w = np.where(seg >= 3 * c0)[0]
