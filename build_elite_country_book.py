@@ -51,7 +51,12 @@ def elite_matrix(df: pd.DataFrame, arch_cols: list) -> tuple[pd.DataFrame, pd.Da
     """(elite 0/1 frame, both-tiers 0/1 frame) over archetypes."""
     n = lambda c: pd.to_numeric(df[c], errors="coerce") if c in df.columns else pd.Series(np.nan, index=df.index)
     E, B = pd.DataFrame(index=df.index), pd.DataFrame(index=df.index)
-    liquid = n("ts_dvol26_usd") >= 250_000
+    # VALIDITY for elite status (not a thesis test): tradeable — >= $250k a
+    # week on the weekly panel, or where the panel lacks the name the daily
+    # dollar-volume fallback (>= $50k/day) — and a clean data record
+    _adv = n("avg_dollar_volume")
+    liquid = ((n("ts_dvol26_usd") >= 250_000)
+              | (n("ts_dvol26_usd").isna() & (_adv >= 50_000))).fillna(False)
     clean = ~(n("fq_forensic_red_count") > 0)
     dq_ok = ~(n("data_quality_flag") == 1)
     conf = n("confirm_overall")
@@ -69,8 +74,8 @@ def elite_matrix(df: pd.DataFrame, arch_cols: list) -> tuple[pd.DataFrame, pd.Da
             k = max(3, int(np.ceil(0.02 * sp.notna().sum())))
             top = sp >= sp.nlargest(k).min()
             el = sp >= 0.90
-            E[col] = (mem & (el | top)).fillna(False).astype(int)
-            B[col] = (mem & el).fillna(False).astype(int)
+            E[col] = (mem & (el | top) & liquid & dq_ok).fillna(False).astype(int)
+            B[col] = (mem & el & liquid & dq_ok).fillna(False).astype(int)
         else:
             c = conf.where(mem)
             cut = c.quantile(0.95) if c.notna().sum() >= 20 else np.inf
@@ -97,10 +102,29 @@ def main() -> None:
     E, B = elite_matrix(df, arch_cols)
     E = E.loc[:, E.sum() > 0]
     df["elite_n"] = E.sum(axis=1)
+    # ⚠ VERIFY: rank-based spirit cannot tell a data error from a genuine
+    # extreme, so implausible values are surfaced for a human check (kept, not
+    # dropped — some are real deep value): FCF yield > 50%, net cash > 2x the
+    # market cap, P/E < 1.5, P/B < 0.1, P/S < 0.05, revenue < $5M
+    _v = pd.concat({
+        "FCF yld>50%": num("fcf_yield") > 0.5, "net cash>2x mcap": num("net_cash_pct_mcap") > 2,
+        "P/E<1.5": num("p_e").between(0, 1.5, inclusive="neither"), "P/B<0.1": num("pb").between(0, 0.1, inclusive="neither"),
+        "P/S<0.05": num("p_s").between(0, 0.05, inclusive="neither"), "rev<$5M": num("revenue_ttm_usd") < 5e6}, axis=1)
+    df["verify"] = _v.fillna(False).apply(lambda r: ", ".join(k for k, v in r.items() if bool(v)), axis=1)
+    # one line per company: share classes / cross-listings / listed notes of
+    # the same issuer collapse to the most-traded line
+    _nm = (df["name"].astype(str).str.lower().str.replace(r"[^a-z0-9 ]", "", regex=True)
+           .str.replace(r"\b(inc|corp|co|ltd|plc|ag|sa|nv|limited|holdings|group|company|the)\b", "", regex=True)
+           .str.split().str.join(" "))
+    _liq = num("ts_dvol26_usd").fillna(num("avg_dollar_volume") * 5)
+    _dup = (df.assign(_k=_nm, _l=_liq)[df["elite_n"] > 0].sort_values("_l", ascending=False)
+            .duplicated(subset=["_k", "src"], keep="first"))
+    df.loc[_dup[_dup].index, "elite_n"] = 0
     df["elite_both_n"] = B.reindex(columns=E.columns, fill_value=0).sum(axis=1)
-    df["elite_list"] = [
+    df["elite_list_raw"] = [
         "; ".join(("★ " if B.at[i, c] == 1 else "") + _label(c) for c in E.columns if E.at[i, c] == 1)
         for i in df.index]
+    df["elite_list"] = [("⚠ verify (" + v + ") · " if v else "") + s for v, s in zip(df["verify"], df["elite_list_raw"])]
     el = df[df["elite_n"] > 0].copy()
     sort_col = "entry_confirmed" if "entry_confirmed" in el.columns else "entry_today_asymmetry"
     el = el.sort_values(["elite_n", "elite_both_n", sort_col], ascending=[False, False, False])

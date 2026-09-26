@@ -251,9 +251,16 @@ ARCH_SORT_OVERRIDES = {
 def arch_sort_col(arch_col: str, frame: pd.DataFrame, default: str) -> str:
     """Resolve the sort column for one archetype section.
 
-    Returns the ARCH_SORT_OVERRIDES entry when that column exists in
-    `frame` and carries at least one non-NaN value; otherwise `default`
-    (the calling book's SORT_COL)."""
+    Returns the archetype's own `<name>_spirit` score when at least half the
+    members carry one; else the ARCH_SORT_OVERRIDES entry when that column
+    exists in `frame` with a non-NaN value; otherwise `default` (the calling
+    book's SORT_COL)."""
+    # the archetype's OWN continuous spirit score first (how strongly each
+    # member embodies THIS archetype), so every section is ranked on its own
+    # thesis — a generic key put the same few names atop dozens of sections
+    sp = arch_col.replace('arch_', '', 1) + '_spirit'
+    if sp in frame.columns and pd.to_numeric(frame[sp], errors='coerce').notna().sum() >= max(3, 0.5 * len(frame)):
+        return sp
     ov = ARCH_SORT_OVERRIDES.get(arch_col)
     if ov and ov in frame.columns and \
             pd.to_numeric(frame[ov], errors='coerce').notna().any():
