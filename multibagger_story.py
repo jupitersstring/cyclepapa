@@ -329,6 +329,37 @@ def trend_shapes(q: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
+def divergences(o: pd.DataFrame) -> pd.DataFrame:
+    """gap_*: the TAPE vs the FUNDAMENTALS — what the business did against what
+    the price did, over matching horizons, and where each sits in its own
+    history. Positive = the fundamentals are ahead of the price."""
+    g = lambda c: o[c] if c in o.columns else pd.Series(np.nan, index=o.index)
+    l1 = lambda x: np.log1p(x.where(x > -1))
+    # per-share outrun (log gaps)
+    o["gap_sales_1y"] = l1(g("kr_revenuePerShare_g4")) - l1(g("r52"))
+    o["gap_fcfps_1y"] = l1(g("kr_freeCashFlowPerShare_g4")) - l1(g("r52"))
+    o["gap_eps_1y"] = l1(g("eps_g1")) - l1(g("r52"))
+    o["gap_sales_2y"] = 2 * l1(g("rev_g2")) - l1(g("share_g3")) * (2 / 3) - l1(g("r104"))
+    o["gap_sales_3y"] = 3 * l1(g("rev_g2")) - l1(g("share_g3")) - l1(g("r156"))
+    # own-history divergence: fundamentals' place in their own 3 years minus
+    # the price's place in its own 3-year range
+    pos = g("pos156")
+    for k, c in (("opm", "kr_operatingProfitMargin_own"), ("roic", "kr_returnOnInvestedCapital_own"),
+                 ("fcfps", "kr_freeCashFlowPerShare_own"), ("gm", "kr_grossProfitMargin_own")):
+        o[f"gap_own_{k}"] = g(c) - pos
+    # trend divergence: margins / ROIC rising while the 26-week price trend falls
+    o["gap_trend_opm"] = np.sign(g("tr_opm_slope8")) * g("tr_opm_consist") - np.sign(g("r26")) * 0.5
+    o["gap_trend_roic"] = np.sign(g("tr_roic_slope8")) * g("tr_roic_consist") - np.sign(g("r26")) * 0.5
+    # perception divergence: fundamentals improving while the sell side cools
+    fund_up = ((g("rev_g1") > 0) & (g("opm_d1") > 0)).astype(float).where(g("rev_g1").notna())
+    o["gap_perc_buyshare"] = fund_up - np.sign(g("buy_share_d12")).clip(lower=0)
+    o["gap_perc_targets"] = fund_up - np.sign(g("pt_rev_6m")).clip(lower=0)
+    o["st_fund_price_divergence"] = (((g("kr_operatingProfitMargin_own") >= 0.8)
+                                      | (g("kr_returnOnInvestedCapital_own") >= 0.8)
+                                      | (g("kr_freeCashFlowPerShare_own") >= 0.8)) & (pos <= 0.2)).astype(float)
+    return o
+
+
 def employees(raw2: dict) -> pd.DataFrame:
     e = pd.DataFrame(raw2.get("emp") or [])
     if not len(e) or "employeeCount" not in e.columns:
@@ -376,6 +407,8 @@ def tape(px: pd.DataFrame, last_global: pd.Timestamp) -> pd.DataFrame:
     h104, l104 = hi.rolling(104, min_periods=80).max(), lo.rolling(104, min_periods=80).min()
     T["range104"] = h104 / l104
     T["pos104"] = (c - l104) / (h104 - l104)
+    h156, l156 = c.rolling(156, min_periods=104).max(), c.rolling(156, min_periods=104).min()
+    T["pos156"] = (c - l156) / (h156 - l156).where(h156 > l156)
     dd = c / c.rolling(104, min_periods=52).max()
     T["maxdd104"] = dd.rolling(104, min_periods=52).min() - 1
     T["vol13"] = lr.rolling(13).std() * np.sqrt(52)
@@ -555,6 +588,7 @@ def _one(sym, px, last_global):
             "last_react", "pt_n_12m", "pt_prem_12m", "pt_rev_6m", "ins_buys_8q", "ins_buy_quarters_4q",
             "ins_net_buy_4q", "bo_new_holders_12m", "bo_increasing_12m"]
     out = pd.concat([out, per.reindex(columns=keep)], axis=1)
+    out = divergences(out)
     drop = [c for c in out.columns if c.startswith(("bs_", "cf_", "km_"))]
     return out.drop(columns=[c for c in drop if c in out.columns])
 

@@ -62,7 +62,7 @@ FEATS = [
     "beats_4q", "surprise_4q", "ignored_beats_2y", "react_beats_mean", "last_react", "pt_prem_12m",
     "pt_rev_6m", "ins_buy_quarters_4q", "ins_net_buy_4q", "bo_new_holders_12m", "bo_increasing_12m",
 ]
-TAPE_EXTRA = ["wks_since_hi52", "wks_since_lo260", "dd_time_share_260"]
+TAPE_EXTRA = ["wks_since_hi52", "wks_since_lo260", "dd_time_share_260", "pos156"]
 
 
 def feats_all(d: pd.DataFrame) -> list:
@@ -70,7 +70,7 @@ def feats_all(d: pd.DataFrame) -> list:
     every FMP ratio (level / 1y change / own-history percentile: kr_*) and
     the trend shapes of the core series (tr_*)."""
     base = [f for f in FEATS + TAPE_EXTRA if f in d.columns]
-    return base + [c for c in d.columns if c.startswith(("kr_", "tr_"))]
+    return base + [c for c in d.columns if c.startswith(("kr_", "tr_", "gap_"))]
 
 
 MISS = {"miss_fund": "rev_g1", "miss_val": "ps", "miss_perc": "n_analysts", "miss_emp": "emp_g1",
@@ -83,6 +83,8 @@ BLOCKS = {
     "accelerating": [("rev_accel", 1), ("rev_q_accel", 1)],
     "margin_trajectory": [("opm_d1", 1), ("opm_d2", 1), ("gm_d1", 1), ("fcf_margin_d1", 1), ("roic_d1", 1),
                           ("inc_margin", 1), ("tr_opm_slope8", 1), ("tr_gm_slope8", 1), ("tr_opm_consist", 1)],
+    "divergence": [("gap_sales_1y", 1), ("gap_fcfps_1y", 1), ("gap_sales_2y", 1), ("gap_sales_3y", 1),
+                   ("gap_own_opm", 1), ("gap_own_roic", 1), ("gap_own_fcfps", 1), ("gap_trend_opm", 1)],
     "best_in_own_history": [("kr_operatingProfitMargin_own", 1), ("kr_grossProfitMargin_own", 1),
                             ("kr_returnOnInvestedCapital_own", 1), ("kr_returnOnCapitalEmployed_own", 1),
                             ("kr_freeCashFlowPerShare_own", 1)],
