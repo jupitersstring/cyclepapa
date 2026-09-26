@@ -195,6 +195,39 @@ def _cache_write(cpath: str, endpoint: str, data, status: int) -> None:
     _bump("write")
 
 
+_NO_ALIAS = {"search-symbol", "search-name", "search-isin", "search-cusip", "search-cik",
+             "search-exchange-variants", "profile-cik", "symbol-change", "etf-list", "stock-list"}
+_PRICE_EP = ("historical-price-eod", "historical-chart", "quote", "stock-price-change", "batch-")
+_ALIAS_MAP = None
+
+
+def _load_aliases() -> dict:
+    global _ALIAS_MAP
+    if _ALIAS_MAP is None:
+        _ALIAS_MAP = {}
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fmp_symbol_map.csv")
+        if os.path.exists(path) and not os.environ.get("FMP_NO_ALIAS"):
+            try:
+                import csv
+                with open(path, newline="") as fh:
+                    for r in csv.DictReader(fh):
+                        if r.get("fmp_symbol"):
+                            _ALIAS_MAP[r["symbol"]] = (r["fmp_symbol"], r.get("use_for_prices") == "1",
+                                                       r.get("use_for_fundamentals") == "1")
+            except Exception:
+                _ALIAS_MAP = {}
+    return _ALIAS_MAP
+
+
+def _alias(symbol: str, endpoint: str):
+    m = _load_aliases().get(symbol)
+    if not m:
+        return None
+    fs, for_px, for_fund = m
+    is_price = endpoint.startswith(_PRICE_EP)
+    return fs if ((is_price and for_px) or (not is_price and for_fund)) else None
+
+
 def get_json(
     endpoint: str,
     params: dict | None = None,
@@ -214,6 +247,14 @@ def get_json(
     its own compact form instead.
     """
     params = dict(params or {})
+    # SYMBOL ALIAS HOOK: a master symbol FMP does not answer for is queried
+    # under FMP's own symbol for the same company (fmp_symbol_map.csv, built
+    # by fmp_symbol_resolver.py); price endpoints only where the resolved
+    # line is the same security. Transparent to every engine.
+    if "symbol" in params and endpoint not in _NO_ALIAS:
+        al = _alias(str(params["symbol"]), endpoint)
+        if al:
+            params["symbol"] = al
     ck = cache_key or (endpoint + "?" + "&".join(f"{x}={params[x]}" for x in sorted(params)))
     cpath = _cache_path(ck)
     found, payload = _cache_read(cpath, ttl, neg_ttl) if cache else (False, None)

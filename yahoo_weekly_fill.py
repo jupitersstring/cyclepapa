@@ -115,16 +115,23 @@ def main() -> None:
             new = pd.concat([pd.read_parquet(OUT), new], ignore_index=True)
         new.to_parquet(OUT, index=False, compression="zstd")
         print(f"wrote {OUT}: {new['symbol'].nunique()} symbols", flush=True)
-    if args.merge and os.path.exists(OUT):
-        y = pd.read_parquet(OUT)
-        p = pd.read_parquet(PANEL)
-        y = y[~y["symbol"].isin(set(p["symbol"]))]
-        merged = pd.concat([p, y.astype(p.dtypes.to_dict())], ignore_index=True)
-        merged.to_parquet(PANEL + ".tmp", index=False, compression="zstd")
-        os.replace(PANEL + ".tmp", PANEL)
-        print(f"merged {y['symbol'].nunique()} Yahoo symbols into {PANEL}: {merged['symbol'].nunique()} symbols",
-              flush=True)
+    if args.merge:
+        merge()
     print("YAHOO_WEEKLY_DONE", flush=True)
+
+
+def merge() -> None:
+    """Add the Yahoo rows for symbols the FMP panel lacks (FMP first, always)."""
+    if not os.path.exists(OUT):
+        return
+    y = pd.read_parquet(OUT)
+    p = pd.read_parquet(PANEL)
+    y = y[~y["symbol"].isin(set(p["symbol"]))]
+    merged = pd.concat([p, y.astype(p.dtypes.to_dict())], ignore_index=True)
+    merged.to_parquet(PANEL + ".tmp", index=False, compression="zstd")
+    os.replace(PANEL + ".tmp", PANEL)
+    print(f"merged {y['symbol'].nunique()} Yahoo symbols into {PANEL}: {merged['symbol'].nunique()} symbols",
+          flush=True)
 
 
 if __name__ == "__main__":

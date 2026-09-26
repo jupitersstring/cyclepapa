@@ -79,6 +79,14 @@ def attach_usd(p: pd.DataFrame) -> pd.DataFrame:
             m = pd.read_csv("asymmetry_global.csv", usecols=["symbol", "currency"],
                             low_memory=False).drop_duplicates("symbol").set_index("symbol")["currency"]
             ccy = m.reindex(syms.values)
+    # a symbol whose PRICES come from FMP under a resolved alias (fmp_symbol_map:
+    # VNAA.F -> VNA.DE, H3D.F -> SONN) is quoted in the RESOLVED listing's
+    # currency, not the master's
+    if os.path.exists("fmp_symbol_map.csv"):
+        am = pd.read_csv("fmp_symbol_map.csv")
+        am = am[(am["use_for_prices"] == 1) & am["fmp_currency"].notna()].drop_duplicates("symbol")
+        over = am.set_index("symbol")["fmp_currency"].reindex(syms.values)
+        ccy = over.where(over.notna(), ccy)
     suf = syms.map(_market).values
     ccy = ccy.where(ccy.notna(), pd.Series([_SUFFIX_CCY.get(x) for x in suf], index=syms.values))
     minor = {"L": ("GBP", "GBp"), "JO": ("ZAR", "ZAc"), "TA": ("ILS", "ILA")}
