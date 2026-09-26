@@ -2514,6 +2514,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                + 0.15 * _ramp(_pct52, 0.75, 1.0)
                                + 0.10 * _ramp(_rel_52, 0.80, 1.0))
                               * df['arch_kullamagie_breakout']).round(3)
+    # (weekly panel) leadership ranked WITHIN the listing market (a global rank
+    # over-weighted a few high-volatility markets 2-7x), orderly above the 30w
+    # MA near highs, liquid in USD. Exceptional: top-5% RS, tight (5-week
+    # range <= 10%), >= $5M / week.
+    _tier('kullamagie_breakout',
+          (_ncol('ts_rs_pct_mkt') >= 90) & (_ncol('ts_dist_hi52') >= 0.75)
+          & (_ncol('ts_above_ma30') == 1) & (_ncol('ts_dvol26_usd') >= 1e6),
+          (_ncol('ts_rs_pct_mkt') >= 95) & (_ncol('ts_tight5') <= 0.10) & (_ncol('ts_dvol26_usd') >= 5e6))
+    df['kullamagie_score'] = (df['kullamagie_score'] * df['arch_kullamagie_breakout']).round(3)
 
     # ---------- Weinstein Stage 2A / early Stage 2 SETUP ----------
     # [C] price advancing above its long trend into little overhead resistance
@@ -2532,6 +2541,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                               + 0.25 * _ramp(_pct52, 0.85, 1.0)
                               + 0.15 * _ramp(_mom12, 0.0, 0.60))
                              * df['arch_weinstein_stage2']).round(3)
+    # (weekly panel) Stage 2 MEASURED — price above a RISING 30-week MA with
+    # positive Mansfield RS vs the local index — instead of 12m-momentum and
+    # 5y-range proxies. Exceptional = Stage 2A: the MA has only just turned up
+    # and RS just crossed zero or breakout volume doubled.
+    # Stage 2 spans the whole advance; Weinstein's buy point is EARLY Stage 2,
+    # so the core also needs little overhead (within 10% of the 52w high) and
+    # not an already-extended run (52w return <= +100%).
+    _tier('weinstein_stage2',
+          (_ncol('ts_weinstein_stage') == 2) & (_ncol('ts_above_ma30') == 1) & (_ncol('ts_mrs') > 0)
+          & (_ncol('ts_dist_hi52') >= 0.90) & (_ncol('ts_r52') <= 1.0),
+          (_ncol('ts_ma30_slope13') < 0.03) & ((_ncol('ts_mrs_13ago') <= 0) | (_ncol('ts_vol_spike4') >= 2)))
+    df['weinstein_score'] = (df['weinstein_score'] * df['arch_weinstein_stage2']).round(3)
 
     # ---------- O'Neil CAN SLIM SETUP ----------
     # [C] C: strong/accelerating current earnings; [C] A: durable annual
@@ -2563,6 +2584,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                           + 0.15 * _ramp(_pct52, 0.85, 1.0)
                           + 0.15 * _accel.astype(float))
                          * df['arch_oneil_canslim']).round(3)
+    # (quarterly panel + weekly panel) the real "C": latest-quarter EPS up
+    # >= 25% YoY (date-matched); "L": RS top 20% of the listing market; "N":
+    # within 15% of the 52w high. Exceptional: EPS accelerating, a consistent
+    # EPS record, and "M" — a healthy market (>= half of it above its 30w MA).
+    _tier('oneil_canslim',
+          (_ncol('fqx_eps_q_yoy') >= 0.25) & (_ncol('ts_rs_pct_mkt') >= 80) & (_ncol('ts_dist_hi52') >= 0.85),
+          (_ncol('fqx_eps_accel') > 0) & (_ncol('fqx_eps_pos_share_8') >= 0.75) & (_ncol('ts_mkt_breadth30') >= 0.5))
+    df['oneil_score'] = (df['oneil_score'] * df['arch_oneil_canslim']).round(3)
 
     # ---------- Peter Cundill deep value ----------
     # His published six-point checklist (There's Always Something to Do). A
@@ -5877,6 +5906,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                        + 0.30 * _hi_sc
                                        + 0.10 * _asym_sc).clip(0, 1))
                                      * df['arch_analyst_awakening']).round(3)
+    # An AWAKENING is a CHANGE: perception moving (>= 1 sentiment-change lens)
+    # or the price turning (Mansfield RS rising over 13w with a positive 13w
+    # return). 2,046 of 2,102 firers qualified on rating LEVELS alone.
+    # Exceptional: targets raised while the price has not moved (street
+    # leading), or two independent change lenses at once.
+    _tier('analyst_awakening',
+          (_sent_turn_n >= 1) | ((_ncol('ts_mrs') > _ncol('ts_mrs_13ago')) & (_ncol('ts_r13') > 0)),
+          (_ncol('evt_pt_lead_flag') == 1) | (_sent_turn_n >= 2))
+    df['analyst_awakening_score'] = (df['analyst_awakening_score'] * df['arch_analyst_awakening']).round(3)
 
     # ---------- Analyst re-rating CONFIRMED by 52-week highs ----------
     # Companion to arch_analyst_awakening. Where the awakening screen catches
@@ -5903,6 +5941,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                       + 0.45 * _hi_sc)
                                      .clip(0, 1))
                                     * df['arch_analyst_rerating_confirmed']).round(3)
+    # (weekly panel) "confirmed by price" = a true absolute 52w high, or an RS
+    # high while above the 30w MA (a relative high in a falling tape is not a
+    # confirmation — 345 of 390 firers passed only through that leg).
+    # Exceptional: analysts' targets LEAD the price (raised while it was flat).
+    _tier('analyst_rerating_confirmed',
+          (_ncol('ts_dist_hi52') >= 0.97) | ((_ncol('ts_rs_at_hi') == 1) & (_ncol('ts_above_ma30') == 1)),
+          (_ncol('evt_pt_lead_flag') == 1) | (_ncol('sent_buy_share_d12') >= 0.10)
+          | ((_ncol('sent_upgrades_12m') - _ncol('sent_downgrades_12m')) >= 2) | (_ncol('sent_pt_rev_q') >= 0.10))
+    df['analyst_rerating_score'] = (df['analyst_rerating_score'] * df['arch_analyst_rerating_confirmed']).round(3)
 
     # ---------- Institutional accumulation into a flat / falling tape ----------
     # (user spec) Institutions are ADDING — 13F ownership share and net share
