@@ -45,7 +45,7 @@ import fmp_client as fc
 OUT = "fmp_statements.csv"
 # Bumped whenever a field's DEFINITION changes: rows written under an older
 # schema are recomputed (from cache) instead of being skipped as "done".
-SCHEMA = 4
+SCHEMA = 5
 
 
 def _f(x):
@@ -332,6 +332,18 @@ def enrich_symbol(sym: str) -> dict:
         b = abs(_buyb_y.get(y, 0.0) or 0.0) / m
         d = abs(_div_y.get(y, 0.0) or 0.0) / m
         _buyb_yields.append(b); _div_yields.append(d); _cap_yields.append(b + d)
+    # per-year buyback yield (each FY's repurchases over THAT FY's market cap),
+    # latest three CONSECUTIVE coherent FYs: y0 = latest — the Cluseau
+    # "buying harder into the discount" acceleration (3% -> 5% -> 7%)
+    _by_y = {}
+    for y in sorted(set(_mc_y) & set(_buyb_y), reverse=True):
+        if _coherent(y):
+            _by_y[y] = abs(_buyb_y.get(y, 0.0) or 0.0) / _mc_y[y]
+    if _by_y:
+        y0 = max(_by_y)
+        for k in range(3):
+            if (y0 - k) in _by_y:
+                rec[f"fmp_st_buyback_yield_y{k}"] = float(_by_y[y0 - k])
     if _cap_yields:
         rec["fmp_st_buyback_yield"] = float(np.median(_buyb_yields))
         rec["fmp_st_dividend_yield_cf"] = float(np.median(_div_yields))

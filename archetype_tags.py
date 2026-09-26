@@ -3248,16 +3248,23 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # E — "Seal of Approval" fresh trigger: an earnings inflection bought on
     # a post-earnings dip. Loosened the drawdown gate (he buys before the
     # full run) and added his valuation discipline (the KITS lesson).
+    # (endpoint matrix, PROXY+EXC) momentum on the weekly total-return panel
+    # (ts_r52), the quote-time 12m figure as fallback. The thesis's POST-
+    # EARNINGS DIP (a negative reaction on a beat) is observable only where the
+    # earnings calendar covers the name, so it RANKS members in the spirit
+    # score (with the beat record and EPS acceleration) instead of gating.
+    _mom_w = _ncol('ts_r52').fillna(mom12)
     df['arch_wolf_seal'] = (
         (mcap > 0) & (mcap < 500e6) &
         inflection_print &
-        (mom12 >= 0.10) &
+        (_mom_w >= 0.10) &
         not_too_deep_any(0.50) &
         _not_melting &   # (deep-audit) the only wolf gate with NO melting floor — inflection_print (a one-off EBITDA print) admitted confirmed op-loss+FCF-burn shells: 0128.HK op-46%/fcf-, CTO.SI op-65% on a rev+2626% base. Trims ~92 melters, keeps genuine first-positive inflections.
         (((ev_ebitda_v > 0) & (ev_ebitda_v < 15.0)) | ((pe_w > 0) & (pe_w < 25.0)))
 
         & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
+    _SPIRITED.append('wolf_seal')
 
     # F — NEW: Wolf Compounder — his signature winner (NCI/ZOMD/KITS-at-entry):
     # a sustained, ACCELERATING grower bought at a single-digit/low-teens
@@ -3554,6 +3561,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     below book) by requiring ACCELERATION — this year's shrink faster than
     #     the 3-year trend — a >= 3% pace, and a cash-LIGHT balance sheet.
     _cl_accel = ((_cl_sy < 0) & ((_cl_sy - _cl_s3) <= -0.01)).fillna(False)
+    # (endpoint matrix, PROXY) the acceleration MEASURED where the annual
+    # cash-flow history allows: buyback yield (each FY's repurchases over that
+    # FY's market cap) rising year on year across the last three FYs. An
+    # additional lens, not a requirement (history is patchy outside FMP's
+    # multi-year coverage).
+    _by0, _by1, _by2 = (_ncol('fmp_st_buyback_yield_y0'), _ncol('fmp_st_buyback_yield_y1'),
+                        _ncol('fmp_st_buyback_yield_y2'))
+    _cl_accel = _cl_accel | ((_by0 >= 0.03) & (_by0 > _by1) & (_by1 >= _by2)).fillna(False)
     df['arch_cluseau_buyback_accel'] = (
         is_operating & (mcap >= 20e6)
         & (_cl_ptb > 0) & (_cl_ptb < 1.0)
@@ -3918,6 +3933,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _div_paid = _dy_f10 * _mc_f7
     _ni_f10 = _ncol('net_income_ttm')
     _fcf_f10 = _ncol('fcf_ttm')
+    _SPIRITED.append('dividend_verified_value')   # (endpoint matrix, EXC) raise streak / no cut / covered payouts rank members
     df['arch_dividend_verified_value'] = (
         is_operating & (_mc_f7 > 0) &
         _fx_coherent &                              # (gate audit #2, completed) payout vs local NI/FCF
@@ -3981,6 +3997,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # self-funding record. NaN-permissive where no annual history exists.
     _fin_share = (_ncol('fmp_st_financing_outflow_years')
                   / _ncol('fmp_st_financing_years').where(_ncol('fmp_st_financing_years') >= 4))
+    _SPIRITED.append('self_funded_returner')   # (endpoint matrix, EXC) FCF-covered outflow ranks members
     df['arch_self_funded_returner'] = (
         is_operating & (mcap > 0) &
         (_fincf_f13 < 0) &                            # net capital OUT to providers
@@ -5043,10 +5060,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # so it is a legitimate re-rate trigger at any size — larger names, where
     # index/institutional inclusion is also in play, simply rank higher on ETA.
     _ni_now_x41 = _ncol('net_income_ttm')
+    _SPIRITED.append('xr_gaap_profit_crossover')   # (endpoint matrix) index-candidate evidence ranks members
     df['arch_xr_gaap_profit_crossover'] = (
         is_operating & (mcap > 0) & _fx_coherent
         & (_ncol('revenue_ttm_usd') >= 20e6)
-        & (s('net_income_first_positive', 0) == 1)          # NI crossed <=0 -> >0 (the mandate-unlock trigger)
+        # NI crossed <=0 -> >0 (the mandate-unlock trigger) — on the annual
+        # figures OR the date-matched quarterly TTM (the turn, whichever
+        # cadence shows it first; the exact window is secondary)
+        & ((s('net_income_first_positive', 0) == 1) | (_ncol('fqx_eps_turned') == 1)
+           | (_ncol('fmp_dyn_ni_turned_positive') == 1))
         & (_ni_now_x41 > 0)
         & ((_ncol('op_margin') > 0) | (ebitda_ttm_v > 0))   # OPERATIONAL profit, not a one-off gain
         & ~(s('is_price_ghost', 0) == 1) & ~(s('is_otc', 0) == 1)  # listing exists for the demand to unlock into
@@ -5242,6 +5264,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _opm_for_med = _opm_x46.where(is_operating & (_ncol('revenue_ttm_usd') >= 20e6) & _opm_x46.between(-0.5, 0.6))
     _sec_med_opm = _opm_for_med.groupby(_sec_g46).transform('median')
     _sec_peer_n = _opm_for_med.groupby(_sec_g46).transform('count')   # (refine) peers behind the median
+    # (endpoint matrix, PROXY) the PEER norm at the finest level with a well-
+    # populated peer set: the INDUSTRY median where >= 20 operating peers
+    # report a margin (a software company vs software, not vs "Technology"),
+    # the sector median otherwise
+    _ind_g46 = df['industry'].fillna('') if 'industry' in df.columns else pd.Series('', index=df.index)
+    _ind_med = _opm_for_med.groupby(_ind_g46).transform('median')
+    _ind_n = _opm_for_med.groupby(_ind_g46).transform('count')
+    _use_ind = (_ind_n >= 20) & (_ind_g46 != '')
+    _sec_med_opm = _ind_med.where(_use_ind, _sec_med_opm)
+    _sec_peer_n = _ind_n.where(_use_ind, _sec_peer_n)
     _margin_gap_x46 = (_sec_med_opm - _opm_x46)
     _turn_x46 = ((_ncol('op_margin_delta_yoy') > 0) | (_ncol('gross_margin_delta_yoy') > 0)
                  | (_ncol('buyback_yield') > 0) | (_ncol('shares_yoy') < -0.01)
@@ -5331,7 +5363,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _vu_language = ((_vu_days <= 400)                                   # a FRESH filing (live catalyst)
                     & (_vu_distinctive | (_vu_np >= 2)))                # distinctive OR multiple phrases (not lone boilerplate)
     _vu_event = ((s('spin_flag', 0) == 1) | (s('tender_flag', 0) == 1)
-                 | (s('merger_flag', 0) == 1) | (s('going_private_flag', 0) == 1))
+                 | (s('merger_flag', 0) == 1) | (s('going_private_flag', 0) == 1)
+                 # (endpoint matrix, LEG) a DATED activist catalyst: an SC 13D
+                 # within 180 days (sub-$2B, so the filing is about the name)
+                 | ((_evt_age_days('evt_sc13d_date') <= 180) & (mcap < 2e9)).fillna(False))
     _vu_cheap = (
         ((pb > 0.05) & (pb < 1.0))                                      # below book
         | (_ncol('ncav_pct_mcap') >= 1.0)                              # net-net
@@ -7307,6 +7342,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # distribution happened.
     _spin = _spin.where(_spin == 1, (_evt_age_days('evt_spin_filing_date') <= 730).astype(float))
     _merger = s('merger_flag', 0); _gopriv = s('going_private_flag', 0)
+    # (endpoint matrix, REACH) DATED deal anchors from fmp_events beside the
+    # EDGAR flags: a merger proxy / M&A-target announcement or a tender offer
+    # within the last 9 months (a deal older than that has closed or broken).
+    # The spread to the offer price is the true measure but FMP carries no
+    # offer price, so freshness is the available proxy.
+    _merger = _merger.where(_merger == 1, ((_evt_age_days('evt_merger_proxy_date') <= 270)
+                                           | (_evt_age_days('evt_ma_target_date') <= 270)).astype(float))
+    _tender = _tender.where(_tender == 1, (_evt_age_days('evt_tender_date') <= 270).astype(float))
     _reorg = s('reorg_flag', 0); _nol_usd = _num('nol_usd')
     _ebit_yield = (1.0 / s('ev_ebit', 0)).where(s('ev_ebit', 0) > 0, np.nan)
     # (topcheck) DERIVE the earnings-yield leg from p_e, not the raw
@@ -7375,6 +7418,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # EV/EBIT (20->30x EV/EBITDA) — a franchise spun at 25x is still the trade.
     _spin_reasonable_mult = (((s('ev_ebit', np.nan) > 0) & (s('ev_ebit', np.nan) <= 35.0))
                              | ((_ev_ebitda_ev > 0) & (_ev_ebitda_ev <= 30.0)))
+    _SPIRITED.append('spinoff_quality')   # (endpoint matrix, EXC) insider buying at the spinco ranks members
     df['arch_spinoff_quality'] = (
         (_spin == 1) & is_operating & _not_melting & (mcap > 0)
         & (_num('roce') >= 0.20)                 # genuine return on capital (SNDK 0.35)
@@ -8282,6 +8326,20 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                 (_c('bs_cp_dvol_z13'), 1), (_c('bs_rs26'), 1), (_c('sent_n_analysts'), -1)],
         'ignition_fallen_angel': [(_c('bs_prior_dd'), -1), (_c('bs_cp_dvol_z13'), 1), (_c('bs_dvol_trend'), 1),
                                   (_c('bs_updown_vol'), 1), (_c('bs_rs26'), 1), (_c('bs_coil_rev'), 1)],
+        # (endpoint matrix) the measured seal: a DIP on a beat (more negative
+        # reaction = better entry), the beat record, EPS acceleration
+        'wolf_seal': [(_c('evt_react_last').where(_c('evt_beats_8q') >= 1), -1), (_c('evt_beats_8q'), 1),
+                      (_c('fqx_eps_accel'), 1), (_c('fqx_ebit_ttm_g'), 1)],
+        'self_funded_returner': [(_c('tc_uncov_payout_3y'), -1),
+                                 (_c('fmp_st_financing_outflow_years') / _c('fmp_st_financing_years'), 1),
+                                 (_c('fcf_yield'), 1), (_c('tc_fcf_pos') / _c('tc_fcf_years'), 1)],
+        'dividend_verified_value': [(_c('evt_div_raise_streak'), 1), (_c('evt_div_cut_2y'), -1),
+                                    (_c('tc_uncov_payout_3y'), -1), (_c('dividend_yield'), 1)],
+        'spinoff_quality': [(_c('insider_distinct_buyers'), 1), (_c('roce'), 1), (_c('op_margin'), 1)],
+        # index candidacy: US listing not yet in the S&P 500, investable float,
+        # size — the mandate-unlocked buyer base
+        'xr_gaap_profit_crossover': [(1 - _c('evt_sp500_member'), 1), (_c('evt_free_float'), 1),
+                                     (_c('market_cap_usd'), 1), (_c('op_margin'), 1)],
         'bottleneck': [(_c('tc_min_gm'), 1), (_c('gross_margin'), 1), (_c('roic_lindy'), 1),
                        (_c('capex_intensity'), -1)],
     })
