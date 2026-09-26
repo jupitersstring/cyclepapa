@@ -61,3 +61,5 @@ fmp_cache/
 fmp_quarterly_panel_parts/
 fmp_price_parts/
 fmp_weekly_prices.parquet
+base_panel.parquet
+base_panel_pit.parquet
