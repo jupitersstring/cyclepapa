@@ -32,6 +32,7 @@ from build_harvard_workbook import (
 from build_archetype_book import (load_data, ARCHETYPE_LABELS, _sheet_safe,
                                   ARCH_SORT_OVERRIDES, arch_sort_col)
 from openpyxl.styles import Border, Side
+from universe_gate import add_gate_arg, apply_gates, gate_label
 from otc_flag import dedupe_display
 from otc_flag import (add_otc_mode_arg, apply_otc_mode,
                       add_high_filter_arg, apply_high_filter)
@@ -516,6 +517,7 @@ def main():
                     help='USD market-cap floor (e.g. 2e9 for a mid-cap-\n                         and-above book). 0 = full universe.')
     add_otc_mode_arg(ap)
     add_high_filter_arg(ap)
+    add_gate_arg(ap)
     ap.add_argument('--max-ret-12m', type=float, default=None,
                     help='keep only names whose trailing 12-month return '
                          '(momentum_12m, fallback price_yoy) is BELOW this '
@@ -592,6 +594,7 @@ def main():
         df = df[_cheap.fillna(False)].copy()
         print(f'  cheap-multiple filter (P/E<{args.max_pe} OR EV<{args.max_ev}): '
               f'{len(df):,} names kept', file=sys.stderr)
+    df = apply_gates(df, args.gate)
     df['src'] = df['src'].fillna('').astype(str).str.upper()
     print(f'  {len(df):,} eligible rows, {len(arch_cols)} archetypes',
           file=sys.stderr)
@@ -606,7 +609,8 @@ def main():
     sub = cover.cell(row=4, column=1,
                      value=f'Top {args.n} names per archetype within each market '
                            f'— so no single country dominates the ranking'
-                     + ('   \u00b7  MID-CAP & ABOVE only (\u2265$%.0fB)' % (args.min_mcap/1e9) if args.min_mcap >= 1e9 else ''))
+                     + ('   \u00b7  MID-CAP & ABOVE only (\u2265$%.0fB)' % (args.min_mcap/1e9) if args.min_mcap >= 1e9 else '')
+                     + (f'   \u00b7  UNIVERSAL GATE: {gate_label(args.gate)}' if args.gate else ''))
     sub.font = _font(italic=True, color=MUTED)
     sub.alignment = _TXT_ALIGN_LEFT
     f_bold_muted = _font(bold=True, color=MUTED)

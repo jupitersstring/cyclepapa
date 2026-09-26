@@ -39,6 +39,7 @@ from build_forensic_xr_book import acct_check
 from openpyxl.styles import Border, Side
 from openpyxl.utils import get_column_letter
 from otc_flag import apply_otc_mode
+from universe_gate import add_gate_arg, apply_gates, gate_label
 from region_map import classify, ordered_countries
 
 OUT = "elite_country_book.xlsx"
@@ -78,6 +79,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=OUT)
     ap.add_argument("--min-mcap", type=float, default=10e6)
+    add_gate_arg(ap)
     args = ap.parse_args()
     df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode="all")
     df = apply_otc_mode(df, "ex-otc")
@@ -86,6 +88,7 @@ def main() -> None:
     if "verdict" in df.columns:
         keep &= df["verdict"].astype(str) != "RED"
     df = df[keep].copy()
+    df = apply_gates(df, args.gate)
     df["src"] = df["src"].fillna("").astype(str).str.upper()
     E, B = elite_matrix(df, arch_cols)
     E = E.loc[:, E.sum() > 0]
@@ -113,7 +116,7 @@ def main() -> None:
         "traded AND clean data",
         "Excluded everywhere: preferred / warrant lines, RED verdicts, clinical-stage biotech (binary-event driven).",
         "Country sheets rank names by the number of archetypes they are elite on, then by confirmed entry asymmetry.",
-    ]
+    ] + ([f"UNIVERSAL GATE applied to every name: {gate_label(args.gate)}"] if args.gate else [])
     for i, t in enumerate(notes, start=4):
         cover.cell(row=i, column=2, value=t).font = _font(italic=(i > 4), color=INK if i == 4 else MUTED)
     _section_rule(cover, 11, "Elite names by archetype (columns = countries with the most elite names)", span_cols=12)
