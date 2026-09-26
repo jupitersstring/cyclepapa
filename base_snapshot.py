@@ -19,10 +19,13 @@ import event_study_base as es
 
 
 def _prices() -> pd.DataFrame:
+    import price_hygiene                                  # blank isolated unit/scale spike weeks
     if os.path.exists(es.PRICES):
-        return pd.read_parquet(es.PRICES)
-    return pd.concat([pd.read_parquet(f) for f in sorted(glob.glob("fmp_price_parts/*.parquet"))],
-                     ignore_index=True)
+        p = pd.read_parquet(es.PRICES)
+    else:
+        p = pd.concat([pd.read_parquet(f) for f in sorted(glob.glob("fmp_price_parts/*.parquet"))],
+                      ignore_index=True)
+    return price_hygiene.clean_weekly(p).drop(columns=["px_spike"])
 
 
 def _ttm_2y(panel: pd.DataFrame) -> pd.DataFrame:

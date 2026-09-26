@@ -480,8 +480,10 @@ def states(d: pd.DataFrame) -> pd.DataFrame:
 def main(workers: int = 4) -> None:
     samp = pd.read_parquet("base_panel_pit.parquet", columns=["symbol", "w_cc"]).drop_duplicates("symbol")
     syms = set(samp["symbol"])
-    px = pd.read_parquet(es.PRICES, columns=["symbol", "week", "high", "low", "close", "volume", "dvol"])
+    px = pd.read_parquet(es.PRICES, columns=["symbol", "week", "open", "high", "low", "close", "volume", "dvol"])
     px = px[px["symbol"].isin(syms)]
+    import price_hygiene                                  # blank isolated unit/scale spike weeks
+    px = price_hygiene.clean_weekly(px).drop(columns=["px_spike"])
     last_global = px["week"].max()
     px = es.attach_usd(px)
     groups = [(s, g, last_global) for s, g in px.groupby("symbol", sort=False)]

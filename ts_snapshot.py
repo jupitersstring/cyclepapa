@@ -149,7 +149,9 @@ def build(out: str = OUT) -> pd.DataFrame:
     if not os.path.exists(INDEX_FILE):
         build_index_file()
     idx = pd.read_parquet(INDEX_FILE)
-    p = pd.read_parquet(es.PRICES, columns=["symbol", "week", "high", "low", "close", "volume", "dvol"])
+    p = pd.read_parquet(es.PRICES, columns=["symbol", "week", "open", "high", "low", "close", "volume", "dvol"])
+    import price_hygiene                                  # blank isolated unit/scale spike weeks
+    p = price_hygiene.clean_weekly(p).drop(columns=["px_spike"])
     p = p[p["week"] >= "2014-01-01"]
     last = p.groupby("symbol")["week"].transform("max")
     p = p[last >= p["week"].max() - pd.Timedelta(days=21)]

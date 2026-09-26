@@ -210,6 +210,12 @@ def load_data(min_mcap: float = 10_000_000, otc_mode: str = 'ex-otc'):
     # Strip any stale suffixed columns that prior merges left behind
     df = df.drop(columns=[c for c in df.columns if c.endswith('_arch')])
     arch = pd.read_csv('archetype_tags.csv')
+    # continuous spirit scores + watch / exceptional / elite tiers live in
+    # their own file (archetype_tags.py splits them out for the size limit)
+    if os.path.exists('archetype_tiers.csv'):
+        _t = pd.read_csv('archetype_tiers.csv').drop_duplicates('symbol')
+        arch = arch.merge(_t.drop(columns=[c for c in _t.columns if c in arch.columns and c != 'symbol']),
+                          on='symbol', how='left')
     arch_cols = [c for c in arch.columns if c.startswith('arch_')]
     # Drop overlapping columns from arch before merge to avoid suffix collision
     overlap = [c for c in arch.columns if c != 'symbol' and c in df.columns]

@@ -22,6 +22,8 @@ from __future__ import annotations
 import sys
 
 import numpy as np
+import os
+
 import pandas as pd
 
 RESULTS = []
@@ -69,12 +71,37 @@ def _units(t, g):
               f"median |{col}| = {med:.3f} (fraction-scale cap {cap})")
 
 
+@measure("Institutional ownership (Yahoo)",
+         "A FRACTION of shares outstanding (0-1; up to ~1.5 on US names where "
+         "13F holdings overlap / lent shares are double-counted). Consumed by "
+         "the coiled-base perception leg as 'thinly owned' (<= 0.30), so a "
+         "percent-scale value would silently break it.")
+def _instpct(t, g):
+    v = pd.to_numeric(g.get("yf_institution_pct"), errors="coerce").dropna()
+    if len(v) < 50:
+        return
+    check("yf_institution_pct is fraction-scale (median <= 1)", float(v.median()) <= 1.0,
+          f"median {float(v.median()):.3f}")
+    inb = float(v.between(0, 2.0).mean())
+    check("yf_institution_pct within [0, 2] (overlapping 13F <= ~1.5)", inb >= 0.995,
+          f"{inb:.2%} in band; {int((~v.between(0, 2.0)).sum())} outliers")
+
+
 @measure("Beaten-down / drawdown family",
          "A name tagged 'beaten down N%' must actually be materially below "
          "its high when the direct 52w measure exists — proxy lenses must "
          "never override a present, contradicting primary.")
 def _beaten(t, g):
     m = t.merge(g[["symbol", "pct_off_52w_high"]], on="symbol", how="left")
+    # the PRIMARY 52w measure is the one the engine uses: the weekly total-
+    # return panel (ts_dist_hi52, current to the latest week, spike-cleaned),
+    # the quote-time snapshot as fallback — a stale quote must not "contradict"
+    # a fresher primary
+    if os.path.exists("ts_snapshot.csv"):
+        ts = pd.read_csv("ts_snapshot.csv", usecols=["symbol", "ts_dist_hi52"])
+        m = m.merge(ts, on="symbol", how="left")
+        m["pct_off_52w_high"] = (pd.to_numeric(m["ts_dist_hi52"], errors="coerce") - 1.0).fillna(
+            pd.to_numeric(m["pct_off_52w_high"], errors="coerce"))
     for arch, depth in [("arch_dead_option", 0.40),
                         ("arch_oak_deep_value", 0.50),
                         ("arch_levered_inflection", 0.25),
@@ -136,11 +163,19 @@ def _lynch(t, g):
     m = f.merge(g[["symbol"] + [c for c in ("roc_12m", "stale_tape")
                                 if c in g.columns]],
                 on="symbol", how="left")
-    roc = pd.to_numeric(m.get("roc_12m"), errors="coerce").dropna()
+    roc = pd.to_numeric(m.get("roc_12m"), errors="coerce")
+    # the engine's primary 12m return is the weekly total-return panel
+    # (ts_r52, current to the latest week); the monthly roc_12m is its fallback
+    if os.path.exists("ts_snapshot.csv"):
+        ts = pd.read_csv("ts_snapshot.csv", usecols=["symbol", "ts_r52"]).drop_duplicates("symbol")
+        roc = pd.to_numeric(m[["symbol"]].merge(ts, on="symbol", how="left")["ts_r52"],
+                            errors="coerce").values
+        roc = pd.Series(roc, index=m.index).fillna(pd.to_numeric(m.get("roc_12m"), errors="coerce"))
+    roc = roc.dropna()
     if len(roc):
-        check("lynch_reward: no firer already paid (roc_12m <= 0.35)",
+        check("lynch_reward: no firer already paid (12m return <= 0.35)",
               (roc <= 0.351).mean() > 0.98,
-              f"{(roc > 0.351).sum()} firers with roc_12m > 35%")
+              f"{(roc > 0.351).sum()} firers with a 12m return > 35%")
     st = pd.to_numeric(m.get("stale_tape"), errors="coerce").dropna()
     if len(st):
         check("lynch_reward: every firer has a live tape",
@@ -706,6 +741,7 @@ def _figure_coverage(t, g):
     consumed = set(_re.findall(r"(?:_ncol|_num|s)\(\s*['\"]([a-z0-9_]+)['\"]", src))
     consumed &= set(g.columns)          # only master-fed figures
     CHECKED = {
+        "yf_institution_pct",   # own suite: fraction scale + band
         # identity / valuation-consistency suite
         "market_cap", "price", "shares_outstanding", "enterprise_value",
         "ebitda_ttm", "revenue_ttm", "net_income_ttm", "fcf_ttm", "cfo_ttm",

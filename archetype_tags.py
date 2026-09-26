@@ -8566,10 +8566,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
              + ['exceptional_count', 'elite_count']
              + [c for c in df.columns if c.startswith('fmp_filled_')]]
     from master_versions import versioned_replace
-    # 10 significant digits: exact for every ratio / flag / score and for
-    # levels to the unit up to ~10bn, while keeping the file well under
-    # GitHub's 100 MB hard limit (full-precision repr reached 94 MB).
-    out.to_csv(out_path + '.tmp', index=False, float_format='%.10g')
+    # TIERS in their own file: the per-archetype continuous spirit score and
+    # its watch / exceptional / elite flags (~535 columns for 166 archetypes)
+    # are read by the elite book only; kept beside the flags they would push
+    # archetype_tags.csv past GitHub's 100 MB hard file limit (131 MB).
+    # archetype_tiers.csv is keyed by symbol; the elite book merges it back.
+    _tier_cols = [c for c in out.columns if c.endswith(('_spirit', '_exceptional', '_elite', '_watch'))]
+    _tiers_path = os.path.join(os.path.dirname(os.path.abspath(out_path)), 'archetype_tiers.csv')
+    out[['symbol'] + _tier_cols].to_csv(_tiers_path + '.tmp', index=False, float_format='%.4g')
+    os.replace(_tiers_path + '.tmp', _tiers_path)
+    # 8 significant digits: exact for every ratio / flag / score and to one
+    # part in 10^8 on levels (a $1bn market cap to the nearest $10).
+    out.drop(columns=_tier_cols).to_csv(out_path + '.tmp', index=False, float_format='%.8g')
     versioned_replace(out_path + '.tmp', out_path)   # atomic + pre-image snapshot
 
 
