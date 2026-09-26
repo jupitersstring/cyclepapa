@@ -45,6 +45,7 @@ keyed on FILING date, 75 days after period end where FMP has none):
 """
 from __future__ import annotations
 
+import glob
 import os
 import sys
 from multiprocessing import Pool
@@ -636,8 +637,20 @@ def states(d: pd.DataFrame) -> pd.DataFrame:
 
 
 def main(workers: int = 4) -> None:
+    """Memory-safe assembly: per-symbol frames are flushed to parquet parts
+    every 1,000 symbols; the panel is then streamed together part by part
+    (a single in-memory concat of ~1.3M rows x ~400 features, alongside the
+    other pipelines, was killed by the OS)."""
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+    import shutil
+    parts_dir = "mb_panel_parts"
+    shutil.rmtree(parts_dir, ignore_errors=True)
+    os.makedirs(parts_dir)
     samp = pd.read_parquet("base_panel_pit.parquet", columns=["symbol", "w_cc"]).drop_duplicates("symbol")
     syms = set(samp["symbol"])
+    if os.environ.get("MB_MAX"):                      # smoke test on a subset
+        syms = set(sorted(syms)[: int(os.environ["MB_MAX"])])
     px = pd.read_parquet(es.PRICES, columns=["symbol", "week", "open", "high", "low", "close", "volume", "dvol"])
     px = px[px["symbol"].isin(syms)]
     import price_hygiene                                  # blank isolated unit/scale spike weeks
@@ -647,26 +660,61 @@ def main(workers: int = 4) -> None:
     groups = [(s, g, last_global) for s, g in px.groupby("symbol", sort=False)]
     del px
     print(f"story: {len(groups)} symbols; prices through {last_global.date()}", flush=True)
-    parts = []
+    buf, n_part = [], 0
+
+    def flush():
+        nonlocal buf, n_part
+        if buf:
+            n_part += 1
+            pd.concat(buf, ignore_index=True).to_parquet(os.path.join(parts_dir, f"part_{n_part:04d}.parquet"),
+                                                         index=False, compression="zstd")
+            buf = []
     with Pool(workers) as pool:
         for i, r in enumerate(pool.imap_unordered(one, groups, chunksize=16), 1):
             if r is not None and len(r):
-                # ~360 features x ~1.3M month-ends: 32-bit floats halve memory
-                parts.append(r.astype({c: "float32" for c in r.select_dtypes("float64").columns}))
+                buf.append(r.astype({c: "float32" for c in r.select_dtypes("float64").columns}))
             if i % 1000 == 0:
+                flush()
                 print(f"  {i}/{len(groups)}", flush=True)
-    d = pd.concat(parts, ignore_index=True)
-    d = d.merge(samp, on="symbol", how="left")
-    # relative strength vs the market's median 26w return that month
-    d["_m"] = d["week"].dt.to_period("M")
-    d["market"] = d["symbol"].map(es._market)
-    d["rs26"] = d["r26"] - d.groupby(["_m", "market"])["r26"].transform("median")
-    d = d.drop(columns=["_m"])
-    d = pd.concat([d, states(d)], axis=1)
-    d.to_parquet(OUT, index=False, compression="zstd")
-    print(f"wrote {OUT}: {len(d):,} month-ends, {d['symbol'].nunique():,} symbols; "
-          f"t3_24 rate {d['t3_24'].mean():.4f}", flush=True)
-
+    flush()
+    del groups
+    # pass 1: union schema + market-relative strength (median 26w return per month x market)
+    files = sorted(glob.glob(os.path.join(parts_dir, "part_*.parquet")))
+    cols = []
+    for f in files:
+        for c in pq.read_schema(f).names:
+            if c not in cols:
+                cols.append(c)
+    rs = pd.concat([pd.read_parquet(f, columns=["symbol", "week", "r26"]) for f in files], ignore_index=True)
+    rs["_m"] = rs["week"].dt.to_period("M").astype(str)
+    rs["market"] = rs["symbol"].map(es._market)
+    med = rs.groupby(["_m", "market"])["r26"].median()
+    del rs
+    # pass 2: stream the panel together with rs26, weights and the story states
+    writer, n_rows, n_ev = None, 0, 0
+    w_map = samp.set_index("symbol")["w_cc"].to_dict()
+    for f in files:
+        d = pd.read_parquet(f).reindex(columns=cols)
+        for c in cols:
+            if d[c].dtype == object and c not in ("symbol",):
+                d[c] = pd.to_numeric(d[c], errors="coerce").astype("float32")
+        d["w_cc"] = d["symbol"].map(w_map).astype("float32")
+        d["market"] = d["symbol"].map(es._market)
+        key = pd.MultiIndex.from_arrays([d["week"].dt.to_period("M").astype(str), d["market"]])
+        d["rs26"] = (d["r26"] - med.reindex(key).to_numpy()).astype("float32")
+        d = pd.concat([d, states(d).astype("float32")], axis=1)
+        tbl = pa.Table.from_pandas(d, preserve_index=False)
+        if writer is None:
+            writer = pq.ParquetWriter(OUT + ".tmp", tbl.schema, compression="zstd")
+        else:
+            tbl = tbl.cast(writer.schema)
+        writer.write_table(tbl)
+        n_rows += len(d); n_ev += int((d["t3_24"] == 1).sum())
+    if writer is not None:
+        writer.close()
+        os.replace(OUT + ".tmp", OUT)
+    shutil.rmtree(parts_dir, ignore_errors=True)
+    print(f"wrote {OUT}: {n_rows:,} month-ends; t3_24 month-ends {n_ev:,}", flush=True)
 
 if __name__ == "__main__":
     main()

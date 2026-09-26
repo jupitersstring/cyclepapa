@@ -64,3 +64,4 @@ fmp_weekly_prices.parquet
 base_panel.parquet
 base_panel_pit.parquet
 mb_panel.parquet
+mb_panel_parts/
