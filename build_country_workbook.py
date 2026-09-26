@@ -602,6 +602,7 @@ def main():
         per_archetype_specs = [
             # (sheet name, tag flag, archetype-specific sort key or None)
             ('Arch_NarrativeLag',         'arch_narrative_lag',         None),
+            ('Arch_DerateThroughGrowth',  'arch_derate_through_growth', None),
             ('Arch_FixedCostDemandShock', 'arch_fixed_cost_demand_shock', None),
             ('Arch_DiscountedVehicle',    'arch_discounted_vehicle',    None),
             ('Arch_CapitalDiscipline',    'arch_capital_discipline',    None),

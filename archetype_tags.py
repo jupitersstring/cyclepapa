@@ -1290,6 +1290,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                'fcfps': _below_norm((1.0 / _fcf_y).where(_fcf_y > 0))}
     df['narrative_lag_outrun'] = pd.concat(
         [v.where(_adv[k].fillna(False)) for k, v in _lag_lens.items()], axis=1).max(axis=1).round(4)
+    _raw_lens = dict(_lag_lens)
     _lag_lens = {k: np.minimum(v, _anchor[k.split('_')[0]]) for k, v in _lag_lens.items()}
     _valid = {k: (v.where(_adv[k].fillna(False))) for k, v in _lag_lens.items()}
     _hit = {k: (v >= _lag_thr[k]).fillna(False) for k, v in _valid.items()}
@@ -1341,6 +1342,58 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _ext = df['narrative_lag_extent'].where(_nl)
     df['narrative_lag_elite'] = (_nl & (_ext >= _ext.quantile(0.90))).astype(int)
     _TIERED.append('narrative_lag')
+
+    # ---------- Derating Through Growth (grew into its valuation) ----------
+    # The complement of the anchored narrative lag: per-share earnings power
+    # compounded for years while a RICH multiple deflated — the business grew
+    # into (and through) its old valuation, so the price went sideways or down
+    # while the company got much bigger (SNAP / MNDY / HUBS from 2021). The
+    # froth is gone and the fundamentals are real; the stock need NOT be cheap
+    # against its sector (that is narrative_lag). Multi-year only (2y / 3y /
+    # 5y coils — a one-year multiple move is noise), same per-share,
+    # genuine-advance and margin-held rules as the lag lenses, measured on the
+    # RAW outrun (multiple compression absorbed by growth).
+    _dg_hit = {k: ((v >= _lag_thr[k]) & _adv[k].fillna(False)).fillna(False)
+               for k, v in _raw_lens.items() if _lag_h[k] >= 2}
+    _dg_hz = {}
+    for _k, _hv in ((k, _lag_h[k]) for k in _dg_hit):
+        _dg_hz[_hv] = _dg_hz.get(_hv, pd.Series(False, index=df.index)) | _dg_hit[_k]
+    _dg_any = pd.concat(list(_dg_hz.values()), axis=1).any(axis=1)
+    _dg_gap = {}
+    for _hv in sorted(_dg_hz):
+        _ks = [k for k in _dg_hit if _lag_h[k] == _hv]
+        _dg_gap[_hv] = pd.concat([_raw_lens[k].where(_dg_hit[k]) for k in _ks], axis=1).mean(axis=1).fillna(0.0)
+    df['derate_growth_extent'] = sum(_dg_gap.values()).where(_dg_any).round(4)
+    df['derate_growth_years'] = pd.concat(
+        [pd.Series(np.where(_dg_hz[h], h, 0), index=df.index) for h in _dg_hz], axis=1).max(axis=1)
+    df['derate_growth_horizons'] = sum(v.astype(int) for v in _dg_hz.values()).astype(int)
+    # the part of the outrun that was froth normalising (outrun beyond what
+    # is unpriced today), for reference
+    df['derate_growth_froth'] = pd.concat(
+        [(_raw_lens[k] - _lag_lens[k]).where(_dg_hit[k]) for k in _dg_hit], axis=1).max(axis=1).round(4)
+    # GROWTH SHARE of the derating on the longest horizon that fired (sales
+    # per share): log growth / (log growth - log price change). ~1 = the price
+    # held while the business compounded (the multiple was absorbed by
+    # growth); a small share = the gap is mostly the price collapsing, i.e.
+    # destruction rather than a business growing into its valuation.
+    # When the price ROSE, all of the compression came through growth (share
+    # = 1 by definition). ABSORBED = the log multiple compression that growth
+    # covered, min(growth, gap): the size of what the business grew through.
+    _dg_share = pd.Series(np.nan, index=df.index)
+    _dg_abs = pd.Series(np.nan, index=df.index)
+    _g2 = np.log1p(_ncol('bs_rev_g_2y')) - _sh3 * (2 / 3)
+    for _span, _g, _p in ((2, _g2, np.log1p(_ncol('bs_r104'))),
+                          (3, np.log1p(_sps[3]), _rp[3]), (5, np.log1p(_sps[5]), _rp[5])):
+        _gap = _g - _p
+        _ok_ = (_gap > 0) & (_g > 0) & _dg_hz.get(_span, pd.Series(False, index=df.index))
+        _sh_ = np.minimum(_g / _gap, 1.0).where(_ok_)
+        _ab_ = np.minimum(_g, _gap).where(_ok_)
+        _dg_share = _sh_.fillna(_dg_share) if _span > 2 else _sh_
+        _dg_abs = _ab_.fillna(_dg_abs) if _span > 2 else _ab_
+    df['derate_growth_share'] = _dg_share.round(4)
+    df['derate_growth_absorbed'] = _dg_abs.round(4)
+    df['arch_derate_through_growth'] = (_dg_any & is_operating & (mcap >= 10e6)).fillna(False).astype(int)
+    _TIERED.append('derate_through_growth')
 
     # ---------- Cluster C5: Fixed-Cost Asset + Demand Shock ----------
     df['arch_fixed_cost_demand_shock'] = (
@@ -6388,6 +6441,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     arch_cols = [
         'arch_narrative_lag',
+        'arch_derate_through_growth',
         'arch_fixed_cost_demand_shock',
         'arch_discounted_vehicle',
         'arch_capital_discipline',
@@ -6557,6 +6611,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
+        'arch_derate_through_growth': 'DerateThroughGrowth',
         'arch_fixed_cost_demand_shock': 'FixedCost+DemandShock',
         'arch_discounted_vehicle': 'DiscountedVehicle',
         'arch_capital_discipline': 'CapitalDiscipline',
@@ -7743,6 +7798,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # it has lagged, how pervasive it is, and ignored hard evidence
         'narrative_lag': [(_c('narrative_lag_extent'), 1), (_c('narrative_lag_years'), 1),
                           (_c('narrative_lag_lenses'), 1), (_c('evt_ignored_beats_2y'), 1)],
+        # grew into its valuation: how much multiple the growth absorbed, for
+        # how long, how much the per-share earnings power compounded, whether
+        # it grew into profitability, and how much premium is left
+        'derate_through_growth': [(_c('fmp_st_sales_ps_5y_g').fillna(_c('fmp_st_sales_ps_3y_g')), 1),
+                                  (_c('fmp_st_ebit_ps_5y_g').fillna(_c('fmp_st_ebit_ps_3y_g')), 1),
+                                  (_c('fmp_st_fcf_ps_5y_g').fillna(_c('fmp_st_fcf_ps_3y_g')), 1),
+                                  (_c('op_margin'), 1), (_c('derate_growth_share'), 1),
+                                  (_c('derate_growth_absorbed'), 1),
+                                  (_c('derate_growth_years'), 1),
+                                  (_c('ev_sales').where(_c('ev_sales') > 0), -1)],
         'asleep_at_wheel': [(_c('evt_beat_share_8q'), 1), (_c('evt_surprise_4q'), 1),
                             (_c('avg_earnings_surprise'), 1), (_c('earnings_beat_streak'), 1),
                             (_c('evt_ignored_beats_2y'), 1)],
@@ -7896,7 +7961,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
              + [c for c in ['inst_accum_score','inst_accum_accelerating','inst_own_excess_q0','inst_buy_excess_q0','fmp_signals',
                             'roic_lindy_eff','capret_yield_eff','multi_year_data','non_common_flag',
                             'biotech_momentum_watch','controlled_sub_flag',
-                            'narrative_lag_lenses','narrative_lag_extent','narrative_lag_years','narrative_lag_max_gap','narrative_lag_outrun','nl_sales_1y','nl_ebit_1y','nl_eps_1y','nl_fcfps_1y','nl_sales_5y','nl_ebit_3y','nl_fcfps_3y','nl_ebit_5y','nl_fcfps_5y',
+                            'narrative_lag_lenses','narrative_lag_extent','narrative_lag_years','narrative_lag_max_gap','narrative_lag_outrun','derate_growth_extent','derate_growth_years','derate_growth_horizons','derate_growth_froth','derate_growth_share','derate_growth_absorbed','nl_sales_1y','nl_ebit_1y','nl_eps_1y','nl_fcfps_1y','nl_sales_5y','nl_ebit_3y','nl_fcfps_3y','nl_ebit_5y','nl_fcfps_5y',
                             'nl_sales_2y','nl_ebit_2y','nl_sales_3y',
                             'ts_dvol26_usd','ts_r52','ts_rs_pct_mkt','ts_weinstein_stage','ts_maxdd_5y',
                             'ts_dist_hi52','ts_mrs',

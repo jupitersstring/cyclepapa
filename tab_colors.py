@@ -122,6 +122,7 @@ ARCH_FAMILY = {
     'arch_xr_segment_justifies_whole': 'segment', 'arch_xr_margin_mixshift': 'segment',
     # contrarian / neglect
     'arch_narrative_lag': 'contrarian', 'arch_blindspot': 'contrarian',
+    'arch_derate_through_growth': 'contrarian',
     'arch_asleep_at_wheel': 'contrarian', 'arch_dead_option': 'contrarian',
     'arch_analyst_awakening': 'contrarian', 'arch_institutional_accumulation': 'contrarian', 'arch_liger_neglected_survivor': 'contrarian',
     # analyst re-rating CONFIRMED by 52w-high price strength — a momentum-
