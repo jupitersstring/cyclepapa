@@ -7,8 +7,8 @@ several independent lenses of the archetype's own thesis, grounded in the
 source write-ups — docs/spirit_spec.json). A name qualifies for an archetype
 ONLY IF
 
-      <name>_elite == 1        spirit >= 0.90 (near the top on EVERY lens), OR
-      <name>_exceptional == 1  spirit >= 0.75;  ★ = elite
+      spirit >= 0.90 (near the top on EVERY lens; ★), OR
+      in the top 2% of that archetype's members by spirit (>= 3 names)
   archetypes whose core is too small to rank (< 5 members) fall back to:
       member AND top 5% of that archetype's members by confirm_overall AND no
       red forensic tell AND liquid (>= $250k / week USD) AND clean data
@@ -60,11 +60,17 @@ def elite_matrix(df: pd.DataFrame, arch_cols: list) -> tuple[pd.DataFrame, pd.Da
         mem = n(col) == 1
         if not mem.any():
             continue
-        if f"{name}_elite" in df.columns or f"{name}_exceptional" in df.columns:
-            el = n(f"{name}_elite") == 1
-            ex = n(f"{name}_exceptional") == 1
-            E[col] = (mem & (el | ex)).astype(int)
-            B[col] = (mem & el).astype(int)
+        if f"{name}_spirit" in df.columns and n(f"{name}_spirit").where(mem).notna().sum() >= 5:
+            # STRINGENT: spirit >= 0.90 (near the top on EVERY lens: star), or
+            # the top 2% of the archetype's own members by spirit (>= 3 names)
+            # — so a large core contributes only its very best, and a varied
+            # core whose averaged ranks rarely reach 0.90 still shows its top
+            sp = n(f"{name}_spirit").where(mem)
+            k = max(3, int(np.ceil(0.02 * sp.notna().sum())))
+            top = sp >= sp.nlargest(k).min()
+            el = sp >= 0.90
+            E[col] = (mem & (el | top)).fillna(False).astype(int)
+            B[col] = (mem & el).fillna(False).astype(int)
         else:
             c = conf.where(mem)
             cut = c.quantile(0.95) if c.notna().sum() >= 20 else np.inf
@@ -109,7 +115,8 @@ def main() -> None:
     notes = [
         "Each archetype is made extremely stringent. A name appears for an archetype only if:",
         "• every archetype has a continuous SPIRIT score: the average within-archetype rank across several independent "
-        "measures of its own thesis. Listed if spirit >= 0.75 (exceptional); ★ = spirit >= 0.90 (elite: near the top on every measure)",
+        "measures of its own thesis. Listed only if spirit >= 0.90 (★: near the top on every measure) or in the top 2% of the "
+        "archetype's members by spirit",
         "• archetypes too small to rank (< 5 members): top 5% by multi-measure confirmation AND no red accounting tell AND "
         ">= $250k/week traded AND clean data",
         "Excluded everywhere: preferred / warrant lines, RED verdicts, clinical-stage biotech (binary-event driven).",

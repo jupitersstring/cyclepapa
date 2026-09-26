@@ -6833,6 +6833,56 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_coiled_fallen_angel'] = ((df['arch_coiled_base'] == 1) & _fallen_ctx).astype(int)
     df['arch_ignition_fallen_angel'] = ((df['arch_base_ignition'] == 1) & _fallen_ctx).astype(int)
     _SPIRITED += ['coiled_fallen_angel', 'ignition_fallen_angel']
+
+    # ============ MULTIBAGGER PRE-CONDITIONS (multibagger_clusters.py) ============
+    # The latent-cluster study of 3x-within-24-months episodes (entries fit
+    # <= 2017, judged 2018+): the states below are the study's OWN state
+    # definitions applied to today's snapshot, so the measured out-of-sample
+    # lifts carry over. Every one is high-variance (the study's P(-50% within
+    # 24m) is 15-35%): better-loaded lottery tickets, not safe bets.
+    _mb_liquid = (_ncol('ts_dvol26_usd') >= 250_000).fillna(False)
+    _mb_base = is_operating & (mcap >= 10e6) & _mb_liquid
+    _hi260 = _ncol('ts_dist_hi260')
+    _mb_fallen = (_hi260 <= 0.40).fillna(False)                     # >= 60% below the 5y high
+    _eveb = s('ev_ebit', np.nan); _pbv = _ncol('pb'); _psv = _ncol('p_s')
+    _mb_deep = (((_eveb > 0) & (_eveb <= 6)) | ((_pbv > 0) & (_pbv <= 0.7))
+                | ((_psv > 0) & (_psv <= 0.3))).fillna(False)
+    _mb_turn = ((_ncol('fqx_eps_turned') == 1) | (_ncol('bs_ebit_turned') == 1)
+                | (ebitda_first_pos > 0) | (ni_first_pos > 0) | (fcf_first_pos > 0)
+                | (_ncol('fmp_dyn_opinc_turned_positive') == 1)
+                | (_ncol('fmp_dyn_ni_turned_positive') == 1)).fillna(False)
+    _mb_accel = (rev_accel >= 0.10).fillna(False)
+    _mb_stressed = (((nde >= 5) & (nde < 90)) | (_ncol('equity') < 0)).fillna(False)
+    _mb_opm_gap = _ncol('op_margin') - _ncol('tc_med_opm')          # margin vs its own through-cycle median
+    _mb_trough = ((_mb_opm_gap <= -0.05) & (rev_accel > 0)).fillna(False)
+    _mb_insider = ((s('insider_buy_flag', 0) == 1) | (_ncol('insider_distinct_buyers') >= 2)
+                   | (_ncol('fmp_insider_net_usd_12m') > 0)).fillna(False)
+    # conjunctions (robust in BOTH periods; lift fit / test)
+    df['arch_mb_fallen_deep_value'] = (_mb_base & _mb_fallen & _mb_deep).astype(int)          # 2.5x / 3.4x
+    df['arch_mb_fallen_value_turn'] = (_mb_base & _mb_fallen & _mb_deep & _mb_turn).astype(int)   # 2.7x / 3.6x
+    df['arch_mb_fallen_value_accel'] = (_mb_base & _mb_fallen & _mb_deep & _mb_accel).astype(int)  # 3.0x / 3.3x
+    df['arch_mb_fallen_stressed'] = (_mb_base & _mb_fallen & _mb_stressed).astype(int)        # 3.1x / 2.7x
+    df['arch_mb_fallen_insider'] = (_mb_base & _mb_fallen & _mb_insider).astype(int)          # 2.2x / 4.3x
+    df['arch_mb_fallen_trough'] = (_mb_base & _mb_fallen & _mb_trough).astype(int)            # 2.8x / 2.2x
+    # the two real latent clusters (continuous directions, not boxes)
+    #  FALLEN BELOW ITS CYCLE (47% of 2018+ multibaggers, 1.5x): far below the
+    #  5y high, margins under their own through-cycle norm, the multiple below
+    #  its own history
+    _cheap_own = ((_ncol('ev_sales_change_yoy') < 0) | (_ncol('price_vs_5y_avg') < 1.0)).fillna(False)
+    df['arch_mb_fallen_below_cycle'] = (
+        _mb_base & (_hi260 <= 0.50).fillna(False) & (_mb_opm_gap <= -0.02).fillna(False) & _cheap_own
+    ).astype(int)
+    #  INFLECTING OPERATOR (38%, 1.1x): margins and EBIT rising, returns
+    #  improving, smaller cap, a fair (not bubble) price
+    _mb_margin_up = ((_ncol('op_margin_delta_yoy') >= 0.01) | (_ncol('fqx_inc_ebit_margin') >= 0.20)).fillna(False)
+    _mb_ebit_up = ((_ncol('fqx_ebit_ttm_g') >= 0.10) | (_ncol('ebit_growth_yoy') >= 0.10)).fillna(False)
+    _mb_roic_up = ((_ncol('fqx_roic_ttm') > _ncol('roic_lindy')) | (_ncol('roce_delta_yoy') > 0)).fillna(False)
+    df['arch_mb_inflecting_operator'] = (
+        _mb_base & (mcap < 2e9) & _mb_margin_up & _mb_ebit_up & _mb_roic_up
+        & ((_eveb > 0) & (_eveb <= 25)).fillna(False)
+    ).astype(int)
+    _SPIRITED += ['mb_fallen_deep_value', 'mb_fallen_value_turn', 'mb_fallen_value_accel', 'mb_fallen_stressed',
+                  'mb_fallen_insider', 'mb_fallen_trough', 'mb_fallen_below_cycle', 'mb_inflecting_operator']
     # Rank score (0-1), weights re-calibrated to the event study's OUT-OF-
     # SAMPLE lifts (fit <= 2018, test 2019+): fallen-angel context was the
     # strongest single ingredient (bottom prior-drawdown quintile 3.3x; with
@@ -6989,6 +7039,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_base_ignition',
         'arch_coiled_fallen_angel',
         'arch_ignition_fallen_angel',
+        'arch_mb_fallen_deep_value',
+        'arch_mb_fallen_value_turn',
+        'arch_mb_fallen_value_accel',
+        'arch_mb_fallen_stressed',
+        'arch_mb_fallen_insider',
+        'arch_mb_fallen_trough',
+        'arch_mb_fallen_below_cycle',
+        'arch_mb_inflecting_operator',
         'arch_xr_peer_margin_gap',
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
@@ -7168,6 +7226,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_base_ignition': 'BaseIgnition',
         'arch_coiled_fallen_angel': 'CoiledFallenAngel',
         'arch_ignition_fallen_angel': 'IgnitionFallenAngel',
+        'arch_mb_fallen_deep_value': 'MB-FallenDeepValue',
+        'arch_mb_fallen_value_turn': 'MB-FallenValueTurn',
+        'arch_mb_fallen_value_accel': 'MB-FallenValueAccel',
+        'arch_mb_fallen_stressed': 'MB-FallenStressed',
+        'arch_mb_fallen_insider': 'MB-FallenInsider',
+        'arch_mb_fallen_trough': 'MB-FallenTrough',
+        'arch_mb_fallen_below_cycle': 'MB-FallenBelowCycle',
+        'arch_mb_inflecting_operator': 'MB-InflectingOperator',
         'arch_xr_cash_leads_book': 'XR-CashLeadsBook',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
@@ -8355,6 +8421,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # size — the mandate-unlocked buyer base
         'xr_gaap_profit_crossover': [(1 - _c('evt_sp500_member'), 1), (_c('evt_free_float'), 1),
                                      (_c('market_cap_usd'), 1), (_c('op_margin'), 1)],
+        # multibagger pre-conditions: depth of the fall, depth of the value,
+        # and the strength of the pattern's own trigger
+        'mb_fallen_deep_value': [(_c('ts_dist_hi260'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
+                                 (_c('pb').where(_c('pb') > 0), -1), (_c('fcf_yield'), 1)],
+        'mb_fallen_value_turn': [(_c('ts_dist_hi260'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
+                                 (_c('fqx_ebit_ttm_g'), 1), (_c('fcf_yield'), 1)],
+        'mb_fallen_value_accel': [(_c('ts_dist_hi260'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
+                                  (_c('rev_accel'), 1), (_c('fq_rev_growth'), 1)],
+        'mb_fallen_stressed': [(_c('ts_dist_hi260'), -1), (_c('ev_sales').where(_c('ev_sales') > 0), -1),
+                               (_c('fqx_ebit_ttm_g'), 1), (_c('cfo_yield'), 1)],
+        'mb_fallen_insider': [(_c('ts_dist_hi260'), -1), (_c('insider_distinct_buyers'), 1),
+                              (_c('fmp_insider_alignment_ratio'), 1), (_c('fcf_yield'), 1)],
+        'mb_fallen_trough': [(_c('ts_dist_hi260'), -1), (_c('tc_med_opm') - _c('op_margin'), 1),
+                             (_c('rev_accel'), 1), (_c('tc_min_opm'), 1)],
+        'mb_fallen_below_cycle': [(_c('ts_dist_hi260'), -1), (_c('tc_med_opm') - _c('op_margin'), 1),
+                                  (_c('ev_sales_change_yoy'), -1), (_c('tc_opinc_pos'), 1)],
+        'mb_inflecting_operator': [(_c('op_margin_delta_yoy'), 1), (_c('fqx_ebit_ttm_g'), 1),
+                                   (_c('fqx_roic_ttm') - _c('roic_lindy'), 1), (_c('fqx_inc_ebit_margin'), 1)],
         'bottleneck': [(_c('tc_min_gm'), 1), (_c('gross_margin'), 1), (_c('roic_lindy'), 1),
                        (_c('capex_intensity'), -1)],
     })
