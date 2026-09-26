@@ -83,7 +83,9 @@ def hygiene(d: pd.DataFrame, ent: pd.Series) -> pd.DataFrame:
         rec["stale"] = bool((r == 0).mean() >= 0.30) if len(r) > 10 else False
         rows.append(rec)
     h = pd.DataFrame(rows)
-    h["artifact"] = h[["penny", "spike_reversal", "unit_break", "stale"]].fillna(False).any(axis=1)
+    # a LOW PRICE is a risk class, not a data error (A-shares at CNY 1-3 are
+    # liquid, real companies): reported, never excluded as an artifact
+    h["artifact"] = h[["spike_reversal", "unit_break", "stale"]].fillna(False).any(axis=1)
     return h
 
 
@@ -270,7 +272,8 @@ def main():
              "quintile, did NOT triple).\n")
     L.append("## 1. Hygiene — artifacts removed before anything else\n")
     L.append(f"- flagged as artifacts: {int(h['artifact'].sum()):,} of {len(h):,} "
-             f"({h['artifact'].mean():.1%}): penny {int(h['penny'].sum())}, spike-and-reverse "
+             f"({h['artifact'].mean():.1%}); low-priced (< $0.20, reported, NOT excluded): "
+             f"{int(h['penny'].sum())}; spike-and-reverse "
              f"{int(h['spike_reversal'].sum())}, unit break {int(h['unit_break'].sum())}, stale tape "
              f"{int(h['stale'].sum())}")
     ex = h[h["artifact"]].head(12)

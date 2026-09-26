@@ -6881,8 +6881,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _mb_base & (mcap < 2e9) & _mb_margin_up & _mb_ebit_up & _mb_roic_up
         & ((_eveb > 0) & (_eveb <= 25)).fillna(False)
     ).astype(int)
+    #  QUIET TURN UNDER A WEAK TAPE (the forensic "dogs that did not bark":
+    #  against same-state lookalikes, the winners had WEAKER recent price
+    #  action while revenue accelerated and EBIT grew, and were cheaper than
+    #  their own history; the fundamental turn leads the run by ~12 months)
+    _mb_weak_tape = ((_ncol('ts_r13') < 0) & (_ncol('ts_dist_hi52') < 0.85)).fillna(False)
+    _mb_fund_turning = (((rev_accel > 0) | (_ncol('fq_rev_growth') >= 0.10))
+                        & ((_ncol('fqx_ebit_ttm_g') > 0) | _mb_turn)).fillna(False)
+    df['arch_mb_quiet_turn'] = (_mb_base & _mb_fund_turning & _mb_weak_tape & _cheap_own).astype(int)
     _SPIRITED += ['mb_fallen_deep_value', 'mb_fallen_value_turn', 'mb_fallen_value_accel', 'mb_fallen_stressed',
-                  'mb_fallen_insider', 'mb_fallen_trough', 'mb_fallen_below_cycle', 'mb_inflecting_operator']
+                  'mb_fallen_insider', 'mb_fallen_trough', 'mb_fallen_below_cycle', 'mb_inflecting_operator',
+                  'mb_quiet_turn']
     # Rank score (0-1), weights re-calibrated to the event study's OUT-OF-
     # SAMPLE lifts (fit <= 2018, test 2019+): fallen-angel context was the
     # strongest single ingredient (bottom prior-drawdown quintile 3.3x; with
@@ -7047,6 +7056,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_fallen_trough',
         'arch_mb_fallen_below_cycle',
         'arch_mb_inflecting_operator',
+        'arch_mb_quiet_turn',
         'arch_xr_peer_margin_gap',
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
@@ -7234,6 +7244,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_fallen_trough': 'MB-FallenTrough',
         'arch_mb_fallen_below_cycle': 'MB-FallenBelowCycle',
         'arch_mb_inflecting_operator': 'MB-InflectingOperator',
+        'arch_mb_quiet_turn': 'MB-QuietTurnWeakTape',
         'arch_xr_cash_leads_book': 'XR-CashLeadsBook',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
@@ -8424,21 +8435,32 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # multibagger pre-conditions: depth of the fall, depth of the value,
         # and the strength of the pattern's own trigger
         'mb_fallen_deep_value': [(_c('ts_dist_hi260'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
-                                 (_c('pb').where(_c('pb') > 0), -1), (_c('fcf_yield'), 1)],
+                                 (_c('pb').where(_c('pb') > 0), -1), (_c('fcf_yield'), 1),
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
         'mb_fallen_value_turn': [(_c('ts_dist_hi260'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
-                                 (_c('fqx_ebit_ttm_g'), 1), (_c('fcf_yield'), 1)],
+                                 (_c('fqx_ebit_ttm_g'), 1), (_c('fcf_yield'), 1),
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
         'mb_fallen_value_accel': [(_c('ts_dist_hi260'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
-                                  (_c('rev_accel'), 1), (_c('fq_rev_growth'), 1)],
+                                  (_c('rev_accel'), 1), (_c('fq_rev_growth'), 1),
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
         'mb_fallen_stressed': [(_c('ts_dist_hi260'), -1), (_c('ev_sales').where(_c('ev_sales') > 0), -1),
-                               (_c('fqx_ebit_ttm_g'), 1), (_c('cfo_yield'), 1)],
+                               (_c('fqx_ebit_ttm_g'), 1), (_c('cfo_yield'), 1),
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
         'mb_fallen_insider': [(_c('ts_dist_hi260'), -1), (_c('insider_distinct_buyers'), 1),
-                              (_c('fmp_insider_alignment_ratio'), 1), (_c('fcf_yield'), 1)],
+                              (_c('fmp_insider_alignment_ratio'), 1), (_c('fcf_yield'), 1),
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
         'mb_fallen_trough': [(_c('ts_dist_hi260'), -1), (_c('tc_med_opm') - _c('op_margin'), 1),
-                             (_c('rev_accel'), 1), (_c('tc_min_opm'), 1)],
+                             (_c('rev_accel'), 1), (_c('tc_min_opm'), 1),
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
         'mb_fallen_below_cycle': [(_c('ts_dist_hi260'), -1), (_c('tc_med_opm') - _c('op_margin'), 1),
-                                  (_c('ev_sales_change_yoy'), -1), (_c('tc_opinc_pos'), 1)],
+                                  (_c('ev_sales_change_yoy'), -1), (_c('tc_opinc_pos'), 1),
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
         'mb_inflecting_operator': [(_c('op_margin_delta_yoy'), 1), (_c('fqx_ebit_ttm_g'), 1),
-                                   (_c('fqx_roic_ttm') - _c('roic_lindy'), 1), (_c('fqx_inc_ebit_margin'), 1)],
+                                   (_c('fqx_roic_ttm') - _c('roic_lindy'), 1), (_c('fqx_inc_ebit_margin'), 1),
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
+        'mb_quiet_turn': [(_c('ts_r13'), -1), (_c('ts_dist_hi52'), -1), (_c('rev_accel'), 1),
+                          (_c('fqx_ebit_ttm_g'), 1), (_c('ev_sales_change_yoy'), -1),
+                          (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
         'bottleneck': [(_c('tc_min_gm'), 1), (_c('gross_margin'), 1), (_c('roic_lindy'), 1),
                        (_c('capex_intensity'), -1)],
     })

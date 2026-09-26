@@ -46,6 +46,7 @@ ARCHETYPE_LABELS = {
     'arch_mb_fallen_trough': 'MB: Fallen + Cyclical Trough',
     'arch_mb_fallen_below_cycle': 'MB: Fallen Below Its Own Cycle',
     'arch_mb_inflecting_operator': 'MB: Inflecting Operator',
+    'arch_mb_quiet_turn': 'MB: Quiet Turn Under a Weak Tape',
     'arch_narrative_lag': 'Narrative Lag',
     'arch_derate_through_growth': 'Derating Through Growth (grew into its valuation)',
     'arch_fixed_cost_demand_shock': 'Fixed-Cost + Demand Shock',
