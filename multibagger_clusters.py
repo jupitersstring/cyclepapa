@@ -135,6 +135,20 @@ def load():
     pat = d["symbol"].str.contains(r"[-.](?:P[A-Z]?|W|WS|WT|U|R|RT)$|\.PR", regex=True) | \
         d["symbol"].str.match(r"^[A-Z]{4}[WUR]$")
     d = d[~(d["symbol"].isin(nc) | pat)].copy()
+    # UNIT BREAKS: a single-week move of >= 10x (or <= 1/10) in the
+    # spike-cleaned weekly closes is an unadjusted split / unit change, not a
+    # market move — it corrupts every return label around it, so the symbol
+    # is excluded from the study (population and entries alike)
+    import event_study_base as es
+    import price_hygiene
+    px = pd.read_parquet(es.PRICES, columns=["symbol", "week", "close"],
+                         filters=[("symbol", "in", d["symbol"].unique().tolist())])
+    px = price_hygiene.clean_weekly(px)
+    r = px.groupby("symbol")["close"].transform(lambda s: s / s.shift(1))
+    broken = set(px.loc[(r >= 10) | (r <= 0.1), "symbol"])
+    print(f"  unit-break symbols excluded: {len(broken)}", flush=True)
+    d = d[~d["symbol"].isin(broken)].copy()
+    d.attrs["unit_break_excluded"] = len(broken)
     from event_study_analyse import bio_flags
     bio = bio_flags(d["symbol"].unique())
     d["bio"] = d["symbol"].map(bio).fillna(False).astype(bool)
@@ -159,11 +173,20 @@ def ranked(d: pd.DataFrame, feats) -> pd.DataFrame:
 
 
 def entries(d: pd.DataFrame, label: str) -> pd.Series:
-    """First month of each episode of label == 1 (new episode after > 6 months)."""
-    e = d.loc[d[label] == 1, ["symbol", "week"]].sort_values(["symbol", "week"])
+    """First month of each episode of label == 1 (new episode after > 6 months)
+    — and only where the START IS OBSERVED: the same symbol has a month with
+    label == 0 within the 6 months before. An episode already under way when
+    the sample (or the symbol's liquid history) begins would otherwise be
+    stamped with a mid-run state as its 'entry' (left-censoring)."""
+    s = d[["symbol", "week", label]].sort_values(["symbol", "week"])
+    e = s[s[label] == 1]
     gap = e.groupby("symbol")["week"].diff().dt.days
-    first = gap.isna() | (gap > 183)
-    return pd.Series(first.values, index=e.index).reindex(d.index, fill_value=False)
+    first = e.index[(gap.isna() | (gap > 183)).values]
+    prev_week = s.groupby("symbol")["week"].shift(1)
+    prev_lab = s.groupby("symbol")[label].shift(1)
+    observed = (prev_lab.loc[first] == 0) & ((s.loc[first, "week"] - prev_week.loc[first]).dt.days <= 183)
+    keep = first[observed.values]
+    return pd.Series(d.index.isin(keep), index=d.index)
 
 
 def region_stats(d, inr, label, period_mask):
@@ -397,6 +420,9 @@ def _fmt(v, kind):
 def report(res_main, res_12, res_bio, sl, d, res_full=None, combos_df=None, tree_df=None):
     L = []
     L.append("# What precedes multibagging — latent clusters of pre-conditions\n")
+    L.append(f"Excluded before analysis: {d.attrs.get('unit_break_excluded', 0):,} symbols with a unit / "
+             "split break (a single-week move >= 10x in spike-cleaned closes); entries whose start is not "
+             "observed (left-censored) are not counted as entries.\n")
     L.append(f"Sample: {d['symbol'].nunique():,} symbols (case-control, weighted to the population), "
              f"{len(d):,} liquid month-ends (>= $250k/week USD), {d['week'].min():%Y-%m} to {d['week'].max():%Y-%m}. "
              "Every feature is point-in-time (statements on filing date). A multibagger = a 3x reached AND held "
