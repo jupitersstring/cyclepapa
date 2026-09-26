@@ -8,10 +8,13 @@ source write-ups — docs/spirit_spec.json). A name qualifies for an archetype
 ONLY IF
 
       spirit >= 0.90 (near the top on EVERY lens; ★), OR
-      in the top 2% of that archetype's members by spirit (>= 3 names)
+      in the top 2% of that archetype's members by spirit (>= 3 names),
+      globally OR within the name's own country (so every market's own best
+      appear on its sheet on their own terms)
+  Thin liquidity is DENOTED (⚠ thin), never a limit.
   archetypes whose core is too small to rank (< 5 members) fall back to:
       member AND top 5% of that archetype's members by confirm_overall AND no
-      red forensic tell AND liquid (>= $250k / week USD) AND clean data
+      red forensic tell AND clean data (liquidity denoted, not required)
 
 Common guards for every name: common stock, not RED-verdict, not a clinical-
 stage biotech (their moves are binary-event driven), market cap >= $10M.
@@ -73,13 +76,22 @@ def elite_matrix(df: pd.DataFrame, arch_cols: list) -> tuple[pd.DataFrame, pd.Da
             sp = n(f"{name}_spirit").where(mem)
             k = max(3, int(np.ceil(0.02 * sp.notna().sum())))
             top = sp >= sp.nlargest(k).min()
+            # ...and the top 2% WITHIN THE NAME'S OWN COUNTRY (>= 3 names, of a
+            # country with >= 10 members): every market's own best appear on
+            # its country sheet on their own terms, whatever the global cut
+            ctry = df["src"].astype(str).str.upper()
+            n_c = sp.notna().groupby(ctry).transform("sum")
+            k_c = np.maximum(3, np.ceil(0.02 * n_c))
+            rank_c = sp.groupby(ctry).rank(ascending=False, method="first")
+            top_c = (rank_c <= k_c) & (n_c >= 10)
             el = sp >= 0.90
-            E[col] = (mem & (el | top) & liquid & dq_ok).fillna(False).astype(int)
-            B[col] = (mem & el & liquid & dq_ok).fillna(False).astype(int)
+            # liquidity is DENOTED on the name (the ⚠ tags), never a limit
+            E[col] = (mem & (el | top | top_c) & dq_ok).fillna(False).astype(int)
+            B[col] = (mem & el & dq_ok).fillna(False).astype(int)
         else:
             c = conf.where(mem)
             cut = c.quantile(0.95) if c.notna().sum() >= 20 else np.inf
-            E[col] = (mem & (c >= cut) & clean & liquid & dq_ok).fillna(False).astype(int)
+            E[col] = (mem & (c >= cut) & clean & dq_ok).fillna(False).astype(int)
             B[col] = 0
     return E, B
 
@@ -110,6 +122,9 @@ def main() -> None:
         "FCF yld>50%": num("fcf_yield") > 0.5, "net cash>2x mcap": num("net_cash_pct_mcap") > 2,
         "P/E<1.5": num("p_e").between(0, 1.5, inclusive="neither"), "P/B<0.1": num("pb").between(0, 0.1, inclusive="neither"),
         "P/S<0.05": num("p_s").between(0, 0.05, inclusive="neither"), "rev<$5M": num("revenue_ttm_usd") < 5e6}, axis=1)
+    _thin = num("ts_dvol26_usd").fillna(num("avg_dollar_volume") * 5)
+    _v["thin: <$250k/wk"] = _thin < 250_000
+    _v["no volume data"] = _thin.isna()
     df["verify"] = _v.fillna(False).apply(lambda r: ", ".join(k for k, v in r.items() if bool(v)), axis=1)
     # one line per company: share classes / cross-listings / listed notes of
     # the same issuer collapse to the most-traded line
@@ -140,7 +155,8 @@ def main() -> None:
         "Each archetype is made extremely stringent. A name appears for an archetype only if:",
         "• every archetype has a continuous SPIRIT score: the average within-archetype rank across several independent "
         "measures of its own thesis. Listed only if spirit >= 0.90 (★: near the top on every measure) or in the top 2% of the "
-        "archetype's members by spirit",
+        "archetype's members by spirit — globally or within its own country",
+        "⚠ tags denote thin liquidity (< $250k/week) and implausible values to verify; they never exclude a name.",
         "• archetypes too small to rank (< 5 members): top 5% by multi-measure confirmation AND no red accounting tell AND "
         ">= $250k/week traded AND clean data",
         "Excluded everywhere: preferred / warrant lines, RED verdicts, clinical-stage biotech (binary-event driven).",
