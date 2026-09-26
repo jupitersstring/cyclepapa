@@ -1,19 +1,17 @@
 """Elite country book — every archetype made extremely stringent.
 
 Separate from the main country books: it shows only the most exceptional
-opportunities per country, where a name qualifies for an archetype ONLY IF
+opportunities per country. Every archetype now carries a CONTINUOUS spirit
+score (archetype_tags: <name>_spirit = mean within-core percentile rank over
+several independent lenses of the archetype's own thesis, grounded in the
+source write-ups — docs/spirit_spec.json). A name qualifies for an archetype
+ONLY IF
 
-  tiered archetypes (core / watch / exceptional / elite split in
-  archetype_tags._tier):
-      <name>_elite == 1        top 10% of the core on the archetype's defining
-                               continuous measure, OR
-      <name>_exceptional == 1  passes the archetype's qualitative exceptional
-                               test;  ★ = both
-  every other archetype (no tier yet):
-      member AND top 5% of that archetype's members by confirm_overall (the
-      multi-measure confirmation) AND no red forensic tell
-      (fq_forensic_red_count == 0) AND liquid (>= $250k / week USD)
-      AND not data-quality flagged
+      <name>_elite == 1        spirit >= 0.90 (near the top on EVERY lens), OR
+      <name>_exceptional == 1  spirit >= 0.75;  ★ = elite
+  archetypes whose core is too small to rank (< 5 members) fall back to:
+      member AND top 5% of that archetype's members by confirm_overall AND no
+      red forensic tell AND liquid (>= $250k / week USD) AND clean data
 
 Common guards for every name: common stock, not RED-verdict, not a clinical-
 stage biotech (their moves are binary-event driven), market cap >= $10M.
@@ -66,7 +64,7 @@ def elite_matrix(df: pd.DataFrame, arch_cols: list) -> tuple[pd.DataFrame, pd.Da
             el = n(f"{name}_elite") == 1
             ex = n(f"{name}_exceptional") == 1
             E[col] = (mem & (el | ex)).astype(int)
-            B[col] = (mem & el & ex).astype(int)
+            B[col] = (mem & el).astype(int)
         else:
             c = conf.where(mem)
             cut = c.quantile(0.95) if c.notna().sum() >= 20 else np.inf
@@ -110,10 +108,10 @@ def main() -> None:
     cover.cell(row=2, column=2, value="Elite Country Book — only the most exceptional").font = _font(bold=True, size=14)
     notes = [
         "Each archetype is made extremely stringent. A name appears for an archetype only if:",
-        "• tiered archetypes: in the TOP 10% of the core on the archetype's defining measure (elite), or passing its "
-        "qualitative exceptional test; ★ = both",
-        "• other archetypes: member AND top 5% by multi-measure confirmation AND no red accounting tell AND >= $250k/week "
-        "traded AND clean data",
+        "• every archetype has a continuous SPIRIT score: the average within-archetype rank across several independent "
+        "measures of its own thesis. Listed if spirit >= 0.75 (exceptional); ★ = spirit >= 0.90 (elite: near the top on every measure)",
+        "• archetypes too small to rank (< 5 members): top 5% by multi-measure confirmation AND no red accounting tell AND "
+        ">= $250k/week traded AND clean data",
         "Excluded everywhere: preferred / warrant lines, RED verdicts, clinical-stage biotech (binary-event driven).",
         "Country sheets rank names by the number of archetypes they are elite on, then by confirmed entry asymmetry.",
     ] + ([f"UNIVERSAL GATE applied to every name: {gate_label(args.gate)}"] if args.gate else [])
@@ -137,7 +135,7 @@ def main() -> None:
     cover.column_dimensions["B"].width = 40
     cover.sheet_view.showGridLines = False
 
-    hdr = ["#", "Ticker", "Name", "Sector", "Mcap (USD)", "Elite #", "★ #", "Elite archetypes (★ = elite AND exceptional)",
+    hdr = ["#", "Ticker", "Name", "Sector", "Mcap (USD)", "Elite #", "★ #", "Elite archetypes (★ = spirit >= 0.90)",
            "EV/EBITDA", "P/E", "P/B", "FCF yld %", "ROCE %", "Mom 12m %", "Accounting check", "Signals"]
     widths = [4, 11, 30, 16, 14, 7, 5, 70, 9, 8, 7, 9, 8, 10, 40, 60]
     for country in ordered_countries(el["src"].value_counts().index.tolist()):

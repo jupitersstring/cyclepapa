@@ -1,0 +1,8308 @@
+{
+ "_meta": {
+  "lens_grammar": "Each lens is [expr, sign]; sign +1 higher-is-better, -1 lower-is-better. expr is a validated column or an arithmetic expression over validated columns with + - * / and helpers: pos(x)=x.where(x>0) (a negative multiple is not cheap); abs(x); nz(x)=x.fillna(0) (only for analyst counts, where compute() treats missing coverage as zero); days_since(date_col)=days from the date to today. (normalized_ebitda/normalized_revenue*revenue_ttm) is the margin-based mid-cycle EBITDA compute() already uses.",
+  "scoring": "Same rule as _spirit() in archetype_tags.py: rank each lens*sign within the archetype's current members (pct), require >= 5 non-null members per lens and >= ceil(n_lenses/2) lenses per name, spirit = mean of available lens ranks. When 'blend' is set, spirit = w0*spirit(groupA) + w1*spirit(groupB); group entries are lens exprs whose signs come from 'lenses'.",
+  "validation": "Every identifier was checked against the headers of archetype_tags.csv, asymmetry_global.csv, the compute() overlays (ts_, tc_, fqx_, fq_, fmp_st_, fmp_seg/geo, bs_, sent_, evt_ renamed from ev_, fmp_enrichment, fmp_dynamics, fmp_institutional, EDGAR side files) or a df[...] assignment / _fmp_fill in archetype_tags.py; every expression was evaluated on the frame compute() builds (46,526 rows; compute() re-run 2026-09-26 ~15:50 UTC on a scratch copy of the current archetype_tags.py and live CSVs). _validation holds n_core, the share of current members for which the spirit can be computed, per-lens coverage, the largest pairwise Spearman correlation between lens ranks, and each lens's Spearman correlation with the resulting spirit.",
+  "skip": "Keys starting with '_' are metadata."
+ },
+ "asymmetric_assembly": {
+  "lenses": [
+   [
+    "gross_profit_yoy - rev_yoy",
+    1
+   ],
+   [
+    "ebitda_yoy",
+    1
+   ],
+   [
+    "enterprise_value/market_cap",
+    1
+   ],
+   [
+    "robust_cash_yield",
+    1
+   ],
+   [
+    "pct_off_52w_high",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "PSIX conjunction, one lens per engine: bad headline/better economics (GP outgrowing revenue), EBITDA rising, stub torque, cheapness on cash, low expectations.",
+  "source": "COMP III Assembly theory \"requires a minimum set of correctly-combined value components\"; CODE PSIX \"gross profit +10% on revenue -18%\".",
+  "_validation": {
+   "n_core": 145,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "gross_profit_yoy - rev_yoy",
+     0.883
+    ],
+    [
+     "ebitda_yoy",
+     0.979
+    ],
+    [
+     "enterprise_value/market_cap",
+     1.0
+    ],
+    [
+     "robust_cash_yield",
+     1.0
+    ],
+    [
+     "pct_off_52w_high",
+     0.89
+    ]
+   ],
+   "max_pair_spearman": 0.5,
+   "lens_vs_spirit_spearman": [
+    0.39,
+    0.58,
+    0.62,
+    0.61,
+    0.56
+   ]
+  }
+ },
+ "bab_becoming": {
+  "lenses": [
+   [
+    "ts_dbeta_3y",
+    -1
+   ],
+   [
+    "ebitda_margin_delta_yoy",
+    1
+   ],
+   [
+    "fcf_margin_delta_yoy",
+    1
+   ],
+   [
+    "fq_netdebt_change_pct_assets",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Becoming BAB-like: measured beta compression plus the fundamental de-risking behind it (margins, cash margin, net debt falling).",
+  "source": "CODE \"Becoming more BAB-like ... improving fundamental stability stands in for the paper's beta compression\" - ts_dbeta_3y now measures it directly.",
+  "_validation": {
+   "n_core": 1702,
+   "spirit_computable_share": 0.999,
+   "lens_coverage": [
+    [
+     "ts_dbeta_3y",
+     0.899
+    ],
+    [
+     "ebitda_margin_delta_yoy",
+     0.997
+    ],
+    [
+     "fcf_margin_delta_yoy",
+     0.999
+    ],
+    [
+     "fq_netdebt_change_pct_assets",
+     0.9
+    ]
+   ],
+   "max_pair_spearman": 0.2,
+   "lens_vs_spirit_spearman": [
+    0.39,
+    0.62,
+    0.59,
+    0.58
+   ]
+  }
+ },
+ "bab_low_beta": {
+  "lenses": [
+   [
+    "bab_score",
+    1
+   ],
+   [
+    "ts_beta_3y",
+    -1
+   ],
+   [
+    "ts_down_capture_3y",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Existing bab_score (low shrunk beta + quality + cheap) corroborated by independently measured weekly 3y beta and downside capture.",
+  "source": "CODE Frazzini & Pedersen (2014): \"long safe, profitable, low-beta assets\".",
+  "existing_score": "bab_score",
+  "_validation": {
+   "n_core": 92,
+   "spirit_computable_share": 0.967,
+   "lens_coverage": [
+    [
+     "bab_score",
+     1.0
+    ],
+    [
+     "ts_beta_3y",
+     0.967
+    ],
+    [
+     "ts_down_capture_3y",
+     0.967
+    ]
+   ],
+   "max_pair_spearman": 0.65,
+   "lens_vs_spirit_spearman": [
+    0.58,
+    0.8,
+    0.83
+   ]
+  }
+ },
+ "bab_multibagger": {
+  "lenses": [
+   [
+    "bab_score",
+    1
+   ],
+   [
+    "ts_beta_3y",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "yartseva_score",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Boring safety + embedded compounding: bab_score, measured beta, FCF yield and the Yartseva multibagger score.",
+  "source": "MAR II \"Yartseva's single most important driver: FCF/P\"; CODE BAB synthesis.",
+  "existing_score": "bab_score",
+  "_validation": {
+   "n_core": 160,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "bab_score",
+     1.0
+    ],
+    [
+     "ts_beta_3y",
+     0.975
+    ],
+    [
+     "fcf_yield",
+     1.0
+    ],
+    [
+     "yartseva_score",
+     0.95
+    ]
+   ],
+   "max_pair_spearman": 0.53,
+   "lens_vs_spirit_spearman": [
+    0.73,
+    0.45,
+    0.76,
+    0.67
+   ]
+  }
+ },
+ "balance_sheet_return": {
+  "lenses": [
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "cash_pct_mcap",
+    1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "capret_yield_eff",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Cash-rich runoff: how much of the price the balance sheet covers and how fast it is being handed back.",
+  "source": "COMP II.A \"Liquidations / wind-downs ... serial liquidating distributions\"; WO Archetype 4 \"Share buybacks below NAV\".",
+  "_validation": {
+   "n_core": 3289,
+   "spirit_computable_share": 0.995,
+   "lens_coverage": [
+    [
+     "net_cash_pct_mcap",
+     0.993
+    ],
+    [
+     "cash_pct_mcap",
+     0.993
+    ],
+    [
+     "ncav_pct_mcap",
+     0.791
+    ],
+    [
+     "capret_yield_eff",
+     0.869
+    ]
+   ],
+   "max_pair_spearman": 0.7,
+   "lens_vs_spirit_spearman": [
+    0.79,
+    0.78,
+    0.8,
+    0.28
+   ]
+  }
+ },
+ "base_ignition": {
+  "lenses": [
+   [
+    "coiled_base_score",
+    1
+   ],
+   [
+    "bs_dvol_trend",
+    1
+   ],
+   [
+    "bs_updown_vol",
+    1
+   ],
+   [
+    "bs_rs26",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Coil quality plus ignition strength: dollar-volume expansion, up/down volume, right-side relative strength.",
+  "source": "COMP II.B Andreola footprint \"1-2 quarters before the run ... while institutional ownership and coverage are still near zero\"; MAR VI \"52-week high or base breakout\".",
+  "existing_score": "coiled_base_score",
+  "_validation": {
+   "n_core": 124,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "coiled_base_score",
+     1.0
+    ],
+    [
+     "bs_dvol_trend",
+     1.0
+    ],
+    [
+     "bs_updown_vol",
+     1.0
+    ],
+    [
+     "bs_rs26",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.17,
+   "lens_vs_spirit_spearman": [
+    0.57,
+    0.36,
+    0.54,
+    0.55
+   ]
+  }
+ },
+ "biotech_deep_value": {
+  "lenses": [
+   [
+    "biotech_deep_value_score",
+    1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "biotech_cash_runway_yrs",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Existing biotech_deep_value_score is the right measure (paid to own the cash, free pipeline option); corroborated by NCAV cover and runway.",
+  "source": "MAR I.F (12) \"Option Mispriced as Dead ... balance sheet survives to catalyst\"; PER QSI failure \"near cash value but burning ~$120m annually\" -> runway matters.",
+  "existing_score": "biotech_deep_value_score",
+  "_validation": {
+   "n_core": 149,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "biotech_deep_value_score",
+     1.0
+    ],
+    [
+     "ncav_pct_mcap",
+     0.785
+    ],
+    [
+     "biotech_cash_runway_yrs",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.52,
+   "lens_vs_spirit_spearman": [
+    0.86,
+    0.7,
+    0.73
+   ]
+  }
+ },
+ "book_compounder_discount": {
+  "lenses": [
+   [
+    "equity_cagr_5y",
+    1
+   ],
+   [
+    "roe",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "pos(p_tb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Audited book compounding (5y BVPS CAGR, ROE) priced below book and tangible book.",
+  "source": "COMP I.4 Tillinghast \"ROE >10-12% sustained ~10 years\"; CODE F14 \"BV growth is the hardest series to fake\".",
+  "_validation": {
+   "n_core": 1574,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "equity_cagr_5y",
+     1.0
+    ],
+    [
+     "roe",
+     0.95
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ],
+    [
+     "pos(p_tb)",
+     0.89
+    ]
+   ],
+   "max_pair_spearman": 0.79,
+   "lens_vs_spirit_spearman": [
+    0.49,
+    0.25,
+    0.74,
+    0.78
+   ]
+  }
+ },
+ "bottleneck": {
+  "lenses": [
+   [
+    "tc_min_gm",
+    1
+   ],
+   [
+    "gross_margin",
+    1
+   ],
+   [
+    "roic_lindy",
+    1
+   ],
+   [
+    "roce",
+    1
+   ],
+   [
+    "capex_intensity",
+    -1
+   ],
+   [
+    "fmp_dyn_gross_margin_trend",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Economic footprint of a chokepoint: durable (worst-year) and current gross margin, toll-road returns, capital-light, margin not eroding.",
+  "source": "MAR I.B \"The Constraint - owns a bottleneck. A large system cannot scale without the small component\"; MAR VII Akre \"bottleneck asset ... unit-economics machine\".",
+  "_validation": {
+   "n_core": 1790,
+   "spirit_computable_share": 0.995,
+   "lens_coverage": [
+    [
+     "tc_min_gm",
+     0.937
+    ],
+    [
+     "gross_margin",
+     1.0
+    ],
+    [
+     "roic_lindy",
+     0.951
+    ],
+    [
+     "roce",
+     0.939
+    ],
+    [
+     "capex_intensity",
+     0.779
+    ],
+    [
+     "fmp_dyn_gross_margin_trend",
+     0.707
+    ]
+   ],
+   "max_pair_spearman": 0.58,
+   "lens_vs_spirit_spearman": [
+    0.67,
+    0.61,
+    0.46,
+    0.54,
+    0.42,
+    0.39
+   ]
+  }
+ },
+ "buyback_compounder": {
+  "lenses": [
+   [
+    "shares_growth_5y",
+    -1
+   ],
+   [
+    "shares_growth_3y",
+    -1
+   ],
+   [
+    "buyback_yield",
+    1
+   ],
+   [
+    "roic_lindy",
+    1
+   ],
+   [
+    "fqx_fcf_ps_g",
+    1
+   ],
+   [
+    "fmp_st_fcf_ps_5y_g",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Cannibalisation over 5y and 3y plus the current pace, on a durable-ROIC base, with FCF per share (the accretion) rising now and over 5y.",
+  "source": "COMP II.B \"Share count - Flat or shrinking ... The cardinal sin. Dilution (losers diluted ~61%, winners ~22%)\"; COMP II.D \"share-count reduction\".",
+  "_validation": {
+   "n_core": 748,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "shares_growth_5y",
+     1.0
+    ],
+    [
+     "shares_growth_3y",
+     1.0
+    ],
+    [
+     "buyback_yield",
+     0.976
+    ],
+    [
+     "roic_lindy",
+     1.0
+    ],
+    [
+     "fqx_fcf_ps_g",
+     0.747
+    ],
+    [
+     "fmp_st_fcf_ps_5y_g",
+     0.896
+    ]
+   ],
+   "max_pair_spearman": 0.56,
+   "lens_vs_spirit_spearman": [
+    0.58,
+    0.67,
+    0.52,
+    0.37,
+    0.3,
+    0.41
+   ]
+  }
+ },
+ "cannibal_at_discount": {
+  "lenses": [
+   [
+    "shares_yoy",
+    -1
+   ],
+   [
+    "shares_growth_3y",
+    -1
+   ],
+   [
+    "buyback_yield",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Retiring stock below book: current and 3y shrink (longer cannibalisation is better), buyback pace and depth below book (accretion per share).",
+  "source": "COMP II.D \"insider buying; share-count reduction\"; WO Archetype 4 \"Share buybacks below NAV\".",
+  "_validation": {
+   "n_core": 676,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "shares_yoy",
+     0.969
+    ],
+    [
+     "shares_growth_3y",
+     0.891
+    ],
+    [
+     "buyback_yield",
+     0.753
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.35,
+   "lens_vs_spirit_spearman": [
+    0.63,
+    0.67,
+    0.57,
+    0.44
+   ]
+  }
+ },
+ "capex_famine_harvest": {
+  "lenses": [
+   [
+    "capex_ttm/capex_avg",
+    -1
+   ],
+   [
+    "abs(fq_capex)/fmp_st_capex_avg",
+    -1
+   ],
+   [
+    "fq_capex_to_da",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Investment cycle ending: capex vs its own 5y average (two sources) and vs D&A, with the FCF inflection loaded and the price at/below book.",
+  "source": "COMP II.D Capital cycle \"Capex cuts ... falling capex/depreciation ratios ... low returns repel capital -> capacity withdrawal -> rising returns\".",
+  "_validation": {
+   "n_core": 1369,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "capex_ttm/capex_avg",
+     0.818
+    ],
+    [
+     "abs(fq_capex)/fmp_st_capex_avg",
+     0.999
+    ],
+    [
+     "fq_capex_to_da",
+     0.971
+    ],
+    [
+     "fcf_yield",
+     0.981
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.57,
+   "lens_vs_spirit_spearman": [
+    0.52,
+    0.69,
+    0.62,
+    0.47,
+    0.48
+   ]
+  }
+ },
+ "capital_discipline": {
+  "lenses": [
+   [
+    "roce",
+    1
+   ],
+   [
+    "cash_roic_lindy",
+    1
+   ],
+   [
+    "shares_growth_3y",
+    -1
+   ],
+   [
+    "capret_yield_eff",
+    1
+   ],
+   [
+    "insider_ownership_pct",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Allocation discipline read through returns on capital (accrual and cash), a shrinking share count, cash actually returned and owner alignment.",
+  "source": "MAR I.E (10) \"Capital Discipline / Governance Re-rating\" (Korea Value-Up, TSE PBR reform); COMP II.D buy-side signals \"management focused on returns/discipline ... share-count reduction\".",
+  "_validation": {
+   "n_core": 3295,
+   "spirit_computable_share": 0.974,
+   "lens_coverage": [
+    [
+     "roce",
+     0.973
+    ],
+    [
+     "cash_roic_lindy",
+     0.909
+    ],
+    [
+     "shares_growth_3y",
+     0.909
+    ],
+    [
+     "capret_yield_eff",
+     0.957
+    ],
+    [
+     "insider_ownership_pct",
+     0.995
+    ]
+   ],
+   "max_pair_spearman": 0.38,
+   "lens_vs_spirit_spearman": [
+    0.58,
+    0.69,
+    0.37,
+    0.56,
+    0.23
+   ]
+  }
+ },
+ "capital_light_pivot": {
+  "lenses": [
+   [
+    "revenue_3y_cagr - asset_3y_cagr",
+    1
+   ],
+   [
+    "roic_acceleration",
+    1
+   ],
+   [
+    "revenue_3y_cagr",
+    1
+   ],
+   [
+    "capex_intensity",
+    -1
+   ],
+   [
+    "fmp_dyn_gross_margin_trend",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "The asset-light transition: revenue outgrowing the asset base, ROIC turning up, low capex needs and a rising gross margin.",
+  "source": "MAR I.A \"The Reclassified Thing ... The multiple changes when the noun changes\" (DFIN printer->SaaS); PER DFIN \"transitioning toward higher-value SaaS\".",
+  "_validation": {
+   "n_core": 2237,
+   "spirit_computable_share": 0.999,
+   "lens_coverage": [
+    [
+     "revenue_3y_cagr - asset_3y_cagr",
+     1.0
+    ],
+    [
+     "roic_acceleration",
+     0.999
+    ],
+    [
+     "revenue_3y_cagr",
+     1.0
+    ],
+    [
+     "capex_intensity",
+     0.745
+    ],
+    [
+     "fmp_dyn_gross_margin_trend",
+     0.726
+    ]
+   ],
+   "max_pair_spearman": 0.5,
+   "lens_vs_spirit_spearman": [
+    0.7,
+    0.51,
+    0.63,
+    0.36,
+    0.42
+   ]
+  }
+ },
+ "cash_adjusted_pe": {
+  "lenses": [
+   [
+    "pos(p_e)*(1-net_cash_pct_mcap)",
+    -1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "cfo_yield",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Ex-cash P/E (p_e x (1 - net cash/mcap), currency-neutral), net-cash share of price and cash corroboration of the earnings.",
+  "source": "CODE F4 \"NEGATIVE is only CHEAP when the earnings are POSITIVE ... the whole operating business comes free plus change\".",
+  "_validation": {
+   "n_core": 1701,
+   "spirit_computable_share": 0.999,
+   "lens_coverage": [
+    [
+     "pos(p_e)*(1-net_cash_pct_mcap)",
+     0.996
+    ],
+    [
+     "net_cash_pct_mcap",
+     0.996
+    ],
+    [
+     "cfo_yield",
+     0.989
+    ],
+    [
+     "fcf_yield",
+     0.979
+    ]
+   ],
+   "max_pair_spearman": 0.76,
+   "lens_vs_spirit_spearman": [
+    0.79,
+    0.64,
+    0.72,
+    0.75
+   ]
+  }
+ },
+ "cash_quality": {
+  "lenses": [
+   [
+    "cash_roic_lindy - roic_lindy",
+    1
+   ],
+   [
+    "cash_roic_lindy",
+    1
+   ],
+   [
+    "fmp_income_quality",
+    1
+   ],
+   [
+    "fq_cfo_to_ni",
+    1
+   ],
+   [
+    "fq_sloan_accruals",
+    -1
+   ],
+   [
+    "tc_fcf_pos/tc_fcf_years",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Earnings hide the cash: cash-over-NOPAT ROIC gap, CFO/NI on two independent sources, low accruals, and FCF persistence over the full history.",
+  "source": "COMP I.4 Tillinghast red flags \"receivables/inventory growing faster than sales\"; MAR II Yartseva \"FCF/P ... single most important driver\".",
+  "_validation": {
+   "n_core": 1985,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "cash_roic_lindy - roic_lindy",
+     1.0
+    ],
+    [
+     "cash_roic_lindy",
+     1.0
+    ],
+    [
+     "fmp_income_quality",
+     1.0
+    ],
+    [
+     "fq_cfo_to_ni",
+     0.872
+    ],
+    [
+     "fq_sloan_accruals",
+     0.909
+    ],
+    [
+     "tc_fcf_pos/tc_fcf_years",
+     0.996
+    ]
+   ],
+   "max_pair_spearman": 0.81,
+   "lens_vs_spirit_spearman": [
+    0.53,
+    0.52,
+    0.62,
+    0.67,
+    0.67,
+    0.34
+   ]
+  }
+ },
+ "cash_reinvest": {
+  "lenses": [
+   [
+    "cash_roiic_lindy",
+    1
+   ],
+   [
+    "cash_roic_lindy",
+    1
+   ],
+   [
+    "tc_fcf_margin_avg",
+    1
+   ],
+   [
+    "tc_fcf_pos/tc_fcf_years",
+    1
+   ],
+   [
+    "asset_3y_cagr",
+    1
+   ],
+   [
+    "fmp_st_fcf_ps_5y_g",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Cash-confirmed reinvestment: incremental and base cash ROIC, through-cycle FCF margin and FCF persistence, how much capital is being deployed, and the result: 5y FCF-per-share compounding.",
+  "source": "COMP I.1 (2)-(3) sustained ROIC + reinvestment runway; MAR II \"Yartseva ... it is the LEVEL of profitability and cash flow, not the GROWTH RATE\".",
+  "_validation": {
+   "n_core": 1296,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "cash_roiic_lindy",
+     1.0
+    ],
+    [
+     "cash_roic_lindy",
+     1.0
+    ],
+    [
+     "tc_fcf_margin_avg",
+     0.997
+    ],
+    [
+     "tc_fcf_pos/tc_fcf_years",
+     0.997
+    ],
+    [
+     "asset_3y_cagr",
+     1.0
+    ],
+    [
+     "fmp_st_fcf_ps_5y_g",
+     0.913
+    ]
+   ],
+   "max_pair_spearman": 0.47,
+   "lens_vs_spirit_spearman": [
+    0.42,
+    0.66,
+    0.61,
+    0.4,
+    0.45,
+    0.46
+   ]
+  }
+ },
+ "cheap_per_roiic": {
+  "lenses": [
+   [
+    "cheap_per_roiic_lindy",
+    -1
+   ],
+   [
+    "roiic_lindy",
+    1
+   ],
+   [
+    "cash_roiic_lindy",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Price paid per unit of reinvestment yield (lower is better), corroborated by the ROIIC level on accrual and cash bases and by the cash yield.",
+  "source": "COMP I.1 \"(5) A low starting valuation\" with (2)-(3) high ROIC + runway; \"Twin engines of return = earnings growth x multiple expansion\".",
+  "_validation": {
+   "n_core": 4095,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "cheap_per_roiic_lindy",
+     1.0
+    ],
+    [
+     "roiic_lindy",
+     1.0
+    ],
+    [
+     "cash_roiic_lindy",
+     0.982
+    ],
+    [
+     "fcf_yield",
+     0.99
+    ]
+   ],
+   "max_pair_spearman": 0.58,
+   "lens_vs_spirit_spearman": [
+    0.79,
+    0.69,
+    0.63,
+    0.56
+   ]
+  }
+ },
+ "cheap_sales_scaler": {
+  "lenses": [
+   [
+    "pos(psg)",
+    -1
+   ],
+   [
+    "pos(p_s)",
+    -1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "op_margin_delta_yoy",
+    1
+   ],
+   [
+    "oper_leverage_score",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Un-re-rated scaler: cheap vs growth and on sales, growth rate, and operating leverage showing.",
+  "source": "COMP II.B \"Valuation - Room to expand (majority of winners <3x sales)\"; \"$5-10m revenue businesses that are slightly profitable that turn into $30-40m businesses\".",
+  "_validation": {
+   "n_core": 2529,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "pos(psg)",
+     1.0
+    ],
+    [
+     "pos(p_s)",
+     1.0
+    ],
+    [
+     "fq_rev_growth",
+     0.863
+    ],
+    [
+     "op_margin_delta_yoy",
+     0.921
+    ],
+    [
+     "oper_leverage_score",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.71,
+   "lens_vs_spirit_spearman": [
+    0.68,
+    0.51,
+    0.37,
+    0.57,
+    0.57
+   ]
+  }
+ },
+ "cluseau_buyback_accel": {
+  "lenses": [
+   [
+    "buyback_yield",
+    1
+   ],
+   [
+    "shares_yoy - shares_3y_cagr",
+    -1
+   ],
+   [
+    "shares_yoy",
+    -1
+   ],
+   [
+    "pos(p_tb)",
+    -1
+   ],
+   [
+    "cash_pct_mcap",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Buybacks accelerating into a discount with cash deployed: pace, acceleration vs trend, net shrink, depth below book, cash-light.",
+  "source": "CODE Cluseau \"Georgia Capital pattern (3% -> 5% -> 7% of shares repurchased a year, cash run from 20% to 3%)\". 12 members.",
+  "_validation": {
+   "n_core": 12,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "buyback_yield",
+     1.0
+    ],
+    [
+     "shares_yoy - shares_3y_cagr",
+     1.0
+    ],
+    [
+     "shares_yoy",
+     1.0
+    ],
+    [
+     "pos(p_tb)",
+     1.0
+    ],
+    [
+     "cash_pct_mcap",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.66,
+   "lens_vs_spirit_spearman": [
+    0.34,
+    0.18,
+    0.51,
+    0.69,
+    0.75
+   ]
+  }
+ },
+ "cluseau_realizable_book": {
+  "lenses": [
+   [
+    "pos(p_tb)",
+    -1
+   ],
+   [
+    "cash/tangible_equity",
+    1
+   ],
+   [
+    "capret_yield_eff",
+    1
+   ],
+   [
+    "shares_yoy",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Realizable-book discount that management is closing: depth below tangible book, cash share of that book, payout and share shrink.",
+  "source": "CODE Cluseau: \"a sub-book multiple is worth something only when (a) the BOOK IS REALIZABLE ... (b) MANAGEMENT ACTUALLY RETURNS IT\".",
+  "_validation": {
+   "n_core": 191,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "pos(p_tb)",
+     1.0
+    ],
+    [
+     "cash/tangible_equity",
+     1.0
+    ],
+    [
+     "capret_yield_eff",
+     0.984
+    ],
+    [
+     "shares_yoy",
+     0.822
+    ]
+   ],
+   "max_pair_spearman": 0.14,
+   "lens_vs_spirit_spearman": [
+    0.54,
+    0.55,
+    0.58,
+    0.54
+   ]
+  }
+ },
+ "coiled_base": {
+  "lenses": [
+   [
+    "coiled_base_score",
+    1
+   ],
+   [
+    "bs_base_len_36",
+    1
+   ],
+   [
+    "bs_coil_rev",
+    1
+   ],
+   [
+    "bs_coil_ebit",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Existing coiled_base_score plus base duration (longer base better) and the coil on sales and EBIT (value accreted under a flat price).",
+  "source": "MAR II Bessembinder \"top 100 ... averaged 51.6% [drawdowns] in the prior decade\"; COMP II.B \"discovery cycle: pre-discovery -> catalyst (buy here)\".",
+  "existing_score": "coiled_base_score",
+  "_validation": {
+   "n_core": 675,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "coiled_base_score",
+     1.0
+    ],
+    [
+     "bs_base_len_36",
+     1.0
+    ],
+    [
+     "bs_coil_rev",
+     0.953
+    ],
+    [
+     "bs_coil_ebit",
+     0.853
+    ]
+   ],
+   "max_pair_spearman": 0.39,
+   "lens_vs_spirit_spearman": [
+    0.68,
+    0.34,
+    0.64,
+    0.58
+   ]
+  }
+ },
+ "concentrated_segments": {
+  "lenses": [
+   [
+    "segment_revenue_hhi",
+    1
+   ],
+   [
+    "segment_count",
+    -1
+   ],
+   [
+    "segment_hhi_delta",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Severity of concentration risk (a warning archetype: higher = more concentrated, fewer segments, and concentration rising).",
+  "source": "CODE AE \"One bad year in the dominant segment sinks the whole business. FIRES as a NEGATIVE signal\".",
+  "_validation": {
+   "n_core": 529,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "segment_revenue_hhi",
+     1.0
+    ],
+    [
+     "segment_count",
+     1.0
+    ],
+    [
+     "segment_hhi_delta",
+     0.97
+    ]
+   ],
+   "max_pair_spearman": 0.22,
+   "lens_vs_spirit_spearman": [
+    0.68,
+    0.59,
+    0.57
+   ]
+  }
+ },
+ "crisis_asset_backed_recovery": {
+  "lenses": [
+   [
+    "pct_off_52w_high",
+    -1
+   ],
+   [
+    "price_pct_of_5y_range",
+    -1
+   ],
+   [
+    "pos(p_tb)",
+    -1
+   ],
+   [
+    "roce_delta_yoy",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Crisis washout (depth vs 52w and 5y range) below tangible asset value, taken as returns begin to inflect.",
+  "source": "CODE Cundill RECOVERY fund (Sibir -79% on the 1998 default with reserves intact); COMP II.E \"man in a hole (fall-then-rise)\".",
+  "_validation": {
+   "n_core": 623,
+   "spirit_computable_share": 0.995,
+   "lens_coverage": [
+    [
+     "pct_off_52w_high",
+     0.952
+    ],
+    [
+     "price_pct_of_5y_range",
+     0.99
+    ],
+    [
+     "pos(p_tb)",
+     0.774
+    ],
+    [
+     "roce_delta_yoy",
+     0.945
+    ]
+   ],
+   "max_pair_spearman": 0.19,
+   "lens_vs_spirit_spearman": [
+    0.61,
+    0.59,
+    0.52,
+    0.54
+   ]
+  }
+ },
+ "cundill_deep_value": {
+  "lenses": [
+   [
+    "cundill_score",
+    1
+   ],
+   [
+    "pos(p_tb)",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Existing cundill_score is the right measure (his six-point checklist, depth to ~2/3 NAV); corroborated by the tangible-book discount and cash yield.",
+  "source": "CODE Cundill six-point checklist (\"bought near ~2/3 of NAV with a hard margin of safety\"); COMP I.6 scrapyard.",
+  "existing_score": "cundill_score",
+  "_validation": {
+   "n_core": 291,
+   "spirit_computable_share": 0.997,
+   "lens_coverage": [
+    [
+     "cundill_score",
+     1.0
+    ],
+    [
+     "pos(p_tb)",
+     0.773
+    ],
+    [
+     "fcf_yield",
+     0.99
+    ]
+   ],
+   "max_pair_spearman": 0.74,
+   "lens_vs_spirit_spearman": [
+    0.82,
+    0.82,
+    0.54
+   ]
+  }
+ },
+ "customer_float": {
+  "lenses": [
+   [
+    "fq_op_nwc_to_rev",
+    -1
+   ],
+   [
+    "fmp_cash_conversion_cycle",
+    -1
+   ],
+   [
+    "net_working_capital/revenue_ttm",
+    -1
+   ],
+   [
+    "fq_defrev_to_rev",
+    1
+   ],
+   [
+    "fmp_income_quality",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Customers funding the business on every working-capital lens (operating NWC, cash-conversion cycle, total NWC, deferred revenue) and the float showing up as CFO above NI.",
+  "source": "COMP I.2 Den Fujita \"time-as-inventory; contracts-at-a-loss-then-monetise\"; COMP I.5 Harpin subscription model.",
+  "_validation": {
+   "n_core": 1692,
+   "spirit_computable_share": 0.994,
+   "lens_coverage": [
+    [
+     "fq_op_nwc_to_rev",
+     0.988
+    ],
+    [
+     "fmp_cash_conversion_cycle",
+     0.998
+    ],
+    [
+     "net_working_capital/revenue_ttm",
+     0.978
+    ],
+    [
+     "fq_defrev_to_rev",
+     0.989
+    ],
+    [
+     "fmp_income_quality",
+     0.998
+    ]
+   ],
+   "max_pair_spearman": 0.45,
+   "lens_vs_spirit_spearman": [
+    0.71,
+    0.41,
+    0.35,
+    0.43,
+    0.51
+   ]
+  }
+ },
+ "dead_option": {
+  "lenses": [
+   [
+    "pct_off_52w_high",
+    -1
+   ],
+   [
+    "price_pct_of_5y_range",
+    -1
+   ],
+   [
+    "robust_cash_yield",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "How completely the price has capitulated versus how alive the cash engine and balance sheet still are (convexity, not value).",
+  "source": "MAR I.F (12) \"Option Mispriced as Dead ... balance sheet survives to catalyst, downside already emotionally capitulated. This is convexity, not value.\"",
+  "_validation": {
+   "n_core": 1618,
+   "spirit_computable_share": 0.999,
+   "lens_coverage": [
+    [
+     "pct_off_52w_high",
+     0.959
+    ],
+    [
+     "price_pct_of_5y_range",
+     0.984
+    ],
+    [
+     "robust_cash_yield",
+     1.0
+    ],
+    [
+     "fcf_yield",
+     0.986
+    ],
+    [
+     "net_cash_pct_mcap",
+     0.995
+    ]
+   ],
+   "max_pair_spearman": 0.84,
+   "lens_vs_spirit_spearman": [
+    0.26,
+    0.43,
+    0.75,
+    0.78,
+    0.34
+   ]
+  }
+ },
+ "discounted_vehicle": {
+  "lenses": [
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "capret_yield_eff",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Depth of the discount to a hard, net-cash-backed book plus evidence the discount is being closed (capital actually returned).",
+  "source": "MAR I.G (8) \"Discounted Vehicle With a Catalyst to Prove NAV ... Discount + catalyst = value realisation\"; failure mode \"the discount is a governance trap\".",
+  "_validation": {
+   "n_core": 1255,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "pos(pb)",
+     1.0
+    ],
+    [
+     "net_cash_pct_mcap",
+     0.999
+    ],
+    [
+     "ncav_pct_mcap",
+     0.797
+    ],
+    [
+     "capret_yield_eff",
+     0.75
+    ]
+   ],
+   "max_pair_spearman": 0.41,
+   "lens_vs_spirit_spearman": [
+    0.58,
+    0.67,
+    0.76,
+    0.45
+   ]
+  }
+ },
+ "diversified_segments": {
+  "lenses": [
+   [
+    "segment_revenue_hhi",
+    -1
+   ],
+   [
+    "segment_count",
+    1
+   ],
+   [
+    "tc_min_opm",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Degree of diversification (HHI, count) plus the resilience it is supposed to buy (worst-year operating margin).",
+  "source": "CODE AD \"Real diversification of revenue streams, lowers single-segment risk\". (No source-doc thesis; resilience label.)",
+  "_validation": {
+   "n_core": 235,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "segment_revenue_hhi",
+     1.0
+    ],
+    [
+     "segment_count",
+     1.0
+    ],
+    [
+     "tc_min_opm",
+     0.996
+    ]
+   ],
+   "max_pair_spearman": 0.44,
+   "lens_vs_spirit_spearman": [
+    0.72,
+    0.71,
+    0.53
+   ]
+  }
+ },
+ "dividend_verified_value": {
+  "lenses": [
+   [
+    "dividend_yield",
+    1
+   ],
+   [
+    "dividend_yield/earnings_yield",
+    -1
+   ],
+   [
+    "dividend_yield/fcf_yield",
+    -1
+   ],
+   [
+    "tc_uncov_payout_3y",
+    -1
+   ],
+   [
+    "evt_div_raise_streak",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "A fat payout proven by coverage (NI and FCF payout ratios, years uncovered) and by duration (raise streak - longer is better) at a sub-book price.",
+  "source": "CODE F10 \"Dividends are the hardest accounting item to fake\"; COMP I.4 Tillinghast \"certainty (how predictable the cash flows are)\".",
+  "_validation": {
+   "n_core": 153,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "dividend_yield",
+     1.0
+    ],
+    [
+     "dividend_yield/earnings_yield",
+     1.0
+    ],
+    [
+     "dividend_yield/fcf_yield",
+     0.974
+    ],
+    [
+     "tc_uncov_payout_3y",
+     0.908
+    ],
+    [
+     "evt_div_raise_streak",
+     0.889
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.35,
+   "lens_vs_spirit_spearman": [
+    0.39,
+    0.62,
+    0.52,
+    0.2,
+    0.2,
+    0.6
+   ]
+  }
+ },
+ "double_inflect": {
+  "lenses": [
+   [
+    "roic_acceleration",
+    1
+   ],
+   [
+    "fqx_roic_ttm",
+    1
+   ],
+   [
+    "fcf_margin_delta_yoy",
+    1
+   ],
+   [
+    "fq_cfo_to_ni",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Both accrual and cash returns crossed zero - measured by the size of the accrual turn, the cash turn and the growth underneath (event continuous-ised by magnitude).",
+  "source": "COMP I.8 \"first clean quarter ... behaviour change against a low reaction\"; CODE W \"confirms the inflection is real cash, not accounting-driven\".",
+  "_validation": {
+   "n_core": 188,
+   "spirit_computable_share": 0.973,
+   "lens_coverage": [
+    [
+     "roic_acceleration",
+     0.995
+    ],
+    [
+     "fqx_roic_ttm",
+     0.904
+    ],
+    [
+     "fcf_margin_delta_yoy",
+     1.0
+    ],
+    [
+     "fq_cfo_to_ni",
+     0.787
+    ],
+    [
+     "fq_rev_growth",
+     0.947
+    ]
+   ],
+   "max_pair_spearman": 0.47,
+   "lens_vs_spirit_spearman": [
+    0.48,
+    0.65,
+    0.52,
+    0.35,
+    0.65
+   ]
+  }
+ },
+ "dta_reversal": {
+  "lenses": [
+   [
+    "deferred_tax_valuation_allowance/market_cap_usd",
+    1
+   ],
+   [
+    "op_margin",
+    1
+   ],
+   [
+    "roce",
+    1
+   ],
+   [
+    "ni_yoy_streak_q",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Size of the reversible allowance vs price and how established the profitability is (margin, returns, NI growth streak - a longer profit record makes reversal likelier).",
+  "source": "COMP III post-reorg \"NOL tax assets - quantum ... valuation allowance\".",
+  "_validation": {
+   "n_core": 217,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "deferred_tax_valuation_allowance/market_cap_usd",
+     1.0
+    ],
+    [
+     "op_margin",
+     0.889
+    ],
+    [
+     "roce",
+     0.991
+    ],
+    [
+     "ni_yoy_streak_q",
+     0.982
+    ]
+   ],
+   "max_pair_spearman": 0.13,
+   "lens_vs_spirit_spearman": [
+    0.51,
+    0.53,
+    0.55,
+    0.35
+   ]
+  }
+ },
+ "durable_reinvestment": {
+  "lenses": [
+   [
+    "roiic_lindy",
+    1
+   ],
+   [
+    "cash_roiic_lindy",
+    1
+   ],
+   [
+    "roic_lindy",
+    1
+   ],
+   [
+    "equity_cagr_5y",
+    1
+   ],
+   [
+    "fmp_st_fcf_ps_5y_g",
+    1
+   ],
+   [
+    "n_yrs_positive_roic",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Compounding engine measured several ways: incremental returns (NOPAT and cash), base ROIC, BVPS and FCF-per-share compounding over 5y, and the length of the positive-ROIC record.",
+  "source": "COMP I.1 Meyer Phelps 100x: \"(2) High sustained ROE/ROIC (>15%). (3) A long reinvestment runway ... (7) capacity to compound EPS ~20%+ for a decade\"; MAR II \"Long holding period (median 9 years to 10x)\".",
+  "_validation": {
+   "n_core": 1792,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "roiic_lindy",
+     1.0
+    ],
+    [
+     "cash_roiic_lindy",
+     0.982
+    ],
+    [
+     "roic_lindy",
+     1.0
+    ],
+    [
+     "equity_cagr_5y",
+     0.939
+    ],
+    [
+     "fmp_st_fcf_ps_5y_g",
+     0.794
+    ],
+    [
+     "n_yrs_positive_roic",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.33,
+   "lens_vs_spirit_spearman": [
+    0.51,
+    0.6,
+    0.59,
+    0.42,
+    0.61,
+    0.16
+   ]
+  }
+ },
+ "exceptional_evsg": {
+  "lenses": [
+   [
+    "pos(evsg)",
+    -1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "revenue_3y_cagr",
+    1
+   ],
+   [
+    "roce",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Exceptionally low EV/sales per unit of growth, growth confirmed on TTM and 3y bases, with a profitability level (Yartseva: level, not rate).",
+  "source": "MAR II Yartseva \"it is the LEVEL of profitability and cash flow, not the GROWTH RATE\"; COMP II.B growth >=25%.",
+  "_validation": {
+   "n_core": 1143,
+   "spirit_computable_share": 0.99,
+   "lens_coverage": [
+    [
+     "pos(evsg)",
+     1.0
+    ],
+    [
+     "fq_rev_growth",
+     0.845
+    ],
+    [
+     "revenue_3y_cagr",
+     0.866
+    ],
+    [
+     "roce",
+     0.95
+    ]
+   ],
+   "max_pair_spearman": 0.23,
+   "lens_vs_spirit_spearman": [
+    0.5,
+    0.57,
+    0.64,
+    0.54
+   ]
+  }
+ },
+ "expensed_growth_value": {
+  "lenses": [
+   [
+    "pos(ev_gross_profit)",
+    -1
+   ],
+   [
+    "gross_margin - op_margin",
+    1
+   ],
+   [
+    "fmp_rd_to_revenue",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "shares_yoy",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Cheap on gross earnings power while growth spend runs through the P&L: EV/GP, gross-to-operating gap, explicit R&D intensity, growth, self-funded.",
+  "source": "MAR VI Andreola/Deden \"gross margin stable/rising, operating income positive or inflecting\"; PER XMTR \"marketplace gross margin rising ... operating leverage\".",
+  "_validation": {
+   "n_core": 217,
+   "spirit_computable_share": 0.977,
+   "lens_coverage": [
+    [
+     "pos(ev_gross_profit)",
+     0.954
+    ],
+    [
+     "gross_margin - op_margin",
+     1.0
+    ],
+    [
+     "fmp_rd_to_revenue",
+     0.94
+    ],
+    [
+     "fq_rev_growth",
+     0.908
+    ],
+    [
+     "shares_yoy",
+     0.742
+    ]
+   ],
+   "max_pair_spearman": 0.32,
+   "lens_vs_spirit_spearman": [
+    0.48,
+    0.59,
+    0.5,
+    0.45,
+    0.49
+   ]
+  }
+ },
+ "fastest_segment": {
+  "lenses": [
+   [
+    "seg_inflect_score",
+    1
+   ],
+   [
+    "fastest_segment_yoy",
+    1
+   ],
+   [
+    "fastest_segment_share_delta",
+    1
+   ],
+   [
+    "fastest_seg_accel_fy",
+    1
+   ],
+   [
+    "fastest_seg_consec_growth",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Existing seg_inflect_score (share of segment lenses confirming) plus growth rate, mix shift toward the winner, acceleration and the length of its growth streak.",
+  "source": "MAR I.C (6) \"Hidden Segment Inside a Bad Consolidated Screen ... bad consolidated optics hide a good internal vector\"; PER RELL \"rapidly growing green-energy segment\".",
+  "existing_score": "seg_inflect_score",
+  "_validation": {
+   "n_core": 635,
+   "spirit_computable_share": 0.998,
+   "lens_coverage": [
+    [
+     "seg_inflect_score",
+     1.0
+    ],
+    [
+     "fastest_segment_yoy",
+     1.0
+    ],
+    [
+     "fastest_segment_share_delta",
+     0.983
+    ],
+    [
+     "fastest_seg_accel_fy",
+     0.928
+    ],
+    [
+     "fastest_seg_consec_growth",
+     0.671
+    ]
+   ],
+   "max_pair_spearman": 0.72,
+   "lens_vs_spirit_spearman": [
+    0.86,
+    0.73,
+    0.57,
+    0.6,
+    0.24
+   ]
+  }
+ },
+ "financials_value": {
+  "lenses": [
+   [
+    "roe",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "pos(p_e)",
+    -1
+   ],
+   [
+    "equity_cagr_5y",
+    1
+   ],
+   [
+    "dividend_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Book-value-cheap operating financial: ROE earned vs book multiple paid, earnings multiple, BVPS compounding and cash paid out.",
+  "source": "COMP I.4 Tillinghast \"ROE >10-12% sustained\"; CODE \"banks/insurers ... cheap on BOOK with real returns (ROE >= 10%)\".",
+  "_validation": {
+   "n_core": 285,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "roe",
+     1.0
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ],
+    [
+     "pos(p_e)",
+     0.979
+    ],
+    [
+     "equity_cagr_5y",
+     0.912
+    ],
+    [
+     "dividend_yield",
+     0.965
+    ]
+   ],
+   "max_pair_spearman": 0.68,
+   "lens_vs_spirit_spearman": [
+    0.69,
+    0.46,
+    0.76,
+    0.34,
+    0.26
+   ]
+  }
+ },
+ "fixed_cost_demand_shock": {
+  "lenses": [
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "rev_accel",
+    1
+   ],
+   [
+    "incremental_ebitda_margin",
+    1
+   ],
+   [
+    "fqx_inc_ebit_margin",
+    1
+   ],
+   [
+    "ebitda_margin_delta_yoy",
+    1
+   ],
+   [
+    "op_margin_delta_yoy",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Size of the demand shock (TTM growth, acceleration) times how much of it drops through a fixed cost base (incremental EBITDA/EBIT margin, margin expansion on two P&L lines).",
+  "source": "MAR I.D (5) \"Fixed-Cost Asset Meeting a Demand Shock\" - \"the demand is not a forecast\"; COMP II.D \"high operating leverage (fixed costs -> incremental revenue drops through)\".",
+  "_validation": {
+   "n_core": 2975,
+   "spirit_computable_share": 0.998,
+   "lens_coverage": [
+    [
+     "fq_rev_growth",
+     0.887
+    ],
+    [
+     "rev_accel",
+     1.0
+    ],
+    [
+     "incremental_ebitda_margin",
+     0.937
+    ],
+    [
+     "fqx_inc_ebit_margin",
+     0.687
+    ],
+    [
+     "ebitda_margin_delta_yoy",
+     0.992
+    ],
+    [
+     "op_margin_delta_yoy",
+     0.936
+    ]
+   ],
+   "max_pair_spearman": 0.49,
+   "lens_vs_spirit_spearman": [
+    0.47,
+    0.51,
+    0.53,
+    0.58,
+    0.71,
+    0.72
+   ]
+  }
+ },
+ "forensic_payout_confirmed": {
+  "lenses": [
+   [
+    "forensic_hidden_pct",
+    1
+   ],
+   [
+    "truly_xr_tell_count",
+    1
+   ],
+   [
+    "capret_yield_eff",
+    1
+   ],
+   [
+    "shares_growth_3y",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Hidden value being monetised for owners: size of the forensic gap, number of independent forensic tells, and the payout/shrink returning it.",
+  "source": "COMP \"Convergence scoring. The highest-conviction ideas score ... on three or more archetypes\"; WO Archetype 4 catalyst \"Share buybacks below NAV\".",
+  "_validation": {
+   "n_core": 7751,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "forensic_hidden_pct",
+     1.0
+    ],
+    [
+     "truly_xr_tell_count",
+     1.0
+    ],
+    [
+     "capret_yield_eff",
+     0.986
+    ],
+    [
+     "shares_growth_3y",
+     0.943
+    ]
+   ],
+   "max_pair_spearman": 0.39,
+   "lens_vs_spirit_spearman": [
+    0.6,
+    0.65,
+    0.55,
+    0.54
+   ]
+  }
+ },
+ "geographic_global": {
+  "lenses": [
+   [
+    "geographic_region_count",
+    1
+   ],
+   [
+    "largest_region_share",
+    -1
+   ],
+   [
+    "fmp_geo_count",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Breadth of the geographic footprint on two sources and how evenly revenue is spread.",
+  "source": "CODE AF \"Currency diversification + market diversification\". (No source-doc thesis.)",
+  "_validation": {
+   "n_core": 667,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "geographic_region_count",
+     1.0
+    ],
+    [
+     "largest_region_share",
+     0.966
+    ],
+    [
+     "fmp_geo_count",
+     0.93
+    ]
+   ],
+   "max_pair_spearman": 0.6,
+   "lens_vs_spirit_spearman": [
+    0.88,
+    0.69,
+    0.74
+   ]
+  }
+ },
+ "greenblatt_magic": {
+  "lenses": [
+   [
+    "pos(ev_ebit)",
+    -1
+   ],
+   [
+    "cash_return_ev",
+    1
+   ],
+   [
+    "roce",
+    1
+   ],
+   [
+    "fqx_roic_ttm",
+    1
+   ],
+   [
+    "roic_lindy",
+    1
+   ]
+  ],
+  "blend": {
+   "groupA": [
+    "pos(ev_ebit)",
+    "cash_return_ev"
+   ],
+   "groupB": [
+    "roce",
+    "fqx_roic_ttm",
+    "roic_lindy"
+   ],
+   "weights": [
+    0.5,
+    0.5
+   ]
+  },
+  "note": "Cheap AND good, weighted equally as Greenblatt ranks them: earnings yield (EBIT/EV, cash return on EV) and return on capital (ROCE, TTM ROIC, lindy ROIC).",
+  "source": "CODE Greenblatt Magic Formula \"the two legs Greenblatt ranks the universe on\"; COMP II.A Greenblatt \"securities that fall between the cracks\".",
+  "_validation": {
+   "n_core": 763,
+   "spirit_computable_share": 0.907,
+   "lens_coverage": [
+    [
+     "pos(ev_ebit)",
+     1.0
+    ],
+    [
+     "cash_return_ev",
+     0.862
+    ],
+    [
+     "roce",
+     1.0
+    ],
+    [
+     "fqx_roic_ttm",
+     0.856
+    ],
+    [
+     "roic_lindy",
+     0.907
+    ]
+   ],
+   "max_pair_spearman": 0.65,
+   "lens_vs_spirit_spearman": [
+    0.68,
+    0.64,
+    0.54,
+    0.55,
+    0.24
+   ]
+  }
+ },
+ "growth_algo": {
+  "lenses": [
+   [
+    "gross_profit_yoy",
+    1
+   ],
+   [
+    "fqx_ebit_ttm_g - fq_rev_growth",
+    1
+   ],
+   [
+    "shares_yoy",
+    -1
+   ],
+   [
+    "fcf_per_share_yoy",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "DLO flywheel, one lens per gear: gross-profit growth, EBIT outgrowing sales, share shrink, FCF/share compounding, cheap on FCF.",
+  "source": "CODE \"$DLO: gross-profit growth (~20%) + EBIT faster (~25%) + shrinking share count (~-5%) -> FCF/share (~30%), bought cheap\".",
+  "_validation": {
+   "n_core": 527,
+   "spirit_computable_share": 0.905,
+   "lens_coverage": [
+    [
+     "gross_profit_yoy",
+     0.937
+    ],
+    [
+     "fqx_ebit_ttm_g - fq_rev_growth",
+     0.746
+    ],
+    [
+     "shares_yoy",
+     0.801
+    ],
+    [
+     "fcf_per_share_yoy",
+     0.751
+    ],
+    [
+     "fcf_yield",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.39,
+   "lens_vs_spirit_spearman": [
+    0.59,
+    0.65,
+    0.43,
+    0.62,
+    0.42
+   ]
+  }
+ },
+ "hidden_assets": {
+  "lenses": [
+   [
+    "forensic_hidden_pct",
+    1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Overcapitalised balance sheet: the reconciled forensic hidden-value ledger (associates at carrying + net cash + LIFO/DTA/FV gaps) per unit of price, NCAV cover, and the book discount (net cash alone is ~0.97 rank-correlated with the ledger, so not repeated).",
+  "source": "COMP I.6 \"Cross-holdings carried at cost ... strategic stakes worth more than the whole market cap\" (Keisei/Oriental Land).",
+  "_validation": {
+   "n_core": 1995,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "forensic_hidden_pct",
+     1.0
+    ],
+    [
+     "ncav_pct_mcap",
+     0.795
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.52,
+   "lens_vs_spirit_spearman": [
+    0.79,
+    0.82,
+    0.81
+   ]
+  }
+ },
+ "insider_conviction": {
+  "lenses": [
+   [
+    "insider_distinct_buyers",
+    1
+   ],
+   [
+    "insider_net_buy_value/market_cap_usd",
+    1
+   ],
+   [
+    "cheapness_score",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Revealed-preference conviction: number of distinct buyers (clusters), net buying vs market cap, bought at a value price.",
+  "source": "MAR III \"Lakonishok & Lee (2001) ... predictive power ... coming from purchases. Cluster buys roughly double excess returns of lone buys\".",
+  "_validation": {
+   "n_core": 574,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "insider_distinct_buyers",
+     1.0
+    ],
+    [
+     "insider_net_buy_value/market_cap_usd",
+     1.0
+    ],
+    [
+     "cheapness_score",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.1,
+   "lens_vs_spirit_spearman": [
+    0.62,
+    0.59,
+    0.53
+   ]
+  }
+ },
+ "institutional_accumulation": {
+  "lenses": [
+   [
+    "inst_accum_score",
+    1
+   ],
+   [
+    "fmp_inst_accum_quarters",
+    1
+   ],
+   [
+    "inst_own_excess_q0",
+    1
+   ],
+   [
+    "ts_r52",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Existing inst_accum_score plus persistence (quarters of net buying - longer is better), above-typical ownership gain and the price divergence.",
+  "source": "COMP II.B footprint \"while institutional ownership and coverage are still near zero ... discovery cycle ... institutional (rapid multiple expansion)\".",
+  "existing_score": "inst_accum_score",
+  "_validation": {
+   "n_core": 499,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "inst_accum_score",
+     1.0
+    ],
+    [
+     "fmp_inst_accum_quarters",
+     1.0
+    ],
+    [
+     "inst_own_excess_q0",
+     1.0
+    ],
+    [
+     "ts_r52",
+     0.95
+    ]
+   ],
+   "max_pair_spearman": 0.64,
+   "lens_vs_spirit_spearman": [
+    0.82,
+    0.42,
+    0.73,
+    0.47
+   ]
+  }
+ },
+ "kpi_threshold": {
+  "lenses": [
+   [
+    "op_margin_delta_yoy",
+    1
+   ],
+   [
+    "ebitda_margin_delta_yoy",
+    1
+   ],
+   [
+    "fcf_margin_delta_yoy",
+    1
+   ],
+   [
+    "roce_delta_yoy",
+    1
+   ],
+   [
+    "fqx_inc_ebit_margin",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Decisiveness of the threshold crossing: how far margins/returns moved through the line, on P&L, cash and capital-return lenses.",
+  "source": "MAR I.G (20) \"Operating KPI Crosses a Threshold\" (KORU first positive operating margin, Brooks Macdonald first positive net flows); COMP II.B \"first profitable quarter is the strongest footprint\".",
+  "_validation": {
+   "n_core": 4123,
+   "spirit_computable_share": 0.973,
+   "lens_coverage": [
+    [
+     "op_margin_delta_yoy",
+     0.939
+    ],
+    [
+     "ebitda_margin_delta_yoy",
+     0.974
+    ],
+    [
+     "fcf_margin_delta_yoy",
+     0.97
+    ],
+    [
+     "roce_delta_yoy",
+     0.953
+    ],
+    [
+     "fqx_inc_ebit_margin",
+     0.496
+    ]
+   ],
+   "max_pair_spearman": 0.55,
+   "lens_vs_spirit_spearman": [
+    0.75,
+    0.72,
+    0.31,
+    0.72,
+    0.65
+   ]
+  }
+ },
+ "large_cap_quality": {
+  "lenses": [
+   [
+    "roic_lindy",
+    1
+   ],
+   [
+    "cash_roic_lindy",
+    1
+   ],
+   [
+    "tc_min_opm",
+    1
+   ],
+   [
+    "tc_fcf_margin_avg",
+    1
+   ],
+   [
+    "fmp_st_fcf_ps_5y_g",
+    1
+   ],
+   [
+    "tc_min_ic",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Tillinghast four elements at scale: profitability (ROIC accrual+cash), certainty/life span (worst-year op margin, worst-year interest cover), cash (through-cycle FCF margin) and growth (5y FCF per share).",
+  "source": "COMP I.4 \"Four Elements of Value. Profitability ... life span ... growth; and certainty (how predictable the cash flows are)\".",
+  "_validation": {
+   "n_core": 810,
+   "spirit_computable_share": 0.96,
+   "lens_coverage": [
+    [
+     "roic_lindy",
+     0.962
+    ],
+    [
+     "cash_roic_lindy",
+     0.962
+    ],
+    [
+     "tc_min_opm",
+     0.956
+    ],
+    [
+     "tc_fcf_margin_avg",
+     0.956
+    ],
+    [
+     "fmp_st_fcf_ps_5y_g",
+     0.89
+    ],
+    [
+     "tc_min_ic",
+     0.93
+    ]
+   ],
+   "max_pair_spearman": 0.71,
+   "lens_vs_spirit_spearman": [
+    0.82,
+    0.82,
+    0.77,
+    0.75,
+    0.16,
+    0.66
+   ]
+  }
+ },
+ "levered_inflection": {
+  "lenses": [
+   [
+    "oper_leverage_score",
+    1
+   ],
+   [
+    "ebitda_yoy",
+    1
+   ],
+   [
+    "enterprise_value/market_cap",
+    1
+   ],
+   [
+    "robust_cash_yield",
+    1
+   ],
+   [
+    "fq_netdebt_change_pct_assets",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Levered stub with inflecting, deleveraging economics: multi-angle operating leverage, EBITDA growth, torque, cash cheapness, net debt falling.",
+  "source": "PER ACH \"Highly leveraged home-health turnaround at very low FCF multiple\" (+70%); PER warns COMM/RRGB -> deleveraging path required.",
+  "_validation": {
+   "n_core": 378,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "oper_leverage_score",
+     1.0
+    ],
+    [
+     "ebitda_yoy",
+     0.984
+    ],
+    [
+     "enterprise_value/market_cap",
+     1.0
+    ],
+    [
+     "robust_cash_yield",
+     1.0
+    ],
+    [
+     "fq_netdebt_change_pct_assets",
+     0.788
+    ]
+   ],
+   "max_pair_spearman": 0.45,
+   "lens_vs_spirit_spearman": [
+    0.43,
+    0.55,
+    0.54,
+    0.61,
+    0.54
+   ]
+  }
+ },
+ "lifo_hidden_reserve": {
+  "lenses": [
+   [
+    "lifo_reserve/market_cap_usd",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "pos(adjusted_pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Size of the LIFO reserve vs price and the discount to reported and forensic-adjusted book. 7 members - spirit NaN below 5.",
+  "source": "COMP I.6 Scrapyard \"Assets carried at historical cost ... worth a multiple\"; CODE F15.",
+  "_validation": {
+   "n_core": 7,
+   "spirit_computable_share": 0.857,
+   "lens_coverage": [
+    [
+     "lifo_reserve/market_cap_usd",
+     1.0
+    ],
+    [
+     "pos(pb)",
+     0.857
+    ],
+    [
+     "pos(adjusted_pb)",
+     0.857
+    ]
+   ],
+   "max_pair_spearman": 0.94,
+   "lens_vs_spirit_spearman": [
+    0.09,
+    0.94,
+    0.89
+   ]
+  }
+ },
+ "liger_asset_backed": {
+  "lenses": [
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "nz(n_analysts)",
+    -1
+   ],
+   [
+    "shares_growth_3y",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Asset-backed neglected microcap: net cash / NCAV cover of the price, book anchor, neglect and limited dilution.",
+  "source": "LC \"Asset-backed optionality ... net cash or monetisable assets cover a substantial portion of market value; the operating business is near break-even ... dilution risk is limited\".",
+  "_validation": {
+   "n_core": 2211,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "net_cash_pct_mcap",
+     1.0
+    ],
+    [
+     "ncav_pct_mcap",
+     0.836
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ],
+    [
+     "nz(n_analysts)",
+     1.0
+    ],
+    [
+     "shares_growth_3y",
+     0.817
+    ]
+   ],
+   "max_pair_spearman": 0.56,
+   "lens_vs_spirit_spearman": [
+    0.74,
+    0.8,
+    0.76,
+    0.3,
+    0.4
+   ]
+  }
+ },
+ "liger_lagging_inflect": {
+  "lenses": [
+   [
+    "rev_accel",
+    1
+   ],
+   [
+    "fqx_inc_ebit_margin",
+    1
+   ],
+   [
+    "unrerated_gap_1y",
+    1
+   ],
+   [
+    "bs_coil_rev",
+    1
+   ],
+   [
+    "nz(n_analysts)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Inflection the market has not processed: acceleration and incremental margin, lagged by the price over 1y AND 2y (both horizons rewarded), under thin coverage.",
+  "source": "LC \"ordinary financial inflection that the market has failed to process ... incremental margins above historical averages ... low expectations following a pullback\".",
+  "_validation": {
+   "n_core": 2706,
+   "spirit_computable_share": 0.88,
+   "lens_coverage": [
+    [
+     "rev_accel",
+     0.997
+    ],
+    [
+     "fqx_inc_ebit_margin",
+     0.629
+    ],
+    [
+     "unrerated_gap_1y",
+     0.875
+    ],
+    [
+     "bs_coil_rev",
+     0.72
+    ],
+    [
+     "nz(n_analysts)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.45,
+   "lens_vs_spirit_spearman": [
+    0.48,
+    0.33,
+    0.59,
+    0.59,
+    0.4
+   ]
+  }
+ },
+ "lindy_growth": {
+  "lenses": [
+   [
+    "revenue_5y_cagr",
+    1
+   ],
+   [
+    "revenue_3y_cagr",
+    1
+   ],
+   [
+    "revenue_acceleration_lindy",
+    1
+   ],
+   [
+    "rev_yoy_pos_share_12q",
+    1
+   ],
+   [
+    "rev_yoy_streak_q",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Durable growth rewarded for rate, acceleration AND duration/pervasiveness (share of the last 12 quarters growing, consecutive-quarter streak).",
+  "source": "MAR II Bessembinder \"Extreme outcomes come from time, not spectacular single-year returns\"; COMP I.1 \"(7) capacity to compound ... for a decade\".",
+  "_validation": {
+   "n_core": 1513,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "revenue_5y_cagr",
+     1.0
+    ],
+    [
+     "revenue_3y_cagr",
+     1.0
+    ],
+    [
+     "revenue_acceleration_lindy",
+     1.0
+    ],
+    [
+     "rev_yoy_pos_share_12q",
+     0.985
+    ],
+    [
+     "rev_yoy_streak_q",
+     0.992
+    ]
+   ],
+   "max_pair_spearman": 0.88,
+   "lens_vs_spirit_spearman": [
+    0.77,
+    0.82,
+    0.56,
+    0.51,
+    0.51
+   ]
+  }
+ },
+ "low_sbc_quality": {
+  "lenses": [
+   [
+    "sbc_pct_revenue",
+    -1
+   ],
+   [
+    "fq_sbc_to_cfo",
+    -1
+   ],
+   [
+    "roce",
+    1
+   ],
+   [
+    "shares_growth_3y",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Clean, SBC-free profitability: SBC vs revenue and vs cash flow, ROCE, and no creeping share count.",
+  "source": "COMP II.B \"The cardinal sin. Dilution\"; MAR VI red flags \"reverse splits plus repeated raises\".",
+  "_validation": {
+   "n_core": 1380,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "sbc_pct_revenue",
+     0.995
+    ],
+    [
+     "fq_sbc_to_cfo",
+     0.894
+    ],
+    [
+     "roce",
+     0.996
+    ],
+    [
+     "shares_growth_3y",
+     0.992
+    ]
+   ],
+   "max_pair_spearman": 0.76,
+   "lens_vs_spirit_spearman": [
+    0.7,
+    0.77,
+    0.41,
+    0.36
+   ]
+  }
+ },
+ "lynch_reward": {
+  "lenses": [
+   [
+    "lynch_reward_score",
+    1
+   ],
+   [
+    "fmp_st_ebit_ps_5y_g",
+    1
+   ],
+   [
+    "n_yrs_positive_fcf",
+    1
+   ],
+   [
+    "roc_3_5y",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Existing lynch_reward_score (coil/release/ROC setup/progress breadth) plus years of progress (5y EBIT per share, FCF years - longer better) and how little the price paid (3.5y ROC).",
+  "source": "CODE Lynch Fannie Mae \"a business advances fundamentally for YEARS while the stock goes nowhere, then the market pays it all at once\"; MAR II Bessembinder.",
+  "existing_score": "lynch_reward_score",
+  "_validation": {
+   "n_core": 1041,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "lynch_reward_score",
+     1.0
+    ],
+    [
+     "fmp_st_ebit_ps_5y_g",
+     0.844
+    ],
+    [
+     "n_yrs_positive_fcf",
+     0.971
+    ],
+    [
+     "roc_3_5y",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.2,
+   "lens_vs_spirit_spearman": [
+    0.62,
+    0.47,
+    0.53,
+    0.4
+   ]
+  }
+ },
+ "micro_activist_inflect": {
+  "lenses": [
+   [
+    "pos(ev_ebitda)",
+    -1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "ebitda_margin_delta_yoy",
+    1
+   ],
+   [
+    "rev_accel",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Cheapness (~5x EV/EBITDA target) x fortress balance sheet x size of the short-term profit inflection.",
+  "source": "CODE Cluster H user write-up: \"microcap ... short-term profit inflection ... cheap (~5x EV/EBITDA target) ... clean debt-free or net-cash balance sheet\"; COMP II.B \"Net cash preferred\".",
+  "_validation": {
+   "n_core": 769,
+   "spirit_computable_share": 0.999,
+   "lens_coverage": [
+    [
+     "pos(ev_ebitda)",
+     0.91
+    ],
+    [
+     "net_cash_pct_mcap",
+     0.999
+    ],
+    [
+     "ebitda_margin_delta_yoy",
+     1.0
+    ],
+    [
+     "rev_accel",
+     0.993
+    ],
+    [
+     "fq_rev_growth",
+     0.776
+    ]
+   ],
+   "max_pair_spearman": 0.44,
+   "lens_vs_spirit_spearman": [
+    0.62,
+    0.57,
+    0.36,
+    0.41,
+    0.44
+   ]
+  }
+ },
+ "midcap_garp": {
+  "lenses": [
+   [
+    "roiic_lindy",
+    1
+   ],
+   [
+    "roic_lindy",
+    1
+   ],
+   [
+    "earnings_yield",
+    1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ],
+   [
+    "fqx_ebit_ttm_g",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Cheap-and-improving compounder: reinvestment quality, attractive E/P and EBITDA/EV, on a rising earnings stream.",
+  "source": "COMP I.1 \"Twin engines of return = earnings growth x multiple expansion\"; COMP I.4 valuation rule.",
+  "_validation": {
+   "n_core": 1289,
+   "spirit_computable_share": 0.954,
+   "lens_coverage": [
+    [
+     "roiic_lindy",
+     0.834
+    ],
+    [
+     "roic_lindy",
+     0.954
+    ],
+    [
+     "earnings_yield",
+     0.998
+    ],
+    [
+     "pos(ev_ebitda)",
+     0.995
+    ],
+    [
+     "fqx_ebit_ttm_g",
+     0.905
+    ]
+   ],
+   "max_pair_spearman": 0.48,
+   "lens_vs_spirit_spearman": [
+    0.49,
+    0.38,
+    0.65,
+    0.64,
+    0.32
+   ]
+  }
+ },
+ "negative_ev_value": {
+  "lenses": [
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Paid to own the business: net cash share of price (EV/mcap = 1 - that, so not repeated), book and NCAV cover, with cash generation.",
+  "source": "MAR III \"net-nets / net cash\"; WO Archetype 4 \"Market cap roughly <= (cash + appraised asset value)\".",
+  "_validation": {
+   "n_core": 4683,
+   "spirit_computable_share": 0.998,
+   "lens_coverage": [
+    [
+     "net_cash_pct_mcap",
+     0.988
+    ],
+    [
+     "pos(pb)",
+     0.996
+    ],
+    [
+     "ncav_pct_mcap",
+     0.76
+    ],
+    [
+     "fcf_yield",
+     0.938
+    ]
+   ],
+   "max_pair_spearman": 0.67,
+   "lens_vs_spirit_spearman": [
+    0.6,
+    0.31,
+    0.74,
+    0.48
+   ]
+  }
+ },
+ "net_cash_returner": {
+  "lenses": [
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "capret_yield_eff",
+    1
+   ],
+   [
+    "shares_growth_3y",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "evt_div_raise_streak",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Net cash actively returned: size of the cash cushion, current payout, multi-year shrink, the cash being generated, and the length of the dividend-raise record.",
+  "source": "COMP II.A \"Capital Return / Tender: Self-tenders, Dutch auctions ... special dividends, capital reductions\"; CODE \"the legitimate, rewarded form of cash exceeds EV\".",
+  "_validation": {
+   "n_core": 1898,
+   "spirit_computable_share": 0.973,
+   "lens_coverage": [
+    [
+     "net_cash_pct_mcap",
+     1.0
+    ],
+    [
+     "capret_yield_eff",
+     0.949
+    ],
+    [
+     "shares_growth_3y",
+     0.879
+    ],
+    [
+     "fcf_yield",
+     0.989
+    ],
+    [
+     "evt_div_raise_streak",
+     0.785
+    ]
+   ],
+   "max_pair_spearman": 0.14,
+   "lens_vs_spirit_spearman": [
+    0.47,
+    0.58,
+    0.49,
+    0.55,
+    0.47
+   ]
+  }
+ },
+ "nol_shell": {
+  "lenses": [
+   [
+    "nol_usd/market_cap_usd",
+    1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "op_margin",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Monetisable NOL vs price on a survivable balance sheet with earnings (current or buyable) to shield.",
+  "source": "MAR III \"NOL canonical example: WMIH ... ~$6.0B federal NOLs, no annual limitation, monetised via ... acquisition\".",
+  "_validation": {
+   "n_core": 66,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "nol_usd/market_cap_usd",
+     1.0
+    ],
+    [
+     "net_cash_pct_mcap",
+     0.985
+    ],
+    [
+     "op_margin",
+     1.0
+    ],
+    [
+     "fcf_yield",
+     0.955
+    ]
+   ],
+   "max_pair_spearman": 0.71,
+   "lens_vs_spirit_spearman": [
+    0.56,
+    -0.16,
+    0.56,
+    0.5
+   ]
+  }
+ },
+ "oak_asset_floor": {
+  "lenses": [
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "forensic_hidden_pct",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "How far the hard floor covers the market cap: net cash, NCAV, book and forensic hidden assets.",
+  "source": "WO Archetype 4 \"Market cap roughly <= (cash + appraised asset value) ... even if growth fails, the downside is limited by the asset floor\" (CVV).",
+  "_validation": {
+   "n_core": 1974,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "net_cash_pct_mcap",
+     0.997
+    ],
+    [
+     "ncav_pct_mcap",
+     0.826
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ],
+    [
+     "forensic_hidden_pct",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.83,
+   "lens_vs_spirit_spearman": [
+    0.75,
+    0.57,
+    0.64,
+    0.7
+   ]
+  }
+ },
+ "oak_deep_value": {
+  "lenses": [
+   [
+    "pct_off_52w_high",
+    -1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "cash_pct_mcap",
+    1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "cfo_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Crushed price above a hard parachute: crash depth, discount to book, cash/NCAV share of price, still cash-generative.",
+  "source": "WO Archetype 10 \"Stock price crash >50% ... Price/book <0.5 ... Assets identifiable (e.g. cash >20% mcap)\"; Belluscura trap -> cash generation required.",
+  "_validation": {
+   "n_core": 668,
+   "spirit_computable_share": 0.997,
+   "lens_coverage": [
+    [
+     "pct_off_52w_high",
+     0.915
+    ],
+    [
+     "pos(pb)",
+     0.967
+    ],
+    [
+     "cash_pct_mcap",
+     1.0
+    ],
+    [
+     "ncav_pct_mcap",
+     0.707
+    ],
+    [
+     "cfo_yield",
+     0.999
+    ]
+   ],
+   "max_pair_spearman": 0.4,
+   "lens_vs_spirit_spearman": [
+    0.38,
+    0.69,
+    0.7,
+    0.33,
+    0.57
+   ]
+  }
+ },
+ "oak_deleveraging": {
+  "lenses": [
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "fq_netdebt_change_pct_assets",
+    -1
+   ],
+   [
+    "fq_netdebt_decline_months",
+    1
+   ],
+   [
+    "-financing_cf_ttm/market_cap",
+    1
+   ],
+   [
+    "shares_yoy",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Equity accretion via paydown: FCF yield, how much net debt fell (and for how long - longer is better), cash flowing out to capital providers, no dilution.",
+  "source": "WO Archetype 8 \"dEquity = dAssets - dNetDebt + Buyback Accretion ... FCF yield >10% ... Net debt/EBITDA 1.5-3x but trending down ... Share count static or falling\".",
+  "_validation": {
+   "n_core": 837,
+   "spirit_computable_share": 0.959,
+   "lens_coverage": [
+    [
+     "fcf_yield",
+     0.994
+    ],
+    [
+     "fq_netdebt_change_pct_assets",
+     0.914
+    ],
+    [
+     "fq_netdebt_decline_months",
+     0.952
+    ],
+    [
+     "-financing_cf_ttm/market_cap",
+     0.951
+    ],
+    [
+     "shares_yoy",
+     0.891
+    ]
+   ],
+   "max_pair_spearman": 0.52,
+   "lens_vs_spirit_spearman": [
+    0.68,
+    0.64,
+    0.54,
+    0.68,
+    0.23
+   ]
+  }
+ },
+ "oak_nav_discount": {
+  "lenses": [
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "pos(p_tb)",
+    -1
+   ],
+   [
+    "capret_yield_eff",
+    1
+   ],
+   [
+    "equity_cagr_5y",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Discount to NAV (book and tangible book), covered yield being paid, and NAV that is growing rather than eroding.",
+  "source": "WO Archetype 5 \"Price/NAV <0.70x, ideally <0.50x ... tender/buyback; wind-up\"; red flag \"recurring cash burns by manager\".",
+  "_validation": {
+   "n_core": 51,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "pos(pb)",
+     1.0
+    ],
+    [
+     "pos(p_tb)",
+     0.725
+    ],
+    [
+     "capret_yield_eff",
+     1.0
+    ],
+    [
+     "equity_cagr_5y",
+     0.941
+    ]
+   ],
+   "max_pair_spearman": 0.64,
+   "lens_vs_spirit_spearman": [
+    0.69,
+    0.69,
+    0.32,
+    0.59
+   ]
+  }
+ },
+ "oak_order_conversion": {
+  "lenses": [
+   [
+    "rev_accel",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "ebitda_margin_delta_yoy",
+    1
+   ],
+   [
+    "fqx_inc_ebit_margin",
+    1
+   ],
+   [
+    "gross_margin",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Backlog converting (lagging P&L footprint): revenue acceleration and growth with margin expansion and drop-through, on real gross margin.",
+  "source": "WO table \"Order-Book/Conversion (Nanocaps) ... Signed orders >20% last-year revenue; GM >30%\"; Archetype 3 \"ADF ... backlog up 95%\".",
+  "_validation": {
+   "n_core": 3954,
+   "spirit_computable_share": 0.998,
+   "lens_coverage": [
+    [
+     "rev_accel",
+     0.996
+    ],
+    [
+     "fq_rev_growth",
+     0.871
+    ],
+    [
+     "ebitda_margin_delta_yoy",
+     0.999
+    ],
+    [
+     "fqx_inc_ebit_margin",
+     0.626
+    ],
+    [
+     "gross_margin",
+     0.988
+    ]
+   ],
+   "max_pair_spearman": 0.34,
+   "lens_vs_spirit_spearman": [
+    0.47,
+    0.44,
+    0.59,
+    0.63,
+    0.52
+   ]
+  }
+ },
+ "oak_resource_leverage": {
+  "lenses": [
+   [
+    "ebitda_margin",
+    1
+   ],
+   [
+    "tc_min_opm",
+    1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "price_pct_of_5y_range",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Low-cost producer (cost-curve margin now and in the worst year), net cash, cheap, cash-yielding, bought on weakness.",
+  "source": "WO Archetype 6 \"Low cash cost relative to spot (cash cost/AISC <=60-70% of spot) ... Net debt/EBITDA modest\"; Thungela \"low-cost coal producer ... ~76% gain in 6 months\".",
+  "_validation": {
+   "n_core": 37,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "ebitda_margin",
+     1.0
+    ],
+    [
+     "tc_min_opm",
+     0.919
+    ],
+    [
+     "net_cash_pct_mcap",
+     1.0
+    ],
+    [
+     "pos(ev_ebitda)",
+     1.0
+    ],
+    [
+     "fcf_yield",
+     0.973
+    ],
+    [
+     "price_pct_of_5y_range",
+     0.973
+    ]
+   ],
+   "max_pair_spearman": 0.51,
+   "lens_vs_spirit_spearman": [
+    0.57,
+    0.49,
+    0.72,
+    0.73,
+    0.63,
+    0.09
+   ]
+  }
+ },
+ "overdepreciated_assets": {
+  "lenses": [
+   [
+    "fq_capex_to_da",
+    -1
+   ],
+   [
+    "capex_ttm/da_ttm",
+    -1
+   ],
+   [
+    "capex_avg/da_ttm",
+    -1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Depreciation running above real asset consumption on quarterly (FMP), TTM and 5y-average lenses, priced at/below the depressed book.",
+  "source": "COMP I.6 \"Assets carried at historical cost or impaired values\"; PER idea screen \"high D&A-to-capex and low EV/EBITDA\".",
+  "_validation": {
+   "n_core": 632,
+   "spirit_computable_share": 0.979,
+   "lens_coverage": [
+    [
+     "fq_capex_to_da",
+     0.764
+    ],
+    [
+     "capex_ttm/da_ttm",
+     0.824
+    ],
+    [
+     "capex_avg/da_ttm",
+     0.647
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.9,
+   "lens_vs_spirit_spearman": [
+    0.31,
+    0.73,
+    0.72,
+    0.53
+   ]
+  }
+ },
+ "owner_earnings_power": {
+  "lenses": [
+   [
+    "owner_earnings_yield",
+    1
+   ],
+   [
+    "fmp_st_owner_earnings_yield",
+    1
+   ],
+   [
+    "oe_avg/ni_avg",
+    1
+   ],
+   [
+    "fq_capex_to_da",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Cheap on owner earnings on two sources, OE persistently above NI (5y averages), and the mechanism (capex below D&A).",
+  "source": "CODE F5 Buffett owner earnings; PER screen \"high D&A-to-capex\".",
+  "_validation": {
+   "n_core": 1108,
+   "spirit_computable_share": 0.91,
+   "lens_coverage": [
+    [
+     "owner_earnings_yield",
+     0.885
+    ],
+    [
+     "fmp_st_owner_earnings_yield",
+     0.908
+    ],
+    [
+     "oe_avg/ni_avg",
+     0.894
+    ],
+    [
+     "fq_capex_to_da",
+     0.894
+    ]
+   ],
+   "max_pair_spearman": 0.39,
+   "lens_vs_spirit_spearman": [
+    0.6,
+    0.57,
+    0.67,
+    0.71
+   ]
+  }
+ },
+ "pension_overfunded": {
+  "lenses": [
+   [
+    "pension_funded_status/market_cap_usd",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Pension surplus vs price with the operating business itself not dear. 9 members.",
+  "source": "COMP I.6 \"pension surpluses ... UK DB pension-surplus plays\".",
+  "_validation": {
+   "n_core": 9,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "pension_funded_status/market_cap_usd",
+     1.0
+    ],
+    [
+     "fcf_yield",
+     1.0
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.85,
+   "lens_vs_spirit_spearman": [
+    0.88,
+    0.51,
+    0.95
+   ]
+  }
+ },
+ "post_reorg": {
+  "lenses": [
+   [
+    "pos(ev_ebit)",
+    -1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "net_debt_ebitda",
+    -1
+   ],
+   [
+    "days_since(reorg_date)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Verdad emergence screen continuous: EBIT/EBITDA yield (the single most powerful screen), FCF, real de-levering, freshness of emergence. 2 members - spirit NaN until >= 5.",
+  "source": "COMP III \"Valuation at emergence. Verdad: EBIT yield >20% -> +61% average two-year return ... De-levering and moat are gating\".",
+  "_validation": {
+   "n_core": 2,
+   "spirit_computable_share": 0.0,
+   "lens_coverage": [
+    [
+     "pos(ev_ebit)",
+     1.0
+    ],
+    [
+     "pos(ev_ebitda)",
+     1.0
+    ],
+    [
+     "fcf_yield",
+     1.0
+    ],
+    [
+     "net_debt_ebitda",
+     1.0
+    ],
+    [
+     "days_since(reorg_date)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": null,
+   "lens_vs_spirit_spearman": []
+  }
+ },
+ "qarp": {
+  "lenses": [
+   [
+    "roiic_lindy",
+    1
+   ],
+   [
+    "roic_lindy",
+    1
+   ],
+   [
+    "cash_roic_lindy",
+    1
+   ],
+   [
+    "n_yrs_positive_roic",
+    1
+   ],
+   [
+    "earnings_yield",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "pos(ev_ebit)",
+    -1
+   ]
+  ],
+  "blend": {
+   "groupA": [
+    "roiic_lindy",
+    "roic_lindy",
+    "cash_roic_lindy",
+    "n_yrs_positive_roic"
+   ],
+   "groupB": [
+    "earnings_yield",
+    "fcf_yield",
+    "pos(ev_ebit)"
+   ],
+   "weights": [
+    0.6,
+    0.4
+   ]
+  },
+  "note": "Quality at a reasonable price: 60% quality (incremental/base/cash ROIC and its duration), 40% price (earnings, FCF and EBIT yields).",
+  "source": "COMP I.4 Tillinghast: \"Single-digit P/E for average businesses; teens for better ones; low-20s only for exceptional franchises\"; Four Elements \"Profitability (ROE >10-12% sustained ~10 years)\".",
+  "_validation": {
+   "n_core": 2275,
+   "spirit_computable_share": 0.986,
+   "lens_coverage": [
+    [
+     "roiic_lindy",
+     1.0
+    ],
+    [
+     "roic_lindy",
+     1.0
+    ],
+    [
+     "cash_roic_lindy",
+     1.0
+    ],
+    [
+     "n_yrs_positive_roic",
+     1.0
+    ],
+    [
+     "earnings_yield",
+     0.989
+    ],
+    [
+     "fcf_yield",
+     0.984
+    ],
+    [
+     "pos(ev_ebit)",
+     0.792
+    ]
+   ],
+   "max_pair_spearman": 0.6,
+   "lens_vs_spirit_spearman": [
+    0.34,
+    0.57,
+    0.65,
+    0.24,
+    0.44,
+    0.5,
+    0.54
+   ]
+  }
+ },
+ "regime_cyclical": {
+  "lenses": [
+   [
+    "price_pct_of_5y_range",
+    -1
+   ],
+   [
+    "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+    -1
+   ],
+   [
+    "ebitda_margin_delta_yoy",
+    1
+   ],
+   [
+    "fq_capex_to_da",
+    -1
+   ],
+   [
+    "not_priced_in_score",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Three-layer test made continuous: priced for the old cycle (low in 5y range, cheap on mid-cycle EBITDA), supply withdrawn (capex below D&A), and the new cycle showing in margins.",
+  "source": "MAR I.E (9) three-layer test \"(i) stock priced for old-cycle economics ... (iii) next cycle has tighter supply\"; COMP II.D \"falling capex/depreciation ratios ... turn often occurs during periods of maximum pessimism\".",
+  "_validation": {
+   "n_core": 1305,
+   "spirit_computable_share": 0.975,
+   "lens_coverage": [
+    [
+     "price_pct_of_5y_range",
+     0.909
+    ],
+    [
+     "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+     0.752
+    ],
+    [
+     "ebitda_margin_delta_yoy",
+     0.985
+    ],
+    [
+     "fq_capex_to_da",
+     0.864
+    ],
+    [
+     "not_priced_in_score",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.24,
+   "lens_vs_spirit_spearman": [
+    0.55,
+    0.46,
+    0.52,
+    0.55,
+    0.51
+   ]
+  }
+ },
+ "reinvest_inflect": {
+  "lenses": [
+   [
+    "roiic_acceleration",
+    1
+   ],
+   [
+    "roic_acceleration",
+    1
+   ],
+   [
+    "roiic_lindy",
+    1
+   ],
+   [
+    "asset_3y_cagr",
+    1
+   ],
+   [
+    "revenue_acceleration_lindy",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Compounder finding more runway: incremental and base returns accelerating while assets and revenue growth accelerate too.",
+  "source": "COMP I.1 \"(3) A long reinvestment runway\"; CODE V \"ROIIC accelerating from a positive base AND assets actually growing\".",
+  "_validation": {
+   "n_core": 978,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "roiic_acceleration",
+     1.0
+    ],
+    [
+     "roic_acceleration",
+     1.0
+    ],
+    [
+     "roiic_lindy",
+     1.0
+    ],
+    [
+     "asset_3y_cagr",
+     1.0
+    ],
+    [
+     "revenue_acceleration_lindy",
+     0.99
+    ]
+   ],
+   "max_pair_spearman": 0.32,
+   "lens_vs_spirit_spearman": [
+    0.5,
+    0.61,
+    0.44,
+    0.51,
+    0.45
+   ]
+  }
+ },
+ "retained_earnings_discount": {
+  "lenses": [
+   [
+    "retained_earnings/equity/pos(pb)",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "earnings_yield",
+    1
+   ],
+   [
+    "equity_cagr_5y",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Retained history per unit of price (RE/mcap via RE/equity/pb, currency-neutral), book discount, and the business still earning/compounding.",
+  "source": "CODE F7 \"Buffett's dollar-retained test, priced\"; COMP I.4 Tillinghast profitability \"sustained ~10 years\".",
+  "_validation": {
+   "n_core": 1358,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "retained_earnings/equity/pos(pb)",
+     1.0
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ],
+    [
+     "earnings_yield",
+     0.976
+    ],
+    [
+     "equity_cagr_5y",
+     0.957
+    ]
+   ],
+   "max_pair_spearman": 0.72,
+   "lens_vs_spirit_spearman": [
+    0.72,
+    0.7,
+    0.53,
+    0.38
+   ]
+  }
+ },
+ "roic_inflect": {
+  "lenses": [
+   [
+    "roic_acceleration",
+    1
+   ],
+   [
+    "roce_delta_yoy",
+    1
+   ],
+   [
+    "fqx_roic_ttm",
+    1
+   ],
+   [
+    "fcf_margin_delta_yoy",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Size and breadth of the turn in returns (annual ROIC acceleration, YoY ROCE change, TTM ROIC level, cash-margin turn) on a growing top line.",
+  "source": "COMP I.8 \"a large positive change in the business (revenue acceleration, margin inflection, first profitable quarter) that the market has not yet priced\"; PER \"the business motor is strengthening\".",
+  "_validation": {
+   "n_core": 1114,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "roic_acceleration",
+     1.0
+    ],
+    [
+     "roce_delta_yoy",
+     0.958
+    ],
+    [
+     "fqx_roic_ttm",
+     0.948
+    ],
+    [
+     "fcf_margin_delta_yoy",
+     0.998
+    ],
+    [
+     "fq_rev_growth",
+     0.983
+    ]
+   ],
+   "max_pair_spearman": 0.31,
+   "lens_vs_spirit_spearman": [
+    0.54,
+    0.65,
+    0.6,
+    0.45,
+    0.6
+   ]
+  }
+ },
+ "self_funded_returner": {
+  "lenses": [
+   [
+    "fmp_st_financing_outflow_years/fmp_st_financing_years",
+    1
+   ],
+   [
+    "-financing_cf_ttm/market_cap",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "pos(p_e)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Self-funding proven by the financing line: share of years with net outflow (longer record better), size of the current outflow, FCF yield, cheapness.",
+  "source": "MAR VI Deden: rejects companies \"in the business of their common stock\"; COMP II.B \"Dilution ... losers diluted ~61%\".",
+  "_validation": {
+   "n_core": 3121,
+   "spirit_computable_share": 0.999,
+   "lens_coverage": [
+    [
+     "fmp_st_financing_outflow_years/fmp_st_financing_years",
+     0.98
+    ],
+    [
+     "-financing_cf_ttm/market_cap",
+     1.0
+    ],
+    [
+     "fcf_yield",
+     0.991
+    ],
+    [
+     "pos(p_e)",
+     0.91
+    ]
+   ],
+   "max_pair_spearman": 0.52,
+   "lens_vs_spirit_spearman": [
+    0.32,
+    0.71,
+    0.75,
+    0.63
+   ]
+  }
+ },
+ "special_situation": {
+  "lenses": [],
+  "blend": null,
+  "note": "binary - none. A dated merger/tender/going-private event; the true continuous measure is the deal spread (offer / price - 1) and time to close, neither in the data. Nearest available proxy: freshness of the filing, days_since(evt_merger_proxy_date / evt_tender_date).",
+  "source": "COMP II.A \"Merger-arb spread math + HSR/second-request calendar ... EV = (gain x P(success)) - (loss x P(break))\".",
+  "_validation": {
+   "n_core": 255,
+   "spirit_computable_share": null,
+   "lens_coverage": [],
+   "max_pair_spearman": null,
+   "lens_vs_spirit_spearman": []
+  }
+ },
+ "spinoff_asset": {
+  "lenses": [
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "days_since(spin_date)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Spin priced below its asset backing, fresher spin better. 2 members - pool with the spin family.",
+  "source": "COMP II.C \"(3) a hidden opportunity is revealed by the separation\"; \"land-banking/REIT spins\".",
+  "_validation": {
+   "n_core": 2,
+   "spirit_computable_share": 0.0,
+   "lens_coverage": [
+    [
+     "pos(pb)",
+     1.0
+    ],
+    [
+     "ncav_pct_mcap",
+     1.0
+    ],
+    [
+     "net_cash_pct_mcap",
+     1.0
+    ],
+    [
+     "days_since(spin_date)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": null,
+   "lens_vs_spirit_spearman": []
+  }
+ },
+ "spinoff_quality": {
+  "lenses": [
+   [
+    "roce",
+    1
+   ],
+   [
+    "op_margin",
+    1
+   ],
+   [
+    "pos(ev_ebit)",
+    -1
+   ],
+   [
+    "days_since(spin_date)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "High-return franchise cast off at a sane multiple, fresher spin better. 2 members - pool with the spin family.",
+  "source": "COMP II.C \"underlying business quality; an owner-operator with skin in the game\"; anti-pattern \"Sandisk +559% ... templates, not entries\".",
+  "_validation": {
+   "n_core": 2,
+   "spirit_computable_share": 0.0,
+   "lens_coverage": [
+    [
+     "roce",
+     1.0
+    ],
+    [
+     "op_margin",
+     1.0
+    ],
+    [
+     "pos(ev_ebit)",
+     1.0
+    ],
+    [
+     "days_since(spin_date)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": null,
+   "lens_vs_spirit_spearman": []
+  }
+ },
+ "spinoff_value": {
+  "lenses": [
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "earnings_yield",
+    1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ],
+   [
+    "days_since(spin_date)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Orphan discount on operating yield, fresher spin better (forced selling concentrated early). 3 members - rank the spin family jointly or spirit is NaN (<5).",
+  "source": "COMP II.C \"Forced selling is the master signal ... spin subsidiaries beat the market by ~10%/yr over three years\" (Cusatis, Miles & Woolridge).",
+  "_validation": {
+   "n_core": 3,
+   "spirit_computable_share": 0.0,
+   "lens_coverage": [
+    [
+     "fcf_yield",
+     1.0
+    ],
+    [
+     "earnings_yield",
+     1.0
+    ],
+    [
+     "pos(ev_ebitda)",
+     1.0
+    ],
+    [
+     "days_since(spin_date)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": null,
+   "lens_vs_spirit_spearman": []
+  }
+ },
+ "strong_coverage": {
+  "lenses": [
+   [
+    "interest_coverage",
+    1
+   ],
+   [
+    "tc_min_ic",
+    1
+   ],
+   [
+    "net_debt_ebitda",
+    -1
+   ],
+   [
+    "fmp_altman_z",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Debt burden trivially serviceable now AND through the cycle (worst-year interest cover), on net-leverage and Altman-Z lenses.",
+  "source": "COMP I.4 Tillinghast \"Debt/EBITDA >4x in the worst year is scary\"; PER \"Balance-sheet and financing risk dominate valuation when they become existential\".",
+  "_validation": {
+   "n_core": 8385,
+   "spirit_computable_share": 0.948,
+   "lens_coverage": [
+    [
+     "interest_coverage",
+     0.902
+    ],
+    [
+     "tc_min_ic",
+     0.922
+    ],
+    [
+     "net_debt_ebitda",
+     0.943
+    ],
+    [
+     "fmp_altman_z",
+     0.906
+    ]
+   ],
+   "max_pair_spearman": 0.5,
+   "lens_vs_spirit_spearman": [
+    0.79,
+    0.65,
+    0.53,
+    0.7
+   ]
+  }
+ },
+ "sustainable_scaler": {
+  "lenses": [
+   [
+    "fmp_st_sales_ps_3y_g",
+    1
+   ],
+   [
+    "fcf_per_share_yoy",
+    1
+   ],
+   [
+    "shares_growth_3y",
+    -1
+   ],
+   [
+    "rev_yoy_pos_share_12q",
+    1
+   ],
+   [
+    "fcf_margin",
+    1
+   ],
+   [
+    "pos(ev_sales)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Growing revenues and earnings and not diluting: 3y sales PER SHARE, per-share FCF growth, share shrink, growth pervasiveness, self-funding and room to re-rate.",
+  "source": "MAR VI \"The MCC formula: Find undiscovered companies that are growing revenues and earnings and not diluting\"; COMP II.B screen \"Share count flat or shrinking ... <3x sales\".",
+  "_validation": {
+   "n_core": 864,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "fmp_st_sales_ps_3y_g",
+     0.899
+    ],
+    [
+     "fcf_per_share_yoy",
+     0.99
+    ],
+    [
+     "shares_growth_3y",
+     0.903
+    ],
+    [
+     "rev_yoy_pos_share_12q",
+     0.887
+    ],
+    [
+     "fcf_margin",
+     1.0
+    ],
+    [
+     "pos(ev_sales)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.45,
+   "lens_vs_spirit_spearman": [
+    0.54,
+    0.41,
+    0.44,
+    0.42,
+    0.37,
+    0.34
+   ]
+  }
+ },
+ "tangible_value": {
+  "lenses": [
+   [
+    "pos(p_tb)",
+    -1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "tangible_equity/equity",
+    1
+   ],
+   [
+    "cash/tangible_equity",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Depth below tangible book, current-asset (NCAV) coverage, how much of book is tangible, and how much of the tangible book is cash (realizability).",
+  "source": "COMP I.6 Scrapyard \"Assets carried at historical cost ... worth a multiple of enterprise value\"; WO Archetype 10 \"Price/book or Price/cash/assets very low (<0.5)\".",
+  "_validation": {
+   "n_core": 1068,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "pos(p_tb)",
+     1.0
+    ],
+    [
+     "ncav_pct_mcap",
+     0.831
+    ],
+    [
+     "tangible_equity/equity",
+     1.0
+    ],
+    [
+     "cash/tangible_equity",
+     0.979
+    ]
+   ],
+   "max_pair_spearman": 0.27,
+   "lens_vs_spirit_spearman": [
+    0.48,
+    0.69,
+    0.42,
+    0.44
+   ]
+  }
+ },
+ "tax_efficient": {
+  "lenses": [
+   [
+    "effective_tax_rate",
+    -1
+   ],
+   [
+    "fq_cash_tax_rate",
+    -1
+   ],
+   [
+    "roce",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Structurally low tax on real profit, seen on the book rate and the cash rate actually paid, on real returns.",
+  "source": "CODE AB \"legitimate tax structure from no tax because no profit\"; COMP III post-reorg NOL tax assets.",
+  "_validation": {
+   "n_core": 215,
+   "spirit_computable_share": 0.991,
+   "lens_coverage": [
+    [
+     "effective_tax_rate",
+     1.0
+    ],
+    [
+     "fq_cash_tax_rate",
+     0.363
+    ],
+    [
+     "roce",
+     0.977
+    ]
+   ],
+   "max_pair_spearman": 0.32,
+   "lens_vs_spirit_spearman": [
+    0.62,
+    0.77,
+    0.54
+   ]
+  }
+ },
+ "tax_verified_earnings": {
+  "lenses": [
+   [
+    "pos(p_e)",
+    -1
+   ],
+   [
+    "fq_cash_tax_rate",
+    1
+   ],
+   [
+    "effective_tax_rate",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Cheap on earnings the tax authority audits: P/E, full cash and book tax actually paid, and FCF corroboration.",
+  "source": "CODE F11 \"You do not pay real cash taxes on fake earnings\".",
+  "_validation": {
+   "n_core": 162,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "pos(p_e)",
+     1.0
+    ],
+    [
+     "fq_cash_tax_rate",
+     0.407
+    ],
+    [
+     "effective_tax_rate",
+     1.0
+    ],
+    [
+     "fcf_yield",
+     0.981
+    ]
+   ],
+   "max_pair_spearman": 0.2,
+   "lens_vs_spirit_spearman": [
+    0.56,
+    0.58,
+    0.51,
+    0.64
+   ]
+  }
+ },
+ "templeton_pessimism": {
+  "lenses": [
+   [
+    "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+    -1
+   ],
+   [
+    "price_pct_of_5y_range",
+    -1
+   ],
+   [
+    "price_vs_5y_avg",
+    -1
+   ],
+   [
+    "pct_off_52w_high",
+    -1
+   ],
+   [
+    "sent_buy_share",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Maximum pessimism: cheap vs own mid-cycle, price low in its 5y range / below 5y average / off the 52w high, and the street most bearish.",
+  "source": "COMP II.D \"The turn often occurs during periods of maximum pessimism\"; MAR II Yartseva \"price near 12-month low, negative 6-month return\".",
+  "_validation": {
+   "n_core": 2051,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+     0.999
+    ],
+    [
+     "price_pct_of_5y_range",
+     1.0
+    ],
+    [
+     "price_vs_5y_avg",
+     1.0
+    ],
+    [
+     "pct_off_52w_high",
+     1.0
+    ],
+    [
+     "sent_buy_share",
+     0.4
+    ]
+   ],
+   "max_pair_spearman": 0.8,
+   "lens_vs_spirit_spearman": [
+    0.42,
+    0.79,
+    0.81,
+    0.6,
+    0.45
+   ]
+  }
+ },
+ "tenbagger_credible": {
+  "lenses": [
+   [
+    "tenbagger_implied_return",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "cash_conversion",
+    1
+   ],
+   [
+    "shares_growth_3y",
+    -1
+   ],
+   [
+    "revenue_3y_cagr",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Credible 10x: arithmetic clearance plus the reality gates as continua (owner cash: FCF yield and cash conversion; share-count stability), and durable growth. SBC share would be ideal but is 18% covered here.",
+  "source": "COMP II.B \"The cardinal sin. Dilution\"; CODE Appier vs Flywire \"adjusted profit is NOT owner cash\".",
+  "existing_score": "tenbagger_implied_return",
+  "_validation": {
+   "n_core": 1279,
+   "spirit_computable_share": 0.989,
+   "lens_coverage": [
+    [
+     "tenbagger_implied_return",
+     1.0
+    ],
+    [
+     "fcf_yield",
+     0.987
+    ],
+    [
+     "cash_conversion",
+     0.916
+    ],
+    [
+     "shares_growth_3y",
+     0.836
+    ],
+    [
+     "revenue_3y_cagr",
+     0.833
+    ]
+   ],
+   "max_pair_spearman": 0.37,
+   "lens_vs_spirit_spearman": [
+    0.53,
+    0.65,
+    0.55,
+    0.36,
+    0.45
+   ]
+  }
+ },
+ "tenbagger_path": {
+  "lenses": [
+   [
+    "tenbagger_implied_return",
+    1
+   ],
+   [
+    "tenbagger_score",
+    1
+   ],
+   [
+    "rev_yoy_pos_share_12q",
+    1
+   ],
+   [
+    "revenue_3y_cagr",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Existing tenbagger_implied_return / tenbagger_score measure how far the 10x arithmetic clears; corroborated by growth durability.",
+  "source": "COMP I.1 \"(7) capacity to compound EPS ~20%+ for a decade\"; MAR II \"Median time to 10x: ~9 years\".",
+  "existing_score": "tenbagger_implied_return",
+  "_validation": {
+   "n_core": 1989,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "tenbagger_implied_return",
+     1.0
+    ],
+    [
+     "tenbagger_score",
+     1.0
+    ],
+    [
+     "rev_yoy_pos_share_12q",
+     0.821
+    ],
+    [
+     "revenue_3y_cagr",
+     0.838
+    ]
+   ],
+   "max_pair_spearman": 0.6,
+   "lens_vs_spirit_spearman": [
+    0.78,
+    0.74,
+    0.41,
+    0.61
+   ]
+  }
+ },
+ "understated_earnings": {
+  "lenses": [
+   [
+    "fmp_income_quality",
+    1
+   ],
+   [
+    "fq_cfo_to_ni",
+    1
+   ],
+   [
+    "fq_cfo_p/fq_ni_cf_p",
+    1
+   ],
+   [
+    "fq_sloan_accruals",
+    -1
+   ],
+   [
+    "pos(p_e)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Cash persistently above book earnings (now, year-ago TTM, two sources, negative accruals) while priced on the understated E.",
+  "source": "CODE F2 \"the accruals red-flag INVERTED\"; LC \"clean cash conversion\".",
+  "_validation": {
+   "n_core": 1917,
+   "spirit_computable_share": 0.902,
+   "lens_coverage": [
+    [
+     "fmp_income_quality",
+     0.907
+    ],
+    [
+     "fq_cfo_to_ni",
+     0.898
+    ],
+    [
+     "fq_cfo_p/fq_ni_cf_p",
+     0.895
+    ],
+    [
+     "fq_sloan_accruals",
+     0.865
+    ],
+    [
+     "pos(p_e)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.6,
+   "lens_vs_spirit_spearman": [
+    0.74,
+    0.78,
+    0.48,
+    0.66,
+    0.33
+   ]
+  }
+ },
+ "weschler_levered_equity": {
+  "lenses": [
+   [
+    "robust_cash_yield",
+    1
+   ],
+   [
+    "enterprise_value/market_cap",
+    1
+   ],
+   [
+    "fq_netdebt_change_pct_assets",
+    -1
+   ],
+   [
+    "-financing_cf_ttm/market_cap",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "High-torque equity stub on a deleveraging business: cheap on robust cash (median of FCF/CFO/earnings yields), EV/equity torque, and debt actually coming down / cash flowing out.",
+  "source": "CODE Weschler/Valassis \"traded <1x FCF ... paid down $200-305M/yr ... bought back 16% of shares -> ~52%/yr\"; WO Archetype 8.",
+  "_validation": {
+   "n_core": 673,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "robust_cash_yield",
+     1.0
+    ],
+    [
+     "enterprise_value/market_cap",
+     1.0
+    ],
+    [
+     "fq_netdebt_change_pct_assets",
+     0.771
+    ],
+    [
+     "-financing_cf_ttm/market_cap",
+     0.844
+    ]
+   ],
+   "max_pair_spearman": 0.42,
+   "lens_vs_spirit_spearman": [
+    0.77,
+    0.63,
+    0.45,
+    0.72
+   ]
+  }
+ },
+ "wolf_compounder": {
+  "lenses": [
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "rev_accel",
+    1
+   ],
+   [
+    "rev_yoy_streak_q",
+    1
+   ],
+   [
+    "ebitda_margin_delta_yoy",
+    1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ],
+   [
+    "shares_yoy",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Sustained, accelerating grower at a low multiple: growth rate, acceleration, streak length (longer is better), margin expansion, cheapness, no dilution.",
+  "source": "CODE Wolf Compounder \"NCI/ZOMD/KITS-at-entry ... multi-quarter streak\"; WO \"Every verified winner entered <12x EV/EBITDA\".",
+  "_validation": {
+   "n_core": 234,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "fq_rev_growth",
+     0.756
+    ],
+    [
+     "rev_accel",
+     1.0
+    ],
+    [
+     "rev_yoy_streak_q",
+     0.769
+    ],
+    [
+     "ebitda_margin_delta_yoy",
+     1.0
+    ],
+    [
+     "pos(ev_ebitda)",
+     0.983
+    ],
+    [
+     "shares_yoy",
+     0.735
+    ]
+   ],
+   "max_pair_spearman": 0.5,
+   "lens_vs_spirit_spearman": [
+    0.59,
+    0.55,
+    0.46,
+    0.56,
+    0.46,
+    0.37
+   ]
+  }
+ },
+ "wolf_emerging": {
+  "lenses": [
+   [
+    "cfo_yield",
+    1
+   ],
+   [
+    "sbc_pct_revenue",
+    -1
+   ],
+   [
+    "pos(p_e)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Cash discipline in a nascent sector (positive CFO, clean SBC) at a reasonable multiple. NOTE: 2 current members - within-core ranks need >= 5, so spirit is NaN until the core grows (or rank within the wider Wolf family).",
+  "source": "WO \"Simply Solventless ($HASH.V) ... blew up on accounting + cash problems\" (CODE: gate hard on positive operating cash flow and clean SBC).",
+  "_validation": {
+   "n_core": 2,
+   "spirit_computable_share": 0.0,
+   "lens_coverage": [
+    [
+     "cfo_yield",
+     1.0
+    ],
+    [
+     "sbc_pct_revenue",
+     1.0
+    ],
+    [
+     "pos(p_e)",
+     0.0
+    ]
+   ],
+   "max_pair_spearman": null,
+   "lens_vs_spirit_spearman": []
+  }
+ },
+ "wolf_seal": {
+  "lenses": [
+   [
+    "fqx_ebit_ttm_g",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "evt_surprise_4q",
+    1
+   ],
+   [
+    "evt_react_last",
+    -1
+   ],
+   [
+    "ts_r13",
+    -1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Earnings inflection bought on the post-earnings dip: size of the inflection (EBIT, sales) and surprise, the dip (earnings-day reaction, 13w return), at a disciplined multiple.",
+  "source": "WO Archetype 7 \"Seal of approval picks ... a positive surprise relative to a microcap's small size can pop the stock\"; CODE \"earnings inflection bought on a post-earnings dip\".",
+  "_validation": {
+   "n_core": 2241,
+   "spirit_computable_share": 0.846,
+   "lens_coverage": [
+    [
+     "fqx_ebit_ttm_g",
+     0.739
+    ],
+    [
+     "fq_rev_growth",
+     0.864
+    ],
+    [
+     "evt_surprise_4q",
+     0.292
+    ],
+    [
+     "evt_react_last",
+     0.28
+    ],
+    [
+     "ts_r13",
+     0.861
+    ],
+    [
+     "pos(ev_ebitda)",
+     0.945
+    ]
+   ],
+   "max_pair_spearman": 0.47,
+   "lens_vs_spirit_spearman": [
+    0.63,
+    0.58,
+    0.34,
+    0.41,
+    0.43,
+    0.42
+   ]
+  }
+ },
+ "wolf_trifecta": {
+  "lenses": [
+   [
+    "rev_yoy",
+    1
+   ],
+   [
+    "ebitda_margin_delta_yoy",
+    1
+   ],
+   [
+    "incremental_ebitda_margin",
+    1
+   ],
+   [
+    "fqx_ebit_ttm_g - fq_rev_growth",
+    1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Double-digit growth x improving margins x operating leverage (EBIT outgrowing sales) x cheap entry multiple.",
+  "source": "WO Archetype 6 \"a 6x jump in quarterly revenues yielded a 23x jump in net income forecasts ... tremendous leverage\"; WO Archetype 3 \"5x EV/EBITDA look cheap\".",
+  "_validation": {
+   "n_core": 779,
+   "spirit_computable_share": 0.997,
+   "lens_coverage": [
+    [
+     "rev_yoy",
+     1.0
+    ],
+    [
+     "ebitda_margin_delta_yoy",
+     0.997
+    ],
+    [
+     "incremental_ebitda_margin",
+     0.964
+    ],
+    [
+     "fqx_ebit_ttm_g - fq_rev_growth",
+     0.701
+    ],
+    [
+     "pos(ev_ebitda)",
+     0.986
+    ]
+   ],
+   "max_pair_spearman": 0.72,
+   "lens_vs_spirit_spearman": [
+    0.42,
+    0.74,
+    0.74,
+    0.6,
+    0.44
+   ]
+  }
+ },
+ "wolf_turnaround": {
+  "lenses": [
+   [
+    "op_margin_delta_yoy",
+    1
+   ],
+   [
+    "ebitda_margin_delta_yoy",
+    1
+   ],
+   [
+    "fqx_inc_ebit_margin",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "pos(p_e)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Size of the crossing into the black (margin swing, incremental margin) on a still-growing top line, bought cheap.",
+  "source": "WO Archetype 9 \"Zoomd SG&A cuts halved its expense ratio ... from -ve to +$4.3M net income\"; screen \"Low current valuation (e.g. P/E <6)\"; catalyst \"first improved earnings report\".",
+  "_validation": {
+   "n_core": 730,
+   "spirit_computable_share": 0.967,
+   "lens_coverage": [
+    [
+     "op_margin_delta_yoy",
+     0.952
+    ],
+    [
+     "ebitda_margin_delta_yoy",
+     1.0
+    ],
+    [
+     "fqx_inc_ebit_margin",
+     0.578
+    ],
+    [
+     "fq_rev_growth",
+     0.836
+    ],
+    [
+     "pos(p_e)",
+     0.94
+    ]
+   ],
+   "max_pair_spearman": 0.45,
+   "lens_vs_spirit_spearman": [
+    0.74,
+    0.65,
+    0.63,
+    0.46,
+    0.45
+   ]
+  }
+ },
+ "wolf_value_catalyst": {
+  "lenses": [
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "cfo_yield",
+    1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Growing, cash-generative microcap with a fortress balance sheet at a fat FCF yield.",
+  "source": "CODE Wolf value+catalyst \"Progressive Planet: ~12% FCF yld, ~$32M cap, growing\"; WO Archetype 4 \"MTLC profitable ... 0.3x sales, 5x earnings\".",
+  "_validation": {
+   "n_core": 732,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "fcf_yield",
+     0.997
+    ],
+    [
+     "net_cash_pct_mcap",
+     0.999
+    ],
+    [
+     "fq_rev_growth",
+     0.777
+    ],
+    [
+     "cfo_yield",
+     1.0
+    ],
+    [
+     "pos(ev_ebitda)",
+     0.917
+    ]
+   ],
+   "max_pair_spearman": 0.84,
+   "lens_vs_spirit_spearman": [
+    0.65,
+    0.38,
+    0.29,
+    0.69,
+    0.62
+   ]
+  }
+ },
+ "xr_amortization_mask": {
+  "lenses": [
+   [
+    "goodwill_intangibles_pct_assets",
+    1
+   ],
+   [
+    "pos(p_e)*owner_earnings_yield",
+    1
+   ],
+   [
+    "owner_earnings_yield",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Serial-acquirer mask: intangible base, headline-vs-owner-earnings spread, and cash yields.",
+  "source": "CODE XR16 \"Constellation/Heico class - GAAP EPS crushed by acquired-intangible amortization that has NO cash cost\".",
+  "_validation": {
+   "n_core": 96,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "goodwill_intangibles_pct_assets",
+     1.0
+    ],
+    [
+     "pos(p_e)*owner_earnings_yield",
+     0.844
+    ],
+    [
+     "owner_earnings_yield",
+     0.844
+    ],
+    [
+     "fcf_yield",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.73,
+   "lens_vs_spirit_spearman": [
+    0.57,
+    0.8,
+    0.81,
+    0.42
+   ]
+  }
+ },
+ "xr_asset_owner_catalyst": {
+  "lenses": [
+   [
+    "insider_ownership_pct",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "buyback_yield",
+    1
+   ],
+   [
+    "ebitda_margin_delta_yoy",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Asset below realisable value + owner + catalyst in motion: ownership, book discount, cash floor, buyback and operating turn.",
+  "source": "MAR I.G \"Discount + catalyst = value realisation\"; COMP II.C Greenblatt \"(2) insiders want it\".",
+  "_validation": {
+   "n_core": 905,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "insider_ownership_pct",
+     1.0
+    ],
+    [
+     "pos(pb)",
+     0.998
+    ],
+    [
+     "net_cash_pct_mcap",
+     0.991
+    ],
+    [
+     "buyback_yield",
+     0.631
+    ],
+    [
+     "ebitda_margin_delta_yoy",
+     0.978
+    ]
+   ],
+   "max_pair_spearman": 0.31,
+   "lens_vs_spirit_spearman": [
+    0.45,
+    0.46,
+    0.4,
+    0.26,
+    0.45
+   ]
+  }
+ },
+ "xr_audited_streak_unrerated": {
+  "lenses": [
+   [
+    "rev_yoy_streak_q",
+    1
+   ],
+   [
+    "ni_yoy_streak_q",
+    1
+   ],
+   [
+    "fmp_dyn_rev_streak_q",
+    1
+   ],
+   [
+    "unrerated_gap_1y",
+    1
+   ],
+   [
+    "bs_coil_rev",
+    1
+   ],
+   [
+    "fmp_st_sales_ps_5y_g - ts_r260",
+    1
+   ],
+   [
+    "fmp_dyn_unrerated_gap",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Told-and-ignored, longer the better: revenue and NI streak lengths (two sources) and the un-rerating over 1y, 2y, 5y (per-share sales vs 5y return) and multi-year EV/sales horizons.",
+  "source": "COMP I.8 \"high behaviour change score against a low reaction score\"; MAR II Bessembinder \"Extreme outcomes come from time\".",
+  "_validation": {
+   "n_core": 2127,
+   "spirit_computable_share": 0.996,
+   "lens_coverage": [
+    [
+     "rev_yoy_streak_q",
+     0.997
+    ],
+    [
+     "ni_yoy_streak_q",
+     0.997
+    ],
+    [
+     "fmp_dyn_rev_streak_q",
+     0.857
+    ],
+    [
+     "unrerated_gap_1y",
+     0.986
+    ],
+    [
+     "bs_coil_rev",
+     0.747
+    ],
+    [
+     "fmp_st_sales_ps_5y_g - ts_r260",
+     0.965
+    ],
+    [
+     "fmp_dyn_unrerated_gap",
+     0.844
+    ]
+   ],
+   "max_pair_spearman": 0.58,
+   "lens_vs_spirit_spearman": [
+    0.45,
+    0.17,
+    0.31,
+    0.58,
+    0.7,
+    0.65,
+    0.62
+   ]
+  }
+ },
+ "xr_baron_compounder": {
+  "lenses": [
+   [
+    "insider_ownership_pct",
+    1
+   ],
+   [
+    "rev_yoy_pos_share_12q",
+    1
+   ],
+   [
+    "rev_yoy_streak_q",
+    1
+   ],
+   [
+    "fmp_st_sales_ps_5y_g",
+    1
+   ],
+   [
+    "gross_margin - op_margin",
+    1
+   ],
+   [
+    "pos(evsg)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Founder-led decade-length grower: ownership, growth pervasiveness and duration (longer is better), 5y sales-per-share growth, reinvestment through the P&L, growth-adjusted price.",
+  "source": "COMP I.1 \"(4) Founder / owner-operator alignment ... (7) compound ~20%+ for a decade ... Be a reluctant seller\"; COMP II.B \"intelligent fanatic owner-operators\".",
+  "_validation": {
+   "n_core": 744,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "insider_ownership_pct",
+     1.0
+    ],
+    [
+     "rev_yoy_pos_share_12q",
+     1.0
+    ],
+    [
+     "rev_yoy_streak_q",
+     1.0
+    ],
+    [
+     "fmp_st_sales_ps_5y_g",
+     0.989
+    ],
+    [
+     "gross_margin - op_margin",
+     0.999
+    ],
+    [
+     "pos(evsg)",
+     0.989
+    ]
+   ],
+   "max_pair_spearman": 0.68,
+   "lens_vs_spirit_spearman": [
+    0.32,
+    0.66,
+    0.59,
+    0.53,
+    0.45,
+    0.28
+   ]
+  }
+ },
+ "xr_bigbath_rebound": {
+  "lenses": [
+   [
+    "ebitda_ttm/(normalized_ebitda/normalized_revenue*revenue_ttm)",
+    -1
+   ],
+   [
+    "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+    -1
+   ],
+   [
+    "cfo_yield",
+    1
+   ],
+   [
+    "pct_off_52w_high",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Depth of the (non-cash) bath vs mid-cycle, cheapness on the normal base, cash still flowing, and the dislocation.",
+  "source": "MAR I.C (19) \"Temporarily Worse Than It Looks\"; PER \"Low-multiple operational inflection ... current earnings are depressed; require a measurable normalisation mechanism\".",
+  "_validation": {
+   "n_core": 547,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "ebitda_ttm/(normalized_ebitda/normalized_revenue*revenue_ttm)",
+     1.0
+    ],
+    [
+     "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+     1.0
+    ],
+    [
+     "cfo_yield",
+     1.0
+    ],
+    [
+     "pct_off_52w_high",
+     0.956
+    ]
+   ],
+   "max_pair_spearman": 0.16,
+   "lens_vs_spirit_spearman": [
+    0.5,
+    0.63,
+    0.46,
+    0.57
+   ]
+  }
+ },
+ "xr_cannibal_below_cash": {
+  "lenses": [
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "buyback_yield",
+    1
+   ],
+   [
+    "shares_yoy",
+    -1
+   ],
+   [
+    "shares_growth_3y",
+    -1
+   ],
+   [
+    "cfo_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Buying back stock below net cash: depth below cash, buyback pace, current and 3y shrink (duration), real business attached.",
+  "source": "COMP II.A \"Capital Return / Tender ... Dutch auctions\"; CODE XR17 \"Teledyne/2022-China-ADR class\".",
+  "_validation": {
+   "n_core": 80,
+   "spirit_computable_share": 0.988,
+   "lens_coverage": [
+    [
+     "net_cash_pct_mcap",
+     1.0
+    ],
+    [
+     "buyback_yield",
+     0.637
+    ],
+    [
+     "shares_yoy",
+     0.875
+    ],
+    [
+     "shares_growth_3y",
+     0.812
+    ],
+    [
+     "cfo_yield",
+     0.988
+    ]
+   ],
+   "max_pair_spearman": 0.38,
+   "lens_vs_spirit_spearman": [
+    0.6,
+    0.66,
+    0.68,
+    0.61,
+    0.37
+   ]
+  }
+ },
+ "xr_cannibal_below_tbook": {
+  "lenses": [
+   [
+    "pos(p_tb)",
+    -1
+   ],
+   [
+    "buyback_yield",
+    1
+   ],
+   [
+    "shares_yoy",
+    -1
+   ],
+   [
+    "shares_growth_3y",
+    -1
+   ],
+   [
+    "earnings_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Buying back below tangible book: depth below book, pace, current and 3y shrink (duration), earnings.",
+  "source": "WO Archetype 4 \"Share buybacks below NAV\"; COMP II.D \"share-count reduction\".",
+  "_validation": {
+   "n_core": 674,
+   "spirit_computable_share": 0.996,
+   "lens_coverage": [
+    [
+     "pos(p_tb)",
+     1.0
+    ],
+    [
+     "buyback_yield",
+     0.924
+    ],
+    [
+     "shares_yoy",
+     0.828
+    ],
+    [
+     "shares_growth_3y",
+     1.0
+    ],
+    [
+     "earnings_yield",
+     0.982
+    ]
+   ],
+   "max_pair_spearman": 0.6,
+   "lens_vs_spirit_spearman": [
+    0.27,
+    0.76,
+    0.71,
+    0.66,
+    0.41
+   ]
+  }
+ },
+ "xr_cash_leads_book": {
+  "lenses": [
+   [
+    "fq_cfo_growth_minus_ni_growth",
+    1
+   ],
+   [
+    "fq_cfo_to_ni",
+    1
+   ],
+   [
+    "fq_sloan_accruals",
+    -1
+   ],
+   [
+    "pos(p_e)",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Cash pulling away from book: CFO growth minus NI growth, CFO/NI level, accruals, and cheapness on E or cash.",
+  "source": "LC \"clean cash conversion\"; CODE XR48 \"accruals anomaly INVERTED and proven\".",
+  "_validation": {
+   "n_core": 546,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "fq_cfo_growth_minus_ni_growth",
+     1.0
+    ],
+    [
+     "fq_cfo_to_ni",
+     1.0
+    ],
+    [
+     "fq_sloan_accruals",
+     0.976
+    ],
+    [
+     "pos(p_e)",
+     0.989
+    ],
+    [
+     "fcf_yield",
+     0.991
+    ]
+   ],
+   "max_pair_spearman": 0.51,
+   "lens_vs_spirit_spearman": [
+    0.58,
+    0.62,
+    0.61,
+    0.14,
+    0.7
+   ]
+  }
+ },
+ "xr_cash_tax_advantage": {
+  "lenses": [
+   [
+    "(tax_expense_ttm - income_taxes_paid_ttm)/net_income_ttm",
+    1
+   ],
+   [
+    "fq_cash_tax_wedge_med",
+    1
+   ],
+   [
+    "fq_book_tax_rate_fy - fq_cash_tax_rate",
+    1
+   ],
+   [
+    "pos(p_e)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Cash-vs-book tax wedge (EDGAR TTM, FMP annual, FMP multi-year median - persistence) and cheapness on the understated GAAP EPS.",
+  "source": "COMP III \"Fresh-start ... heavy new D&A frequently understates cash earning power\"; CODE XR43 \"an interest-free government loan\".",
+  "_validation": {
+   "n_core": 278,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "(tax_expense_ttm - income_taxes_paid_ttm)/net_income_ttm",
+     0.964
+    ],
+    [
+     "fq_cash_tax_wedge_med",
+     0.633
+    ],
+    [
+     "fq_book_tax_rate_fy - fq_cash_tax_rate",
+     0.421
+    ],
+    [
+     "pos(p_e)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.58,
+   "lens_vs_spirit_spearman": [
+    0.56,
+    0.69,
+    0.84,
+    0.53
+   ]
+  }
+ },
+ "xr_clean_net_net": {
+  "lenses": [
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "earnings_yield",
+    1
+   ],
+   [
+    "capret_yield_eff",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Graham trifecta: NCAV cover and book discount, earnings power, and the coupon paid while waiting.",
+  "source": "COMP II.A \"net-nets / net cash\"; WO Archetype 4 asset floor.",
+  "_validation": {
+   "n_core": 308,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "ncav_pct_mcap",
+     1.0
+    ],
+    [
+     "pos(pb)",
+     0.987
+    ],
+    [
+     "earnings_yield",
+     0.997
+    ],
+    [
+     "capret_yield_eff",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.44,
+   "lens_vs_spirit_spearman": [
+    0.67,
+    0.64,
+    0.51,
+    0.49
+   ]
+  }
+ },
+ "xr_compounding_deployer": {
+  "lenses": [
+   [
+    "roiic_lindy",
+    1
+   ],
+   [
+    "cash_roiic_lindy",
+    1
+   ],
+   [
+    "roic_lindy",
+    1
+   ],
+   [
+    "rev_yoy_streak_q",
+    1
+   ],
+   [
+    "fmp_st_fcf_ps_5y_g",
+    1
+   ],
+   [
+    "pos(ev_ebit)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Self-funded growth engine: incremental returns (NOPAT and cash), base ROIC, growth duration, 5y FCF-per-share compounding, ordinary multiple.",
+  "source": "COMP I.1 Meyer Phelps \"(3) long reinvestment runway ... (5) low starting valuation\".",
+  "_validation": {
+   "n_core": 431,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "roiic_lindy",
+     1.0
+    ],
+    [
+     "cash_roiic_lindy",
+     0.977
+    ],
+    [
+     "roic_lindy",
+     1.0
+    ],
+    [
+     "rev_yoy_streak_q",
+     1.0
+    ],
+    [
+     "fmp_st_fcf_ps_5y_g",
+     0.863
+    ],
+    [
+     "pos(ev_ebit)",
+     0.826
+    ]
+   ],
+   "max_pair_spearman": 0.33,
+   "lens_vs_spirit_spearman": [
+    0.57,
+    0.64,
+    0.47,
+    0.38,
+    0.51,
+    0.41
+   ]
+  }
+ },
+ "xr_confluence": {
+  "lenses": [
+   [
+    "xr_score",
+    1
+   ],
+   [
+    "truly_xr_score",
+    1
+   ],
+   [
+    "forensic_xr_score",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Existing xr_score (distinct XR families x confidence) is the measure; corroborated by forensic confluence (truly_xr_score) and forensic hidden-value rank (forensic_xr_score).",
+  "source": "COMP \"Convergence scoring. The highest-conviction ideas score 7+/10 on three or more archetypes simultaneously\".",
+  "existing_score": "xr_score",
+  "_validation": {
+   "n_core": 1207,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "xr_score",
+     1.0
+    ],
+    [
+     "truly_xr_score",
+     1.0
+    ],
+    [
+     "forensic_xr_score",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.49,
+   "lens_vs_spirit_spearman": [
+    0.58,
+    0.71,
+    0.78
+   ]
+  }
+ },
+ "xr_contracted_backlog": {
+  "lenses": [
+   [
+    "rpo/revenue_ttm_usd",
+    1
+   ],
+   [
+    "pos(ev_sales)",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "rev_yoy",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Contracted revenue not in the trailing line (RPO years of revenue), cheap on trailing sales, cash, converting.",
+  "source": "WO Archetype 3 \"ADF ... backlog was up 95%, yet the stock had been cut in half\"; LC \"backlog or recurring usage supporting future revenue\".",
+  "_validation": {
+   "n_core": 105,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "rpo/revenue_ttm_usd",
+     1.0
+    ],
+    [
+     "pos(ev_sales)",
+     1.0
+    ],
+    [
+     "fcf_yield",
+     1.0
+    ],
+    [
+     "rev_yoy",
+     0.99
+    ]
+   ],
+   "max_pair_spearman": 0.39,
+   "lens_vs_spirit_spearman": [
+    0.51,
+    0.43,
+    0.31,
+    0.22
+   ]
+  }
+ },
+ "xr_cyclical_trough": {
+  "lenses": [
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "ebitda_ttm/(normalized_ebitda/normalized_revenue*revenue_ttm)",
+    -1
+   ],
+   [
+    "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+    -1
+   ],
+   [
+    "fq_capex_to_da",
+    -1
+   ],
+   [
+    "price_pct_of_5y_range",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Mean-reversion asset play: book discount, earnings depth vs mid-cycle, EV on normal, industry capex withdrawal, price near 5y low.",
+  "source": "COMP II.D Capital cycle \"asset-heavy balance sheets below replacement cost ... falling capex/depreciation ratios\"; MAR I.E Surviving Thing.",
+  "_validation": {
+   "n_core": 522,
+   "spirit_computable_share": 0.998,
+   "lens_coverage": [
+    [
+     "pos(pb)",
+     1.0
+    ],
+    [
+     "ebitda_ttm/(normalized_ebitda/normalized_revenue*revenue_ttm)",
+     1.0
+    ],
+    [
+     "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+     0.856
+    ],
+    [
+     "fq_capex_to_da",
+     0.866
+    ],
+    [
+     "price_pct_of_5y_range",
+     0.994
+    ]
+   ],
+   "max_pair_spearman": 0.34,
+   "lens_vs_spirit_spearman": [
+    0.6,
+    0.54,
+    0.59,
+    0.43,
+    0.55
+   ]
+  }
+ },
+ "xr_deferred_revenue_lead": {
+  "lenses": [
+   [
+    "deferred_revenue/revenue_ttm",
+    1
+   ],
+   [
+    "fq_defrev_growth_minus_rev",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "pos(ev_sales)",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Forward book already collected and building faster than recognised revenue, priced on the cheap trailing tape.",
+  "source": "WO Archetype 3 \"Tier1: audited backlog, inventory, deferred revenue\"; LC \"backlog ... supporting future revenue\".",
+  "_validation": {
+   "n_core": 631,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "deferred_revenue/revenue_ttm",
+     1.0
+    ],
+    [
+     "fq_defrev_growth_minus_rev",
+     0.751
+    ],
+    [
+     "fq_rev_growth",
+     0.984
+    ],
+    [
+     "pos(ev_sales)",
+     0.986
+    ],
+    [
+     "fcf_yield",
+     0.987
+    ]
+   ],
+   "max_pair_spearman": 0.31,
+   "lens_vs_spirit_spearman": [
+    0.48,
+    0.38,
+    0.36,
+    0.36,
+    0.59
+   ]
+  }
+ },
+ "xr_depreciation_cliff": {
+  "lenses": [
+   [
+    "da_ttm/ppe_net",
+    1
+   ],
+   [
+    "capex_ttm/da_ttm",
+    -1
+   ],
+   [
+    "owner_earnings_yield",
+    1
+   ],
+   [
+    "pos(p_e)*owner_earnings_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Charges about to roll off: D&A vs remaining net PP&E, low replacement capex, owner-earnings yield and the headline-vs-cash spread.",
+  "source": "CODE XR14 \"reported earnings are a coiled spring that RELEASES mechanically as charges roll off\"; PER screen \"high D&A-to-capex\".",
+  "_validation": {
+   "n_core": 22,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "da_ttm/ppe_net",
+     1.0
+    ],
+    [
+     "capex_ttm/da_ttm",
+     1.0
+    ],
+    [
+     "owner_earnings_yield",
+     0.909
+    ],
+    [
+     "pos(p_e)*owner_earnings_yield",
+     0.636
+    ]
+   ],
+   "max_pair_spearman": 0.71,
+   "lens_vs_spirit_spearman": [
+    0.74,
+    0.75,
+    0.51,
+    0.89
+   ]
+  }
+ },
+ "xr_discops_mask": {
+  "lenses": [
+   [
+    "income_continuing_ops_ttm/market_cap",
+    1
+   ],
+   [
+    "(income_continuing_ops_ttm - net_income_ttm)/market_cap",
+    1
+   ],
+   [
+    "fq_disc_ops_share",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Continuing-ops earnings yield and the size of the discontinued drag masking it.",
+  "source": "MAR I.C Hidden Thing \"valuable asset inside a bad wrapper\"; WO Archetype 9 SBBC \"after slicing off its worthless PureKana division\".",
+  "_validation": {
+   "n_core": 103,
+   "spirit_computable_share": 0.99,
+   "lens_coverage": [
+    [
+     "income_continuing_ops_ttm/market_cap",
+     1.0
+    ],
+    [
+     "(income_continuing_ops_ttm - net_income_ttm)/market_cap",
+     0.99
+    ],
+    [
+     "fq_disc_ops_share",
+     0.864
+    ]
+   ],
+   "max_pair_spearman": 0.72,
+   "lens_vs_spirit_spearman": [
+    0.85,
+    0.93,
+    0.78
+   ]
+  }
+ },
+ "xr_double_trough": {
+  "lenses": [
+   [
+    "price_pct_of_5y_range",
+    -1
+   ],
+   [
+    "pct_off_52w_high",
+    -1
+   ],
+   [
+    "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+    -1
+   ],
+   [
+    "ebitda_ttm/(normalized_ebitda/normalized_revenue*revenue_ttm)",
+    -1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Trough multiple on trough earnings: price depth (5y and 52w), cheapness on mid-cycle, earnings depth below mid-cycle, survivability.",
+  "source": "COMP II.D \"The turn often occurs during periods of maximum pessimism\"; MAR I.E Surviving Thing.",
+  "_validation": {
+   "n_core": 328,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "price_pct_of_5y_range",
+     1.0
+    ],
+    [
+     "pct_off_52w_high",
+     0.957
+    ],
+    [
+     "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+     1.0
+    ],
+    [
+     "ebitda_ttm/(normalized_ebitda/normalized_revenue*revenue_ttm)",
+     1.0
+    ],
+    [
+     "net_cash_pct_mcap",
+     0.994
+    ]
+   ],
+   "max_pair_spearman": 0.42,
+   "lens_vs_spirit_spearman": [
+    0.48,
+    0.48,
+    0.63,
+    0.53,
+    0.55
+   ]
+  }
+ },
+ "xr_float_compounding": {
+  "lenses": [
+   [
+    "deferred_revenue/revenue_ttm",
+    1
+   ],
+   [
+    "fmp_income_quality",
+    1
+   ],
+   [
+    "cfo_yield",
+    1
+   ],
+   [
+    "rev_accel",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Prepaid float compounding: deferred-revenue book (EDGAR, FMP-filled), cash above NI, price on collected cash, bookings accelerating.",
+  "source": "COMP I.5 Harpin \"simple subscription/repeat-purchase model\"; COMP I.2 Den Fujita \"time-as-inventory\".",
+  "_validation": {
+   "n_core": 369,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "deferred_revenue/revenue_ttm",
+     1.0
+    ],
+    [
+     "fmp_income_quality",
+     1.0
+    ],
+    [
+     "cfo_yield",
+     1.0
+    ],
+    [
+     "rev_accel",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.22,
+   "lens_vs_spirit_spearman": [
+    0.34,
+    0.5,
+    0.51,
+    0.55
+   ]
+  }
+ },
+ "xr_floor_inflection": {
+  "lenses": [
+   [
+    "ncav_pct_mcap",
+    1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "ebitda_margin_delta_yoy",
+    1
+   ],
+   [
+    "rev_accel",
+    1
+   ],
+   [
+    "pct_off_52w_high",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Graham-and-catalyst: floor cover (NCAV, net cash), inflection magnitude, and dislocation depth.",
+  "source": "WO Archetype 4 \"Asset-Backed Floor + Optional Growth ... any success beyond that floor multiplies returns\"; LC asset-backed optionality.",
+  "_validation": {
+   "n_core": 579,
+   "spirit_computable_share": 0.983,
+   "lens_coverage": [
+    [
+     "ncav_pct_mcap",
+     0.834
+    ],
+    [
+     "net_cash_pct_mcap",
+     0.993
+    ],
+    [
+     "ebitda_margin_delta_yoy",
+     0.952
+    ],
+    [
+     "rev_accel",
+     0.972
+    ],
+    [
+     "pct_off_52w_high",
+     0.915
+    ]
+   ],
+   "max_pair_spearman": 0.11,
+   "lens_vs_spirit_spearman": [
+    0.45,
+    0.44,
+    0.49,
+    0.5,
+    0.53
+   ]
+  }
+ },
+ "xr_forced_seller": {
+  "lenses": [
+   [
+    "ts_r52",
+    -1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "fqx_ebit_ttm_g",
+    1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Seller-driven mark: size of the price collapse against business growth on two lines, with survivability.",
+  "source": "COMP II.A \"buy securities being sold by non-economic holders (forced sellers, index funds, indiscriminate spin recipients)\".",
+  "_validation": {
+   "n_core": 255,
+   "spirit_computable_share": 0.906,
+   "lens_coverage": [
+    [
+     "ts_r52",
+     0.898
+    ],
+    [
+     "fq_rev_growth",
+     0.882
+    ],
+    [
+     "fqx_ebit_ttm_g",
+     0.722
+    ],
+    [
+     "net_cash_pct_mcap",
+     0.969
+    ]
+   ],
+   "max_pair_spearman": 0.35,
+   "lens_vs_spirit_spearman": [
+    0.43,
+    0.61,
+    0.6,
+    0.51
+   ]
+  }
+ },
+ "xr_forensic_floor_growth": {
+  "lenses": [
+   [
+    "forensic_hidden_pct",
+    1
+   ],
+   [
+    "retained_earnings/equity/pos(pb)",
+    1
+   ],
+   [
+    "fq_capex_to_da",
+    -1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "shares_yoy",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Invisible floors (hidden-value ledger, retained earnings vs price, over-depreciated base - more floors = better) under a growing business.",
+  "source": "COMP I.6 Scrapyard; COMP preface asymmetry \"Upside / downside is the organizing ratio\".",
+  "_validation": {
+   "n_core": 839,
+   "spirit_computable_share": 0.906,
+   "lens_coverage": [
+    [
+     "forensic_hidden_pct",
+     1.0
+    ],
+    [
+     "retained_earnings/equity/pos(pb)",
+     0.779
+    ],
+    [
+     "fq_capex_to_da",
+     0.887
+    ],
+    [
+     "fq_rev_growth",
+     0.895
+    ],
+    [
+     "shares_yoy",
+     0.828
+    ]
+   ],
+   "max_pair_spearman": 0.31,
+   "lens_vs_spirit_spearman": [
+    0.44,
+    0.38,
+    0.33,
+    0.42,
+    0.55
+   ]
+  }
+ },
+ "xr_forensic_multiple_gap": {
+  "lenses": [
+   [
+    "pos(p_e)*owner_earnings_yield",
+    1
+   ],
+   [
+    "owner_earnings_yield",
+    1
+   ],
+   [
+    "fmp_st_owner_earnings_yield",
+    1
+   ],
+   [
+    "oe_avg/ni_avg",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Spread between headline P/E and the owner-earnings multiple (p_e x OE yield), OE yield on two sources, and OE/NI persistence.",
+  "source": "CODE XR6 \"The spread between the two numbers is the upside, paid out when the accounting catches up\".",
+  "_validation": {
+   "n_core": 396,
+   "spirit_computable_share": 0.987,
+   "lens_coverage": [
+    [
+     "pos(p_e)*owner_earnings_yield",
+     0.775
+    ],
+    [
+     "owner_earnings_yield",
+     0.775
+    ],
+    [
+     "fmp_st_owner_earnings_yield",
+     0.927
+    ],
+    [
+     "oe_avg/ni_avg",
+     0.904
+    ]
+   ],
+   "max_pair_spearman": 0.86,
+   "lens_vs_spirit_spearman": [
+    0.81,
+    0.86,
+    0.65,
+    0.67
+   ]
+  }
+ },
+ "xr_gaap_profit_crossover": {
+  "lenses": [
+   [
+    "net_income_ttm/revenue_ttm",
+    1
+   ],
+   [
+    "op_margin",
+    1
+   ],
+   [
+    "fmp_income_quality",
+    1
+   ],
+   [
+    "market_cap_usd",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Event (first GAAP profit) made continuous by how real and large the new profit is (net and op margin, cash backing) and index/mandate eligibility (USD size).",
+  "source": "MAR I.G (20) KPI threshold; COMP III catalyst path \"OTC -> uplisting -> coverage initiation -> index inclusion -> first clean quarter\"; CODE \"larger names ... rank higher\".",
+  "_validation": {
+   "n_core": 1052,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "net_income_ttm/revenue_ttm",
+     1.0
+    ],
+    [
+     "op_margin",
+     0.99
+    ],
+    [
+     "fmp_income_quality",
+     0.914
+    ],
+    [
+     "market_cap_usd",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.49,
+   "lens_vs_spirit_spearman": [
+    0.59,
+    0.76,
+    0.38,
+    0.68
+   ]
+  }
+ },
+ "xr_gross_margin_lead": {
+  "lenses": [
+   [
+    "gross_margin_delta_yoy",
+    1
+   ],
+   [
+    "gross_margin_delta_yoy - op_margin_delta_yoy",
+    1
+   ],
+   [
+    "rev_yoy",
+    1
+   ],
+   [
+    "fq_gm_yoy_streak_m",
+    1
+   ],
+   [
+    "gross_margin",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Gross margin inflecting ahead of SG&A absorption: size, latent gap, growth base, and how long GM has been rising (longer is better).",
+  "source": "CODE XR40 \"Monster-class ... GROSS margin inflects first\"; PER XMTR marketplace gross margin rising.",
+  "_validation": {
+   "n_core": 478,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "gross_margin_delta_yoy",
+     1.0
+    ],
+    [
+     "gross_margin_delta_yoy - op_margin_delta_yoy",
+     1.0
+    ],
+    [
+     "rev_yoy",
+     1.0
+    ],
+    [
+     "fq_gm_yoy_streak_m",
+     0.946
+    ],
+    [
+     "gross_margin",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.77,
+   "lens_vs_spirit_spearman": [
+    0.75,
+    0.76,
+    0.49,
+    0.3,
+    0.5
+   ]
+  }
+ },
+ "xr_growth_capex_masked": {
+  "lenses": [
+   [
+    "capex_ttm/da_ttm",
+    1
+   ],
+   [
+    "roce",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "cfo_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Voluntary growth capex masking cash: capex/D&A, returns justifying it, growth, and cash take on the price.",
+  "source": "MAR II Yartseva \"aggressive [investment] BUT only when covered by EBITDA growth\"; CODE XR31.",
+  "_validation": {
+   "n_core": 16,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "capex_ttm/da_ttm",
+     1.0
+    ],
+    [
+     "roce",
+     0.875
+    ],
+    [
+     "fq_rev_growth",
+     0.75
+    ],
+    [
+     "cfo_yield",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.44,
+   "lens_vs_spirit_spearman": [
+    0.67,
+    0.73,
+    0.52,
+    0.41
+   ]
+  }
+ },
+ "xr_harvest_distribution": {
+  "lenses": [
+   [
+    "capret_yield_eff",
+    1
+   ],
+   [
+    "fq_capex_to_da",
+    -1
+   ],
+   [
+    "capex_avg/da_ttm",
+    -1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "owner_earnings_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Controlled harvest handed back: payout, capex well below D&A (quarterly and 5y), sub-book price, owner earnings yield.",
+  "source": "PER NRP \"Low-cost mineral royalties ... protected downside\" (+94%); COMP II.D capex withdrawal.",
+  "_validation": {
+   "n_core": 250,
+   "spirit_computable_share": 0.984,
+   "lens_coverage": [
+    [
+     "capret_yield_eff",
+     1.0
+    ],
+    [
+     "fq_capex_to_da",
+     0.908
+    ],
+    [
+     "capex_avg/da_ttm",
+     0.828
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ],
+    [
+     "owner_earnings_yield",
+     0.768
+    ]
+   ],
+   "max_pair_spearman": 0.26,
+   "lens_vs_spirit_spearman": [
+    0.4,
+    0.46,
+    0.31,
+    0.52,
+    0.51
+   ]
+  }
+ },
+ "xr_hidden_segment_compounder": {
+  "lenses": [
+   [
+    "fastest_segment_yoy",
+    1
+   ],
+   [
+    "fastest_seg_opmargin_delta_yoy",
+    1
+   ],
+   [
+    "fastest_segment_share_delta",
+    1
+   ],
+   [
+    "fastest_segment_share",
+    -1
+   ],
+   [
+    "pos(ev_sales)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Profitable engine inside a bad wrapper: segment growth, segment margin inflection, share gain, still small (hidden), cheap whole.",
+  "source": "MAR I.C (6) \"Hidden Segment Inside a Bad Consolidated Screen ... screens filter the wrapper, not the payload\".",
+  "_validation": {
+   "n_core": 39,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "fastest_segment_yoy",
+     1.0
+    ],
+    [
+     "fastest_seg_opmargin_delta_yoy",
+     0.923
+    ],
+    [
+     "fastest_segment_share_delta",
+     1.0
+    ],
+    [
+     "fastest_segment_share",
+     1.0
+    ],
+    [
+     "pos(ev_sales)",
+     0.949
+    ]
+   ],
+   "max_pair_spearman": 0.44,
+   "lens_vs_spirit_spearman": [
+    0.79,
+    0.66,
+    0.39,
+    0.4,
+    0.55
+   ]
+  }
+ },
+ "xr_insider_capitulation": {
+  "lenses": [
+   [
+    "insider_distinct_buyers",
+    1
+   ],
+   [
+    "insider_net_buy_value/market_cap_usd",
+    1
+   ],
+   [
+    "pct_off_52w_high",
+    -1
+   ],
+   [
+    "rev_yoy",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Insiders cluster-buying their own crash: breadth and size of buying, depth of the crash, business intact.",
+  "source": "MAR III \"Insider buying clusters (>=3 unique insiders, code P, within ~2 weeks) ... Cluster buys roughly double excess returns\"; MAR VIII \"at sentiment troughs\".",
+  "_validation": {
+   "n_core": 68,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "insider_distinct_buyers",
+     1.0
+    ],
+    [
+     "insider_net_buy_value/market_cap_usd",
+     1.0
+    ],
+    [
+     "pct_off_52w_high",
+     1.0
+    ],
+    [
+     "rev_yoy",
+     0.956
+    ]
+   ],
+   "max_pair_spearman": 0.42,
+   "lens_vs_spirit_spearman": [
+    0.44,
+    0.48,
+    0.53,
+    0.61
+   ]
+  }
+ },
+ "xr_investment_remark": {
+  "lenses": [
+   [
+    "inv_remark_pct",
+    1
+   ],
+   [
+    "inv_carry_now/market_cap_usd",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Size of the stake step-up, how large the stake now is vs price, and whether the market has repriced the book. 11 members.",
+  "source": "CODE XR43 LanzaTech \"8.3% Shougang LanzaTech stake $15m->$223m\"; COMP I.6 cross-holdings.",
+  "_validation": {
+   "n_core": 11,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "inv_remark_pct",
+     1.0
+    ],
+    [
+     "inv_carry_now/market_cap_usd",
+     1.0
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.52,
+   "lens_vs_spirit_spearman": [
+    0.74,
+    0.83,
+    0.47
+   ]
+  }
+ },
+ "xr_latent_bath_floor": {
+  "lenses": [
+   [
+    "ebitda_ttm/(normalized_ebitda/normalized_revenue*revenue_ttm)",
+    -1
+   ],
+   [
+    "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+    -1
+   ],
+   [
+    "cfo_yield",
+    1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Floored option on normalisation: depth of the depressed line, cheapness on the recovered base, cash still flowing, hard floor.",
+  "source": "PER \"Low-multiple operational inflection\"; WO Archetype 4 floor + optionality.",
+  "_validation": {
+   "n_core": 587,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "ebitda_ttm/(normalized_ebitda/normalized_revenue*revenue_ttm)",
+     1.0
+    ],
+    [
+     "pos(enterprise_value/(normalized_ebitda/normalized_revenue*revenue_ttm))",
+     1.0
+    ],
+    [
+     "cfo_yield",
+     1.0
+    ],
+    [
+     "net_cash_pct_mcap",
+     1.0
+    ],
+    [
+     "ncav_pct_mcap",
+     0.76
+    ]
+   ],
+   "max_pair_spearman": 0.64,
+   "lens_vs_spirit_spearman": [
+    0.53,
+    0.83,
+    0.02,
+    0.63,
+    0.64
+   ]
+  }
+ },
+ "xr_latent_inflection_floor": {
+  "lenses": [
+   [
+    "roce_delta_yoy",
+    1
+   ],
+   [
+    "op_margin_delta_yoy",
+    1
+   ],
+   [
+    "fcf_eta_quarters",
+    -1
+   ],
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "ncav_pct_mcap",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Pre-recognition improvement (returns and margin moving up, FCF breakeven close) under a hard floor.",
+  "source": "LC \"The combination works best when net cash ... covers a substantial portion of market value; the operating business is near break-even\".",
+  "_validation": {
+   "n_core": 623,
+   "spirit_computable_share": 0.96,
+   "lens_coverage": [
+    [
+     "roce_delta_yoy",
+     0.95
+    ],
+    [
+     "op_margin_delta_yoy",
+     0.852
+    ],
+    [
+     "fcf_eta_quarters",
+     0.286
+    ],
+    [
+     "net_cash_pct_mcap",
+     0.989
+    ],
+    [
+     "ncav_pct_mcap",
+     0.833
+    ]
+   ],
+   "max_pair_spearman": 0.61,
+   "lens_vs_spirit_spearman": [
+    0.5,
+    0.52,
+    0.36,
+    0.73,
+    0.7
+   ]
+  }
+ },
+ "xr_leverage_detonation": {
+  "lenses": [
+   [
+    "incremental_ebitda_margin",
+    1
+   ],
+   [
+    "fqx_inc_ebit_margin",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "op_margin_delta_yoy",
+    1
+   ],
+   [
+    "pos(ev_sales)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Breakeven crossing with high drop-through: incremental margin (EBITDA and EBIT), growth, margin swing, still priced like a loss-maker.",
+  "source": "MAR VI \"Willdan (money-losing consultant -> operating-leverage compounder)\"; PER XMTR \"network effects and operating leverage\" (+764%).",
+  "_validation": {
+   "n_core": 60,
+   "spirit_computable_share": 0.933,
+   "lens_coverage": [
+    [
+     "incremental_ebitda_margin",
+     1.0
+    ],
+    [
+     "fqx_inc_ebit_margin",
+     0.633
+    ],
+    [
+     "fq_rev_growth",
+     0.767
+    ],
+    [
+     "op_margin_delta_yoy",
+     0.85
+    ],
+    [
+     "pos(ev_sales)",
+     0.95
+    ]
+   ],
+   "max_pair_spearman": 0.66,
+   "lens_vs_spirit_spearman": [
+    0.48,
+    0.73,
+    0.55,
+    0.85,
+    0.3
+   ]
+  }
+ },
+ "xr_look_through_value": {
+  "lenses": [
+   [
+    "investments_associates/market_cap",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Off-consolidated stakes vs price plus cheapness of the consolidated business. 17 members.",
+  "source": "COMP I.6 \"Keisei Electric Railway (Oriental Land stake ~2x its own market cap)\".",
+  "_validation": {
+   "n_core": 17,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "investments_associates/market_cap",
+     1.0
+    ],
+    [
+     "pos(pb)",
+     0.941
+    ],
+    [
+     "pos(ev_ebitda)",
+     0.765
+    ]
+   ],
+   "max_pair_spearman": 0.16,
+   "lens_vs_spirit_spearman": [
+    0.62,
+    0.76,
+    0.54
+   ]
+  }
+ },
+ "xr_lookthrough_earner": {
+  "lenses": [
+   [
+    "em_income/pretax_income_ttm",
+    1
+   ],
+   [
+    "em_income/market_cap_usd",
+    1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Associate earnings engine: share of pre-tax income, yield on price, cheap parent. 18 members.",
+  "source": "COMP I.6 Keisei/Oriental Land; COMP II.A \"(9) Sum-of-the-parts / holdco discount collapse\".",
+  "_validation": {
+   "n_core": 18,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "em_income/pretax_income_ttm",
+     1.0
+    ],
+    [
+     "em_income/market_cap_usd",
+     1.0
+    ],
+    [
+     "pos(ev_ebitda)",
+     0.833
+    ]
+   ],
+   "max_pair_spearman": 0.14,
+   "lens_vs_spirit_spearman": [
+    0.53,
+    0.66,
+    0.72
+   ]
+  }
+ },
+ "xr_margin_mixshift": {
+  "lenses": [
+   [
+    "seg_mix_uplift",
+    1
+   ],
+   [
+    "fastest_segment_share_delta",
+    1
+   ],
+   [
+    "fastest_segment_yoy",
+    1
+   ],
+   [
+    "pos(ev_sales)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Mechanical margin expansion: richer segment margin vs blend, speed of mix shift, segment growth, cheap blended whole.",
+  "source": "PER DFIN \"brand, recurring relationships and transition toward software/SaaS meant fundamentals were set to improve\" (+393%).",
+  "_validation": {
+   "n_core": 82,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "seg_mix_uplift",
+     1.0
+    ],
+    [
+     "fastest_segment_share_delta",
+     1.0
+    ],
+    [
+     "fastest_segment_yoy",
+     1.0
+    ],
+    [
+     "pos(ev_sales)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.51,
+   "lens_vs_spirit_spearman": [
+    0.61,
+    0.67,
+    0.67,
+    0.24
+   ]
+  }
+ },
+ "xr_monetization_trifecta": {
+  "lenses": [
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "nol_usd/market_cap_usd",
+    1
+   ],
+   [
+    "roce_delta_yoy",
+    1
+   ],
+   [
+    "fcf_margin_delta_yoy",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Net cash x NOL vs price x the turn now. 5 members (threshold of the rank rule).",
+  "source": "MAR III \"WMIH ... ~$6.0B federal NOLs ... monetised via $3.8B Nationstar/Mr. Cooper acquisition\".",
+  "_validation": {
+   "n_core": 5,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "net_cash_pct_mcap",
+     1.0
+    ],
+    [
+     "nol_usd/market_cap_usd",
+     1.0
+    ],
+    [
+     "roce_delta_yoy",
+     1.0
+    ],
+    [
+     "fcf_margin_delta_yoy",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.8,
+   "lens_vs_spirit_spearman": [
+    0.36,
+    0.41,
+    0.31,
+    0.46
+   ]
+  }
+ },
+ "xr_neg_ev_growth": {
+  "lenses": [
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "rev_yoy_streak_q",
+    1
+   ],
+   [
+    "roce",
+    1
+   ],
+   [
+    "shares_yoy",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Paid to own growth: net-cash cover, growth rate and its duration, profitability level, no dilution.",
+  "source": "COMP II.B \"Net cash preferred\" + growth; MAR II \"Some measure of profitability present and robust\".",
+  "_validation": {
+   "n_core": 221,
+   "spirit_computable_share": 0.968,
+   "lens_coverage": [
+    [
+     "net_cash_pct_mcap",
+     1.0
+    ],
+    [
+     "fq_rev_growth",
+     0.891
+    ],
+    [
+     "rev_yoy_streak_q",
+     0.905
+    ],
+    [
+     "roce",
+     0.864
+    ],
+    [
+     "shares_yoy",
+     0.742
+    ]
+   ],
+   "max_pair_spearman": 0.26,
+   "lens_vs_spirit_spearman": [
+    0.38,
+    0.62,
+    0.5,
+    0.37,
+    0.52
+   ]
+  }
+ },
+ "xr_nol_shield": {
+  "lenses": [
+   [
+    "nol_usd/market_cap_usd",
+    1
+   ],
+   [
+    "effective_tax_rate",
+    -1
+   ],
+   [
+    "fq_cash_tax_rate",
+    -1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "earnings_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Size of the loss bank vs price, the shield actually working (book and cash tax rates), growth into the shield, earnings yield.",
+  "source": "COMP III \"NOL tax assets - quantum, s382(l)(5) survival\"; COMP II.A \"Post-bankruptcy orphaned equities with NOLs\".",
+  "_validation": {
+   "n_core": 21,
+   "spirit_computable_share": 0.952,
+   "lens_coverage": [
+    [
+     "nol_usd/market_cap_usd",
+     0.429
+    ],
+    [
+     "effective_tax_rate",
+     1.0
+    ],
+    [
+     "fq_cash_tax_rate",
+     0.238
+    ],
+    [
+     "fq_rev_growth",
+     0.952
+    ],
+    [
+     "earnings_yield",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.8,
+   "lens_vs_spirit_spearman": [
+    0.6,
+    0.7,
+    0.6,
+    0.29,
+    0.74
+   ]
+  }
+ },
+ "xr_oneoff_loss_mask": {
+  "lenses": [
+   [
+    "ebitda_margin",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ],
+   [
+    "cfo_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Cash-gushing franchise hidden behind a GAAP loss: operating cash margin, FCF/CFO yields, cheapness on the D&A-immune lens.",
+  "source": "PER FREE \"Troubled sweeteners obscuring valuable licence-like licorice franchise\"; MAR I.C Hidden Thing.",
+  "_validation": {
+   "n_core": 85,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "ebitda_margin",
+     1.0
+    ],
+    [
+     "fcf_yield",
+     1.0
+    ],
+    [
+     "pos(ev_ebitda)",
+     1.0
+    ],
+    [
+     "cfo_yield",
+     0.988
+    ]
+   ],
+   "max_pair_spearman": 0.54,
+   "lens_vs_spirit_spearman": [
+    0.61,
+    0.68,
+    0.7,
+    0.83
+   ]
+  }
+ },
+ "xr_owned_realestate_value": {
+  "lenses": [
+   [
+    "accumulated_depreciation/ppe_gross",
+    1
+   ],
+   [
+    "ppe_gross/market_cap_usd",
+    1
+   ],
+   [
+    "ppe_net/assets",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Old owned property at historical cost: how written-down, how large vs price, how property-heavy, book discount.",
+  "source": "COMP I.6 \"property unrevalued for decades ... J D Wetherspoon (unrevalued 25+ years), Marston's (0.37x net assets)\".",
+  "_validation": {
+   "n_core": 86,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "accumulated_depreciation/ppe_gross",
+     1.0
+    ],
+    [
+     "ppe_gross/market_cap_usd",
+     1.0
+    ],
+    [
+     "ppe_net/assets",
+     1.0
+    ],
+    [
+     "pos(pb)",
+     0.93
+    ]
+   ],
+   "max_pair_spearman": 0.52,
+   "lens_vs_spirit_spearman": [
+    0.45,
+    0.84,
+    0.51,
+    0.55
+   ]
+  }
+ },
+ "xr_paydown_yield": {
+  "lenses": [
+   [
+    "-financing_cf_ttm/market_cap",
+    1
+   ],
+   [
+    "fq_netdebt_change_pct_assets",
+    -1
+   ],
+   [
+    "fq_netdebt_decline_months",
+    1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Transfer to capital providers per unit of equity, verified by the net-debt path (size and duration) and FCF funding it.",
+  "source": "WO Archetype 8 \"paying debt shrinks EV while equity appreciates ... Diversified Energy ... each quarterly amortization narrowed the gap\".",
+  "_validation": {
+   "n_core": 826,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "-financing_cf_ttm/market_cap",
+     1.0
+    ],
+    [
+     "fq_netdebt_change_pct_assets",
+     0.932
+    ],
+    [
+     "fq_netdebt_decline_months",
+     0.99
+    ],
+    [
+     "fcf_yield",
+     0.961
+    ]
+   ],
+   "max_pair_spearman": 0.42,
+   "lens_vs_spirit_spearman": [
+    0.63,
+    0.62,
+    0.61,
+    0.69
+   ]
+  }
+ },
+ "xr_peer_margin_gap": {
+  "lenses": [
+   [
+    "op_margin_delta_yoy",
+    1
+   ],
+   [
+    "gross_margin_delta_yoy",
+    1
+   ],
+   [
+    "pos(ev_sales)",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Self-help turn in an under-earner: margin turn (op and gross), cheap on sales and cash. The defining gap (sector-median op margin minus own) is not a df column - see proposed lens.",
+  "source": "PER \"Low-multiple operational inflection ... cost reset, improved mix or new management\"; CODE XR46.",
+  "proposed_lenses": [
+   [
+    "peer_margin_gap",
+    1,
+    "expose _margin_gap_x46 (sector-median op_margin - op_margin) as df column in compute()"
+   ]
+  ],
+  "_validation": {
+   "n_core": 1858,
+   "spirit_computable_share": 0.99,
+   "lens_coverage": [
+    [
+     "op_margin_delta_yoy",
+     0.905
+    ],
+    [
+     "gross_margin_delta_yoy",
+     0.9
+    ],
+    [
+     "pos(ev_sales)",
+     0.978
+    ],
+    [
+     "fcf_yield",
+     0.983
+    ]
+   ],
+   "max_pair_spearman": 0.61,
+   "lens_vs_spirit_spearman": [
+    0.7,
+    0.72,
+    0.53,
+    0.48
+   ]
+  }
+ },
+ "xr_pre_scale_margin": {
+  "lenses": [
+   [
+    "gross_margin - op_margin",
+    1
+   ],
+   [
+    "op_margin_delta_yoy",
+    1
+   ],
+   [
+    "incremental_ebitda_margin",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "pos(ev_gross_profit)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Latent operating leverage provably closing: gross-to-op gap, op-margin turn, drop-through, growth, priced on trailing gross profit.",
+  "source": "PER XMTR \"marketplace gross margin rising from 30.8% to 33.5% ... operating leverage\" (+764%); MAR VI \"revenue growth without margin improvement\" is the red flag.",
+  "_validation": {
+   "n_core": 167,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "gross_margin - op_margin",
+     1.0
+    ],
+    [
+     "op_margin_delta_yoy",
+     0.946
+    ],
+    [
+     "incremental_ebitda_margin",
+     0.964
+    ],
+    [
+     "fq_rev_growth",
+     0.892
+    ],
+    [
+     "pos(ev_gross_profit)",
+     0.988
+    ]
+   ],
+   "max_pair_spearman": 0.36,
+   "lens_vs_spirit_spearman": [
+    0.52,
+    0.58,
+    0.32,
+    0.36,
+    0.44
+   ]
+  }
+ },
+ "xr_quality_crisis": {
+  "lenses": [
+   [
+    "n_yrs_positive_fcf",
+    1
+   ],
+   [
+    "equity_cagr_5y",
+    1
+   ],
+   [
+    "roic_lindy",
+    1
+   ],
+   [
+    "tc_min_opm",
+    1
+   ],
+   [
+    "pct_off_52w_high",
+    -1
+   ],
+   [
+    "price_pct_of_5y_range",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": {
+   "groupA": [
+    "n_yrs_positive_fcf",
+    "equity_cagr_5y",
+    "roic_lindy",
+    "tc_min_opm"
+   ],
+   "groupB": [
+    "pct_off_52w_high",
+    "price_pct_of_5y_range",
+    "fcf_yield",
+    "pos(pb)"
+   ],
+   "weights": [
+    0.5,
+    0.5
+   ]
+  },
+  "note": "Proven multi-year quality (50%) marked at a crisis price (50%): FCF years, BVPS CAGR, ROIC, worst-year margin vs drawdown, 5y-range position, FCF yield, book.",
+  "source": "PER META \"ATT/TikTok/scandal fears versus extraordinary platform economics\" (+310%); PER fallen-platform recipe 8/9 hit rate.",
+  "_validation": {
+   "n_core": 2677,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "n_yrs_positive_fcf",
+     1.0
+    ],
+    [
+     "equity_cagr_5y",
+     0.955
+    ],
+    [
+     "roic_lindy",
+     1.0
+    ],
+    [
+     "tc_min_opm",
+     0.982
+    ],
+    [
+     "pct_off_52w_high",
+     0.962
+    ],
+    [
+     "price_pct_of_5y_range",
+     0.952
+    ],
+    [
+     "fcf_yield",
+     0.978
+    ],
+    [
+     "pos(pb)",
+     0.978
+    ]
+   ],
+   "max_pair_spearman": 0.59,
+   "lens_vs_spirit_spearman": [
+    0.4,
+    0.37,
+    0.58,
+    0.54,
+    0.25,
+    0.39,
+    0.4,
+    0.2
+   ]
+  }
+ },
+ "xr_reusable_assembler": {
+  "lenses": [
+   [
+    "incremental_ebitda_margin - ebitda_margin",
+    1
+   ],
+   [
+    "capex_intensity",
+    -1
+   ],
+   [
+    "rev_yoy_streak_q",
+    1
+   ],
+   [
+    "revenue_3y_cagr",
+    1
+   ],
+   [
+    "pos(evsg)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Reuse of a built substrate: marginal above average margin, asset-light, durable growth, growth-adjusted price.",
+  "source": "CODE XR24 Baron Gen III \"CoStar/Gartner/FactSet/MSCI/IDEXX class\"; PER fallen-platform \"plausible route to operating leverage\".",
+  "_validation": {
+   "n_core": 377,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "incremental_ebitda_margin - ebitda_margin",
+     1.0
+    ],
+    [
+     "capex_intensity",
+     0.987
+    ],
+    [
+     "rev_yoy_streak_q",
+     0.934
+    ],
+    [
+     "revenue_3y_cagr",
+     0.942
+    ],
+    [
+     "pos(evsg)",
+     0.971
+    ]
+   ],
+   "max_pair_spearman": 0.41,
+   "lens_vs_spirit_spearman": [
+    0.29,
+    0.57,
+    0.33,
+    0.53,
+    0.4
+   ]
+  }
+ },
+ "xr_segment_justifies_whole": {
+  "lenses": [
+   [
+    "seg_best_ebit_usd*12/enterprise_value_usd",
+    1
+   ],
+   [
+    "(seg_total_ebit_usd - seg_best_ebit_usd)/enterprise_value_usd",
+    1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Best segment alone covers EV (x12 EBIT / EV) and how much the other segments add for free.",
+  "source": "COMP II.A \"(9) Sum-of-the-parts / holdco discount collapse\".",
+  "_validation": {
+   "n_core": 73,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "seg_best_ebit_usd*12/enterprise_value_usd",
+     1.0
+    ],
+    [
+     "(seg_total_ebit_usd - seg_best_ebit_usd)/enterprise_value_usd",
+     1.0
+    ],
+    [
+     "pos(ev_ebitda)",
+     0.945
+    ]
+   ],
+   "max_pair_spearman": 0.27,
+   "lens_vs_spirit_spearman": [
+    0.76,
+    0.62,
+    0.6
+   ]
+  }
+ },
+ "xr_stake_fv_gap": {
+  "lenses": [
+   [
+    "em_fv_gap/market_cap_usd",
+    1
+   ],
+   [
+    "em_fair_value/em_carry",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Disclosed fair value over carrying vs price and as a multiple of carrying. 4 members - spirit NaN below 5.",
+  "source": "COMP I.6 \"strategic stakes worth more than the whole market cap\"; WO Archetype 5 \"discount on a discount\".",
+  "_validation": {
+   "n_core": 4,
+   "spirit_computable_share": 0.0,
+   "lens_coverage": [
+    [
+     "em_fv_gap/market_cap_usd",
+     1.0
+    ],
+    [
+     "em_fair_value/em_carry",
+     1.0
+    ],
+    [
+     "pos(pb)",
+     0.5
+    ]
+   ],
+   "max_pair_spearman": null,
+   "lens_vs_spirit_spearman": []
+  }
+ },
+ "xr_triple_floor": {
+  "lenses": [
+   [
+    "net_cash_pct_mcap",
+    1
+   ],
+   [
+    "earnings_yield",
+    1
+   ],
+   [
+    "dividend_yield",
+    1
+   ],
+   [
+    "fq_rev_growth",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Each independent floor as its own lens (cash, earnings, dividend, book) plus the growth that funds the wait.",
+  "source": "COMP preface \"downside is structurally bounded (asset value ... valuation floor) while the upside is open\".",
+  "_validation": {
+   "n_core": 139,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "net_cash_pct_mcap",
+     1.0
+    ],
+    [
+     "earnings_yield",
+     1.0
+    ],
+    [
+     "dividend_yield",
+     1.0
+    ],
+    [
+     "fq_rev_growth",
+     0.892
+    ],
+    [
+     "pos(pb)",
+     1.0
+    ]
+   ],
+   "max_pair_spearman": 0.44,
+   "lens_vs_spirit_spearman": [
+    0.65,
+    0.55,
+    0.41,
+    0.42,
+    0.57
+   ]
+  }
+ },
+ "xr_value_unlock": {
+  "lenses": [
+   [
+    "value_unlock_score",
+    1
+   ],
+   [
+    "forensic_hidden_pct",
+    1
+   ],
+   [
+    "pos(pb)",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Existing value_unlock_score (fresh distinctive language x event x forensic confirmation x stage/activist) plus the size of what is being unlocked and the discount.",
+  "source": "MAR I.G \"Discount + catalyst = value realisation ... asset sale, tender, buyback, liquidation ... activist pressure, spin\".",
+  "existing_score": "value_unlock_score",
+  "_validation": {
+   "n_core": 152,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "value_unlock_score",
+     1.0
+    ],
+    [
+     "forensic_hidden_pct",
+     1.0
+    ],
+    [
+     "pos(pb)",
+     0.98
+    ]
+   ],
+   "max_pair_spearman": 0.32,
+   "lens_vs_spirit_spearman": [
+    0.74,
+    0.65,
+    0.5
+   ]
+  }
+ },
+ "xr_verified_deleveraging": {
+  "lenses": [
+   [
+    "fq_netdebt_decline_months",
+    1
+   ],
+   [
+    "fq_netdebt_change_pct_assets",
+    -1
+   ],
+   [
+    "pos(ev_ebitda)",
+    -1
+   ],
+   [
+    "fcf_yield",
+    1
+   ]
+  ],
+  "blend": null,
+  "note": "Deleveraging path verified by balance sheets: duration (longer is better) and size of the net-debt decline, cheap EV/EBITDA, FCF funding it.",
+  "source": "WO Archetype 8 \"Net debt/EBITDA 1.5-3x but trending down\"; PER ACH \"Highly leveraged home-health turnaround at very low FCF multiple\" (+70%).",
+  "_validation": {
+   "n_core": 67,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "fq_netdebt_decline_months",
+     1.0
+    ],
+    [
+     "fq_netdebt_change_pct_assets",
+     1.0
+    ],
+    [
+     "pos(ev_ebitda)",
+     1.0
+    ],
+    [
+     "fcf_yield",
+     0.97
+    ]
+   ],
+   "max_pair_spearman": 0.31,
+   "lens_vs_spirit_spearman": [
+    0.33,
+    0.53,
+    0.35,
+    0.77
+   ]
+  }
+ },
+ "xr_wc_normalization": {
+  "lenses": [
+   [
+    "earnings_yield - fcf_yield",
+    1
+   ],
+   [
+    "fq_dio - fq_dio_p",
+    1
+   ],
+   [
+    "fq_dso - fq_dso_p",
+    1
+   ],
+   [
+    "cash_conversion",
+    -1
+   ]
+  ],
+  "blend": null,
+  "note": "Broken FCF optics, unbroken business: earnings power, earnings-vs-FCF gap, and the glut itself (inventory and receivable days up YoY, cash conversion depressed).",
+  "source": "PER CELH \"Pepsi destocking masking strong underlying sell-through\" (+45%); PER SWBI \"channel inventory normalisation\" (+21%).",
+  "_validation": {
+   "n_core": 350,
+   "spirit_computable_share": 1.0,
+   "lens_coverage": [
+    [
+     "earnings_yield - fcf_yield",
+     1.0
+    ],
+    [
+     "fq_dio - fq_dio_p",
+     0.894
+    ],
+    [
+     "fq_dso - fq_dso_p",
+     0.894
+    ],
+    [
+     "cash_conversion",
+     0.966
+    ]
+   ],
+   "max_pair_spearman": 0.3,
+   "lens_vs_spirit_spearman": [
+    0.67,
+    0.45,
+    0.46,
+    0.51
+   ]
+  }
+ }
+}

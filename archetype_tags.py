@@ -1264,6 +1264,33 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         if _k.startswith('sales'):
             _ok &= ~(_ncol(f'fmp_st_opm_chg_{_span}y') < -0.02)
         _adv[_k] = _ok
+    # A LAG IS UNPRICED ADVANCE, NOT MULTIPLE COMPRESSION. The outrun above
+    # (per-share fundamental growth minus price growth) is identically the fall
+    # in the valuation multiple — and a fall from a frothy start (30x sales in
+    # 2021) is the market ceasing to OVER-price a story, not failing to price
+    # the fundamentals. The narrative lags only to the extent the stock is
+    # priced BELOW what those fundamentals normally command today. So each
+    # lens is credited with min(outrun, log(sector-norm multiple / current
+    # multiple)) on the matching multiple — EV/Sales for sales, EV/EBIT (else
+    # EV/EBITDA) for EBIT, P/E for EPS, P/FCF for FCF. A name still at or above
+    # its sector norm has no lag however far it fell. Ratios are currency-
+    # invariant; norms are medians over investable operating companies.
+    _norm_base = is_operating & (mcap >= 10e6) & ~(_ncol('data_quality_flag') == 1)
+
+    def _below_norm(mult):
+        m = mult.where(mult > 0)
+        norm = m.where(_norm_base).groupby(sector).transform('median')
+        norm = norm.fillna(m.where(_norm_base).median())
+        return np.log(norm / m)
+
+    _fcf_y = _ncol('fcf_yield')
+    _anchor = {'sales': _below_norm(_ncol('ev_sales')),
+               'ebit': _below_norm(_ncol('ev_ebit')).fillna(_below_norm(_ncol('ev_ebitda'))),
+               'eps': _below_norm(_ncol('p_e')),
+               'fcfps': _below_norm((1.0 / _fcf_y).where(_fcf_y > 0))}
+    df['narrative_lag_outrun'] = pd.concat(
+        [v.where(_adv[k].fillna(False)) for k, v in _lag_lens.items()], axis=1).max(axis=1).round(4)
+    _lag_lens = {k: np.minimum(v, _anchor[k.split('_')[0]]) for k, v in _lag_lens.items()}
     _valid = {k: (v.where(_adv[k].fillna(False))) for k, v in _lag_lens.items()}
     _hit = {k: (v >= _lag_thr[k]).fillna(False) for k, v in _valid.items()}
     # INDEPENDENT evidence is counted by horizon, not by metric (the 1-year
@@ -7747,25 +7774,85 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         need = max(1, int(np.ceil(len(lenses) / 2)))
         return R.mean(axis=1).where(R.notna().sum(axis=1) >= need)
 
-    for _n in _TIERED:
+    # EVERY OTHER ARCHETYPE: spirit lenses from docs/spirit_spec.json — each
+    # grounded in the source write-ups the archetype replicates (the "source"
+    # field), duration-type theses rewarding longer / multi-horizon evidence.
+    # Lens expressions are column names with + - * / and the helpers pos()
+    # (a negative multiple is not cheap), abs(), nz() (missing analyst count =
+    # 0) and days_since(); parsed with a whitelist, never exec'd.
+    import ast as _ast
+    import json as _json
+    _today = pd.Timestamp.today().normalize()
+    _helpers = {
+        'pos': lambda x: x.where(x > 0),
+        'abs': lambda x: x.abs(),
+        'nz': lambda x: x.fillna(0),
+        'days_since': lambda x: (_today - pd.to_datetime(x, errors='coerce')).dt.days.astype(float),
+    }
+    _raw = lambda c: df[c] if c in df.columns else pd.Series(np.nan, index=df.index)
+
+    def _lens(expr):
+        def ev(node):
+            if isinstance(node, _ast.Expression):
+                return ev(node.body)
+            if isinstance(node, _ast.Name):
+                return _c(node.id)
+            if isinstance(node, _ast.Constant) and isinstance(node.value, (int, float)):
+                return node.value
+            if isinstance(node, _ast.UnaryOp) and isinstance(node.op, _ast.USub):
+                return -ev(node.operand)
+            if isinstance(node, _ast.BinOp) and isinstance(node.op, (_ast.Add, _ast.Sub, _ast.Mult, _ast.Div)):
+                a, b = ev(node.left), ev(node.right)
+                if isinstance(node.op, _ast.Div):
+                    b = b.where(b != 0) if isinstance(b, pd.Series) else (b or np.nan)
+                return {_ast.Add: lambda: a + b, _ast.Sub: lambda: a - b,
+                        _ast.Mult: lambda: a * b, _ast.Div: lambda: a / b}[type(node.op)]()
+            if (isinstance(node, _ast.Call) and isinstance(node.func, _ast.Name)
+                    and node.func.id in _helpers and len(node.args) == 1):
+                if node.func.id == 'days_since':
+                    return _helpers['days_since'](_raw(node.args[0].id))
+                return _helpers[node.func.id](ev(node.args[0]))
+            raise ValueError(f'spirit lens {expr!r}: unsupported syntax')
+        out = ev(_ast.parse(expr, mode='eval'))
+        return (pd.to_numeric(out, errors='coerce') if isinstance(out, pd.Series)
+                else pd.Series(np.nan, index=df.index)).replace([np.inf, -np.inf], np.nan)
+
+    _spec_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'docs', 'spirit_spec.json')
+    _SPEC = {}
+    if os.path.exists(_spec_path):
+        _SPEC = {k: v for k, v in _json.load(open(_spec_path)).items() if not k.startswith('_')}
+    _SPIRIT_ALL = list(_TIERED) + [n for n in _SPEC if n not in _TIERED and 'arch_' + n in df.columns]
+
+    for _n in _SPIRIT_ALL:
         _core = df['arch_' + _n] == 1
         if _n == 'quiet_compounder':
             sc = 0.6 * _spirit(_core, _COMPOUND) + 0.4 * _spirit(_core, _QUIET)
         elif _n in _SPIRIT:
             sc = _spirit(_core, _SPIRIT[_n])
+        elif _n in _SPEC and _SPEC[_n].get('lenses'):
+            _sp = _SPEC[_n]
+            _L = {e: (_lens(e), s) for e, s in _sp['lenses']}
+            _bl = _sp.get('blend')
+            if _bl:
+                (wa, wb) = _bl['weights']
+                sc = (wa * _spirit(_core, [_L[e] for e in _bl['groupA']])
+                      + wb * _spirit(_core, [_L[e] for e in _bl['groupB']]))
+            else:
+                sc = _spirit(_core, list(_L.values()))
         else:
             continue
         df[_n + '_spirit'] = sc.where(_core).round(3)
         df[_n + '_exceptional'] = (_core & (sc >= 0.75)).fillna(False).astype(int)
         df[_n + '_elite'] = (_core & (sc >= 0.90)).fillna(False).astype(int)
+    _TIERED_ALL = [n for n in _SPIRIT_ALL if n + '_spirit' in df.columns]
 
     # EXCEPTIONAL tiers (core/watch/exceptional split): tag + count
-    _exc_cols = [n + '_exceptional' for n in _TIERED if n + '_exceptional' in df.columns]
+    _exc_cols = [n + '_exceptional' for n in _TIERED_ALL if n + '_exceptional' in df.columns]
     for _c in _exc_cols:
         _on = pd.to_numeric(df[_c], errors='coerce').fillna(0) == 1
         _sig = _sig.where(~_on, _sig + ' · EXC-' + _c[:-len('_exceptional')])
     df['exceptional_count'] = df[_exc_cols].sum(axis=1).astype(int) if _exc_cols else 0
-    _eli_cols = [n + '_elite' for n in _TIERED if n + '_elite' in df.columns]
+    _eli_cols = [n + '_elite' for n in _TIERED_ALL if n + '_elite' in df.columns]
     for _c in _eli_cols:
         _on = pd.to_numeric(df[_c], errors='coerce').fillna(0) == 1
         _sig = _sig.where(~_on, _sig + ' · ELITE-' + _c[:-len('_elite')])
@@ -7809,7 +7896,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
              + [c for c in ['inst_accum_score','inst_accum_accelerating','inst_own_excess_q0','inst_buy_excess_q0','fmp_signals',
                             'roic_lindy_eff','capret_yield_eff','multi_year_data','non_common_flag',
                             'biotech_momentum_watch','controlled_sub_flag',
-                            'narrative_lag_lenses','narrative_lag_extent','narrative_lag_years','narrative_lag_max_gap','nl_sales_1y','nl_ebit_1y','nl_eps_1y','nl_fcfps_1y','nl_sales_5y',
+                            'narrative_lag_lenses','narrative_lag_extent','narrative_lag_years','narrative_lag_max_gap','narrative_lag_outrun','nl_sales_1y','nl_ebit_1y','nl_eps_1y','nl_fcfps_1y','nl_sales_5y','nl_ebit_3y','nl_fcfps_3y','nl_ebit_5y','nl_fcfps_5y',
                             'nl_sales_2y','nl_ebit_2y','nl_sales_3y',
                             'ts_dvol26_usd','ts_r52','ts_rs_pct_mkt','ts_weinstein_stage','ts_maxdd_5y',
                             'ts_dist_hi52','ts_mrs',
