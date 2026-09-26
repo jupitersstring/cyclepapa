@@ -339,7 +339,10 @@ def enrich_symbol(sym: str):
             a, b = L.get(f"defrev_cur{sfx}", np.nan), L.get(f"defrev_nc{sfx}", np.nan)
             L[f"defrev{sfx}"] = (0 if not math.isfinite(a) else a) + (0 if not math.isfinite(b) else b) \
                 if (math.isfinite(a) or math.isfinite(b)) else np.nan
-    shares = [_f(r.get("weightedAverageShsOutDil")) for _, r in ip]
+    from unit_scale import normalize_shares
+    # one scale for the share series (FMP carried AMCCF's latest quarter as
+    # 464.6 against 463,800,000): unit restoration, not a bound
+    shares = normalize_shares([_f(r.get("weightedAverageShsOutDil")) for _, r in ip])
 
     # ---- levels emitted (reporting currency; archetype layer converts) ----
     for k in ("revenue", "gp", "opinc", "ni", "ni_cont", "ni_disc", "pretax", "tax_exp",
@@ -550,6 +553,9 @@ def enrich_symbol(sym: str):
             row[key] = _f(b.get(src))
         row["shares_dil"] = _f(r.get("weightedAverageShsOutDil"))
         panel.append(row)
+    if panel:
+        for row, v in zip(panel, normalize_shares([row["shares_dil"] for row in panel])):
+            row["shares_dil"] = v
     return rec, panel
 
 

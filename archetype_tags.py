@@ -1193,16 +1193,75 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((s('fcf_ttm') > 0) | (s('ebitda_ttm') > 0) | _first_pos_any) &
         (((pb > 0) & (pb < 3.0)) | (fcf_yield >= 0.03))
     ).fillna(False).astype(int)
-    # (tighten) the lag MEASURED against the advance: TTM sales growth outran the
-    # 52-week total return by >= 20% (1-year coil), or the 2-year coil holds.
-    # A down year alone (half the universe) is not a lag. Exceptional: TTM
-    # EBIT +20%, stock flat-or-down on the year, consistent EPS record.
-    _coil1y = np.log1p(_ncol('fq_rev_growth')) - np.log1p(_ncol('ts_r52'))
-    _tier('narrative_lag',
-          ((_coil1y >= np.log(1.2)) | (_ncol('bs_coil_rev') >= np.log(1.2)) | (_ncol('bs_coil_ebit') >= np.log(1.3)))
-          & ((_ncol('ebitda_ttm') > 0) | (_ncol('fcf_ttm') > 0)),     # a profitable business the market ignores
-          (_ncol('fqx_ebit_ttm_g') >= 0.20) & (_ncol('ts_r52') <= 0) & (_ncol('fqx_eps_pos_share_8') >= 0.75),
-          elite_metric=pd.concat([_coil1y, _ncol('bs_coil_rev')], axis=1).max(axis=1))
+    # (re-specified) The LAG is the thesis, so it is measured directly and
+    # through several lenses — each "the fundamental advance outran the price"
+    # (log gaps, total-return prices) — instead of "any down print" (half the
+    # universe). narrative_lag_extent = the largest gap across lenses: HOW FAR
+    # the story lags. No non-thesis gates: the advancing-fundamentals legs of
+    # the original rule stay; only the lag test is replaced.
+    _r52 = np.log1p(_ncol('ts_r52'))
+    # PER SHARE: the price is per share, so the advance must be too — total
+    # revenue rising while the share count balloons is dilution, not a lag
+    # (SUNE: revenue up, price -99.999% over 3y through issuance). Share
+    # growth: TTM (date-matched) for 1y; the 3y figure prorated for 2y / 3y.
+    _sh1 = np.log1p(_ncol('fq_shares_yoy').fillna(_ncol('shares_yoy')).fillna(0))
+    _sh3 = np.log1p(_ncol('shares_growth_3y').fillna(0))
+    _lag_lens = {
+        'sales_1y': np.log1p(_ncol('fq_rev_growth')) - _sh1 - _r52,
+        'ebit_1y': np.log1p(_ncol('fqx_ebit_ttm_g')) - _sh1 - _r52,
+        'eps_1y': np.log1p(_ncol('fqx_ni_ttm_g')) - _sh1 - _r52,
+        'sales_2y': _ncol('bs_coil_rev') - _sh3 * (2 / 3),
+        'ebit_2y': _ncol('bs_coil_ebit') - _sh3 * (2 / 3),
+        'sales_3y': 3 * np.log1p(_ncol('revenue_3y_cagr')) - _sh3 - np.log1p(_ncol('ts_r156')),
+    }
+    _lag_thr = {'sales_1y': np.log(1.2), 'ebit_1y': np.log(1.3), 'eps_1y': np.log(1.3),
+                'sales_2y': np.log(1.2), 'ebit_2y': np.log(1.3), 'sales_3y': np.log(1.3)}
+    # A lag needs a genuine ADVANCE: each lens counts only when the fundamental
+    # itself grew (a price fall with flat fundamentals is not a lag, it is
+    # just a fall — without this every coil lens fired on any drawdown).
+    # ...and a PLAUSIBLE advance: growth off a near-zero base (+200% in a year,
+    # +300% over two, a 100% CAGR) is a base effect, not a lagging narrative —
+    # excluded from the lens (same convention as the liger / evsales base-effect
+    # bounds), never clamped.
+    _eg2 = _ncol('bs_coil_ebit') + np.log1p(_ncol('bs_r104'))          # log 2y EBIT growth
+    _adv = {'sales_1y': _ncol('fq_rev_growth').between(0.10, 2.0),
+            'ebit_1y': _ncol('fqx_ebit_ttm_g').between(0.10, 2.0),
+            'eps_1y': _ncol('fqx_ni_ttm_g').between(0.10, 2.0),
+            'sales_2y': _ncol('bs_rev_g_2y').between(0.15, 3.0),
+            'ebit_2y': (_eg2 >= np.log(1.15)) & (_eg2 <= np.log(4.0)),
+            'sales_3y': _ncol('revenue_3y_cagr').between(0.05, 1.0)}
+    _valid = {k: (v.where(_adv[k].fillna(False))) for k, v in _lag_lens.items()}
+    _hit = {k: (v >= _lag_thr[k]).fillna(False) for k, v in _valid.items()}
+    # INDEPENDENT evidence is counted by horizon, not by metric (the 1-year
+    # sales / EBIT / EPS gaps share one price change)
+    _h1 = _hit['sales_1y'] | _hit['ebit_1y'] | _hit['eps_1y']
+    _h2 = _hit['sales_2y'] | _hit['ebit_2y']
+    _h3 = _hit['sales_3y']
+    # relative lag (behind its own market while growing) and ignored evidence
+    _lag_rel = ((_ncol('ts_rs_pct_mkt') <= 40) & (_ncol('fq_rev_growth') >= 0.15)).fillna(False)
+    _lag_ign = (_ncol('evt_ignored_beats_2y') >= 2).fillna(False)
+    df['narrative_lag_lenses'] = (_h1.astype(int) + _h2.astype(int) + _h3.astype(int)
+                                  + _lag_rel.astype(int) + _lag_ign.astype(int)).astype(int)
+    df['narrative_lag_extent'] = pd.concat(list(_valid.values()), axis=1).max(axis=1).round(4)
+    for _k, _v in _valid.items():                      # per-lens gaps (which lens drives the lag)
+        df['nl_' + _k] = _v.round(4)
+    df['narrative_lag_watch'] = df['arch_narrative_lag'].astype(int)
+    df['arch_narrative_lag'] = (
+        (df['narrative_lag_lenses'] >= 1) &
+        (_adv_breadth >= 2) &
+        is_operating & (mcap >= 10e6) &
+        _roce_now_ok &
+        ((s('fcf_ttm') > 0) | (s('ebitda_ttm') > 0) | _first_pos_any) &
+        (((pb > 0) & (pb < 3.0)) | (fcf_yield >= 0.03))
+    ).fillna(False).astype(int)
+    # exceptional IN THE ARCHETYPE'S OWN TERMS: lagging on >= 2 independent
+    # lenses, by >= 50%; elite = the top 10% by extent of the lag
+    _nl = df['arch_narrative_lag'] == 1
+    df['narrative_lag_exceptional'] = (_nl & (df['narrative_lag_lenses'] >= 2)
+                                       & (df['narrative_lag_extent'] >= np.log(1.5))).astype(int)
+    _ext = df['narrative_lag_extent'].where(_nl)
+    df['narrative_lag_elite'] = (_nl & (_ext >= _ext.quantile(0.90))).astype(int)
+    _TIERED.append('narrative_lag')
 
     # ---------- Cluster C5: Fixed-Cost Asset + Demand Shock ----------
     df['arch_fixed_cost_demand_shock'] = (
@@ -1351,7 +1410,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # EBITDA and FCF.
     _tier('blindspot',
           is_operating & _ncol('ts_dvol26_usd').between(5e4, 2.5e6) & ~(_ncol('sent_n_analysts') > 1),
-          (_ncol('ebitda_ttm') > 0) & (_ncol('fcf_ttm') > 0),
+          ~(_ncol('sent_n_analysts') > 0) & (_ncol('ts_dvol26_usd') <= 5e5),
           elite_metric=fcf_yield)
 
     # ---------- Cluster H: Microcap Inflection + Activist Capital Allocation ----------
@@ -1520,9 +1579,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # drawdown shallower than -40% — owners were never asked to sit through a
     # collapse).
     _tier('lindy_fcf',
-          (_ncol('tc_fcf_years') >= 7) & (_ncol('tc_fcf_pos') == _ncol('tc_fcf_years'))
-          & (_ncol('tc_fcf_margin_avg') >= 0.10),
-          (_ncol('ts_maxdd_5y') >= -0.40),
+          (_ncol('tc_fcf_years') >= 7) & (_ncol('tc_fcf_pos') == _ncol('tc_fcf_years')),
+          (_ncol('tc_fcf_years') >= 8) & (_ncol('tc_fcf_margin_avg') >= 0.15),
           elite_metric=_ncol('tc_fcf_margin_avg'))
 
     # P — No Dilution (Clean Compounder): shares roughly flat over 3y AND
@@ -1820,8 +1878,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # and earnings are still compounding (TTM EBIT +10%). Exceptional: the
     # street is genuinely not watching (observed coverage <= 3 analysts).
     _tier('quiet_compounder',
-          (_ncol('ts_r52') <= 0.20) & (_ncol('ts_maxdd_5y') > -0.45) & (_ncol('fqx_ebit_ttm_g') >= 0.10),
-          (_ncol('sent_n_analysts') <= 3),
+          (_ncol('ts_r52') <= 0.20) & (_ncol('ts_maxdd_5y') > -0.45),
+          (_ncol('sent_n_analysts') <= 3) & (_ncol('fqx_ebit_ttm_g') >= 0.10),
           elite_metric=_ncol('roic_lindy'))
 
     # S — Buyback Compounder: shrinking share count + durable ROIC + clean
@@ -1877,10 +1935,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _aligned = ((_ncol('fmp_insider_aligned_flag') == 1) | (_ncol('insider_buy_flag') == 1)
                 | (_ncol('buyback_yield') >= 0.01) | (_ncol('shares_growth_3y') < 0))
     _tier('owner_operator',
-          insider.between(0.20, 0.60) & (_aligned | (_ncol('roic_lindy') >= 0.12)),
-          (((_ncol('insider_buy_flag') == 1) | (_ncol('fmp_insider_net_usd_12m') > 0))
-           | (_ncol('shares_growth_3y') <= -0.05))
-          & (_ncol('roic_lindy') >= 0.15) & ~(_ncol('shares_growth_3y') > 0),
+          insider.between(0.20, 0.60) | _aligned,
+          insider.between(0.30, 0.60)
+          & ((_ncol('insider_buy_flag') == 1) | (_ncol('fmp_insider_aligned_flag') == 1)
+             | (_ncol('fmp_insider_net_usd_12m') > 0)),
           elite_metric=_ncol('roic_lindy'))
 
     # U — Quality at a Reasonable Price (QARP): high lindy ROIIC AND not
@@ -2109,9 +2167,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _dy_ly = _ncol('dividend_yield').fillna(0)
     _pegy_ttm = (_ncol('p_e') / ((_g_ly * 100) + (_dy_ly * 100))).where(
         (_ncol('p_e') > 0) & _g_ly.between(0.08, 0.50))
+    df['lynch_pegy_ttm'] = _pegy_ttm.round(4)
     _tier('lynch_pegy',
           (_pegy_ttm <= 1.0) & ((_ncol('fqx_eps_pos_share_8') >= 0.75) | (_ncol('eps_yoy_positive_share') >= 0.75)),
-          (_pegy_ttm <= 0.6) & (_ncol('tc_opinc_pos') == _ncol('tc_years')),
+          (_pegy_ttm <= 0.5) & (_ncol('fqx_eps_pos_share_8') >= 0.875),
           elite_metric=_pegy_ttm, higher=False)
     # (G9) require real positive EBITDA on the EBITDA-yield path (a negative
     # EBITDA makes the ratio meaningless), and drop the sales (psg/evsg)
@@ -2133,9 +2192,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _g_ev = pd.concat([_ncol('fqx_ebit_ttm_g'), _ncol('revenue_3y_cagr')], axis=1).min(axis=1).clip(upper=0.50)
     _evgy_d = (_ncol('ev_ebitda') / ((_g_ev * 100) + (_ncol('dividend_yield').fillna(0) * 100))).where(
         (_ncol('ev_ebitda') > 0) & (_g_ev >= 0.08))
+    df['lynch_evgy_durable'] = _evgy_d.round(4)
     _tier('lynch_evgy',
           (_evgy_d <= 0.6),
-          (_evgy_d <= 0.4) & (_ncol('fqx_inc_ebit_margin') >= 0.15),
+          (_evgy_d <= 0.4),
           elite_metric=_evgy_d, higher=False)
 
     # ======================================================================
@@ -5420,6 +5480,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # return (1-year coil >= 0) or the 2-year coil. Exceptional: the market
     # FADES the beats (average earnings-week reaction to beats <= 0).
     _c1_au = np.log1p(_ncol('fq_rev_growth')) - np.log1p(_ncol('ts_r52'))
+    df['unrerated_gap_1y'] = _c1_au.round(4)
     _tier('asleep_unrerated',
           (_c1_au >= 0) | (_ncol('bs_coil_rev') >= np.log(1.25)) | (_ncol('bs_coil_ebit') >= np.log(1.40)),
           (_ncol('evt_react_beats_4q') <= 0),
@@ -5734,9 +5795,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # total return by >= 15% (1y) or the 2-year coil. Exceptional: operating
     # leverage showing (incremental EBIT margin >= 15%).
     _c1_ev = np.log1p(_ncol('fq_rev_growth')) - np.log1p(_ncol('ts_r52'))
+    df['derate_gap_1y'] = _c1_ev.round(4)
     _tier('evsales_derating',
           (_ncol('fq_rev_growth') >= 0.15) & ((_c1_ev >= 0.15) | (_ncol('bs_coil_rev') >= 0.15)),
-          (_ncol('fqx_inc_ebit_margin') >= 0.15),
+          (_c1_ev >= np.log(1.5)) | (_ncol('bs_coil_rev') >= np.log(1.5)),
           elite_metric=_c1_ev)
     # Score: depth of the derate + growth confirmation + exceptional evsg bonus.
     _derate_depth = (mult_compression.clip(0, 1.0)).fillna(0.0)     # 0..1
@@ -6050,8 +6112,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Exceptional: analysts' targets LEAD the price (raised while it was flat).
     _tier('analyst_rerating_confirmed',
           (_ncol('ts_dist_hi52') >= 0.97) | ((_ncol('ts_rs_at_hi') == 1) & (_ncol('ts_above_ma30') == 1)),
-          (_ncol('evt_pt_lead_flag') == 1) | (_ncol('sent_buy_share_d12') >= 0.10)
-          | ((_ncol('sent_upgrades_12m') - _ncol('sent_downgrades_12m')) >= 2) | (_ncol('sent_pt_rev_q') >= 0.10),
+          (_ncol('ts_dist_hi260') >= 0.98) & (_ncol('ts_rs_at_hi') == 1),
           elite_metric=_ncol('ts_mrs'))
     df['analyst_rerating_score'] = (df['analyst_rerating_score'] * df['arch_analyst_rerating_confirmed']).round(3)
 
@@ -7570,6 +7631,80 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     if 'fmp_geo_em_share' in df.columns:
         _on = pd.to_numeric(df['fmp_geo_em_share'], errors='coerce') >= 0.50
         _sig = _sig.where(~_on.fillna(False), _sig + ' · EMrev>=50%')
+    # ===== SPIRIT SCORES (continuous, per tiered archetype) =====
+    # How strongly a core member embodies the archetype's OWN thesis, read
+    # through several independent lenses so no single accounting treatment
+    # decides it: each lens is ranked WITHIN the core (pct), the spirit score is
+    # the mean of the available lens ranks (>= half the lenses required).
+    # exceptional = top quartile of spirit, elite = top 10% — "exceptional in
+    # the archetype's own terms", continuous, never a bolted-on negative gate.
+    _c = lambda c: pd.to_numeric(df[c], errors='coerce') if c in df.columns else pd.Series(np.nan, index=df.index)
+    _SPIRIT = {
+        'lindy_margin': [(_c('tc_min_opm'), 1), (_c('tc_med_opm'), 1), (_c('op_margin_lindy'), 1),
+                         (_c('ebitda_margin_lindy'), 1), (_c('tc_min_gm'), 1)],
+        'lindy_fcf': [(_c('tc_fcf_pos') / _c('tc_fcf_years'), 1), (_c('tc_fcf_years'), 1),
+                      (_c('tc_fcf_margin_avg'), 1), (_c('cash_roic_lindy'), 1)],
+        'no_dilution': [(_c('shares_growth_5y'), -1), (_c('shares_growth_3y'), -1), (_c('roic_lindy'), 1),
+                        (_c('cash_roic_lindy'), 1), (_c('fqx_fcf_ps_g'), 1)],
+        'capital_returner': [(_c('capret_yield_eff'), 1), (_c('tc_uncov_payout_3y'), -1),
+                             (_c('evt_div_raise_streak'), 1),
+                             (_c('fmp_st_financing_outflow_years') / _c('fmp_st_financing_years'), 1)],
+        'weinstein_stage2': [(_c('ts_mrs'), 1), (_c('ts_ma30_slope13'), -1), (_c('ts_vol_spike4'), 1),
+                             (_c('ts_dist_hi52'), 1)],
+        'kullamagie_breakout': [(_c('ts_rs_raw'), 1), (_c('ts_tight5'), -1), (_c('ts_dist_hi52'), 1),
+                                (_c('ts_dvol26_usd'), 1)],
+        'oneil_canslim': [(_c('fqx_eps_q_yoy'), 1), (_c('fqx_eps_accel'), 1), (_c('ts_rs_pct_mkt'), 1),
+                          (_c('ts_dist_hi52'), 1), (_c('fqx_eps_pos_share_8'), 1)],
+        'analyst_rerating_confirmed': [(_c('ts_dist_hi260'), 1), (_c('ts_mrs'), 1),
+                                       (_c('sent_buy_share_d12'), 1), (_c('sent_pt_rev_q'), 1)],
+        'analyst_awakening': [(_c('sent_buy_share_d12'), 1), (_c('sent_upgrades_12m') - _c('sent_downgrades_12m'), 1),
+                              (_c('sent_pt_rev_q'), 1), (_c('ts_mrs') - _c('ts_mrs_13ago'), 1),
+                              (_c('evt_pt_rev_90d'), 1)],
+        'narrative_lag': [(_c('narrative_lag_extent'), 1), (_c('narrative_lag_lenses'), 1),
+                          (_c('fq_rev_growth'), 1), (_c('fqx_ebit_ttm_g'), 1)],
+        'asleep_at_wheel': [(_c('evt_beat_share_8q'), 1), (_c('evt_surprise_4q'), 1),
+                            (_c('avg_earnings_surprise'), 1), (_c('earnings_beat_streak'), 1),
+                            (_c('evt_ignored_beats_2y'), 1)],
+        'asleep_unrerated': [(_c('unrerated_gap_1y'), 1), (_c('bs_coil_rev'), 1),
+                             (_c('evt_ignored_beats_2y'), 1), (_c('evt_react_beats_4q'), -1)],
+        'evsales_derating': [(_c('derate_gap_1y'), 1), (_c('bs_coil_rev'), 1), (_c('fq_rev_growth'), 1),
+                             (_c('fqx_inc_ebit_margin'), 1)],
+        'lynch_pegy': [(_c('lynch_pegy_ttm'), -1), (_c('fqx_eps_pos_share_8'), 1), (_c('fqx_ni_ttm_g'), 1)],
+        'lynch_evgy': [(_c('lynch_evgy_durable'), -1), (_c('fqx_ebit_ttm_g'), 1)],
+        'owner_operator': [(_c('insider_ownership_pct'), 1), (_c('fmp_insider_alignment_ratio'), 1),
+                           (_c('shares_growth_3y'), -1), (_c('roic_lindy'), 1)],
+        'flyover': [(_c('roic_lindy'), 1), (_c('sent_n_analysts'), -1), (_c('insider_ownership_pct'), 1),
+                    (_c('tc_fcf_pos') / _c('tc_fcf_years'), 1)],
+        'blindspot': [(_c('sent_n_analysts'), -1), (_c('ts_dvol26_usd'), -1), (_c('fcf_yield'), 1),
+                      (_c('ev_ebitda').where(_c('ev_ebitda') > 0), -1)],
+        'liger_neglected_survivor': [(_c('fqx_ebit_ttm_g'), 1), (_c('fqx_inc_ebit_margin'), 1),
+                                     (_c('sent_n_analysts'), -1), (_c('ev_sales').where(_c('ev_sales') > 0), -1)],
+    }
+    _QUIET = [(_c('ts_r52'), -1), (_c('sent_n_analysts'), -1), (_c('ts_vol_1y'), -1)]
+    _COMPOUND = [(_c('roic_lindy'), 1), (_c('cash_roic_lindy'), 1), (_c('equity_cagr_5y'), 1),
+                 (_c('fqx_fcf_ps_g'), 1), (_c('fqx_ebit_ttm_g'), 1), (_c('revenue_5y_cagr'), 1)]
+
+    def _spirit(core_mask, lenses):
+        ranks = []
+        for ser, sign in lenses:
+            x = (ser * sign).where(core_mask)
+            ranks.append(x.rank(pct=True) if x.notna().sum() >= 5 else pd.Series(np.nan, index=df.index))
+        R = pd.concat(ranks, axis=1)
+        need = max(1, int(np.ceil(len(lenses) / 2)))
+        return R.mean(axis=1).where(R.notna().sum(axis=1) >= need)
+
+    for _n in _TIERED:
+        _core = df['arch_' + _n] == 1
+        if _n == 'quiet_compounder':
+            sc = 0.6 * _spirit(_core, _COMPOUND) + 0.4 * _spirit(_core, _QUIET)
+        elif _n in _SPIRIT:
+            sc = _spirit(_core, _SPIRIT[_n])
+        else:
+            continue
+        df[_n + '_spirit'] = sc.where(_core).round(3)
+        df[_n + '_exceptional'] = (_core & (sc >= 0.75)).fillna(False).astype(int)
+        df[_n + '_elite'] = (_core & (sc >= 0.90)).fillna(False).astype(int)
+
     # EXCEPTIONAL tiers (core/watch/exceptional split): tag + count
     _exc_cols = [n + '_exceptional' for n in _TIERED if n + '_exceptional' in df.columns]
     for _c in _exc_cols:
@@ -7620,6 +7755,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
              + [c for c in ['inst_accum_score','inst_accum_accelerating','inst_own_excess_q0','inst_buy_excess_q0','fmp_signals',
                             'roic_lindy_eff','capret_yield_eff','multi_year_data','non_common_flag',
                             'biotech_momentum_watch','controlled_sub_flag',
+                            'narrative_lag_lenses','narrative_lag_extent','nl_sales_1y','nl_ebit_1y','nl_eps_1y',
+                            'nl_sales_2y','nl_ebit_2y','nl_sales_3y',
+                            'ts_dvol26_usd','ts_r52','ts_rs_pct_mkt','ts_weinstein_stage','ts_maxdd_5y',
+                            'ts_dist_hi52','ts_mrs',
                             'fmp_inst_quarter','fmp_inst_holders','fmp_inst_own_pct',
                             'fmp_inst_own_chg_q0','fmp_inst_own_chg_q1','fmp_inst_own_chg_q2',
                             'fmp_inst_shares_chg_pct_q0','fmp_inst_shares_chg_pct_q1',
@@ -7667,7 +7806,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'sent_neglected_flag','sent_skeptic_flag',
                             ] if c in df.columns]
              + [c + '_eff' for c in _EFF_COLS if c + '_eff' in df.columns]
-             + [c for c in df.columns if c.endswith(('_watch', '_exceptional', '_elite'))]
+             + [c for c in df.columns if c.endswith(('_watch', '_exceptional', '_elite', '_spirit'))]
+             + [c for c in ['lynch_pegy_ttm', 'lynch_evgy_durable', 'derate_gap_1y', 'unrerated_gap_1y'] if c in df.columns]
              + ['exceptional_count', 'elite_count']
              + [c for c in df.columns if c.startswith('fmp_filled_')]]
     from master_versions import versioned_replace

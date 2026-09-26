@@ -109,10 +109,11 @@ def _fy_series(facts: dict, aliases: list[str], unit: str = "USD") -> pd.Series:
             if obs.get("fp") != "FY":
                 continue
             end = obs.get("end")
-            fy = obs.get("fy")
-            if end is None or fy is None:
+            if end is None:
                 continue
-            rows.append((fy, end, obs.get("val"), obs.get("filed")))
+            # key on the PERIOD (its end year), not the filing's `fy`: every
+            # 10-K repeats prior-year comparatives under the same `fy`
+            rows.append((int(str(end)[:4]), end, obs.get("val"), obs.get("filed")))
     if not rows:
         return pd.Series(dtype=float)
     df = pd.DataFrame(rows, columns=["fy", "end", "val", "filed"])
@@ -131,10 +132,10 @@ def _point_in_time_fy(facts: dict, aliases: list[str], unit: str = "USD") -> pd.
         for obs in info:
             if obs.get("fp") != "FY":
                 continue
-            fy = obs.get("fy")
-            if fy is None:
+            end = obs.get("end")
+            if end is None:
                 continue
-            rows.append((fy, obs.get("end"), obs.get("val"), obs.get("filed")))
+            rows.append((int(str(end)[:4]), end, obs.get("val"), obs.get("filed")))
     if not rows:
         return pd.Series(dtype=float)
     df = pd.DataFrame(rows, columns=["fy", "end", "val", "filed"])
@@ -158,6 +159,11 @@ def compute_multi_year(facts: dict, n_years: int = 6) -> pd.DataFrame:
     da = _fy_series(facts, DA_ALIASES)
     assets = _point_in_time_fy(facts, ASSETS_ALIASES)
     shares = _point_in_time_fy(facts, SHARES_ALIASES, unit="shares")
+    # filers switch share-count SCALE mid-series under the same unit (MCD tags
+    # 732.3 = millions from FY2023): restore one scale (unit_scale)
+    if len(shares):
+        from unit_scale import normalize_shares
+        shares = pd.Series(normalize_shares(shares.values), index=shares.index, name=shares.name)
 
     # Common index = union of all years available
     years = sorted(set(opinc.index) | set(eq.index))

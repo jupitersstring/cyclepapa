@@ -45,7 +45,7 @@ import fmp_client as fc
 OUT = "fmp_statements.csv"
 # Bumped whenever a field's DEFINITION changes: rows written under an older
 # schema are recomputed (from cache) instead of being skipped as "done".
-SCHEMA = 2
+SCHEMA = 3
 
 
 def _f(x):
@@ -245,6 +245,9 @@ def enrich_symbol(sym: str) -> dict:
     if len(eq) >= 2:
         rec["fmp_st_equity_cagr"] = _cagr(eq)
     sh = _by_year(isr, "weightedAverageShsOutDil")
+    if sh:
+        from unit_scale import normalize_shares
+        sh = list(zip([y for y, _ in sh], normalize_shares([v for _, v in sh])))
     if len(sh) >= 2:
         # newest-first; growth over up to 3 and 5 year spans
         def _sh_growth(n):

@@ -34,7 +34,9 @@ def _ya(dates: np.ndarray, i: int):
 
 
 def one(g: pd.DataFrame) -> dict:
-    g = g.sort_values("date")
+    g = g.sort_values("date").copy()
+    from unit_scale import normalize_shares
+    g["shares_dil"] = normalize_shares(g["shares_dil"].tolist())
     d = g["date"].to_numpy("datetime64[D]")
     n = len(g)
     rec = {"symbol": g["symbol"].iloc[0]}
