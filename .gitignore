@@ -65,3 +65,5 @@ base_panel.parquet
 base_panel_pit.parquet
 mb_panel.parquet
 mb_panel_parts/
+*_DM.xlsx
+*_EM.xlsx
