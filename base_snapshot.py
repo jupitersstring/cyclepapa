@@ -46,7 +46,7 @@ def _ttm_2y(panel: pd.DataFrame) -> pd.DataFrame:
 
 def build(out: str = "base_snapshot.csv") -> pd.DataFrame:
     from multiprocessing import Pool
-    p = _prices()
+    p = es.attach_usd(_prices())
     groups = [g for _, g in p.groupby("symbol", sort=False)]
     del p
     with Pool(4) as pool:

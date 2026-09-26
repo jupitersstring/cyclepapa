@@ -45,6 +45,49 @@ MAX_RANGE = 2.0
 MIN_WEEKLY_DVOL = 250_000
 
 
+# exchange suffix -> listing currency (fallback for names not in the master,
+# i.e. delisted); minor units (pence / cents / agorot) as the FMP fx table names them
+_SUFFIX_CCY = {"US": "USD", "L": "GBp", "T": "JPY", "HK": "HKD", "TO": "CAD", "V": "CAD", "CN": "CAD",
+               "NE": "CAD", "AX": "AUD", "NZ": "NZD", "DE": "EUR", "F": "EUR", "PA": "EUR", "AS": "EUR",
+               "BR": "EUR", "MI": "EUR", "MC": "EUR", "LS": "EUR", "VI": "EUR", "HE": "EUR", "IR": "EUR",
+               "AT": "EUR", "ST": "SEK", "OL": "NOK", "CO": "DKK", "SW": "CHF", "WA": "PLN", "PR": "CZK",
+               "BD": "HUF", "IS": "TRY", "TA": "ILA", "JO": "ZAc", "NS": "INR", "BO": "INR", "KS": "KRW",
+               "KQ": "KRW", "TW": "TWD", "TWO": "TWD", "SS": "CNY", "SZ": "CNY", "SI": "SGD", "KL": "MYR",
+               "BK": "THB", "JK": "IDR", "SA": "BRL", "MX": "MXN", "SN": "CLP", "BA": "ARS", "SR": "SAR",
+               "QA": "QAR", "KW": "KWD", "AE": "AED", "CA": "EGP", "PS": "PHP", "VN": "VND"}
+
+
+def attach_usd(p: pd.DataFrame) -> pd.DataFrame:
+    """Add `usd`: USD per unit of the weekly panel's price, per symbol.
+
+    The panel is in the LISTING currency, and FMP quotes London / Johannesburg
+    / Tel Aviv lines in MINOR units (pence, cents, agorot) — so a raw dollar-
+    volume floor of $250k/week meant Y250k for a Tokyo line and 250k PENCE for
+    London. Currency = the master's listing-currency label, else the exchange
+    suffix; a GBP / ZAR / ILS label on a .L / .JO / .TA line is the minor unit
+    (the master's own price is in pence there while its market cap is in
+    pounds, so it cannot be used as a bridge). Converted with the FMP spot table."""
+    import os
+    usd_unit = {}
+    if os.path.exists("fmp_fx_usd.csv"):
+        usd_unit = pd.read_csv("fmp_fx_usd.csv").set_index("currency")["usd_per_unit"].to_dict()
+    syms = pd.Series(p["symbol"].unique())
+    ccy = pd.Series(np.nan, index=syms.values, dtype=object)
+    if os.path.exists("asymmetry_global.csv"):
+        cols = pd.read_csv("asymmetry_global.csv", nrows=0).columns
+        if "currency" in cols:
+            m = pd.read_csv("asymmetry_global.csv", usecols=["symbol", "currency"],
+                            low_memory=False).drop_duplicates("symbol").set_index("symbol")["currency"]
+            ccy = m.reindex(syms.values)
+    suf = syms.map(_market).values
+    ccy = ccy.where(ccy.notna(), pd.Series([_SUFFIX_CCY.get(x) for x in suf], index=syms.values))
+    minor = {"L": ("GBP", "GBp"), "JO": ("ZAR", "ZAc"), "TA": ("ILS", "ILA")}
+    fixed = [minor[sf][1] if (sf in minor and c == minor[sf][0]) else c for sf, c in zip(suf, ccy.values)]
+    fac = pd.Series([usd_unit.get(c, np.nan) if isinstance(c, str) else np.nan for c in fixed],
+                    index=syms.values)
+    return p.assign(usd=p["symbol"].map(fac).astype(float))
+
+
 def _market(sym: str) -> str:
     return sym.rsplit(".", 1)[1] if "." in sym else "US"
 
@@ -88,7 +131,9 @@ def _symbol_panel(g: pd.DataFrame, snapshot: bool = False):
     h = g["high"].to_numpy(float)
     lo = g["low"].to_numpy(float)
     v = g["volume"].to_numpy(float)
-    dv = g["dvol"].to_numpy(float)
+    # dollar volume in USD (NaN if the currency is unknown -> not tradeable-tested)
+    _u = float(g["usd"].iloc[0]) if "usd" in g.columns and pd.notna(g["usd"].iloc[0]) else np.nan
+    dv = g["dvol"].to_numpy(float) * _u
     s = pd.Series
     lr = np.log(c)
     ret = np.diff(lr, prepend=np.nan)
@@ -173,7 +218,7 @@ def _symbol_panel(g: pd.DataFrame, snapshot: bool = False):
 
 def build_panel(prices_path: str = PRICES, out: str = PANEL, workers: int = 4) -> pd.DataFrame:
     from multiprocessing import Pool
-    p = pd.read_parquet(prices_path)
+    p = attach_usd(pd.read_parquet(prices_path))
     groups = [g for _, g in p.groupby("symbol", sort=False)]
     del p
     frames, prem = [], []
