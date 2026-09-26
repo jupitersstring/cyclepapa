@@ -147,6 +147,9 @@ def ceiling(d, mask, label=LABEL):
     y = d[label]
     ok = y.notna() & mask
     fit = ok & (d["week"] <= "2018-12-31"); test = ok & (d["week"] > "2018-12-31")
+    # a feature constant (or all-missing) inside the fit rows breaks the
+    # histogram binner (it needs >= 2 distinct values to place a threshold)
+    X = X.loc[:, X[fit].nunique(dropna=True) > 1]
     clf = HistGradientBoostingClassifier(max_iter=300, learning_rate=0.05, max_leaf_nodes=31, min_samples_leaf=100,
                                          random_state=7)
     clf.fit(X[fit], y[fit], sample_weight=d.loc[fit, "w_cc"])

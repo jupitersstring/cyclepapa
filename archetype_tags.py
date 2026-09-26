@@ -7206,6 +7206,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_sequence_preignition',
         'arch_mb_conviction_confluence',
         'arch_mb_left_for_dead_insider',
+        'arch_mb_asset_trough_informed',
+        'arch_mb_preprofit_ignored_beats',
+        'arch_mb_preprofit_freefall_informed',
+        'arch_mb_biotech_financed_hiring',
         'arch_xr_peer_margin_gap',
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
@@ -7403,6 +7407,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_sequence_preignition': 'MB-SequencePreIgnition',
         'arch_mb_conviction_confluence': 'MB-ConvictionConfluence',
         'arch_mb_left_for_dead_insider': 'MB-LeftForDeadInsider',
+        'arch_mb_asset_trough_informed': 'MB-AssetTroughInformed',
+        'arch_mb_preprofit_ignored_beats': 'MB-PreProfitIgnoredBeats',
+        'arch_mb_preprofit_freefall_informed': 'MB-PreProfitFreefallInformed',
+        'arch_mb_biotech_financed_hiring': 'MB-BiotechFinancedHiring',
         'arch_xr_cash_leads_book': 'XR-CashLeadsBook',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
@@ -7470,6 +7478,53 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _is_clinical_biotech = (_is_drug_dev & ~_commercial.fillna(False))
     df['is_drug_developer'] = _is_drug_dev.astype(int)
     df['is_clinical_biotech'] = _is_clinical_biotech.astype(int)
+
+    # ============ SEGMENT MULTIBAGGERS (MULTIBAGGER_SEGMENTS.md) ============
+    # The same point-in-time panel split into the populations whose value is
+    # measured differently. Each population's own mining, not the pooled one.
+    _seg_asset = ((sector.isin(['Energy', 'Materials', 'Real Estate', 'Utilities'])
+                   | _ind_b.str.contains(r'shipping|marine|tanker|lessor|leasing|holding|reit|real estate|mining'
+                                         r'|oil|gas|coal|steel|aluminum|gold|silver|uranium|timber|farm|metals',
+                                         regex=True)) & ~_is_drug_dev)
+    _seg_preprofit = (((_ncol('op_margin') < 0) | (_ncol('fcf_margin') < 0)).fillna(False)
+                      & ~_is_drug_dev & ~_seg_asset)
+    _informed = (_ins_2q | _13d_recent | _mb_insider)
+    # ASSET TROUGH WITH AN INFORMED BUYER: in asset businesses the winners were
+    # NOT the ones deleveraging or fixing margins — they were the ones whose
+    # sales per share had run far ahead of the price (gap_sales the top
+    # feature of the trough cluster), sitting on a fresh low with insiders /
+    # a new 13D holder arriving (the only conviction measure that separated
+    # winners from lookalikes, +0.094; the GMM's 2.2x group: activist 38%,
+    # insiders 12%, weeks since the 5y low = 1). Leverage present is part of
+    # the lever (deleveraging was negative), so it is a lens, not a veto.
+    _nl_sales_pos = ((_ncol('nl_sales_1y') > 0) | (_ncol('nl_sales_2y') > 0) | (_ncol('nl_sales_3y') > 0)).fillna(False)
+    df['arch_mb_asset_trough_informed'] = (_mb_base & _seg_asset & _mb_fallen & _nl_sales_pos & _informed).astype(int)
+    # PRE-PROFIT, BEATS THE MARKET IGNORED: the 10x family of the pre-profit
+    # population (lift 30-35x on a 10x within 5 years, ~45-50% of such
+    # month-ends went 10x: CELH 2019, ASPN 2018, PERI, LSCC 2017, POLA):
+    # earnings beats with no price reaction, in a still-loss-making operator.
+    # Blow-up 30-50%: a lottery-shaped archetype by construction.
+    df['arch_mb_preprofit_ignored_beats'] = (
+        _mb_base & _seg_preprofit & (_ncol('evt_ignored_beats_2y') >= 2).fillna(False)).astype(int)
+    # PRE-PROFIT IN FREEFALL WITH INFORMED BUYERS: the population's best
+    # cluster (lift 1.5x, 10% of its multibaggers; GME 2019, ASPN, EAT 2020,
+    # BGFV, LSCC, CAR 2019): fallen 88%, 8 weeks off the 5-year low, P/S
+    # 0.30, insiders 30% (5.8x), activist 45% (5.1x), headcount SHRINKING
+    # (productivity gain 8.8x). Blow-up 28%.
+    df['arch_mb_preprofit_freefall_informed'] = (_mb_base & _seg_preprofit & _mb_fallen & _informed).astype(int)
+    # DRUG DEVELOPER, FINANCED AND HIRING INTO THE FALL: the drug developers'
+    # highest-lift cluster (3.65x, blow-up 35%; AXSM 2017, EXEL 2014, CORT
+    # 2013, ITCI 2019): headcount growing in every member, share count +15%,
+    # insiders 36% (13x), activist 59%, price 22% of the 5y high, cash on
+    # hand. The 10x patterns add DOWNGRADES as a positive condition.
+    _bio_financed = ((_ncol('fmp_st_shares_growth_3y') >= 0.10) | (_ncol('fmp_filled_shares_growth_3y') >= 0.10)
+                     | (_ncol('fq_financing_cf') > 0)).fillna(False)
+    _bio_committed = ((_ncol('usf_emp_g1') >= 0.10).fillna(False) | _informed)
+    df['arch_mb_biotech_financed_hiring'] = (
+        is_operating & (mcap >= 10e6) & _is_drug_dev & (_hi260 <= 0.50).fillna(False) & _bio_financed
+        & _bio_committed & (_ncol('net_cash_pct_mcap') > 0).fillna(False)).astype(int)
+    _SPIRITED += ['mb_asset_trough_informed', 'mb_preprofit_ignored_beats', 'mb_preprofit_freefall_informed',
+                  'mb_biotech_financed_hiring']
 
     # ---------- Biotech Deep Value (below-cash special situation) ----------
     # A drug developer trading at/below its NET CASH: the market pays you to
@@ -8670,6 +8725,34 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'mb_sequence_preignition': [(_c('mb_sequence_signs'), 1), (_c('fqx_opm_slope8'), 1),
                                     (_c('fqx_roic_slope8'), 1), (_c('rev_accel'), 1), (_c('ts_r13'), -1),
                                     (_c('ts_dist_hi52'), -1), (_c('market_cap_usd'), -1)],
+        # segment study: asset trough — sales/share far ahead of price, fresh
+        # low, informed buyer, cheap on sales, uncovered, small, leverage
+        # present (deleveraging was NEGATIVE), the 30w MA still falling
+        'mb_asset_trough_informed': [(_c('nl_sales_1y'), 1), (_c('nl_sales_3y'), 1), (_c('ts_wks_since_lo260'), -1),
+                                     (_c('usf_ins_buy_quarters_4q'), 1), (-_evt_age_days('evt_sc13d_date'), 1),
+                                     (_c('p_s').where(_c('p_s') > 0), -1), (_c('sent_n_analysts'), -1),
+                                     (_c('market_cap_usd'), -1), (_c('debt_to_equity'), 1),
+                                     (_c('ts_ma30_slope13'), -1), (_c('ts_dd_time_share_260'), 1), (_c('ts_r13'), -1)],
+        # pre-profit ignored beats — more ignored beats, R&D intensity, targets
+        # far above price, revenue acceleration, sales ahead of price, small
+        'mb_preprofit_ignored_beats': [(_c('evt_ignored_beats_2y'), 1), (_c('evt_beats_8q'), 1),
+                                       (_c('fmp_rd_to_revenue'), 1), (_c('evt_pt_prem_12m'), 1),
+                                       (_c('rev_accel'), 1), (_c('nl_sales_1y'), 1), (_c('market_cap_usd'), -1),
+                                       (_c('ts_r13'), -1)],
+        # pre-profit freefall — depth and freshness of the fall, insiders / a
+        # 13D holder, headcount SHRINKING, cheap on sales, targets far above
+        'mb_preprofit_freefall_informed': [(_c('ts_dist_hi260'), -1), (_c('ts_wks_since_lo260'), -1),
+                                           (_c('usf_ins_buy_quarters_4q'), 1), (-_evt_age_days('evt_sc13d_date'), 1),
+                                           (_c('usf_emp_g1'), -1), (_c('p_s').where(_c('p_s') > 0), -1),
+                                           (_c('evt_pt_prem_12m'), 1), (_c('nl_sales_1y'), 1), (_c('market_cap_usd'), -1)],
+        # biotech financed and hiring — headcount growth, share issuance,
+        # insiders, DOWNGRADES (positive in the 10x patterns), cash, depth of
+        # the fall, small, volatile
+        'mb_biotech_financed_hiring': [(_c('usf_emp_g1'), 1), (_c('fmp_st_shares_growth_3y'), 1),
+                                       (_c('usf_ins_buy_quarters_4q'), 1), (-_evt_age_days('evt_sc13d_date'), 1),
+                                       (_c('sent_downgrades_12m'), 1), (_c('net_cash_pct_mcap'), 1),
+                                       (_c('ts_dist_hi260'), -1), (_c('ts_wks_since_lo260'), -1),
+                                       (_c('market_cap_usd'), -1), (_c('ts_vol_1y'), 1)],
         'bottleneck': [(_c('tc_min_gm'), 1), (_c('gross_margin'), 1), (_c('roic_lindy'), 1),
                        (_c('capex_intensity'), -1)],
     })
