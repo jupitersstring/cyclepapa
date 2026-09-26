@@ -42,6 +42,7 @@ build_archetype_book.py
 build_forensic_xr_book.py
 build_truly_xr_book.py
 build_segment_detail_book.py
+build_elite_country_book.py
 build_harvard_workbook.py --top-n 50
 build_country_workbook.py
 build_nms_book.py --top-n 100 --per-region-n 25
