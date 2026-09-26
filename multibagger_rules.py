@@ -181,43 +181,9 @@ def gbm_check(d, label):
 
 
 def main():
-    d = mc.load()
-    d = d[~d["bio"]].reset_index(drop=True)
-    if "fwd_mult_60" in d.columns:
-        d["t10_60"] = (d["fwd_mult_60"] >= 10).astype(float).where(d["fwd_mult_60"].notna())
-    M, names = conditions(d)
-    L = ["# The specific pre-conditions with the largest out-of-sample uplift\n",
-         f"{d['symbol'].nunique():,} symbols, {len(d):,} liquid month-ends (non-biotech; unit-break symbols "
-         "excluded). Rules are DISCOVERED on 2012-2017 only and must hold separately in 2018-2020 (t1) and "
-         "2021+ (t2); ranked by the WORST of the three lifts. LOW / HIGH = bottom / top quintile of the feature "
-         "within its month and local market. Support floor: >= 0.05% of month-ends and >= 25 events per "
-         "period; near-duplicates (>= 70% overlap) collapsed.\n"]
-    for label, title in (("t3_24", "3x within 24 months"), ("t3_12", "3x within 12 months (fast)"),
-                         ("t10_60", "10x within 60 months")):
-        if label not in d.columns or d[label].notna().sum() < 1000:
-            continue
-        res, sc = search(d, M, names, label)
-        if not len(res):
-            L.append(f"\n## {title}\n\nno rule met the support floor in all three periods\n")
-            continue
-        desc = describe(d, res, sc, label)
-        tab = res.drop(columns=["_mask"]).merge(desc, on="rule", how="left")
-        tab.to_csv(f"mb_rules_{label}.csv", index=False)
-        L.append(f"\n## {title}  (base rate: fit {sc.base['fit']:.2%}, 2018-20 {sc.base['t1']:.2%}, "
-                 f"2021+ {sc.base['t2']:.2%})\n")
-        cols = ["rule", "min_lift", "fit_lift", "t1_lift", "t2_lift", "t2_share", "events_t2",
-                "median_months_to_3x", "t10_60_rate", "p_blowup_50", "median_fwd_24m", "examples"]
-        L.append(tab[[c for c in cols if c in tab.columns]].head(25).round(3).to_markdown(index=False))
-        try:
-            g = gbm_check(d, label)
-            L.append(f"\nGradient-boosted cross-check (fit <= 2017, all 2018+): AUC {g['auc_test']:.3f}; lift of "
-                     f"the top 0.5% / 1% / 5% each month: {g['lift_top_0.5%']:.2f}x / {g['lift_top_1.0%']:.2f}x / "
-                     f"{g['lift_top_5.0%']:.2f}x\n")
-        except Exception as exc:          # the cross-check must not sink the rules
-            L.append(f"\n(gradient-boosted cross-check failed: {exc})\n")
-    open(MD, "w").write("\n".join(L))
-    print(f"wrote {MD}", flush=True)
-
+    """Superseded by the full-sample pattern mining inside multibagger_mine.py
+    (run by multibagger_clusters.main); kept importable for its helpers."""
+    print("patterns are mined in multibagger_mine.py (MULTIBAGGER_ARCHETYPES.md)", flush=True)
 
 if __name__ == "__main__":
     main()

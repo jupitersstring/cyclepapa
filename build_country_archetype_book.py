@@ -19,6 +19,7 @@ import argparse
 import os
 import sys
 
+import numpy as np
 import pandas as pd
 
 from build_harvard_workbook import (
@@ -518,6 +519,11 @@ def main():
     add_otc_mode_arg(ap)
     add_high_filter_arg(ap)
     add_gate_arg(ap)
+    ap.add_argument('--elite', action='store_true',
+                    help='ELITE members only: every archetype restricted to its most exceptional '
+                         'names — continuous spirit >= 0.90 (star) or the top 2%% of the '
+                         "archetype's members by spirit (the elite country book's rule), laid out "
+                         'like the country archetype book.')
     ap.add_argument('--max-ret-12m', type=float, default=None,
                     help='keep only names whose trailing 12-month return '
                          '(momentum_12m, fallback price_yoy) is BELOW this '
@@ -595,6 +601,16 @@ def main():
         print(f'  cheap-multiple filter (P/E<{args.max_pe} OR EV<{args.max_ev}): '
               f'{len(df):,} names kept', file=sys.stderr)
     df = apply_gates(df, args.gate)
+    if args.elite:
+        # the elite country book's selection (build_elite_country_book.elite_matrix),
+        # applied to the same universe, then laid out as the country archetype book
+        from build_elite_country_book import elite_matrix
+        _num = lambda c: pd.to_numeric(df[c], errors='coerce') if c in df.columns else pd.Series(np.nan, index=df.index)
+        df = df[~(_num('non_common_flag') == 1) & ~(_num('is_clinical_biotech') == 1)].copy()
+        _E, _ = elite_matrix(df, arch_cols)
+        for _c in arch_cols:
+            df[_c] = _E[_c].astype(int) if _c in _E.columns else 0
+        print(f'  elite mode: {int((_E.sum(axis=1) > 0).sum()):,} names elite on >= 1 archetype', file=sys.stderr)
     df['src'] = df['src'].fillna('').astype(str).str.upper()
     print(f'  {len(df):,} eligible rows, {len(arch_cols)} archetypes',
           file=sys.stderr)
@@ -610,7 +626,8 @@ def main():
                      value=f'Top {args.n} names per archetype within each market '
                            f'— so no single country dominates the ranking'
                      + ('   \u00b7  MID-CAP & ABOVE only (\u2265$%.0fB)' % (args.min_mcap/1e9) if args.min_mcap >= 1e9 else '')
-                     + (f'   \u00b7  UNIVERSAL GATE: {gate_label(args.gate)}' if args.gate else ''))
+                     + (f'   \u00b7  UNIVERSAL GATE: {gate_label(args.gate)}' if args.gate else '')
+                     + ('   \u00b7  ELITE MEMBERS ONLY (spirit >= 0.90 or top 2% of each archetype)' if args.elite else ''))
     sub.font = _font(italic=True, color=MUTED)
     sub.alignment = _TXT_ALIGN_LEFT
     f_bold_muted = _font(bold=True, color=MUTED)

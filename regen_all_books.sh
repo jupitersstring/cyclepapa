@@ -43,6 +43,7 @@ while IFS= read -r cmd; do
 done <<'BOOKS'
 build_elite_country_book.py
 build_country_archetype_book.py --n 30
+build_country_archetype_book.py --n 30 --elite --min-names 1 --out country_archetype_elite.xlsx
 build_country_archetype_book.py --n 30 --gate "fcf_yield>5%" --out country_archetype_fcf5.xlsx
 build_country_archetype_inflection_book.py --n 30
 build_country_workbook.py

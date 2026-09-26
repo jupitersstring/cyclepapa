@@ -506,26 +506,10 @@ def report(res_main, res_12, res_bio, sl, d, res_full=None, combos_df=None, tree
 
 
 def main():
-    d = load()
-    nb = d[~d["bio"]].copy()
-    res = run(nb, LABEL, "Main: 3x within 24 months (non-biotech)")
-    res12 = run(nb, "t3_12", "Fast: 3x within 12 months (non-biotech)")
-    resf = run(nb, LABEL, "Cross-check: 3x within 24 months, all ~100 ranked features (non-biotech)",
-               space="full")
-    resf["summary"].to_csv("mb_clusters_fullspace_summary.csv", index=False)
-    bio = d[d["bio"]].copy()
-    resb = run(bio, LABEL, "Biotech", kmax=6) if (bio[LABEL] == 1).sum() >= 200 else None
-    sl = state_lift(nb)
-    cb = combos(nb)
-    cb.to_csv("mb_state_combos.csv", index=False)
-    tr = tree_recipes(nb)
-    tr.to_csv("mb_tree_recipes.csv", index=False)
-    res["summary"].to_csv("mb_clusters_summary.csv", index=False)
-    res12["summary"].to_csv("mb_clusters_fast_summary.csv", index=False)
-    sl.to_csv("mb_state_lift.csv", index=False)
-    report(res, res12, resb, sl, d, resf, cb, tr)
-    print(f"wrote {MD}", flush=True)
-
+    """The full-sample mining (multibagger_mine.py) — every year, every
+    multibagger episode, clusters + patterns + tree recipes."""
+    import multibagger_mine
+    multibagger_mine.main()
 
 if __name__ == "__main__":
     main()
