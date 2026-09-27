@@ -77,6 +77,8 @@ ARCHETYPE_LABELS = {
     'arch_mb_quality_at_distress': 'MB: Quality at Distress (deep drawdown, EV/sales low, ROCE x FCF yield high, P/B bottom of peers: robust lift 9.2x, blow-up 27-29%)',
     'arch_mb_rd_leader_on_volume': 'MB: R&D Leader on Volume, Price Ahead of EPS (robust lift 5.5x, 12 markets, blow-up 22%)',
     'arch_mb_cheap_vs_sector_recovering': 'MB: Cheap vs Peers, Recovering, FCF Streak Rising (robust lift 4.7x, 16 markets, blow-up 20%)',
+    'arch_mb_model_confluence': 'MB: Model Confluence (a rule archetype member the model also ranks in the top decile of its market)',
+    'arch_mb_model_uncovered_not_fallen': "MB: Model's Own Ground (top 5% of market, not fallen, in no rule archetype: lift 3.1x / 2.6x, blow-up 22-30%)",
     'arch_mb_model_top': 'MB: Model Top 5% of Market (walk-forward model over every feature; lift and blow-up in MULTIBAGGER_MODEL.md)',
     'arch_mb_cheap_growth_targets_up': 'MB: Cheap Growth, Targets Rising (revenue +15%, EV/EBIT <= 10 or FCF yield + growth >= 20%, targets revised up: lift 1.25x, blow-up 8%)',
     'arch_narrative_lag': 'Narrative Lag',

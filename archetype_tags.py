@@ -7508,6 +7508,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_hiring_beating_uncovered',
         'arch_mb_cheap_growth_targets_up',
         'arch_mb_model_top',
+        'arch_mb_model_confluence',
+        'arch_mb_model_uncovered_not_fallen',
         'arch_mb_industry_trough_cheapest',
         'arch_mb_reinvesting_at_trough',
         'arch_mb_stressed_not_diluting',
@@ -7728,6 +7730,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_hiring_beating_uncovered': 'MB-HiringBeatingUncovered',
         'arch_mb_cheap_growth_targets_up': 'MB-CheapGrowthTargetsUp',
         'arch_mb_model_top': 'MB-ModelTop5',
+        'arch_mb_model_confluence': 'MB-ModelConfluence',
+        'arch_mb_model_uncovered_not_fallen': 'MB-ModelUncoveredNotFallen',
         'arch_mb_industry_trough_cheapest': 'MB-IndustryTroughCheapest',
         'arch_mb_reinvesting_at_trough': 'MB-ReinvestingAtTrough',
         'arch_mb_stressed_not_diluting': 'MB-StressedNotDiluting',
@@ -7853,6 +7857,26 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & _bio_committed & (_ncol('net_cash_pct_mcap') > 0).fillna(False)).astype(int)
     _SPIRITED += ['mb_asset_trough_informed', 'mb_preprofit_ignored_beats', 'mb_preprofit_freefall_informed',
                   'mb_biotech_financed_hiring']
+
+    # ============ USING THE MODEL (MULTIBAGGER_MODEL.md) ============
+    # Out of sample on USD labels the model's top decile of each market held
+    # 23% of the multibagger month-ends (the 33 rule archetypes 50%; united
+    # 57%); its lift is 3.1x / 2.6x inside the uncovered population and on
+    # NOT-fallen names, only 1.5x on fallen ones (the rules own that ground).
+    _rule_mb = [c for c in df.columns if c.startswith('arch_mb_') and c != 'arch_mb_model_top']
+    df['mb_rule_count'] = df[_rule_mb].sum(axis=1)
+    _model_rank = _ncol('mb_model_rank_mkt')
+    # 1. CONFLUENCE: a rule archetype member the model also ranks in the top
+    #    decile of its market — the archetype names the situation, the model
+    #    says the whole feature profile looks like the ones that tripled.
+    df['arch_mb_model_confluence'] = ((df['mb_rule_count'] >= 1) & (_model_rank >= 0.90).fillna(False)).astype(int)
+    # 2. THE MODEL'S OWN GROUND: top 5% of its market, NOT fallen (>= 60% of
+    #    the 5-year high) and in no rule archetype — the screen for what the
+    #    boxes cannot hold (lift 3.1x / 2.6x there; blow-up 22-30%, denoted).
+    df['arch_mb_model_uncovered_not_fallen'] = (
+        _mb_base & (_model_rank >= 0.95).fillna(False) & (_hi260 >= 0.60).fillna(False)
+        & (df['mb_rule_count'] == 0)).astype(int)
+    _SPIRITED += ['mb_model_confluence', 'mb_model_uncovered_not_fallen']
 
     # ---------- Biotech Deep Value (below-cash special situation) ----------
     # A drug developer trading at/below its NET CASH: the market pays you to
@@ -9120,6 +9144,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                         (_c('sent_n_analysts'), -1), (_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
                                         (_c('ts_dist_hi260'), -1)],
         'mb_model_top': [(_c('mb_model_p'), 1), (_c('mb_model_pct_hist'), 1), (_c('mb_model_rank_mkt'), 1)],
+        'mb_model_confluence': [(_c('mb_model_p'), 1), (_c('mb_rule_count'), 1), (_c('mb_model_pct_hist'), 1),
+                                (_c('ts_dist_hi260'), -1)],
+        'mb_model_uncovered_not_fallen': [(_c('mb_model_p'), 1), (_c('mb_model_pct_hist'), 1), (_c('nl_sales_3y'), 1),
+                                          (_c('fmp_rd_to_revenue'), 1), (_c('vs_ind_r26'), -1), (_c('market_cap_usd'), -1)],
         # the nine mined families: each lens is one of the family's own conditions, continuous
         'mb_industry_trough_cheapest': [(_c('p_s').where(_c('p_s') > 0), -1), (_c('ind_tape_opm_d1'), -1),
                                         (_c('ind_tape_rev_growth'), -1), (_c('ts_dist_hi260'), -1), (_c('nl_sales_3y'), 1),
