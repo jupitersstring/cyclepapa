@@ -21,8 +21,9 @@ its own:
                       of them; blow-up (worst close -50% within 24 months)
                       and the 10x rate are shown beside every one
 
-Populations mined: all uncovered (non-biotech); uncovered profitable
-operators; uncovered NOT fallen (>= 60% of the 5-year high); uncovered
+Populations mined, on BOTH sides — the uncovered month-ends and the covered
+ones (patterns inside the archetypes' own territory that beat them): all
+(non-biotech); profitable operators; NOT fallen (>= 60% of the 5-year high);
 fallen. Each re-ranked inside itself. Nothing here changes an archetype:
 the candidates are for reading and choosing.
 """
@@ -260,12 +261,16 @@ def main():
          f"{len(d):,} non-biotech month-ends; the 22 archetypes claim {covered.mean():.1%} of month-ends and "
          f"{(covered & ev).sum() / ev.sum():.1%} of the USD multibagger month-ends. Below: the rest, mined for readable "
          "patterns whose lift holds in both halves of time and across markets. Candidates only — nothing changes an archetype.\n"]
-    u = d[~covered].reset_index(drop=True)
-    population(L, u, "all", "Uncovered, all")
-    op = ((u["opm"] >= 0) & (u["fcf_margin"] >= 0)).fillna(False) & ~u["asset"]
-    population(L, u[op].reset_index(drop=True), "operators", "Uncovered profitable operators")
-    population(L, u[(u["dist_hi260"] >= 0.6).fillna(False)].reset_index(drop=True), "notfallen", "Uncovered, not fallen (>= 60% of 5y high)")
-    population(L, u[(u["dist_hi260"] <= 0.4).fillna(False)].reset_index(drop=True), "fallen", "Uncovered, fallen (<= 40% of 5y high)")
+    for side, mask in (("uncovered", ~covered), ("covered", covered)):
+        u = d[mask].reset_index(drop=True)
+        cap = side.capitalize()
+        population(L, u, f"{side}_all", f"{cap}, all")
+        open(MD, "w").write("\n".join(L))
+        op = ((u["opm"] >= 0) & (u["fcf_margin"] >= 0)).fillna(False) & ~u["asset"]
+        population(L, u[op].reset_index(drop=True), f"{side}_operators", f"{cap} profitable operators")
+        population(L, u[(u["dist_hi260"] >= 0.6).fillna(False)].reset_index(drop=True), f"{side}_notfallen", f"{cap}, not fallen (>= 60% of 5y high)")
+        population(L, u[(u["dist_hi260"] <= 0.4).fillna(False)].reset_index(drop=True), f"{side}_fallen", f"{cap}, fallen (<= 40% of 5y high)")
+        open(MD, "w").write("\n".join(L))
     open(MD, "w").write("\n".join(L))
     print(f"wrote {MD}", flush=True)
 
