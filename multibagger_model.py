@@ -44,6 +44,7 @@ import multibagger_operators as mo
 import multibagger_segments as ms
 
 MD = "MULTIBAGGER_MODEL.md"
+CTX = {}          # large objects live here, NEVER in d.attrs (pandas deep-copies attrs on every slice)
 SCORES = "mb_model_scores.csv"
 LABEL = "t3_24"
 FIRST_TEST_YEAR = 2016
@@ -181,7 +182,7 @@ def region_rules(d, R, p, y, w, L):
 def importance(last, d, y, w, L):
     from sklearn.inspection import permutation_importance
     clf, cols, test = last
-    R = d.attrs["R"]
+    R = CTX["R"]
     test = test & d.index.isin(R.index)
     idx = np.random.default_rng(7).choice(d.index[test], size=min(50_000, int(test.sum())), replace=False)
     imp = permutation_importance(clf, R.loc[idx, cols], y[idx], n_repeats=2, random_state=7, scoring="roc_auc",
@@ -202,7 +203,7 @@ def score_today(d, R, y, w, L):
     import gc; gc.collect(); _mem("before final fit")
     clf = _gbm().fit(R.loc[fit_rows, cols], y[fit_rows], sample_weight=fit_w)
     _mem("final fit")
-    d.attrs["final"] = (clf, cols, (d["week"] >= last_week - pd.Timedelta(weeks=156)) & y.notna())
+    CTX["final"] = (clf, cols, (d["week"] >= last_week - pd.Timedelta(weeks=156)) & y.notna())
     if os.path.exists("mb_today.parquet"):
         t = pd.read_parquet("mb_today.parquet")
         t["week"] = pd.to_datetime(t["week"])
@@ -220,7 +221,7 @@ def score_today(d, R, y, w, L):
     t = t.sort_values("week").drop_duplicates("symbol", keep="last")
     t["mb_model_rank_mkt"] = t.groupby("market")["mb_model_p"].rank(pct=True)
     t["mb_model_rank"] = t["mb_model_p"].rank(pct=True)
-    hist = d.attrs["p_oos"].dropna().to_numpy()
+    hist = CTX["p_oos"].dropna().to_numpy()
     t["mb_model_pct_hist"] = np.searchsorted(np.sort(hist), t["mb_model_p"].to_numpy()) / max(len(hist), 1)
     out = t[["symbol", "week", "mb_model_p", "mb_model_rank_mkt", "mb_model_rank", "mb_model_pct_hist"]]
     out.to_csv(SCORES, index=False)
@@ -335,10 +336,12 @@ def main():
         print(f"  stage 2: {int(p.notna().sum()):,} out-of-sample scores loaded", flush=True)
     else:
         p, tab, last = walk_forward(d, R, y, w)
-    d.attrs["p_oos"] = p; d.attrs["R"] = R
+    CTX["p_oos"] = p; CTX["R"] = R
     L.append(tab.round(3).to_markdown(index=False))
+    _mem("after walk-forward table")
     oos = p.notna() & y.notna()
     pooled = _lift_table(d, p, oos, w)
+    _mem("pooled lift")
     L.append(f"\nPooled {FIRST_TEST_YEAR}+: " + ", ".join(f"{k} {v:.3f}" for k, v in pooled.items() if k != "n") + "\n")
     # 2. coverage
     L.append("\n# 2. Coverage of the multibagger month-ends (out-of-sample years)\n")
@@ -355,6 +358,7 @@ def main():
                      "share_of_multibagger_month_ends": float(w[sel & ev].sum() / w[ev].sum()),
                      "rate": float(np.average(y[sel], weights=w[sel])) if sel.sum() else np.nan})
     L.append(pd.DataFrame(rows).round(3).to_markdown(index=False))
+    _mem("coverage")
     unc = oos & ~covered
     L.append(f"\nInside the UNCOVERED population ({int(unc.sum()):,} month-ends, base {np.average(y[unc], weights=w[unc]):.2%}): "
              + ", ".join(f"{k} {v:.3f}" for k, v in _lift_table(d, p, unc, w).items() if k != "n") + "\n")
@@ -363,6 +367,7 @@ def main():
                       ("not fallen (>= 60%)", (d["dist_hi260"] >= 0.6).fillna(False))):
         mm_ = oos & mask
         L.append(f"\n{pop}: " + ", ".join(f"{k} {v:.3f}" for k, v in _lift_table(d, p, mm_, w).items() if k != "n"))
+    _mem("populations")
     open(MD, "w").write("\n".join(L))
     # 4. today (before the optional analyses: the scores matter most)
     try:
@@ -373,7 +378,7 @@ def main():
     # 3. what it uses
     L.append("\n# 3. What the model uses\n")
     try:
-        last = last or d.attrs.get("final")
+        last = last or CTX.get("final")
         if last is not None:
             importance(last, d, y, w, L)
     except Exception as exc:
