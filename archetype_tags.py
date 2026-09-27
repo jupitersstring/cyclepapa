@@ -7230,7 +7230,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     near the 52-week low. Robust 6.0x, 94 events, 10 years, 9 markets,
     #     blow-up 25% (SUZLON 2020, SNBR 2020, SNH.JO 2019).
     _stressed = (((nde >= 5) & (nde < 90)) | (_ncol('equity') < 0)).fillna(False)
-    _not_diluting = ~((_ncol('fmp_st_shares_growth_3y') > 0.03) | (_ncol('fmp_filled_shares_growth_3y') > 0.03)).fillna(False)
+    _not_diluting = ~(_ncol('fmp_st_shares_growth_3y') > 0.03)      # fmp_filled_* are fill FLAGS, not values
     df['arch_mb_stressed_not_diluting'] = (_mb_base & _mb_fallen & _stressed & _not_diluting
                                            & (_ncol('ts_dist_lo52') <= 1.15).fillna(False)).astype(int)
     # U4. GROWTH PAST ITS CAPEX PEAK (not fallen): two-year revenue growth in the
@@ -7845,7 +7845,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # 2013, ITCI 2019): headcount growing in every member, share count +15%,
     # insiders 36% (13x), activist 59%, price 22% of the 5y high, cash on
     # hand. The 10x patterns add DOWNGRADES as a positive condition.
-    _bio_financed = ((_ncol('fmp_st_shares_growth_3y') >= 0.10) | (_ncol('fmp_filled_shares_growth_3y') >= 0.10)
+    _bio_financed = ((_ncol('fmp_st_shares_growth_3y') >= 0.10)
                      | (_ncol('fq_financing_cf') > 0)).fillna(False)
     _bio_committed = ((_ncol('usf_emp_g1') >= 0.10).fillna(False) | _informed)
     df['arch_mb_biotech_financed_hiring'] = (
