@@ -194,9 +194,12 @@ def score_today(d, R, y, w, L):
     """Fit on every resolved month-end; score today's cross-section."""
     last_week = d["week"].max()
     fit = (d["week"] <= last_week - pd.Timedelta(weeks=104)) & y.notna()
-    fit_rows, fit_w = _fit_sample(d, fit, y, w)
+    fit_rows, fit_w = _fit_sample(d, fit, y, w, keep_neg=0.25)
     cols = list(R.columns[R.loc[fit_rows].nunique(dropna=True) > 1])
+    import gc; gc.collect(); _mem("before final fit")
     clf = _gbm().fit(R.loc[fit_rows, cols], y[fit_rows], sample_weight=fit_w)
+    _mem("final fit")
+    d.attrs["final"] = (clf, cols, (d["week"] >= last_week - pd.Timedelta(weeks=156)) & y.notna())
     if os.path.exists("mb_today.parquet"):
         t = pd.read_parquet("mb_today.parquet")
         t["week"] = pd.to_datetime(t["week"])
@@ -249,7 +252,16 @@ def main():
          f"{len(d):,} month-ends (non-biotech), {R.shape[1]} features ranked within month x market; labels "
          f"{d.attrs.get('labels', 'local')}; base 3x-within-24m rate {mm.base_rate(d, LABEL):.2%}.\n"]
     L.append("\n# 1. Walk-forward, year by year\n")
-    p, tab, last = walk_forward(d, R, y, w)
+    if os.environ.get("MODEL_STAGE") == "2" and os.path.exists("mb_model_oos.parquet"):
+        # the walk-forward's scores and table from the previous stage (a fresh
+        # process: the fold fits and this stage's final fit never share a heap)
+        oos_ = pd.read_parquet("mb_model_oos.parquet"); oos_["week"] = pd.to_datetime(oos_["week"])
+        p = d[["symbol", "week"]].merge(oos_, on=["symbol", "week"], how="left")["p_oos"].astype("float32")
+        p.index = d.index
+        tab = pd.read_csv("mb_model_walkforward.csv"); last = None
+        print(f"  stage 2: {int(p.notna().sum()):,} out-of-sample scores loaded", flush=True)
+    else:
+        p, tab, last = walk_forward(d, R, y, w)
     d.attrs["p_oos"] = p; d.attrs["R"] = R
     L.append(tab.round(3).to_markdown(index=False))
     oos = p.notna() & y.notna()
@@ -288,6 +300,7 @@ def main():
     # 3. what it uses
     L.append("\n# 3. What the model uses\n")
     try:
+        last = last or d.attrs.get("final")
         if last is not None:
             importance(last, d, y, w, L)
     except Exception as exc:

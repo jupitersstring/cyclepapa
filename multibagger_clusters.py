@@ -203,8 +203,12 @@ def ranked(d: pd.DataFrame, feats) -> pd.DataFrame:
     # in column chunks: the grouped rank materialises float64 intermediates,
     # and 400 columns x 1.3M rows of those (4 GB) is what pushed the studies
     # over the box's memory beside a book build
-    parts = [d[fs[i:i + 40]].groupby(m).rank(pct=True).astype("float32") for i in range(0, len(fs), 40)]
-    R = pd.concat(parts, axis=1) if parts else pd.DataFrame(index=d.index)
+    # into ONE preallocated float32 block (a concat of the chunks would hold
+    # the matrix twice at the end)
+    A = np.empty((len(d), len(fs)), dtype="float32")
+    for i in range(0, len(fs), 40):
+        A[:, i:i + 40] = d[fs[i:i + 40]].groupby(m).rank(pct=True).to_numpy("float32")
+    R = pd.DataFrame(A, index=d.index, columns=fs)
     for k, src in MISS.items():
         R[k] = d[src].isna().astype(float) if src in d.columns else 1.0
     st = [c for c in d.columns if c.startswith("st_")]
