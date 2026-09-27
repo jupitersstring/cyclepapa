@@ -7063,6 +7063,66 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_mb_left_for_dead_insider'] = ((df['arch_mb_left_for_dead_value'] == 1)
                                            & (df['arch_mb_fallen_insider'] == 1)).astype(int)
     _SPIRITED += ['mb_conviction_confluence', 'mb_left_for_dead_insider']
+    # ---- the operator study (MULTIBAGGER_OPERATORS.md): profitable operators ----
+    # MARKET TAPE: the country's own state (median distance from the 5-year
+    # high and 1-year return across its operating names, breadth) — the
+    # frame the wave archetype needs
+    _mkt_v = _ncol('ts_dist_hi260').where(_frame_pop)
+    df['mkt_tape_dist_hi260'] = _mkt_v.groupby(country).transform('median').round(4)
+    df['mkt_tape_r52'] = _ncol('ts_r52').where(_frame_pop).groupby(country).transform('median').round(4)
+    df['mkt_breadth_up52'] = ((_ncol('ts_r52') > 0).astype(float).where(_frame_pop)
+                              .groupby(country).transform('mean').round(4))
+    df['vs_mkt_dist_hi260'] = (_ncol('ts_dist_hi260') - df['mkt_tape_dist_hi260']).round(4)
+    # 1. NEGLECTED VALUE ACCELERATING IN A DEPRESSED MARKET (the generalised
+    #    form of the 10x pattern `debt not rising & deep value & neglected &
+    #    accelerating` — ISCTR 84x, TURSG 47x, ASUZU 40x, SASA 35x, SUZLON
+    #    33x, CS.TO 19x: lift 21x on a 10x within 5 years, ~19% went 10x,
+    #    blow-up 6-13%). What made it a wave was the MARKET: those names sat
+    #    in a country (or industry) that had itself spent years far below
+    #    its highs. The condition is the peer group's tape, not the country.
+    _debt_not_rising = ((_ncol('fq_netdebt_decline_months') >= 3) | (_ncol('fq_deleveraging_flag') == 1)
+                        | (_ncol('net_cash_pct_mcap') >= 0) | ((nde >= 0) & (nde <= 1.0))).fillna(False)
+    _neglected = (_ncol('sent_n_analysts').fillna(0) <= 2)
+    _depressed_frame = ((df['mkt_tape_dist_hi260'] <= 0.70) | (df['ind_tape_dist_hi260'] <= 0.70)).fillna(False)
+    _deep_or_peer_cheap = _mb_deep | (df['rel_ind_ev_ebit'] <= 0.20).fillna(False)
+    df['arch_mb_wave_neglected_value_accel'] = (
+        _mb_base & _deep_or_peer_cheap & _neglected & (rev_accel > 0).fillna(False) & _debt_not_rising
+        & _depressed_frame).astype(int)
+    # 2. RECOGNISED LEADER IN A WAVE (the family the fallen-dominated pooled
+    #    study buried: lift 11-12x on a 3x within 24 months, blow-up 12-18%;
+    #    NVDA 2019 / 2023, Fujikura, Hanwha Aerospace, Advantest, TSLA 2020):
+    #    heavily covered, volatile, the PRICE AHEAD of sales per share
+    #    (narrative lag negative), margins and returns rising, R&D-heavy, in
+    #    an industry whose own tape is up. The opposite of every fallen
+    #    archetype: it is the wave's leader, bought while still expensive.
+    _price_ahead = ((_ncol('nl_sales_3y') < 0) | (_ncol('nl_sales_1y') < 0)).fillna(False)
+    _ind_wave = ((df['ind_breadth_up52'] >= 0.5) | (df['ind_tape_r52'] > 0)).fillna(False)
+    _vol_hi = (_crank(_ncol('ts_vol_1y')) >= 0.60).fillna(False)
+    df['arch_mb_leader_in_wave'] = (
+        _mb_base & (_ncol('sent_n_analysts') >= 8).fillna(False) & _price_ahead & _vol_hi
+        & (_margin_trend_up | (_ncol('op_margin_delta_yoy') > 0.01).fillna(False))
+        & (_ncol('fq_rev_growth') >= 0.15).fillna(False) & _ind_wave).astype(int)
+    # 3. IMPROVING, SELL SIDE NOT YET TURNED (lift 11-12x, blow-up 3-10%;
+    #    Celestica 2023, 5801.T, Sterling, Powell, Limbach, TRIL.NS): a
+    #    LOW-gross-margin operator whose revenue and margin are rising, the
+    #    tape already re-rating (P/B above its own history, wide range), but
+    #    the analysts' buy share has NOT risen — the perception gap the
+    #    study measures as gap_perc_buyshare.
+    _fund_up = ((_ncol('fq_rev_growth') > 0) & (_ncol('op_margin_delta_yoy') > 0)).fillna(False)
+    _sellside_unturned = ~(_ncol('sent_buy_share_d12') > 0)
+    _low_gm = ((df['rel_ind_gross_margin'] <= 0.35) | (_ncol('gross_margin') < 0.25)).fillna(False)
+    _tape_rerating = ((_ncol('price_vs_5y_avg') > 1.0) | (_ncol('ts_r52') > 0.20)).fillna(False)
+    df['arch_mb_improving_unturned_sellside'] = (
+        _mb_base & _fund_up & _sellside_unturned & _low_gm & _tape_rerating).astype(int)
+    # 4. THE PEER GROUP'S WORST NAME AT ITS LOWEST MULTIPLE (the operators'
+    #    10x recipe: lift 24-29x, 22-27% went 10x, blow-up 11-24%; Celestica
+    #    2020 41x, GME 2018, PRMB 2012, AEIN.DE 2017): EV/EBIT and ROIC at
+    #    the bottom of the INDUSTRY, thin FCF margin or the lowest P/S.
+    df['arch_mb_peer_worst_cheapest'] = (
+        _mb_base & (df['rel_ind_ev_ebit'] <= 0.20).fillna(False) & (df['rel_ind_roce'] <= 0.25).fillna(False)
+        & ((_ncol('fcf_margin') <= 0.03) | (df['rel_ind_p_s'] <= 0.25)).fillna(False)).astype(int)
+    _SPIRITED += ['mb_wave_neglected_value_accel', 'mb_leader_in_wave', 'mb_improving_unturned_sellside',
+                  'mb_peer_worst_cheapest']
     _SPIRITED += ['mb_fallen_deep_value', 'mb_fallen_value_turn', 'mb_fallen_value_accel', 'mb_fallen_stressed',
                   'mb_fallen_insider', 'mb_fallen_trough', 'mb_fallen_below_cycle', 'mb_inflecting_operator',
                   'mb_quiet_turn', 'mb_left_for_dead_value', 'mb_fallen_ignored_believers',
@@ -7246,6 +7306,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_preprofit_ignored_beats',
         'arch_mb_preprofit_freefall_informed',
         'arch_mb_biotech_financed_hiring',
+        'arch_mb_wave_neglected_value_accel',
+        'arch_mb_leader_in_wave',
+        'arch_mb_improving_unturned_sellside',
+        'arch_mb_peer_worst_cheapest',
         'arch_xr_peer_margin_gap',
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
@@ -7447,6 +7511,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_preprofit_ignored_beats': 'MB-PreProfitIgnoredBeats',
         'arch_mb_preprofit_freefall_informed': 'MB-PreProfitFreefallInformed',
         'arch_mb_biotech_financed_hiring': 'MB-BiotechFinancedHiring',
+        'arch_mb_wave_neglected_value_accel': 'MB-WaveNeglectedValueAccel',
+        'arch_mb_leader_in_wave': 'MB-LeaderInWave',
+        'arch_mb_improving_unturned_sellside': 'MB-ImprovingUnturnedSellSide',
+        'arch_mb_peer_worst_cheapest': 'MB-PeerWorstCheapest',
         'arch_xr_cash_leads_book': 'XR-CashLeadsBook',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
@@ -8788,6 +8856,30 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # biotech financed and hiring — headcount growth, share issuance,
         # insiders, DOWNGRADES (positive in the 10x patterns), cash, depth of
         # the fall, small, volatile
+        # operator study: the wave — deeper the market's / industry's own
+        # depression, stronger the acceleration, cheaper vs peers, fewer
+        # analysts, debt falling, smaller
+        'mb_wave_neglected_value_accel': [(_c('mkt_tape_dist_hi260'), -1), (_c('ind_tape_dist_hi260'), -1),
+                                          (_c('rev_accel'), 1), (_c('rel_ind_ev_ebit'), -1),
+                                          (_c('sent_n_analysts'), -1), (_c('fq_netdebt_decline_months'), 1),
+                                          (_c('market_cap_usd'), -1), (_c('ts_dist_hi260'), -1)],
+        # the leader — coverage, how far price leads sales, margin slope,
+        # growth, R&D, the industry's breadth and return, volatility
+        'mb_leader_in_wave': [(_c('sent_n_analysts'), 1), (-_c('nl_sales_3y'), 1), (_c('fqx_opm_slope8'), 1),
+                              (_c('fq_rev_growth'), 1), (_c('fmp_rd_to_revenue'), 1), (_c('ind_breadth_up52'), 1),
+                              (_c('ind_tape_r52'), 1), (_c('ts_vol_1y'), 1), (_c('roce'), 1)],
+        # improving, unturned — the size of the improvement, how unturned
+        # the sell side is, how low the gross margin, how far the tape has
+        # already re-rated
+        'mb_improving_unturned_sellside': [(_c('op_margin_delta_yoy'), 1), (_c('fq_rev_growth'), 1),
+                                           (_c('sent_buy_share_d12'), -1), (_c('rel_ind_gross_margin'), -1),
+                                           (_c('price_vs_5y_avg'), 1), (_c('ts_r52'), 1), (_c('ts_vol_1y'), 1),
+                                           (_c('evt_pt_prem_12m'), 1)],
+        # peer worst, cheapest — depth of the peer discount and of the
+        # peer-quality gap, thin FCF, fallen, small
+        'mb_peer_worst_cheapest': [(_c('rel_ind_ev_ebit'), -1), (_c('rel_ind_roce'), -1), (_c('rel_ind_p_s'), -1),
+                                   (_c('fcf_margin'), -1), (_c('ts_dist_hi260'), -1), (_c('vs_ind_r52'), -1),
+                                   (_c('market_cap_usd'), -1), (_c('ts_wks_since_lo260'), -1)],
         'mb_biotech_financed_hiring': [(_c('usf_emp_g1'), 1), (_c('fmp_st_shares_growth_3y'), 1),
                                        (_c('usf_ins_buy_quarters_4q'), 1), (-_evt_age_days('evt_sc13d_date'), 1),
                                        (_c('sent_downgrades_12m'), 1), (_c('net_cash_pct_mcap'), 1),

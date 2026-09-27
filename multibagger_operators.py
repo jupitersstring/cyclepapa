@@ -99,6 +99,15 @@ def add_measures(d: pd.DataFrame) -> pd.DataFrame:
         d[f"ind_tape_{nm}"] = med.astype("float32")                    # the industry's own state
         d[f"op_vs_ind_{nm}"] = (g(c) - med).astype("float32")           # the name against it
     d["ind_breadth_up52"] = (g("r52") > 0).groupby(indk).transform("mean").astype("float32")
+    # MARKET frame: the country's own tape that month (median distance from
+    # the 5-year high, 1y return, breadth) and the name against it — the
+    # wave the Turkish 2020 / SUZLON 2019 / CS.TO 2019 ten-baggers sat in
+    mk = ym + "|" + d["market"].astype(str)
+    for c, nm in (("dist_hi260", "disthi"), ("r52", "r52"), ("r26", "r26")):
+        med = g(c).groupby(mk).transform("median")
+        d[f"mkt_tape_{nm}"] = med.astype("float32")
+        d[f"op_vs_mkt_{nm}"] = (g(c) - med).astype("float32")
+    d["mkt_breadth_up52"] = (g("r52") > 0).groupby(mk).transform("mean").astype("float32")
     return d
 
 
@@ -118,6 +127,8 @@ OP_BLOCKS = {
                          ("op_vs_ind_r52", -1), ("op_vs_ind_disthi", -1)],
     "industry_wave": [("ind_tape_r26", 1), ("ind_tape_r52", 1), ("ind_tape_disthi", 1), ("ind_breadth_up52", 1),
                       ("ind_tape_growth", 1), ("ind_tape_opm_d1", 1)],
+    "market_wave": [("mkt_tape_r26", 1), ("mkt_tape_r52", 1), ("mkt_tape_disthi", 1), ("mkt_breadth_up52", 1)],
+    "vs_market": [("op_vs_mkt_r52", 1), ("op_vs_mkt_disthi", 1)],
     "quality_x_price": [("op_roic_x_fcfy", 1)],
 }
 
@@ -135,6 +146,29 @@ def segment_archetypes(d: pd.DataFrame) -> dict:
         "preprofit_freefall_informed": d["preprofit"] & fallen & informed,
         "biotech_financed_hiring": d["bio"] & (g("dist_hi260") <= 0.5) & (g("share_g3") >= 0.10)
                                    & ((g("emp_g1") >= 0.10) | informed) & (g("netcash_mcap") > 0),
+    }
+
+
+def operator_archetypes(d: pd.DataFrame) -> dict:
+    """The four operator archetypes as implemented in the engine, in the
+    panel's vocabulary (needs add_measures' peer and market frames)."""
+    g = lambda c: d[c] if c in d.columns else pd.Series(np.nan, index=d.index)
+    deep = ((g("ev_ebit").between(0, 6)) | (g("pb").between(0, 0.7, inclusive="right")) | (g("ps") <= 0.3))
+    debt_not_rising = ~(g("tr_debt_streak") > 0) | (g("netcash_mcap") >= 0) | g("nd_ebitda").between(0, 1.0)
+    depressed = (g("mkt_tape_disthi") <= 0.70) | (g("ind_tape_disthi") <= 0.70)
+    price_ahead = (g("gap_sales_3y") < 0) | (g("gap_sales_1y") < 0)
+    ind_wave = (g("ind_breadth_up52") >= 0.5) | (g("ind_tape_r52") > 0)
+    margin_up = (g("opm_d1") > 0.01) | ((g("tr_opm_slope8") > 0) & (g("tr_opm_consist") >= 0.6))
+    return {
+        "wave_neglected_value_accel": (deep | (g("op_ind_evebit") <= 0.2)) & (g("n_analysts").fillna(0) <= 2)
+                                      & (g("rev_accel") > 0) & debt_not_rising & depressed,
+        "leader_in_wave": (g("n_analysts") >= 8) & price_ahead & (g("vol52") >= 0.45) & margin_up
+                          & (g("rev_g1") >= 0.15) & ind_wave,
+        "improving_unturned_sellside": (g("rev_g1") > 0) & (g("opm_d1") > 0) & ~(g("buy_share_d12") > 0)
+                                       & ((g("op_ind_gm") <= 0.35) | (g("gm") < 0.25))
+                                       & ((g("ps_vs_own") > 1.0) | (g("r52") > 0.20)),
+        "peer_worst_cheapest": (g("op_ind_evebit") <= 0.20) & (g("op_ind_roic") <= 0.25)
+                               & ((g("fcf_margin") <= 0.03) | (g("op_ind_ps") <= 0.25)),
     }
 
 
@@ -180,16 +214,16 @@ def main():
                    | ind.str.contains(ms.ASSET_IND, regex=True)) & ~d["bio"])
     d["preprofit"] = ((d["opm"] < 0) | (d["fcf_margin"] < 0)) & ~d["bio"] & ~d["asset"]
     op = ((d["opm"] >= 0) & (d["fcf_margin"] >= 0)).fillna(False) & ~d["bio"] & ~d["asset"]
+    d = add_measures(d)                 # peer frames on the WHOLE panel: the industry's tape is the industry's
     # the implemented archetypes' claims, on the FULL panel (before the cut)
-    A = L2.archetypes(d); A.update(segment_archetypes(d))
+    A = L2.archetypes(d); A.update(segment_archetypes(d)); A.update(operator_archetypes(d))
     covered = pd.concat([m.fillna(False) for m in A.values()], axis=1).any(axis=1)
     for k, m in A.items():
         d[f"arch_{k}"] = m.fillna(False).astype(int)
     d["covered"] = covered.astype(int)
-    d = add_measures(d)                 # peer frames on the WHOLE panel: the industry's tape is the industry's
     d = d[op].reset_index(drop=True)
     mc.BLOCKS = {**mc.BLOCKS, **OP_BLOCKS}
-    mc.FEATS = mc.FEATS + [c for c in d.columns if c.startswith(("pp_", "as_", "op_", "ind_"))]
+    mc.FEATS = mc.FEATS + [c for c in d.columns if c.startswith(("pp_", "as_", "op_", "ind_", "mkt_"))]
     feats = mc.feats_all(d)
 
     L = ["# Multibaggers among profitable operators\n",
@@ -216,7 +250,8 @@ def main():
     # 6. refinement of the operator archetypes (before the sub-populations, R is for the full population)
     L.append("\n# 6. Refining the operator archetypes with the new measures\n")
     M, names = L2.conditions(d, R)
-    for k in ("margin_inflect_weak_tape", "sequence_preignition", "tree_recipe", "left_for_dead_value",
+    for k in ("wave_neglected_value_accel", "leader_in_wave", "improving_unturned_sellside", "peer_worst_cheapest",
+              "margin_inflect_weak_tape", "sequence_preignition", "tree_recipe", "left_for_dead_value",
               "smart_money_wreckage", "fallen_below_cycle"):
         mask = d[f"arch_{k}"] == 1
         st = L2.stats(d, mask)
@@ -231,11 +266,13 @@ def main():
     L.append("\n# 7. Size and quality inside the operator archetypes\n")
     d["size_bucket"] = pd.cut(d["mcap_usd_log"], [0, 7.7, 8.5, 9.3, 20], labels=["<50M", "50-300M", "300M-2B", ">2B"])
     d["quality_tercile"] = pd.qcut(R["roic"], 3, labels=["low ROIC", "mid", "high ROIC"]) if "roic" in R.columns else np.nan
-    for k in ("margin_inflect_weak_tape", "sequence_preignition", "left_for_dead_value", "smart_money_wreckage"):
+    d["year"] = d["week"].dt.year
+    for k in ("wave_neglected_value_accel", "leader_in_wave", "improving_unturned_sellside", "peer_worst_cheapest",
+              "margin_inflect_weak_tape", "sequence_preignition", "left_for_dead_value", "smart_money_wreckage"):
         mask = d[f"arch_{k}"] == 1
         if mask.sum() < 400:
             continue
-        for key in ("size_bucket", "quality_tercile"):
+        for key in ("size_bucket", "quality_tercile", "year", "market"):
             t = L2.by_group(d, mask, key, min_n=150)
             if len(t):
                 L.append(f"\n{k} by {key}:\n\n" + t.round(3).to_markdown(index=False))
