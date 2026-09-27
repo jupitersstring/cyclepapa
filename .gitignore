@@ -69,3 +69,6 @@ mb_panel_parts/
 *_EM.xlsx
 *.parquet.tmp
 *.csv.tmp
+mb_labels_usd.parquet
+mb_today.parquet
+mb_today_parts/
