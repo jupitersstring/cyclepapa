@@ -6886,6 +6886,42 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_ignition_fallen_angel'] = ((df['arch_base_ignition'] == 1) & _fallen_ctx).astype(int)
     _SPIRITED += ['coiled_fallen_angel', 'ignition_fallen_angel']
 
+    # ============ PEER FRAMES: SECTOR AND INDUSTRY ============
+    # The name against its peers today: multiples, margins, returns and growth
+    # ranked within its INDUSTRY (the finer frame; an industry with fewer than
+    # 12 operating names falls back to the sector), plus the industry's own
+    # tape (median 1y return and distance from the 5-year high, breadth) and
+    # the name's position against it. The operator study found the 10x
+    # operators at the SECTOR'S lowest multiple and lowest returns — the
+    # peer frame, not the absolute level, is what the market re-rates against.
+    _frame_pop = is_operating & (mcap > 0)
+    _ind_f = df['industry'].fillna('').astype(str).where(_frame_pop, '')
+    _sec_f = sector.astype(str).where(_frame_pop, '')
+    _ind_n = _ind_f.map(_ind_f.value_counts())
+    _peer_key = _ind_f.where((_ind_n >= 12) & (_ind_f != ''), _sec_f)
+    df['peer_frame'] = np.where(_peer_key == _ind_f, 'industry', 'sector')
+    df.loc[~_frame_pop | (_peer_key == ''), 'peer_frame'] = ''
+
+    def _peer_rank(x):
+        x = pd.to_numeric(x, errors='coerce').where(_frame_pop & (_peer_key != ''))
+        return x.groupby(_peer_key).rank(pct=True).round(4)
+
+    _rel_src = {'ev_ebit': s('ev_ebit', np.nan).where(s('ev_ebit', np.nan) > 0),
+                'p_s': _ncol('p_s').where(_ncol('p_s') > 0), 'pb': _ncol('pb').where(_ncol('pb') > 0),
+                'fcf_yield': _ncol('fcf_yield'), 'op_margin': _ncol('op_margin'), 'gross_margin': _ncol('gross_margin'),
+                'roce': _ncol('roce'), 'rev_growth': _ncol('fq_rev_growth').fillna(_ncol('yf_revenue_growth')),
+                'rev_accel': rev_accel, 'r52': _ncol('ts_r52'), 'dist_hi260': _ncol('ts_dist_hi260'),
+                'mcap': mcap}
+    for _k, _v in _rel_src.items():
+        df['rel_ind_' + _k] = _peer_rank(_v)
+    for _k in ('r52', 'dist_hi260', 'rev_growth'):
+        _v = _rel_src[_k].where(_frame_pop & (_peer_key != ''))
+        _med = _v.groupby(_peer_key).transform('median')
+        df['ind_tape_' + _k] = _med.round(4)
+        df['vs_ind_' + _k] = (_v - _med).round(4)
+    df['ind_breadth_up52'] = ((_rel_src['r52'] > 0).astype(float).where(_frame_pop & (_peer_key != ''))
+                              .groupby(_peer_key).transform('mean').round(4))
+
     # ============ MULTIBAGGER PRE-CONDITIONS (multibagger_clusters.py) ============
     # The latent-cluster study of 3x-within-24-months episodes (entries fit
     # <= 2017, judged 2018+): the states below are the study's OWN state
@@ -8657,7 +8693,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # and the strength of the pattern's own trigger
         'mb_fallen_deep_value': [(_c('ts_dist_hi260'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
                                  (_c('pb').where(_c('pb') > 0), -1), (_c('fcf_yield'), 1),
-                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1),
+                                 (_c('rel_ind_ev_ebit'), -1), (_c('vs_ind_dist_hi260'), -1)],
         'mb_fallen_value_turn': [(_c('ts_dist_hi260'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
                                  (_c('fqx_ebit_ttm_g'), 1), (_c('fcf_yield'), 1),
                                  (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
@@ -8697,7 +8734,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                    (_c('fqx_fcfm_streak'), -1), (_c('usf_ins_buy_quarters_4q'), 1),
                                    (-_evt_age_days('evt_sc13d_date'), 1), (_c('usf_emp_g1'), 1),
                                    (_c('sent_buy_share_d12'), -1), (_c('sent_months_since_up'), 1),
-                                   (_c('ts_wks_since_lo260'), -1), (_c('gross_margin'), -1)],
+                                   (_c('ts_wks_since_lo260'), -1), (_c('gross_margin'), -1),
+                                   # operator study: the 10x names sat at their PEER GROUP'S lowest
+                                   # multiple and lowest returns (industry frame, sector fallback)
+                                   (_c('rel_ind_ev_ebit'), -1), (_c('rel_ind_roce'), -1), (_c('vs_ind_r52'), -1)],
         'mb_conviction_confluence': [(_c('mb_smart_money_legs'), 1), (_c('usf_ins_buy_quarters_4q'), 1),
                                      (_c('buyback_yield'), 1), (_c('ts_dist_hi260'), -1),
                                      (_c('ts_wks_since_lo260'), -1), (_c('market_cap_usd'), -1)],

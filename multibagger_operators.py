@@ -21,6 +21,12 @@ the endpoints an operator is judged by):
                         revenue growth (the Lynch-shaped ratios)
   sector-relative       P/S, EV/EBIT, op margin, growth, ROIC ranked within
                         month x sector (the peer frame the tape uses)
+  industry-relative     the same and more (P/B, FCF yield, gross margin,
+                        acceleration, drawdown, returns, size) ranked within
+                        month x INDUSTRY (thin industries fall back to the
+                        sector); the industry's own tape that month (median
+                        26w / 52w return, distance from high, breadth, growth,
+                        margin change) and the name's position against it
   quality x price       ROIC x FCF yield
 
 What is asked of it:
@@ -70,9 +76,29 @@ def add_measures(d: pd.DataFrame) -> pd.DataFrame:
     d["op_evebit_vs_g"] = (g("ev_ebit") / (1 + g("ebit_g1"))).where((g("ev_ebit") > 0) & (g("ebit_g1") > -0.9))
     d["op_pe_vs_g"] = (g("pe") / (rg * 100)).where((g("pe") > 0) & (rg > 0.02))
     d["op_roic_x_fcfy"] = g("roic").clip(-1, 1) * g("fcf_yield").clip(-1, 1)
-    sec = d["week"].dt.to_period("M").astype(str) + "|" + d["sector"].fillna("?").astype(str)
-    for c, nm in (("ps", "ps"), ("ev_ebit", "evebit"), ("opm", "opm"), ("rev_g1", "growth"), ("roic", "roic")):
-        d[f"op_sec_{nm}"] = g(c).groupby(sec).rank(pct=True)
+    # SECTOR and INDUSTRY frames: the name against its peers at that month —
+    # its multiples, returns, margins and growth ranked within month x sector
+    # and within month x industry (the finer frame; an industry with fewer
+    # than 12 names that month falls back to the sector), and the PEER
+    # GROUP'S OWN TAPE (median 26w / 52w return and distance from the 5-year
+    # high of the industry that month: the wave the name sits in) with the
+    # name's position relative to it
+    ym = d["week"].dt.to_period("M").astype(str)
+    sec = ym + "|" + d["sector"].fillna("?").astype(str)
+    indk = ym + "|" + d["industry"].fillna("?").astype(str)
+    thin = indk.map(indk.value_counts()) < 12
+    indk = indk.where(~thin, sec)
+    REL = (("ps", "ps"), ("ev_ebit", "evebit"), ("opm", "opm"), ("rev_g1", "growth"), ("roic", "roic"),
+           ("gm", "gm"), ("fcf_yield", "fcfy"), ("pb", "pb"), ("rev_accel", "accel"), ("dist_hi260", "disthi"),
+           ("r52", "r52"), ("r26", "r26"), ("vol52", "vol"), ("mcap_usd_log", "size"))
+    for c, nm in REL:
+        d[f"op_sec_{nm}"] = g(c).groupby(sec).rank(pct=True).astype("float32")
+        d[f"op_ind_{nm}"] = g(c).groupby(indk).rank(pct=True).astype("float32")
+    for c, nm in (("r26", "r26"), ("r52", "r52"), ("dist_hi260", "disthi"), ("rev_g1", "growth"), ("opm_d1", "opm_d1")):
+        med = g(c).groupby(indk).transform("median")
+        d[f"ind_tape_{nm}"] = med.astype("float32")                    # the industry's own state
+        d[f"op_vs_ind_{nm}"] = (g(c) - med).astype("float32")           # the name against it
+    d["ind_breadth_up52"] = (g("r52") > 0).groupby(indk).transform("mean").astype("float32")
     return d
 
 
@@ -85,6 +111,13 @@ OP_BLOCKS = {
     "value_vs_growth": [("op_fcfy_plus_g", 1), ("op_evebit_vs_g", -1), ("op_pe_vs_g", -1)],
     "sector_relative": [("op_sec_ps", -1), ("op_sec_evebit", -1), ("op_sec_opm", 1), ("op_sec_growth", 1),
                         ("op_sec_roic", 1)],
+    "industry_cheap": [("op_ind_ps", -1), ("op_ind_evebit", -1), ("op_ind_pb", -1), ("op_ind_fcfy", 1)],
+    "industry_quality": [("op_ind_opm", 1), ("op_ind_roic", 1), ("op_ind_gm", 1)],
+    "industry_growth": [("op_ind_growth", 1), ("op_ind_accel", 1)],
+    "industry_laggard": [("op_ind_disthi", -1), ("op_ind_r52", -1), ("op_ind_r26", -1),
+                         ("op_vs_ind_r52", -1), ("op_vs_ind_disthi", -1)],
+    "industry_wave": [("ind_tape_r26", 1), ("ind_tape_r52", 1), ("ind_tape_disthi", 1), ("ind_breadth_up52", 1),
+                      ("ind_tape_growth", 1), ("ind_tape_opm_d1", 1)],
     "quality_x_price": [("op_roic_x_fcfy", 1)],
 }
 
@@ -153,10 +186,10 @@ def main():
     for k, m in A.items():
         d[f"arch_{k}"] = m.fillna(False).astype(int)
     d["covered"] = covered.astype(int)
+    d = add_measures(d)                 # peer frames on the WHOLE panel: the industry's tape is the industry's
     d = d[op].reset_index(drop=True)
-    d = add_measures(d)
     mc.BLOCKS = {**mc.BLOCKS, **OP_BLOCKS}
-    mc.FEATS = mc.FEATS + [c for c in d.columns if c.startswith(("pp_", "as_", "op_"))]
+    mc.FEATS = mc.FEATS + [c for c in d.columns if c.startswith(("pp_", "as_", "op_", "ind_"))]
     feats = mc.feats_all(d)
 
     L = ["# Multibaggers among profitable operators\n",
