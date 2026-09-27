@@ -188,9 +188,20 @@ def _lynch(t, g):
         roc = pd.to_numeric(m[["symbol"]].merge(ts, on="symbol", how="left")["ts_r52"],
                             errors="coerce").values
         roc = pd.Series(roc, index=m.index).fillna(pd.to_numeric(m.get("roc_12m"), errors="coerce"))
-    roc = roc.dropna()
+    # (audit 3) the engine's UNPAID test is the 3-year earnings-line gap where
+    # the panel measures it (log growth of sales / EBIT per share over three
+    # years minus the log 3-year total return >= log 1.25); the 12-month
+    # +35% cut applies only where that gap is unmeasurable
+    gap = pd.to_numeric(m.get("lynch_reward_gap3"), errors="coerce") if "lynch_reward_gap3" in m.columns \
+        else pd.Series(np.nan, index=m.index)
+    meas = gap.dropna()
+    if len(meas):
+        check("lynch_reward: measured firers lag their progress (3y gap >= log 1.25)",
+              (meas >= np.log(1.25) - 1e-9).mean() > 0.98,
+              f"{int((meas < np.log(1.25) - 1e-9).sum())} firers with a 3y gap below log 1.25")
+    roc = roc[gap.isna()].dropna()
     if len(roc):
-        check("lynch_reward: no firer already paid (12m return <= 0.35)",
+        check("lynch_reward: no unmeasured firer already paid (12m return <= 0.35)",
               (roc <= 0.351).mean() > 0.98,
               f"{(roc > 0.351).sum()} firers with a 12m return > 35%")
     st = pd.to_numeric(m.get("stale_tape"), errors="coerce").dropna()
@@ -227,9 +238,20 @@ def _awaken(t, g):
              f"{(rec <= 2.2).mean()*100:.0f}% of rated firers <= 2.2")
     mom = pd.to_numeric(m.get("momentum_12m"), errors="coerce")
     roc = pd.to_numeric(m.get("roc_12m"), errors="coerce")
-    # fresh roc_12m outranks the (possibly stale) master momentum; the
-    # momentum lens only GATES names whose fresh tape is missing.
-    gated = mom[roc.isna() & mom.notna()]
+    # (audit 3) the engine's tape chain is the weekly panel first (ts_r52),
+    # the fresh roc_12m next, the (possibly stale) master momentum last; each
+    # lens only GATES names the fresher lenses do not reach
+    r52 = pd.Series(np.nan, index=m.index)
+    if os.path.exists("ts_snapshot.csv"):
+        ts = pd.read_csv("ts_snapshot.csv", usecols=["symbol", "ts_r52"]).drop_duplicates("symbol")
+        r52 = pd.Series(pd.to_numeric(m[["symbol"]].merge(ts, on="symbol", how="left")["ts_r52"],
+                                      errors="coerce").values, index=m.index)
+    panel = r52.dropna()
+    if len(panel):
+        check("awakening: panel-gated firers not extended (<= ~50%)",
+              (panel <= 0.55).mean() > 0.98,
+              f"{int((panel > 0.55).sum())} extended among the {len(panel)} panel-gated firers")
+    gated = mom[r52.isna() & roc.isna() & mom.notna()]
     if len(gated):
         check("awakening: momentum-gated firers not extended (<= ~50%)",
               (gated <= 0.55).mean() > 0.98,

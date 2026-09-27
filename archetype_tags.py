@@ -3746,7 +3746,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &                              # (R1b) RE developers (Shimao) / brokers: book & leverage not comparable
         # (audit 3) the crash read on the 5-year weekly high where the panel has
         # it (the stale snapshot 5y-average lens only where it does not)
-        ((_ts_hi260 <= 0.50) | (_ts_hi260.isna() & beaten_down_any(0.50))) &
+        (((_ts_hi260 <= 0.50) & ~(_dd52 > -0.25)) | (_ts_hi260.isna() & beaten_down_any(0.50))) &   # (the 52w lens must not contradict: a name back within 25% of its 52w high has recovered)
         # (audit 3) the author's discount legs: P/B < 0.5, P/S < 0.3 or a net-net
         # (the multiples composite is not "price / assets very low")
         (((pb > 0) & (pb < 0.5)) | ((s('p_s', np.nan) > 0) & (s('p_s', np.nan) < 0.3)) | (ncav_pct >= 0.5)) &
@@ -6917,6 +6917,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _lr_gap3 = (pd.concat([np.log1p(_ncol('revenue_3y_cagr')) * 3.0,
                            np.log1p(_ncol('fmp_st_ebit_ps_3y_g'))], axis=1).max(axis=1)
                 - np.log1p(_ncol('ts_r156')))
+    df['lynch_reward_gap3'] = _lr_gap3.round(4)   # surfaced for the books and the audit gate
     lr_unpaid = ((_lr_gap3 >= np.log(1.25))
                  | (_lr_gap3.isna() & ((_ts_r52 <= 0.35)
                                        | (_ts_r52.isna() & ((_r12 <= 0.35)
@@ -10049,7 +10050,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
              + [c + '_eff' for c in _EFF_COLS if c + '_eff' in df.columns]
              + [c for c in df.columns if c.endswith(('_watch', '_exceptional', '_elite', '_spirit'))]
              + [c for c in ['lynch_pegy_ttm', 'lynch_evgy_durable', 'derate_gap_1y', 'unrerated_gap_1y',
-                            'micro_activist_13d_flag', 'xr_streak_norerate_lenses', 'ev_norm_midcyc'] if c in df.columns]
+                            'micro_activist_13d_flag', 'xr_streak_norerate_lenses', 'ev_norm_midcyc',
+                            # (audit 3) surfaced flags, tiers and measures
+                            'lynch_reward_gap3', 'levered_stub_tier', 'value_up_reform_flag',
+                            'special_return_event_flag', 'dirty_spin_flag', 'discounted_vehicle_catalyst_flag',
+                            'discounted_vehicle_governance_trap_flag', 'wolf_value_catalyst_dated_flag'] if c in df.columns]
              + ['exceptional_count', 'elite_count']
              + [c for c in df.columns if c.startswith('fmp_filled_')]]
     from master_versions import versioned_replace
