@@ -4258,6 +4258,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_pe_head.isna()
          | ((_pe_head > 0) & ((_pe_head / (_mc_ca / _oe_best)) >= 2.5))) &
         (_ncol('net_income_ttm') > 0) &                # real (not loss-masked) accounting
+        ~(_ncol('fq_cfo_to_ni') < 1.0) &               # (audit 3) the wedge must show in CFO, not only in the reconstruction
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
     ).fillna(False).astype(int)
@@ -4309,7 +4310,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _fx_coherent &
         (ncav_pct >= 1.0) &
         ((_ncol('ni_avg') > 0) | (_ncol('net_income_ttm') > 0)) &
-        ((_ncol('dividend_yield') >= 0.02) | (_ncol('buyback_yield') > 0)) &
+        (((_ncol('dividend_yield') >= 0.02) & ~(_ncol('evt_div_cut_2y') == 1))
+         | ((_ncol('buyback_yield') > 0) & ((_ncol('net_buyback_ttm') > 0) | (_ncol('shares_yoy') < 0)))) &   # (audit 3) paid and not cut, or a corroborated buyback
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
     ).fillna(False).astype(int)
@@ -4325,6 +4327,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (roic_lindy >= 0.12) &
         (_ncol('roiic_lindy') >= 0.20) &
         (_ncol('financing_cf_ttm') <= 0) &
+        ~((_ncol('fq_capex_to_da') < 1.0) & ~(_ncol('fq_acq_pct_assets') > 0)) &   # (audit 3) deploying now (capex above D&A or acquiring), where observed
         ((_ncol('rev_yoy_streak_q') >= 4) | (rev_yoy_c >= 0.10)) &
         (((_ncol('ev_ebit') > 0) & (_ncol('ev_ebit') <= 14))
          | ((_ncol('p_e') > 0) & (_ncol('p_e') <= 18))
@@ -4398,6 +4401,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_float_compounding'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         _float_exists12 &                                  # the float exists (deferred-rev or NWC)
+        ~(_ncol('fq_defrev_growth_minus_rev') < 0) & ~(_ncol('fq_ccc') > 0) &   # (audit 3) the float is not shrinking / the cycle not positive, where observed
+        ~(_ncol('fq_sbc_to_cfo') > 0.30) &                                     # (audit 3) not an SBC add-back
         ((_cfo_ni_x12 >= 1.3) | (_ncol('cash_conversion') >= 1.2)) &
         ((rev_accel > 0) | (rev_yoy_c >= 0.15)) &          # bookings engine turning
         ((_ncol('p_e') >= 20) | _ncol('p_e').isna()) &     # headline looks dear/meaningless
@@ -4421,6 +4426,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_nrm_eb_x13 > 0) &
         ((ebitda_ttm_v < 0.6 * _nrm_eb_x13) | (_ncol('net_income_ttm') < 0)) &
         (_ncol('cfo_yield') > 0) &                          # the bath was non-cash
+        ((_ncol('net_income_ttm') >= 0)                     # (audit 3) ...and OBSERVABLE: CFO exceeds the loss by half its size
+         | ((_ncol('cfo_ttm') - _ncol('net_income_ttm')) >= 0.5 * _ncol('net_income_ttm').abs())) &
         (_ev_nrm_x13 > 0) & (_ev_nrm_x13 <= 6.0) &          # cheap on the NORMAL base
         beaten_down_any(0.30) &
         ~(_ncol('shares_yoy') > 0.05) &
@@ -4437,9 +4444,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_depreciation_cliff'] = (
         is_operating & (_mc_ca > 0) & _fx_coherent &
         (_dna_loc > 0) & (_dna_ppe_x14 >= 0.35) &           # < ~3yr of book life left
+        ~(_ncol('goodwill_intangibles_pct_assets') > 0.15) &   # (audit 3) depreciation, not acquired-intangible amortisation (that is amortization_mask)
         (_capex_loc >= 0) & (_capex_loc <= 0.6 * _dna_loc) &
         (_oe_loc > 0) & ((_mc_ca / _oe_loc) <= 10.0) &      # cheap on the true cash take
-        ((_ncol('p_e') >= 12) | _ncol('p_e').isna()) &      # dear/meaningless on polluted E
+        ((_ncol('p_e') >= 12) | (_ncol('p_e').isna() & (_ncol('cfo_yield') > 0))) &   # dear/meaningless on polluted E (audit 3: a real loss is not a cliff)
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
     ).fillna(False).astype(int)
@@ -4500,7 +4508,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_cannibal_below_cash'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         (net_cash_pct_c >= 1.0) &                           # price fully covered by net cash
-        ((_ncol('buyback_yield') >= 0.02) | (_ncol('net_buyback_ttm') > 0)) &  # a buyback SIGNAL...
+        (_ncol('buyback_yield') >= 0.01) &                   # (audit 3) a MATERIAL buyback (>= 1% of mcap), then...
         ((_ncol('net_buyback_ttm') > 0) | (_ncol('shares_yoy') < 0)) &  # (audit) ...CORROBORATED by real $ retired or actual shrinkage — a bare buyback_yield at 0% shrinkage is a creation/redemption artifact (RVP/JVA/ETNs)
         ~(_ncol('shares_yoy') > 0.02) &                     # and NOT net-diluting (SBC-offset buyback illusion)
         ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)
@@ -4535,7 +4543,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # FORTRESS to survive to mean-reversion — a real net-cash cushion (>=20% of
     # mcap) or very low leverage — not merely "not net-debt" (a 2%-net-cash
     # burner has no runway).
-    _deep_surv18 = ((net_cash_pct_c >= 0.20) | ((nde > -90) & (nde <= 1.0)))
+    _deep_surv18 = ((net_cash_pct_c >= 0.20)
+                    | (_ncol('fq_total_debt') / _ncol('fq_total_assets').where(_ncol('fq_total_assets') > 0) <= 0.25)   # (audit 3) nde is 99 at EBITDA <= 0
+                    | (_ncol('debt_to_equity').between(0, 0.30)))
     df['arch_xr_double_trough'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         ((_num('pct_off_52w_high') <= -0.50)
@@ -4564,7 +4574,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # price_yoy is only the fallback
         (_ts_r52.fillna(_num('price_yoy')) <= -0.40) &
         (rev_yoy_c >= 0.05) &
-        ((ebitda_yoy_v >= 0) | (_ncol('net_income_ttm') > 0)) &
+        ((ebitda_yoy_v >= 0) | (_ncol('fqx_ebit_ttm_g') >= 0)) &   # (audit 3) the profit line grew too — no NI>0 escape
+        ~(_ncol('ts_r13') < -0.05) &                               # (audit 3) the selling has cleared: entry follows the calendar, not the collapse
         ~(_ncol('shares_yoy') > 0.02) &
         ((nde < 3.0) | (net_cash_pct_c >= 0)) &
         _not_melting
@@ -4608,6 +4619,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (mcap > 0) & _fx_coherent &
         ~_financing_fragile &                              # Motient guard
         (_ins_x22 >= 0.10) &                                  # owner-operator
+        ((_ins_x22 < 0.60) | (_ncol('net_buyback_ttm') > 0) | (s('insider_buy_flag', 0) == 1)) &   # (audit 3) controlled-sub cap unless aligned
         ((_ncol('rev_yoy_pos_share_12q') >= 0.75)             # audited duration...
          | (_ncol('rev_yoy_streak_q') >= 6)
          | (_ncol('rev_3y_cagr') >= 0.15)) &
@@ -4699,6 +4711,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_asset_owner_catalyst'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         (_ncol('insider_ownership_pct') >= 0.15) &         # strong owner-operator
+        ((_ncol('insider_ownership_pct') < 0.60) | (_ncol('net_buyback_ttm') > 0) | (s('insider_buy_flag', 0) == 1)) &   # (audit 3) >= 60% is a controlled sub unless alignment is revealed
         _av_x25 & _cat_x25 &
         beaten_down_any(0.25) &                            # entered on a DISLOCATION
         (((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0))
@@ -4834,7 +4847,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (((ebitda_ttm_v > 0) & ((nde < 3.5) | (net_cash_pct_c >= 0))
           & _op_viable(-0.05) & _not_melting)
          | ((ebitda_ttm_v <= 0)
-            & ((net_cash_pct_c >= 0.20) | ((nde > -90) & (nde <= 1.0)))))
+            & ((net_cash_pct_c >= 0.20)
+               | (_ncol('fq_total_debt') / _ncol('fq_total_assets').where(_ncol('fq_total_assets') > 0) <= 0.25)   # (audit 3) nde is 99 at EBITDA <= 0: measure leverage on the balance sheet
+               | (_ncol('debt_to_equity').between(0, 0.30)))))
     ).fillna(False).astype(int)
     # (endpoint matrix / audit A.6, PROXY) the PHYSICAL asset base that floors
     # the downside is measured (asset intensity; the cyclical-sector set only
@@ -4928,7 +4943,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (_mc_ca > 0) & _fx_coherent &
         (_capex_over_da31 >= 1.5) &                        # capex FAR above replacement (D&A)
         (_cfo31 > 0) &
-        ((s('roce', np.nan) >= 0.12) | (_ncol('ebitda_margin') >= 0.20)) &  # returns justify it
+        ((s('roce', np.nan) >= 0.12) | (_ncol('roiic_lindy') >= 0.12)
+         | (_ncol('fqx_ebit_ttm_g') >= _ncol('fq_rev_growth'))) &   # (audit 3) returns ON the capex — EBIT keeping pace with revenue, or the audited ROIIC
         (rev_yoy_c >= 0.10) &                              # the growth is real
         (fcf_yield < 0.04) &                               # reported FCF suppressed
         (_maint_y31 >= 0.07) &                             # ...but maintenance cash take is fat
@@ -4964,7 +4980,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_cannibal_below_tbook'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         (_ptb33 > 0) & (_ptb33 < 1.0) &                   # below TANGIBLE book
-        ((_ncol('buyback_yield') >= 0.02) | (_ncol('net_buyback_ttm') > 0)) &  # a buyback SIGNAL...
+        (_ncol('buyback_yield') >= 0.01) &                   # (audit 3) a MATERIAL buyback (>= 1% of mcap), then...
+        ~(_ncol('roce') < 0.05) &                            # (audit 3) accretion on a business worth owning (where ROCE is observed)
         ((_ncol('net_buyback_ttm') > 0) | (_ncol('shares_yoy') < 0)) &  # (audit) ...CORROBORATED by real $ or actual shrinkage — excludes commodity/crypto ETF lines (PALL/PPLT/FBTC) whose buyback_yield is a creation/redemption artifact
         ~(_ncol('shares_yoy') > 0.02) &                    # and NOT net-diluting (SBC-offset buyback illusion)
         ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)) &  # earning
@@ -5037,7 +5054,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & (((_ncol('ev_sales') > 0) & (_ncol('ev_sales') <= 4.0))
            | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 15.0))
            | (fcf_yield >= 0.03))                         # market prices TRAILING, backlog unpriced
-        & (rev_yoy_c >= 0.0)                              # backlog converting, not a stale/declining book
+        & (rev_yoy_c >= 0.05)                             # backlog converting (audit 3: >= 0 was too weak for "converting")
         & _not_melting
     ).fillna(False).astype(int)
 
@@ -5146,7 +5163,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & (_gmd_x40 >= 0.02)                                # gross margin up >= 2pp YoY (the lead)
         & (rev_yoy_c >= 0.05)                               # ...on a GROWING base (scale/pricing, not attrition)
         & (_ncol('gross_margin') >= 0.20)                   # real gross margin exists to leverage
-        & (_opmd_x40 < _gmd_x40 * 0.5)                      # operating captured < half the gross gain (SG&A drag => latent leverage)
+        & (_opmd_x40 >= 0) & (_opmd_x40 < _gmd_x40 * 0.5)   # operating margin UP but capturing < half the gross gain (audit 3: sign-aware)
+        & ~(_ncol('shares_yoy') > 0.05)
         & _not_melting
     ).fillna(False).astype(int)
 
@@ -5173,7 +5191,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & ((s('net_income_first_positive', 0) == 1) | (_ncol('fqx_eps_turned') == 1)
            | (_ncol('fmp_dyn_ni_turned_positive') == 1))
         & (_ni_now_x41 > 0)
-        & ((_ncol('op_margin') > 0) | (ebitda_ttm_v > 0))   # OPERATIONAL profit, not a one-off gain
+        & (_ncol('op_margin') > 0)                          # OPERATIONAL profit, not a one-off gain (audit 3: EBITDA > 0 is not operating profit)
+        & ((_ncol('net_income_ttm') / _ncol('revenue_ttm').where(_ncol('revenue_ttm') > 0) >= 0.02)
+           | (_ncol('earnings_yield') >= 0.02))              # (audit 3) a crossing of substance, not within rounding of zero
+        & ~(_ncol('shares_yoy') > 0.10)                      # (audit 3) the first profit of a serial issuer is the cardinal-sin case
         & ~(s('is_price_ghost', 0) == 1) & ~(s('is_otc', 0) == 1)  # listing exists for the demand to unlock into
         & _not_melting
     ).fillna(False).astype(int)
@@ -5201,7 +5222,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
            # (deferred balance up >= 5pp more than sales, sales not falling):
            # the forward book leading a flat trailing tape IS the mispricing
            | ((_ncol('fq_defrev_growth_minus_rev') >= 0.05) & (rev_yoy_c >= 0)))
+        & ~(_ncol('fq_defrev_growth_minus_rev') < 0)        # (audit 3) the book is not SHRINKING relative to sales where observed
         & _cheap_x42                                        # yet priced on the cheap TRAILING tape (the mispricing)
+        & ~(_ncol('shares_yoy') > 0.05) & ((_ncol('net_income_ttm') > 0) | (_ncol('cfo_yield') > 0))   # (audit 3) the siblings' guards
         & _not_melting
     ).fillna(False).astype(int)
 
@@ -5312,6 +5335,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & (_cont_x45 > 0)                                    # the CORE (continuing ops) is profitable
         & _mask_present_x45                                  # ...but a discontinued/held-for-sale drag masks it
         & (_cont_yield_x45 >= 0.06)                          # on continuing-ops earnings alone, the stock is cheap
+        & (_ncol('cfo_yield') > 0) & ((nde < 3.0) | (net_cash_pct_c >= 0))   # (audit 3) cash and leverage guards
         & _not_melting
     ).fillna(False).astype(int)
 
@@ -6155,12 +6179,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'arch_xr_cash_leads_book'],
         'engine': ['arch_xr_compounding_deployer', 'arch_xr_reusable_assembler',
                    'arch_xr_pre_scale_margin', 'arch_xr_leverage_detonation',
-                   'arch_xr_baron_compounder', 'arch_xr_audited_streak_unrerated',
+                   'arch_xr_baron_compounder',
                    'arch_xr_harvest_distribution', 'arch_xr_paydown_yield',
                    'arch_xr_cyclical_trough', 'arch_xr_hidden_segment_compounder',
                    'arch_xr_margin_mixshift', 'arch_xr_gross_margin_lead',
-                   'arch_xr_gaap_profit_crossover', 'arch_xr_peer_margin_gap',
+                   'arch_xr_peer_margin_gap',
                    'arch_xr_verified_deleveraging'],
+        # (audit 3) the two broadest gates (audited_streak_unrerated, gaap_profit_crossover) made the engine
+        # family nearly free for any first-profit microcap; they no longer carry the family on their own
     }
     _fam_fired = pd.DataFrame(index=df.index)
     for _fam, _cols in _XR_FAMILIES.items():
