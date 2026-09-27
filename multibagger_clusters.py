@@ -174,6 +174,23 @@ def load():
     from event_study_analyse import bio_flags
     bio = bio_flags(d["symbol"].unique())
     d["bio"] = d["symbol"].map(bio).fillna(False).astype(bool)
+    # USD OUTCOMES: the panel's labels are in the listing currency; where the
+    # USD recomputation exists (multibagger_usd_labels.py) it replaces them,
+    # the local ones kept as <col>_local. MB_LOCAL=1 keeps the local labels.
+    if os.path.exists("mb_labels_usd.parquet") and not os.environ.get("MB_LOCAL"):
+        u = pd.read_parquet("mb_labels_usd.parquet")
+        u["week"] = pd.to_datetime(u["week"])
+        lab = [c for c in ("t3_12", "t3_24", "t3_36", "t5_60", "t10_60", "fwd_mult_24", "fwd_mult_60",
+                           "months_to_3x", "fwd_ret_24", "fwd_min_24") if c in u.columns]
+        d = d.merge(u[["symbol", "week"] + lab].rename(columns={c: c + "_usd" for c in lab}),
+                    on=["symbol", "week"], how="left")
+        for c in lab:
+            if c in d.columns:
+                d[c + "_local"] = d[c]
+            d[c] = d[c + "_usd"].astype("float32")
+            del d[c + "_usd"]
+        d.attrs["labels"] = "USD"
+        print(f"  labels: USD (3x/24m rate {d['t3_24'].mean():.2%}; local {d['t3_24_local'].mean():.2%})", flush=True)
     return d
 
 
