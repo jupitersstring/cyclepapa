@@ -102,17 +102,36 @@ def walk_forward(d, R, y, w):
         test = (d["week"].dt.year == Y) & y.notna()
         if fit.sum() < 20000 or test.sum() < 1000:
             continue
-        X = R.loc[:, R[fit].nunique(dropna=True) > 1]
+        fit_rows, fit_w = _fit_sample(d, fit, y, w)
+        keep_cols = R.loc[fit_rows].nunique(dropna=True) > 1
+        cols = R.columns[keep_cols]
         clf = _gbm()
-        clf.fit(X[fit], y[fit], sample_weight=w[fit])
-        p[test] = clf.predict_proba(X[test])[:, 1].astype("float32")
+        clf.fit(R.loc[fit_rows, cols], y[fit_rows], sample_weight=fit_w)
+        p[test] = clf.predict_proba(R.loc[test, cols])[:, 1].astype("float32")
         from sklearn.metrics import roc_auc_score
         auc = roc_auc_score(y[test], p[test], sample_weight=w[test])
         rows.append({"year": Y, "fit_rows": int(fit.sum()), "test_rows": int(test.sum()), "auc": auc,
                      "iterations": int(clf.n_iter_), **_lift_table(d, p, test, w)})
         print(f"  {Y}: fit {fit.sum():,} test {test.sum():,} auc {auc:.3f} top5 lift {rows[-1].get('lift_top5', np.nan):.2f}", flush=True)
-        last = (clf, X.columns, test)
+        last = (clf, cols, test)
+        pd.DataFrame(rows).to_csv("mb_model_walkforward.csv", index=False)      # survives a later crash
+        p.to_frame("p_oos").assign(symbol=d["symbol"], week=d["week"]).dropna(subset=["p_oos"]).to_parquet(
+            "mb_model_oos.parquet", index=False)
     return p, pd.DataFrame(rows), last
+
+
+def _fit_sample(d, fit, y, w, keep_neg=0.35, seed=7):
+    """Every event plus a weighted sample of the non-events: a third of the
+    fit memory (sklearn holds the fit matrix in float64), the same estimate."""
+    rng = np.random.default_rng(seed)
+    idx = d.index[fit]
+    pos = idx[(y[idx] == 1).to_numpy()]
+    neg = idx[(y[idx] == 0).to_numpy()]
+    neg_keep = rng.choice(neg, size=int(len(neg) * keep_neg), replace=False)
+    rows = np.concatenate([pos, neg_keep])
+    ww = w[rows].to_numpy(float).copy()
+    ww[len(pos):] /= keep_neg
+    return pd.Index(rows), ww
 
 
 def region_rules(d, R, p, y, w, L):
@@ -131,8 +150,10 @@ def region_rules(d, R, p, y, w, L):
     L.append("\n### The top-decile region as a tree (depth 4; ranks within month x market, 0-1)\n")
     L.append("```\n" + export_text(tree, feature_names=feats, max_depth=4, decimals=2) + "\n```\n")
     # each leaf -> rule; lift of the rule on the whole out-of-sample population
-    leaf = tree.apply(R.loc[ok, feats].fillna(0.5))
-    leaf_s = pd.Series(leaf, index=d.index[ok])
+    ok_idx = d.index[ok]
+    leaf = np.concatenate([tree.apply(R.loc[ok_idx[i:i + 100_000], feats].fillna(0.5))
+                           for i in range(0, len(ok_idx), 100_000)])
+    leaf_s = pd.Series(leaf, index=ok_idx)
     base = np.average(y[ok], weights=w[ok])
     rows = []
     tr = tree.tree_
@@ -167,9 +188,9 @@ def score_today(d, R, y, w, L):
     """Fit on every resolved month-end; score today's cross-section."""
     last_week = d["week"].max()
     fit = (d["week"] <= last_week - pd.Timedelta(weeks=104)) & y.notna()
-    X = R.loc[:, R[fit].nunique(dropna=True) > 1]
-    clf = _gbm().fit(X[fit], y[fit], sample_weight=w[fit])
-    cols = list(X.columns)
+    fit_rows, fit_w = _fit_sample(d, fit, y, w)
+    cols = list(R.columns[R.loc[fit_rows].nunique(dropna=True) > 1])
+    clf = _gbm().fit(R.loc[fit_rows, cols], y[fit_rows], sample_weight=fit_w)
     if os.path.exists("mb_today.parquet"):
         t = pd.read_parquet("mb_today.parquet")
         t["week"] = pd.to_datetime(t["week"])
@@ -243,14 +264,25 @@ def main():
                       ("not fallen (>= 60%)", (d["dist_hi260"] >= 0.6).fillna(False))):
         mm_ = oos & mask
         L.append(f"\n{pop}: " + ", ".join(f"{k} {v:.3f}" for k, v in _lift_table(d, p, mm_, w).items() if k != "n"))
+    open(MD, "w").write("\n".join(L))
+    # 4. today (before the optional analyses: the scores matter most)
+    try:
+        score_today(d, R, y, w, L)
+    except Exception as exc:
+        L.append(f"\n# 4. Today\n\nfailed: {exc!r}\n")
+    open(MD, "w").write("\n".join(L))
     # 3. what it uses
     L.append("\n# 3. What the model uses\n")
-    if last is not None:
-        importance(last, d, y, w, L)
-    region_rules(d, R, p, y, w, L)
+    try:
+        if last is not None:
+            importance(last, d, y, w, L)
+    except Exception as exc:
+        L.append(f"\nimportance failed: {exc!r}\n")
     open(MD, "w").write("\n".join(L))
-    # 4. today
-    score_today(d, R, y, w, L)
+    try:
+        region_rules(d, R, p, y, w, L)
+    except Exception as exc:
+        L.append(f"\nregion rules failed: {exc!r}\n")
     open(MD, "w").write("\n".join(L))
     print(f"wrote {MD} and {SCORES}", flush=True)
 
