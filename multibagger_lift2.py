@@ -121,6 +121,8 @@ def refine(d, M, names, mask, base_rate, label=LABEL, min_n=150, min_events=25, 
         pb = (w[mb] * blow[mb]).sum() / w[mb].sum() if mb.sum() >= 40 else np.nan
         rows.append({"condition": nm, "n": n, "events": ev, "rate": rate, "lift_vs_archetype": rate / base_rate,
                      "p_blowup_50": pb})
+    if not rows:
+        return pd.DataFrame(), pd.DataFrame()
     r = pd.DataFrame(rows).sort_values("lift_vs_archetype", ascending=False)
     return r.head(top), r.tail(top).sort_values("lift_vs_archetype")
 
@@ -135,6 +137,8 @@ def by_group(d, mask, key, label=LABEL, min_n=200):
         s = stats(d.loc[idx], pd.Series(True, index=idx), label)
         if s:
             rows.append({key: k, **s, "lift_vs_archetype": s["rate"] / br})
+    if not rows:
+        return pd.DataFrame()
     return pd.DataFrame(rows).sort_values("lift_vs_archetype", ascending=False)
 
 

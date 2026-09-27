@@ -273,7 +273,11 @@ def main():
         if mask.sum() < 400:
             continue
         for key in ("size_bucket", "quality_tercile", "year", "market"):
-            t = L2.by_group(d, mask, key, min_n=150)
+            try:
+                t = L2.by_group(d, mask, key, min_n=150)
+            except Exception as exc:          # a split that cannot be formed must not end the report
+                L.append(f"\n{k} by {key}: not computable ({exc})\n")
+                continue
             if len(t):
                 L.append(f"\n{k} by {key}:\n\n" + t.round(3).to_markdown(index=False))
     # 8. lookalikes
@@ -291,12 +295,17 @@ def main():
         del d2, R2
     del M, R, S, Z
     # 3-5. sub-populations
-    L.append("\n# 3. Not fallen: operators at >= 60% of their 5-year high\n")
-    subpop(L, d, (d["dist_hi260"] >= 0.60).fillna(False), "notfallen", "Not fallen", feats)
-    L.append("\n# 4. Near highs: operators within 15% of the 52-week high\n")
-    subpop(L, d, (d["dist_hi52"] >= 0.85).fillna(False), "nearhigh", "Near highs", feats)
-    L.append("\n# 5. Uncovered: month-ends no implemented archetype claims\n")
-    subpop(L, d, d["covered"] == 0, "uncovered", "Uncovered", feats)
+    open(MD, "w").write("\n".join(L))            # partial report survives a failure below
+    for title, mask, name, ttl in (
+            ("\n# 3. Not fallen: operators at >= 60% of their 5-year high\n", (d["dist_hi260"] >= 0.60).fillna(False), "notfallen", "Not fallen"),
+            ("\n# 4. Near highs: operators within 15% of the 52-week high\n", (d["dist_hi52"] >= 0.85).fillna(False), "nearhigh", "Near highs"),
+            ("\n# 5. Uncovered: month-ends no implemented archetype claims\n", d["covered"] == 0, "uncovered", "Uncovered")):
+        L.append(title)
+        try:
+            subpop(L, d, mask, name, ttl, feats)
+        except Exception as exc:
+            L.append(f"\nfailed: {exc!r}\n")
+        open(MD, "w").write("\n".join(L))
     open(MD, "w").write("\n".join(L))
     print(f"wrote {MD}", flush=True)
 
