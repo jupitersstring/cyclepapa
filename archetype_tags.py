@@ -106,6 +106,8 @@ _EFF_COLS = ('retained_earnings', 'net_working_capital', 'tangible_equity', 'p_t
 
 def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     asym = pd.read_csv(ASYM_PATH).drop_duplicates('symbol')
+    if os.environ.get('ARCH_SMOKE'):        # a quick end-to-end run on a symbol sample (code check, not output)
+        asym = asym.sample(int(os.environ['ARCH_SMOKE']), random_state=7)
     yart = _load_yartseva_union()
     pew = pd.read_csv(PEW_PATH, usecols=['symbol','avg_dollar_volume','n_analysts','country'])
 
@@ -6910,11 +6912,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                 'p_s': _ncol('p_s').where(_ncol('p_s') > 0), 'pb': _ncol('pb').where(_ncol('pb') > 0),
                 'fcf_yield': _ncol('fcf_yield'), 'op_margin': _ncol('op_margin'), 'gross_margin': _ncol('gross_margin'),
                 'roce': _ncol('roce'), 'rev_growth': _ncol('fq_rev_growth').fillna(_ncol('yf_revenue_growth')),
-                'rev_accel': rev_accel, 'r52': _ncol('ts_r52'), 'dist_hi260': _ncol('ts_dist_hi260'),
-                'mcap': mcap}
+                'rev_accel': rev_accel, 'r52': _ncol('ts_r52'), 'r26': _ncol('ts_r26'),
+                'dist_hi260': _ncol('ts_dist_hi260'), 'mcap': mcap}
     for _k, _v in _rel_src.items():
         df['rel_ind_' + _k] = _peer_rank(_v)
-    for _k in ('r52', 'dist_hi260', 'rev_growth'):
+    for _k in ('r52', 'r26', 'dist_hi260', 'rev_growth'):
         _v = _rel_src[_k].where(_frame_pop & (_peer_key != ''))
         _med = _v.groupby(_peer_key).transform('median')
         df['ind_tape_' + _k] = _med.round(4)
@@ -7080,14 +7082,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    blow-up 6-13%). What made it a wave was the MARKET: those names sat
     #    in a country (or industry) that had itself spent years far below
     #    its highs. The condition is the peer group's tape, not the country.
+    #    Refined on the operator study's own members (26,867 month-ends,
+    #    1.31x as first boxed): the flat, low-volatility members had 0.4x
+    #    the rate; the members OFF THE LOW (up_lo52 HIGH, V-shape, vol HIGH)
+    #    1.6x; markets IS 8.8x / NS 3.6x / SA 2.3x, US 0.5x. So the core
+    #    asks for the recovery to have begun (>= 10% off the 52-week low,
+    #    not the lowest-volatility fifth) and a deeper depression of the
+    #    frame; the sell side not yet turned is the strongest lens (3.6x).
     _debt_not_rising = ((_ncol('fq_netdebt_decline_months') >= 3) | (_ncol('fq_deleveraging_flag') == 1)
                         | (_ncol('net_cash_pct_mcap') >= 0) | ((nde >= 0) & (nde <= 1.0))).fillna(False)
     _neglected = (_ncol('sent_n_analysts').fillna(0) <= 2)
-    _depressed_frame = ((df['mkt_tape_dist_hi260'] <= 0.70) | (df['ind_tape_dist_hi260'] <= 0.70)).fillna(False)
+    _depressed_frame = ((df['mkt_tape_dist_hi260'] <= 0.65) | (df['ind_tape_dist_hi260'] <= 0.65)).fillna(False)
     _deep_or_peer_cheap = _mb_deep | (df['rel_ind_ev_ebit'] <= 0.20).fillna(False)
+    _off_the_low = ((_ncol('ts_dist_lo52') >= 1.10) & (_crank(_ncol('ts_vol_1y')) >= 0.20)).fillna(False)
     df['arch_mb_wave_neglected_value_accel'] = (
         _mb_base & _deep_or_peer_cheap & _neglected & (rev_accel > 0).fillna(False) & _debt_not_rising
-        & _depressed_frame).astype(int)
+        & _depressed_frame & _off_the_low).astype(int)
+    df['mb_fund_up_unturned'] = (((_ncol('fq_rev_growth') > 0) & (_ncol('op_margin_delta_yoy') > 0)).astype(float)
+                                 - (_ncol('sent_buy_share_d12') > 0).astype(float)).where(_ncol('sent_n_analysts') >= 1)
     # 2. RECOGNISED LEADER IN A WAVE (the family the fallen-dominated pooled
     #    study buried: lift 11-12x on a 3x within 24 months, blow-up 12-18%;
     #    NVDA 2019 / 2023, Fujikura, Hanwha Aerospace, Advantest, TSLA 2020):
@@ -7095,25 +7107,41 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    (narrative lag negative), margins and returns rising, R&D-heavy, in
     #    an industry whose own tape is up. The opposite of every fallen
     #    archetype: it is the wave's leader, bought while still expensive.
+    #    Refined (783 members, 4.1x, blow-up 24%): the 2021 cohort had ZERO
+    #    winners and a 41% blow-up, the 2023 cohort 15% winners — what
+    #    separated them: the leader sits nearest its high WITHIN ITS
+    #    INDUSTRY (2.0x), growth is new (two-year growth already high = 0.55x),
+    #    it is investing (current ratio falling, debt-to-capital rising),
+    #    R&D at its own high. Core adds the industry-relative position and
+    #    acceleration; the frame's euphoria is a negative lens.
     _price_ahead = ((_ncol('nl_sales_3y') < 0) | (_ncol('nl_sales_1y') < 0)).fillna(False)
     _ind_wave = ((df['ind_breadth_up52'] >= 0.5) | (df['ind_tape_r52'] > 0)).fillna(False)
     _vol_hi = (_crank(_ncol('ts_vol_1y')) >= 0.60).fillna(False)
     df['arch_mb_leader_in_wave'] = (
         _mb_base & (_ncol('sent_n_analysts') >= 8).fillna(False) & _price_ahead & _vol_hi
         & (_margin_trend_up | (_ncol('op_margin_delta_yoy') > 0.01).fillna(False))
-        & (_ncol('fq_rev_growth') >= 0.15).fillna(False) & _ind_wave).astype(int)
+        & (_ncol('fq_rev_growth') >= 0.15).fillna(False) & (rev_accel > 0).fillna(False) & _ind_wave
+        & (df['rel_ind_dist_hi260'] >= 0.70).fillna(False)).astype(int)
     # 3. IMPROVING, SELL SIDE NOT YET TURNED (lift 11-12x, blow-up 3-10%;
     #    Celestica 2023, 5801.T, Sterling, Powell, Limbach, TRIL.NS): a
     #    LOW-gross-margin operator whose revenue and margin are rising, the
     #    tape already re-rating (P/B above its own history, wide range), but
     #    the analysts' buy share has NOT risen — the perception gap the
     #    study measures as gap_perc_buyshare.
-    _fund_up = ((_ncol('fq_rev_growth') > 0) & (_ncol('op_margin_delta_yoy') > 0)).fillna(False)
-    _sellside_unturned = ~(_ncol('sent_buy_share_d12') > 0)
+    #    Refined (41,341 members as first boxed, 1.37x): the lift lives
+    #    where the sell side EXISTS and has not turned (gap_perc_buyshare
+    #    2.8x — an unknown buy share is not an unturned one), growth is
+    #    real (hypergrowth 2.1x), the tape is volatile (vol LOW 0.3x, flat
+    #    base 0.4x) and no dividend props the name (div yield LOW 1.7x).
+    #    Strong 2020-2025, weak 2015-2018 — a re-rating needs a market that
+    #    re-rates. Core tightened accordingly.
+    _fund_up = ((_ncol('fq_rev_growth') >= 0.10) & (_ncol('op_margin_delta_yoy') > 0)).fillna(False)
+    _sellside_unturned = ((_ncol('sent_n_analysts') >= 1) & ~(_ncol('sent_buy_share_d12') > 0)).fillna(False)
     _low_gm = ((df['rel_ind_gross_margin'] <= 0.35) | (_ncol('gross_margin') < 0.25)).fillna(False)
     _tape_rerating = ((_ncol('price_vs_5y_avg') > 1.0) | (_ncol('ts_r52') > 0.20)).fillna(False)
     df['arch_mb_improving_unturned_sellside'] = (
-        _mb_base & _fund_up & _sellside_unturned & _low_gm & _tape_rerating).astype(int)
+        _mb_base & _fund_up & _sellside_unturned & _low_gm & _tape_rerating
+        & (_crank(_ncol('ts_vol_1y')) >= 0.40).fillna(False) & ~(_ncol('dividend_yield') > 0.02)).astype(int)
     # 4. THE PEER GROUP'S WORST NAME AT ITS LOWEST MULTIPLE (the operators'
     #    10x recipe: lift 24-29x, 22-27% went 10x, blow-up 11-24%; Celestica
     #    2020 41x, GME 2018, PRMB 2012, AEIN.DE 2017): EV/EBIT and ROIC at
@@ -7121,8 +7149,45 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_mb_peer_worst_cheapest'] = (
         _mb_base & (df['rel_ind_ev_ebit'] <= 0.20).fillna(False) & (df['rel_ind_roce'] <= 0.25).fillna(False)
         & ((_ncol('fcf_margin') <= 0.03) | (df['rel_ind_p_s'] <= 0.25)).fillna(False)).astype(int)
+    # ---- what the not-fallen, near-highs and uncovered passes surfaced ----
+    # 5. THE COMPOUNDER, INSIDERS BUYING AT THE HIGH (near-highs 10x recipe:
+    #    lift 90-108x on a 10x within 5 years, 55-68% of such month-ends
+    #    went 10x, blow-up 0-8%; NVDA 2015 / 2019, 2059.TW 2021, MSTR 2020,
+    #    TSLA 2019, ABMD 2013, ETSY 2017, AVGO 2020): within 15% of the 52w
+    #    high, ROCE in the industry's top quartile, R&D-heavy, insiders
+    #    buying — and the recent quarters NOT beating (expectations not yet
+    #    set). Tiny support in the study; the structure recurs across a
+    #    decade of names, so it is carried with that caveat in its label.
+    _rd_heavy = ((_ncol('fmp_rd_to_revenue') >= 0.08) | (_ncol('fmp_rd_intensive_flag') == 1)).fillna(False)
+    df['arch_mb_compounder_insiders_at_high'] = (
+        _mb_base & (_ncol('ts_dist_hi52') >= 0.85).fillna(False) & (df['rel_ind_roce'] >= 0.75).fillna(False)
+        & _rd_heavy & (_ins_2q | _mb_insider)).astype(int)
+    # 6. HIRING, BEATING, UNCOVERED (the uncovered population's only lifted
+    #    cluster, 2.1x, blow-up 15%; 2930.T 2015, BEL.NS 2020, HARVIA.HE
+    #    2018, TRIDENT.NS 2019, TATAELXSI 2013): headcount +36%, margins at
+    #    the top of their own history, beats and surprises, EV/sales already
+    #    rising, new 13F holders — at 56% of the 5y high with no analyst.
+    _hiring = ((_ncol('usf_emp_g1') >= 0.15)
+               | (_ncol('usf_emp_g1').isna() & (_ncol('fq_rev_growth') >= 0.20))).fillna(False)
+    _beating = ((_ncol('evt_beat_share_8q') >= 0.6) | (_ncol('evt_surprise_4q') > 0)
+                | (_ncol('fmp_earnings_beat_rate') >= 0.6)).fillna(False)
+    df['arch_mb_hiring_beating_uncovered'] = (
+        _mb_base & _hiring & (_mb_opm_gap >= 0.02).fillna(False) & _beating
+        & (_ncol('sent_n_analysts').fillna(0) <= 1) & _hi260.between(0.35, 0.80).fillna(False)).astype(int)
+    # 7. CHEAP GROWTH WITH TARGETS RISING (the largest not-fallen cluster,
+    #    39% of those multibaggers, 1.25x, blow-up 8%; ISCTR 2020, ALARK
+    #    2019, STRL 2021, 6920.T 2015, PGSUS 2018, TRIL.NS 2021): revenue
+    #    +17%, EV/EBIT 8.5, FCF yield + growth the top axis, EV/EBIT vs
+    #    growth the bottom, price targets revised up, at 70% of the 5y high.
+    _pt_up = ((_ncol('sent_pt_rev_q') > 0) | (_ncol('evt_pt_rev_90d') > 0)).fillna(False)
+    _cheap_for_growth = (((_eveb > 0) & (_eveb <= 10))
+                         | ((_ncol('fcf_yield') + _ncol('fq_rev_growth')) >= 0.20)).fillna(False)
+    df['arch_mb_cheap_growth_targets_up'] = (
+        _mb_base & (_ncol('fq_rev_growth') >= 0.15).fillna(False) & _cheap_for_growth & _pt_up
+        & (_hi260 >= 0.60).fillna(False)).astype(int)
     _SPIRITED += ['mb_wave_neglected_value_accel', 'mb_leader_in_wave', 'mb_improving_unturned_sellside',
-                  'mb_peer_worst_cheapest']
+                  'mb_peer_worst_cheapest', 'mb_compounder_insiders_at_high', 'mb_hiring_beating_uncovered',
+                  'mb_cheap_growth_targets_up']
     _SPIRITED += ['mb_fallen_deep_value', 'mb_fallen_value_turn', 'mb_fallen_value_accel', 'mb_fallen_stressed',
                   'mb_fallen_insider', 'mb_fallen_trough', 'mb_fallen_below_cycle', 'mb_inflecting_operator',
                   'mb_quiet_turn', 'mb_left_for_dead_value', 'mb_fallen_ignored_believers',
@@ -7310,6 +7375,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_leader_in_wave',
         'arch_mb_improving_unturned_sellside',
         'arch_mb_peer_worst_cheapest',
+        'arch_mb_compounder_insiders_at_high',
+        'arch_mb_hiring_beating_uncovered',
+        'arch_mb_cheap_growth_targets_up',
         'arch_xr_peer_margin_gap',
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
@@ -7515,6 +7583,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_leader_in_wave': 'MB-LeaderInWave',
         'arch_mb_improving_unturned_sellside': 'MB-ImprovingUnturnedSellSide',
         'arch_mb_peer_worst_cheapest': 'MB-PeerWorstCheapest',
+        'arch_mb_compounder_insiders_at_high': 'MB-CompounderInsidersAtHigh',
+        'arch_mb_hiring_beating_uncovered': 'MB-HiringBeatingUncovered',
+        'arch_mb_cheap_growth_targets_up': 'MB-CheapGrowthTargetsUp',
         'arch_xr_cash_leads_book': 'XR-CashLeadsBook',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
@@ -8784,7 +8855,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                  (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
         'mb_fallen_below_cycle': [(_c('ts_dist_hi260'), -1), (_c('tc_med_opm') - _c('op_margin'), 1),
                                   (_c('ev_sales_change_yoy'), -1), (_c('tc_opinc_pos'), 1),
-                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1), (_c('ts_wks_since_lo260'), -1)],
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1), (_c('ts_wks_since_lo260'), -1),
+                                 # operator-study refinement: sell side unturned (2.6x), buy share LOW
+                                 # (2.1x), few analysts (2.0x), R&D present, volatile (vol LOW 0.4x)
+                                 (_c('mb_fund_up_unturned'), 1), (_c('sent_buy_share'), -1), (_c('sent_n_analysts'), -1),
+                                 (_c('fmp_rd_to_revenue'), 1), (_c('ts_vol_1y'), 1)],
         'mb_inflecting_operator': [(_c('op_margin_delta_yoy'), 1), (_c('fqx_ebit_ttm_g'), 1),
                                    (_c('fqx_roic_ttm') - _c('roic_lindy'), 1), (_c('fqx_inc_ebit_margin'), 1),
                                  (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
@@ -8805,7 +8880,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                    (_c('ts_wks_since_lo260'), -1), (_c('gross_margin'), -1),
                                    # operator study: the 10x names sat at their PEER GROUP'S lowest
                                    # multiple and lowest returns (industry frame, sector fallback)
-                                   (_c('rel_ind_ev_ebit'), -1), (_c('rel_ind_roce'), -1), (_c('vs_ind_r52'), -1)],
+                                   (_c('rel_ind_ev_ebit'), -1), (_c('rel_ind_roce'), -1), (_c('vs_ind_r52'), -1),
+                                   # operator-study refinement: 13F holders increasing (2.7x), R&D present
+                                   # (R&D LOW 0.32x), ROE not high (0.36x), weak 26w vs the industry
+                                   (_c('fmp_inst_shares_chg_pct_q0'), 1), (_c('fmp_rd_to_revenue'), 1),
+                                   (_c('roe'), -1), (_c('vs_ind_r26'), -1)],
         'mb_conviction_confluence': [(_c('mb_smart_money_legs'), 1), (_c('usf_ins_buy_quarters_4q'), 1),
                                      (_c('buyback_yield'), 1), (_c('ts_dist_hi260'), -1),
                                      (_c('ts_wks_since_lo260'), -1), (_c('market_cap_usd'), -1)],
@@ -8821,18 +8900,29 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                     (_c('market_cap_usd'), -1),
                                     # §1: few analysts (1.35x), reinvesting (1.3x); §2 fresh low (1.35x)
                                     (_c('sent_n_analysts'), -1), (_c('capex_intensity'), 1),
-                                    (_c('ts_wks_since_lo260'), -1)],
+                                    (_c('ts_wks_since_lo260'), -1),
+                                    # operator-study refinement: leverage present (low debt/assets 0.35x),
+                                    # gross-margin streak (1.8x), net cash NOT high (0.46x)
+                                    (_c('debt_to_equity'), 1), (_c('fqx_gm_streak'), 1), (_c('net_cash_pct_mcap'), -1)],
         'mb_grew_into_valuation_turning': [(_c('derate_growth_absorbed'), 1), (_c('fqx_opm_slope8'), 1),
                                            (_c('fqx_opm_consist'), 1), (_c('fq_rev_growth'), 1),
                                            (_c('ts_r13'), -1), (_c('sent_n_analysts'), -1)],
         'mb_tree_recipe': [(_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1), (_c('ts_dist_hi260'), -1),
-                           (_c('p_s').where(_c('p_s') > 0), -1), (_c('nl_sales_1y'), 1), (_c('ts_r13'), -1), (_c('ts_wks_since_lo260'), -1)],
+                           (_c('p_s').where(_c('p_s') > 0), -1), (_c('nl_sales_1y'), 1), (_c('ts_r13'), -1), (_c('ts_wks_since_lo260'), -1),
+                           # operator-study refinement: buy share LOW (3.3x), few analysts (2.1x), ROIC x FCF
+                           # yield (1.9x), P/B not high vs the industry (0.4x)
+                           (_c('sent_buy_share'), -1), (_c('sent_n_analysts'), -1),
+                           (_c('roce').clip(-1, 1) * _c('fcf_yield').clip(-1, 1), 1), (_c('rel_ind_pb'), -1)],
         'mb_tree_recipe_10x': [(_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
                                (_c('p_s').where(_c('p_s') > 0), -1), (_c('ts_dist_hi260'), -1),
                                (_c('nl_sales_3y'), 1), (-_evt_age_days('evt_sc13d_date'), 1), (_c('ts_wks_since_lo260'), -1)],
         'mb_sequence_preignition': [(_c('mb_sequence_signs'), 1), (_c('fqx_opm_slope8'), 1),
                                     (_c('fqx_roic_slope8'), 1), (_c('rev_accel'), 1), (_c('ts_r13'), -1),
-                                    (_c('ts_dist_hi52'), -1), (_c('market_cap_usd'), -1)],
+                                    (_c('ts_dist_hi52'), -1), (_c('market_cap_usd'), -1),
+                                    # operator-study refinement: debt falling (1.9x), net-net / fallen
+                                    # (1.5-1.8x), sell side unturned (1.6x), few analysts (1.5x), off the low
+                                    (_c('fq_netdebt_decline_months'), 1), (_c('ts_dist_hi260'), -1),
+                                    (_c('mb_fund_up_unturned'), 1), (_c('sent_n_analysts'), -1), (_c('ts_dist_lo52'), 1)],
         # segment study: asset trough — sales/share far ahead of price, fresh
         # low, informed buyer, cheap on sales, uncovered, small, leverage
         # present (deleveraging was NEGATIVE), the 30w MA still falling
@@ -8862,7 +8952,25 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'mb_wave_neglected_value_accel': [(_c('mkt_tape_dist_hi260'), -1), (_c('ind_tape_dist_hi260'), -1),
                                           (_c('rev_accel'), 1), (_c('rel_ind_ev_ebit'), -1),
                                           (_c('sent_n_analysts'), -1), (_c('fq_netdebt_decline_months'), 1),
-                                          (_c('market_cap_usd'), -1), (_c('ts_dist_hi260'), -1)],
+                                          (_c('market_cap_usd'), -1), (_c('ts_dist_hi260'), -1),
+                                          # refinement: fundamentals up with the sell side unturned (3.6x),
+                                          # believers among the few (2.3x), off the low (1.6x), volatile (1.6x)
+                                          (_c('mb_fund_up_unturned'), 1), (_c('sent_buy_share'), 1),
+                                          (_c('ts_dist_lo52'), 1), (_c('ts_vol_1y'), 1)],
+        'mb_compounder_insiders_at_high': [(_c('rel_ind_roce'), 1), (_c('roce'), 1), (_c('fmp_rd_to_revenue'), 1),
+                                           (_c('usf_ins_buy_quarters_4q'), 1), (_c('insider_distinct_buyers'), 1),
+                                           (_c('ts_dist_hi52'), 1), (_c('sent_upgrades_12m'), 1),
+                                           (_c('evt_beat_share_8q'), -1), (_c('fcf_yield'), 1), (_c('net_cash_pct_mcap'), 1)],
+        'mb_hiring_beating_uncovered': [(_c('usf_emp_g1'), 1), (_c('op_margin') - _c('tc_med_opm'), 1),
+                                        (_c('evt_surprise_4q'), 1), (_c('evt_beat_share_8q'), 1),
+                                        (_c('ev_sales_change_yoy'), 1), (_c('fmp_inst_shares_chg_pct_q0'), 1),
+                                        (_c('sent_n_analysts'), -1), (_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
+                                        (_c('ts_dist_hi260'), -1)],
+        'mb_cheap_growth_targets_up': [(_c('fcf_yield') + _c('fq_rev_growth'), 1),
+                                       (_c('ev_ebit').where(_c('ev_ebit') > 0), -1), (_c('rel_ind_ev_ebit'), -1),
+                                       (_c('fq_rev_growth'), 1), (_c('rel_ind_rev_growth'), 1),
+                                       (_c('sent_pt_rev_q'), 1), (_c('evt_pt_prem_12m'), 1), (_c('roce'), 1),
+                                       (_c('market_cap_usd'), -1), (_c('ts_vol_1y'), 1)],
         # the leader — coverage, how far price leads sales, margin slope,
         # growth, R&D, the industry's breadth and return, volatility
         'mb_leader_in_wave': [(_c('sent_n_analysts'), 1), (-_c('nl_sales_3y'), 1), (_c('fqx_opm_slope8'), 1),

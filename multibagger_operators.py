@@ -169,6 +169,14 @@ def operator_archetypes(d: pd.DataFrame) -> dict:
                                        & ((g("ps_vs_own") > 1.0) | (g("r52") > 0.20)),
         "peer_worst_cheapest": (g("op_ind_evebit") <= 0.20) & (g("op_ind_roic") <= 0.25)
                                & ((g("fcf_margin") <= 0.03) | (g("op_ind_ps") <= 0.25)),
+        # from the not-fallen / near-highs / uncovered passes
+        "compounder_insiders_at_high": (g("dist_hi52") >= 0.85) & (g("op_ind_roic") >= 0.75) & (g("rd_rev") >= 0.08)
+                                       & ((g("ins_buy_quarters_4q") >= 2) | (g("st_insider_buying") == 1)),
+        "hiring_beating_uncovered": ((g("emp_g1") >= 0.15) | (g("emp_g1").isna() & (g("rev_g1") >= 0.20)))
+                                    & (g("opm_vs_5y") >= 0.02) & ((g("beats_4q") >= 3) | (g("surprise_4q") > 0))
+                                    & (g("n_analysts").fillna(0) <= 1) & g("dist_hi260").between(0.35, 0.80),
+        "cheap_growth_targets_up": (g("rev_g1") >= 0.15) & (g("ev_ebit").between(0, 10) | ((g("fcf_yield") + g("rev_g1")) >= 0.20))
+                                   & (g("pt_rev_6m") > 0) & (g("dist_hi260") >= 0.60),
     }
 
 
