@@ -7197,6 +7197,123 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    model's probability. Holds the interactions the boxes cannot; its
     #    lift, blow-up and what it leans on are in MULTIBAGGER_MODEL.md.
     df['arch_mb_model_top'] = (_mb_base & (_ncol('mb_model_rank_mkt') >= 0.95).fillna(False)).astype(int)
+    # ---- the nine families of the robust mining (MULTIBAGGER_UNCOVERED.md) ----
+    # Mined on USD outcomes with the search optimising the ROBUST lift: the
+    # weaker of the two halves of time (to 2018 / from 2019), admitted only
+    # with events over >= 3 markets (none above 60%) and >= 4 years. Cores as
+    # mined; quintiles are within-country ranks among the liquid operating
+    # base (the study's within-month-market ranks).
+    _q_lo = lambda x: (_crank(x) <= 0.20).fillna(False)
+    _q_hi = lambda x: (_crank(x) >= 0.80).fillna(False)
+    _psv = _ncol('p_s').where(_ncol('p_s') > 0)
+    _evsv = _ncol('ev_sales').where(_ncol('ev_sales') > 0)
+    df['ind_tape_opm_d1'] = (_ncol('op_margin_delta_yoy').where(_frame_pop & (_peer_key != ''))
+                             .groupby(_peer_key).transform('median').round(4))
+    _ind_trough = (_q_lo(df['ind_tape_opm_d1']) | _q_lo(df['ind_tape_rev_growth']))
+    _asset_like = (sector.isin(['Energy', 'Materials', 'Real Estate', 'Utilities'])
+                   | _ind_all.str.contains(r'shipping|marine|tanker|lessor|leasing|holding|reit|real estate|mining'
+                                           r'|oil|gas|coal|steel|aluminum|gold|silver|uranium|timber|farm|metals', regex=True))
+    _operator = ((_ncol('op_margin') >= 0) & (_ncol('fcf_margin') >= 0)).fillna(False) & ~_asset_like
+    # U1. FALLEN, CHEAPEST ON SALES, IN AN INDUSTRY AT ITS OWN TROUGH: P/S bottom
+    #     quintile, the INDUSTRY'S median margin change or growth in the bottom
+    #     quintile, fallen. Robust 5.2-5.8x, 110-175 events, 10-12 years, 8-12
+    #     markets, blow-up 8-11%, ~15 months to 3x (SARDAEN 2020, VEDL 2020,
+    #     300274.SZ 2018, BTE.TO / YGR.TO 2020, ADANIENT 2013).
+    df['arch_mb_industry_trough_cheapest'] = (_mb_base & _mb_fallen & _q_lo(_psv) & _ind_trough).astype(int)
+    # U2. REINVESTING AT THE TROUGH: capex / revenue top quintile, P/S bottom
+    #     quintile and below its own history, fallen. Robust 5.8x, 112 events,
+    #     11 years, 10 markets, blow-up 18% (9107.T 2019, 8869.KL 2016, VEDL).
+    df['arch_mb_reinvesting_at_trough'] = (_mb_base & _mb_fallen & _q_hi(_ncol('capex_intensity')) & _q_lo(_psv)
+                                           & _cheap_own).astype(int)
+    # U3. STRESSED BUT NOT DILUTING, AT THE BOTTOM OF ITS RANGE: net debt /
+    #     EBITDA >= 5 or negative equity, share count not rising, fallen and
+    #     near the 52-week low. Robust 6.0x, 94 events, 10 years, 9 markets,
+    #     blow-up 25% (SUZLON 2020, SNBR 2020, SNH.JO 2019).
+    _stressed = (((nde >= 5) & (nde < 90)) | (_ncol('equity') < 0)).fillna(False)
+    _not_diluting = ~((_ncol('fmp_st_shares_growth_3y') > 0.03) | (_ncol('fmp_filled_shares_growth_3y') > 0.03)).fillna(False)
+    df['arch_mb_stressed_not_diluting'] = (_mb_base & _mb_fallen & _stressed & _not_diluting
+                                           & (_ncol('ts_dist_lo52') <= 1.15).fillna(False)).astype(int)
+    # U4. GROWTH PAST ITS CAPEX PEAK (not fallen): two-year revenue growth in the
+    #     top quintile (or capex / D&A high), no payout, CAPEX ROLLING OFF
+    #     (this year's capex below last year's while still above D&A), ROIC at
+    #     its own high or volatile vs its industry. Robust 7.1-7.5x, 80-104
+    #     events, 11-14 years, 9-12 markets, blow-up 22-33% (TSLA 2018,
+    #     FNOX.ST 2016-18, 001570.KS 2021, IIVI 2019, HTHT 2015).
+    _capex_rolloff = ((_ncol('fq_capex').abs() < _ncol('fq_capex_p').abs()) & (_ncol('fq_capex_to_da') > 1.0)).fillna(False)
+    _no_payout = ~((_ncol('dividend_yield') > 0.005) | (_ncol('buyback_yield') > 0.005)).fillna(False)
+    _g2 = _ncol('fmp_st_revenue_cagr').fillna(_ncol('fq_rev_growth'))
+    _roic_own_hi = ((_ncol('fqx_roic_ttm') > _ncol('roic_lindy')) | (_ncol('fqx_roic_streak') >= 3)).fillna(False)
+    df['arch_mb_growth_past_capex_peak'] = (
+        _mb_base & (_hi260 >= 0.60).fillna(False) & (_q_hi(_g2) | _q_hi(_ncol('fq_capex_to_da'))) & _no_payout
+        & _capex_rolloff & (_roic_own_hi | (_crank(_ncol('ts_vol_1y')) >= 0.8).fillna(False))).astype(int)
+    # U5. NEGLECTED, FELL MORE THAN ITS INDUSTRY, FINANCED WHILE BOOK GROWS
+    #     (fallen, 10x): share issuance with negative FCF (financing
+    #     dependence), equity compounding in the top quintile, fell more than
+    #     its industry, <= 1 analyst. Robust 7.0x, 49 events, 9 years, 11
+    #     markets, blow-up 29%, 10x rate 7% (ROCK-A.CO 2015, TTRAK.IS 2019,
+    #     GULFNAV.AE 2022, EUZ.DE 2017, 3324.TWO 2014).
+    _financed = (((_ncol('fmp_st_shares_growth_3y') >= 0.05) & (_ncol('fcf_yield') < 0))
+                 | (_ncol('fq_financing_cf') > 0)).fillna(False)
+    _book_growing = _q_hi(_ncol('equity_cagr_5y').fillna(_ncol('fmp_st_equity_cagr')))
+    df['arch_mb_neglected_fell_more_financed'] = (
+        _mb_base & _mb_fallen & _financed & _book_growing & _q_lo(df['vs_ind_dist_hi260'])
+        & (_ncol('sent_n_analysts').fillna(0) <= 1)).astype(int)
+    # U6. LEAN R&D MANUFACTURER STOCKING UP OFF THE LOW (10x): well off the
+    #     52-week low, inventory growing faster than cost of sales, R&D top
+    #     quintile, SG&A bottom quintile. Robust 17.7x on THIN support (39
+    #     events, 6 years, 5 markets, Japan 56%; Lasertec 2016 58x, SMCI 2019
+    #     52x, CLS.TO 2020, LONGi 2013) — carried with that stated.
+    _sga_rev = _ncol('fq_sga') / _ncol('fq_revenue').where(_ncol('fq_revenue') > 0)
+    df['arch_mb_lean_rd_stocking_up'] = (
+        _mb_base & _q_hi(_ncol('ts_dist_lo52')) & (_ncol('fq_inv_vs_cogs') > 0.05).fillna(False)
+        & _q_hi(_ncol('fmp_rd_to_revenue')) & (_q_lo(_sga_rev) | _sga_rev.isna())).astype(int)
+    # C7. DIVERGENCE + CHEAPEST P/B IN ITS INDUSTRY + WIDE RANGE (covered):
+    #     fundamentals ahead of price (narrative lag >= log 1.5, or margins
+    #     above their through-cycle norm with the price at half its high), P/B
+    #     bottom quintile of the industry, volatile. Robust 4.2-4.4x, ~200
+    #     events, 12-14 years, 14-23 markets, blow-up 21-33%, 10x rate 5-11%
+    #     (0412.HK 2013, DAC 2020, MEG.TO 2020, AXTI 2024, PR 2020, LXU 2020).
+    _divergence = ((_ncol('narrative_lag_extent') >= np.log(1.5))
+                   | ((_mb_opm_gap >= 0.02) & (_hi260 <= 0.5))).fillna(False)
+    df['arch_mb_divergence_cheapest_pb'] = (
+        _mb_base & _divergence & (df['rel_ind_pb'] <= 0.20).fillna(False)
+        & (_crank(_ncol('ts_vol_1y')) >= 0.6).fillna(False)).astype(int)
+    # C8. FALLEN OPERATOR, EV/SALES LOW, IN AN INDUSTRY FAR FROM ITS HIGH (10x):
+    #     a profitable operator >= 60% below its high, EV/sales bottom quintile,
+    #     the INDUSTRY'S own distance from its 5-year high in the bottom
+    #     quintile, two-year return low or P/S bottom of peers. Robust 9-11x,
+    #     51-58 events, 7 years, 7 markets, blow-up 15-19%, 10x rate 10-12%
+    #     (LMB 2020, DDS 2020, SMCI 2018, ARVIND 2020, GME 2018).
+    df['arch_mb_fallen_operator_industry_low'] = (
+        _mb_base & _operator & _mb_fallen & _q_lo(_evsv) & _q_lo(df['ind_tape_dist_hi260'])
+        & (_q_lo(_ncol('ts_r104')) | (df['rel_ind_p_s'] <= 0.20).fillna(False))).astype(int)
+    #     sister: QUALITY AT DISTRESS — deep drawdown, EV/sales low, ROCE x FCF
+    #     yield top quintile, P/B bottom of peers. Robust 9.2x, 52 events, 6
+    #     years, 6 markets, blow-up 27-29% (CLS 2020, PRMB 2012, WAWI.OL 2020).
+    _roce_x_fcfy = _ncol('roce').clip(-1, 1) * _ncol('fcf_yield').clip(-1, 1)
+    df['arch_mb_quality_at_distress'] = (
+        _mb_base & _operator & (_hi260 <= 0.5).fillna(False) & _q_lo(_evsv) & _q_hi(_roce_x_fcfy)
+        & (df['rel_ind_pb'] <= 0.20).fillna(False)).astype(int)
+    # C9. R&D LEADER ON VOLUME, PRICE AHEAD OF EPS (not fallen): two-year return
+    #     top quintile, a volume surge, R&D top quintile, EPS per share behind
+    #     the price. Robust 5.5x, 97 events, 9 years, 12 markets, blow-up 22%
+    #     (NVDA 2015, TRIL.NS 2022, CLS.TO 2023, DIXON 2020).
+    _vol_surge = ((_ncol('bs_cp_dvol_z13') >= 1.0) | (_ncol('ts_vol_spike') == 1)
+                  | (_ncol('ts_vol_spike4') == 1)).fillna(False)
+    df['arch_mb_rd_leader_on_volume'] = (
+        _mb_base & (_hi260 >= 0.60).fillna(False) & _q_hi(_ncol('ts_r104')) & _vol_surge
+        & _q_hi(_ncol('fmp_rd_to_revenue')) & (_ncol('nl_eps_1y') < 0).fillna(False)).astype(int)
+    #     sister: CHEAP VS PEERS, RECOVERING, FCF STREAK RISING — well off the
+    #     52-week low, volatile, P/S bottom quintile of its peers, FCF margin
+    #     rising for >= 2 quarters. Robust 4.7x, 98 events, 12 years, 16
+    #     markets, blow-up 20% (ADANIENT 2020, CLS 2023, LMB 2022, SHYF 2016).
+    df['arch_mb_cheap_vs_sector_recovering'] = (
+        _mb_base & _q_hi(_ncol('ts_dist_lo52')) & _q_hi(_ncol('ts_vol_1y')) & (df['rel_ind_p_s'] <= 0.20).fillna(False)
+        & (_ncol('fqx_fcfm_streak') >= 2).fillna(False)).astype(int)
+    _SPIRITED += ['mb_industry_trough_cheapest', 'mb_reinvesting_at_trough', 'mb_stressed_not_diluting',
+                  'mb_growth_past_capex_peak', 'mb_neglected_fell_more_financed', 'mb_lean_rd_stocking_up',
+                  'mb_divergence_cheapest_pb', 'mb_fallen_operator_industry_low', 'mb_quality_at_distress',
+                  'mb_rd_leader_on_volume', 'mb_cheap_vs_sector_recovering']
     _SPIRITED += ['mb_wave_neglected_value_accel', 'mb_leader_in_wave', 'mb_improving_unturned_sellside',
                   'mb_peer_worst_cheapest', 'mb_compounder_insiders_at_high', 'mb_hiring_beating_uncovered',
                   'mb_cheap_growth_targets_up', 'mb_model_top']
@@ -7391,6 +7508,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_hiring_beating_uncovered',
         'arch_mb_cheap_growth_targets_up',
         'arch_mb_model_top',
+        'arch_mb_industry_trough_cheapest',
+        'arch_mb_reinvesting_at_trough',
+        'arch_mb_stressed_not_diluting',
+        'arch_mb_growth_past_capex_peak',
+        'arch_mb_neglected_fell_more_financed',
+        'arch_mb_lean_rd_stocking_up',
+        'arch_mb_divergence_cheapest_pb',
+        'arch_mb_fallen_operator_industry_low',
+        'arch_mb_quality_at_distress',
+        'arch_mb_rd_leader_on_volume',
+        'arch_mb_cheap_vs_sector_recovering',
         'arch_xr_peer_margin_gap',
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
@@ -7600,6 +7728,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_hiring_beating_uncovered': 'MB-HiringBeatingUncovered',
         'arch_mb_cheap_growth_targets_up': 'MB-CheapGrowthTargetsUp',
         'arch_mb_model_top': 'MB-ModelTop5',
+        'arch_mb_industry_trough_cheapest': 'MB-IndustryTroughCheapest',
+        'arch_mb_reinvesting_at_trough': 'MB-ReinvestingAtTrough',
+        'arch_mb_stressed_not_diluting': 'MB-StressedNotDiluting',
+        'arch_mb_growth_past_capex_peak': 'MB-GrowthPastCapexPeak',
+        'arch_mb_neglected_fell_more_financed': 'MB-NeglectedFellMoreFinanced',
+        'arch_mb_lean_rd_stocking_up': 'MB-LeanRDStockingUp',
+        'arch_mb_divergence_cheapest_pb': 'MB-DivergenceCheapestPB',
+        'arch_mb_fallen_operator_industry_low': 'MB-FallenOperatorIndustryLow',
+        'arch_mb_quality_at_distress': 'MB-QualityAtDistress',
+        'arch_mb_rd_leader_on_volume': 'MB-RDLeaderOnVolume',
+        'arch_mb_cheap_vs_sector_recovering': 'MB-CheapVsSectorRecovering',
         'arch_xr_cash_leads_book': 'XR-CashLeadsBook',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
@@ -8981,6 +9120,34 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                         (_c('sent_n_analysts'), -1), (_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
                                         (_c('ts_dist_hi260'), -1)],
         'mb_model_top': [(_c('mb_model_p'), 1), (_c('mb_model_pct_hist'), 1), (_c('mb_model_rank_mkt'), 1)],
+        # the nine mined families: each lens is one of the family's own conditions, continuous
+        'mb_industry_trough_cheapest': [(_c('p_s').where(_c('p_s') > 0), -1), (_c('ind_tape_opm_d1'), -1),
+                                        (_c('ind_tape_rev_growth'), -1), (_c('ts_dist_hi260'), -1), (_c('nl_sales_3y'), 1),
+                                        (_c('ts_ma30_slope13'), -1), (_c('market_cap_usd'), -1)],
+        'mb_reinvesting_at_trough': [(_c('capex_intensity'), 1), (_c('p_s').where(_c('p_s') > 0), -1),
+                                     (_c('ev_sales_change_yoy'), -1), (_c('ts_dist_hi260'), -1), (_c('market_cap_usd'), -1)],
+        'mb_stressed_not_diluting': [(_c('net_debt_ebitda'), 1), (_c('fmp_st_shares_growth_3y'), -1), (_c('ts_dist_lo52'), -1),
+                                     (_c('ts_dist_hi260'), -1), (_c('fq_netdebt_decline_months'), 1), (_c('market_cap_usd'), -1)],
+        'mb_growth_past_capex_peak': [(_c('fmp_st_revenue_cagr'), 1), (_c('fq_capex_to_da'), 1),
+                                      (_c('fq_capex_p').abs() - _c('fq_capex').abs(), 1), (_c('fqx_roic_ttm') - _c('roic_lindy'), 1),
+                                      (_c('ts_vol_1y'), 1), (_c('dividend_yield'), -1)],
+        'mb_neglected_fell_more_financed': [(_c('vs_ind_dist_hi260'), -1), (_c('equity_cagr_5y'), 1),
+                                            (_c('fmp_st_shares_growth_3y'), 1), (_c('sent_n_analysts'), -1),
+                                            (_c('ts_dist_hi260'), -1), (_c('ts_dd_time_share_260'), 1)],
+        'mb_lean_rd_stocking_up': [(_c('ts_dist_lo52'), 1), (_c('fq_inv_vs_cogs'), 1), (_c('fmp_rd_to_revenue'), 1),
+                                   (_c('fq_sga') / _c('fq_revenue').where(_c('fq_revenue') > 0), -1), (_c('fq_rev_growth'), 1)],
+        'mb_divergence_cheapest_pb': [(_c('narrative_lag_extent'), 1), (_c('rel_ind_pb'), -1), (_c('ts_vol_1y'), 1),
+                                      (_c('ind_tape_rev_growth'), -1), (_c('ts_dist_hi260'), -1), (_c('nl_fcfps_3y'), 1)],
+        'mb_fallen_operator_industry_low': [(_c('ev_sales').where(_c('ev_sales') > 0), -1), (_c('ind_tape_dist_hi260'), -1),
+                                            (_c('ts_r104'), -1), (_c('rel_ind_p_s'), -1), (_c('ts_dist_hi260'), -1),
+                                            (_c('roce'), 1)],
+        'mb_quality_at_distress': [(_c('roce').clip(-1, 1) * _c('fcf_yield').clip(-1, 1), 1),
+                                   (_c('ev_sales').where(_c('ev_sales') > 0), -1), (_c('rel_ind_pb'), -1),
+                                   (_c('ts_dist_hi260'), -1), (_c('ts_maxdd_5y'), -1)],
+        'mb_rd_leader_on_volume': [(_c('ts_r104'), 1), (_c('bs_cp_dvol_z13'), 1), (_c('fmp_rd_to_revenue'), 1),
+                                   (-_c('nl_eps_1y'), 1), (_c('fq_rev_growth'), 1), (_c('roce'), 1)],
+        'mb_cheap_vs_sector_recovering': [(_c('ts_dist_lo52'), 1), (_c('ts_vol_1y'), 1), (_c('rel_ind_p_s'), -1),
+                                          (_c('fqx_fcfm_streak'), 1), (_c('fqx_fcfm_slope8'), 1), (_c('market_cap_usd'), -1)],
         'mb_cheap_growth_targets_up': [(_c('fcf_yield') + _c('fq_rev_growth'), 1),
                                        (_c('ev_ebit').where(_c('ev_ebit') > 0), -1), (_c('rel_ind_ev_ebit'), -1),
                                        (_c('fq_rev_growth'), 1), (_c('rel_ind_rev_growth'), 1),

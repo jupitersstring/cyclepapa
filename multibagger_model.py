@@ -148,6 +148,7 @@ def region_rules(d, R, p, y, w, L):
     ok = p.notna() & y.notna()
     rk = p[ok].groupby(m[ok]).rank(pct=True)
     top = pd.Series(False, index=d.index); top[ok] = rk >= 0.9
+    ok &= d.index.isin(R.index)
     feats = [c for c in R.columns if c not in mc.MISS]
     rng = np.random.default_rng(7)
     sub = rng.choice(d.index[ok], size=min(300_000, int(ok.sum())), replace=False)
@@ -181,6 +182,7 @@ def importance(last, d, y, w, L):
     from sklearn.inspection import permutation_importance
     clf, cols, test = last
     R = d.attrs["R"]
+    test = test & d.index.isin(R.index)
     idx = np.random.default_rng(7).choice(d.index[test], size=min(50_000, int(test.sum())), replace=False)
     imp = permutation_importance(clf, R.loc[idx, cols], y[idx], n_repeats=2, random_state=7, scoring="roc_auc",
                                  sample_weight=w[idx])
@@ -194,6 +196,7 @@ def score_today(d, R, y, w, L):
     """Fit on every resolved month-end; score today's cross-section."""
     last_week = d["week"].max()
     fit = (d["week"] <= last_week - pd.Timedelta(weeks=104)) & y.notna()
+    fit &= d.index.isin(R.index)
     fit_rows, fit_w = _fit_sample(d, fit, y, w, keep_neg=0.25)
     cols = list(R.columns[R.loc[fit_rows].nunique(dropna=True) > 1])
     import gc; gc.collect(); _mem("before final fit")
@@ -232,7 +235,19 @@ def main():
     d = mc.load()
     d = mm.outcome_cols(d)
     d = d[~d["bio"]].reset_index(drop=True)
-    d, R = features(d)
+    stage2 = os.environ.get("MODEL_STAGE") == "2" and os.path.exists("mb_model_oos.parquet")
+    if stage2:
+        # STAGE 2 ranks only a ROW SAMPLE (the fit, region and importance need
+        # no more); coverage is computed on every row from the saved scores
+        # before any ranking, so the full ranked matrix never exists here
+        g = pd.read_csv("asymmetry_global.csv", usecols=["symbol", "sector", "industry"], low_memory=False).drop_duplicates("symbol")
+        d = d.merge(g, on="symbol", how="left")
+        d = ms.add_measures(d); d = mo.add_measures(d)
+        mc.BLOCKS = {**mc.BLOCKS, **mo.OP_BLOCKS}
+        mc.FEATS = mc.FEATS + [c for c in d.columns if c.startswith(("pp_", "as_", "op_", "ind_", "mkt_"))]
+        R = None
+    else:
+        d, R = features(d)
     _mem("features")
     y, w = d[LABEL], d["w_cc"]
     ind = d["industry"].fillna("").str.lower()
@@ -245,6 +260,13 @@ def main():
     # the raw feature columns live on in R (ranked); the panel keeps only what the tables need
     keep = {"symbol", "week", "market", "sector", "industry", "w_cc", "bio", "asset", "preprofit", LABEL, "t10_60",
             "fwd_min_24", "fwd_ret_24", "fwd_mult_60", "months_to_3x", "dist_hi260", "opm", "fcf_margin"}
+    if stage2:
+        rng = np.random.default_rng(7)
+        samp = np.sort(rng.choice(d.index, size=int(len(d) * 0.40), replace=False))
+        d.attrs["sample"] = samp
+        feats = mc.feats_all(d)
+        R = mc.ranked(d.loc[samp], feats); R = R.loc[:, ~R.columns.duplicated()]
+        _mem("sample ranked")
     d = d[[c for c in d.columns if c in keep or c.startswith("st_")]].copy()
     import gc; gc.collect()
     _mem("panel trimmed")
