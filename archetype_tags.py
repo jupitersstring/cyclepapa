@@ -4131,7 +4131,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
          | (_cfo_ni_ya >= 1.2)
          | ((_ncol('fcf_ttm') / _ni_loc.where(_ni_loc > 0)) >= 1.2)   # (audit 3) FCF / NI >= 1.2 (capex-aware) as a further corroboration
          | (_ncol('fq_sloan_accruals') <= -0.05)) &   # (audit 3) ...or negative accruals measured directly
-        ~(_ncol('sbc_polluted_flag') == 1) &       # (audit 3) the surplus must not BE the SBC add-back
+        ~(_ncol('sbc_pct_revenue') >= 0.15) &      # (audit 3) the surplus must not BE the SBC add-back (the sbc_polluted rule, read from its input: the flag is defined later)
         ~_wc_liq_ue.fillna(False) &
         (_pe_ue > 0) & (_pe_ue <= 15) &            # the market is pricing the UNDERSTATED E
         ~(_ncol('shares_yoy') > 0.05) &
