@@ -261,12 +261,10 @@ def main():
     keep = {"symbol", "week", "market", "sector", "industry", "w_cc", "bio", "asset", "preprofit", LABEL, "t10_60",
             "fwd_min_24", "fwd_ret_24", "fwd_mult_60", "months_to_3x", "dist_hi260", "opm", "fcf_margin"}
     if stage2:
-        rng = np.random.default_rng(7)
-        samp = np.sort(rng.choice(d.index, size=int(len(d) * 0.40), replace=False))
-        d.attrs["sample"] = samp
+        # every row, ranked in column chunks onto a disk memory map
         feats = mc.feats_all(d)
-        R = mc.ranked(d.loc[samp], feats); R = R.loc[:, ~R.columns.duplicated()]
-        _mem("sample ranked")
+        R = mc.ranked(d, feats, memmap_path="mb_model_ranked.npy")
+        _mem("ranked (memmap)")
     d = d[[c for c in d.columns if c in keep or c.startswith("st_")]].copy()
     import gc; gc.collect()
     _mem("panel trimmed")

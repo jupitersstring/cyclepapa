@@ -194,21 +194,27 @@ def load():
     return d
 
 
-def ranked(d: pd.DataFrame, feats) -> pd.DataFrame:
+def ranked(d: pd.DataFrame, feats, memmap_path: str | None = None) -> pd.DataFrame:
     """Percentile of each feature within its MONTH and LOCAL MARKET (a story is
     measured against its own market at that moment, so neither a global bull
-    run nor one country's bubble can manufacture a cluster)."""
+    run nor one country's bubble can manufacture a cluster).
+
+    Ranked in column CHUNKS of 40 into one preallocated float32 block; with
+    memmap_path the block lives ON DISK (a .npy memory map, read back through
+    the page cache), so a 1.3M x 550 matrix costs the process no resident
+    memory of its own — the model study ranks every row that way."""
     m = d["week"].dt.to_period("M").astype(str) + "|" + d["market"].astype(str)
-    fs = [f for f in feats if f in d.columns]
-    # in column chunks: the grouped rank materialises float64 intermediates,
-    # and 400 columns x 1.3M rows of those (4 GB) is what pushed the studies
-    # over the box's memory beside a book build
-    # into ONE preallocated float32 block (a concat of the chunks would hold
-    # the matrix twice at the end)
-    A = np.empty((len(d), len(fs)), dtype="float32")
+    fs = list(dict.fromkeys(f for f in feats if f in d.columns))
+    if memmap_path:
+        A = np.lib.format.open_memmap(memmap_path, mode="w+", dtype="float32", shape=(len(d), len(fs)))
+    else:
+        A = np.empty((len(d), len(fs)), dtype="float32")
     for i in range(0, len(fs), 40):
         A[:, i:i + 40] = d[fs[i:i + 40]].groupby(m).rank(pct=True).to_numpy("float32")
-    R = pd.DataFrame(A, index=d.index, columns=fs)
+    if memmap_path:
+        A.flush(); del A
+        A = np.load(memmap_path, mmap_mode="r")
+    R = pd.DataFrame(A, index=d.index, columns=fs, copy=False)
     for k, src in MISS.items():
         R[k] = d[src].isna().astype(float) if src in d.columns else 1.0
     st = [c for c in d.columns if c.startswith("st_")]

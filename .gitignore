@@ -74,3 +74,4 @@ mb_today.parquet
 mb_today_parts/
 yahoo_weekly_prices.parquet
 mb_model_oos.parquet
+mb_model_ranked.npy
