@@ -142,7 +142,7 @@ def segment_archetypes(d: pd.DataFrame) -> dict:
     nl = (g("gap_sales_1y") > 0) | (g("gap_sales_2y") > 0) | (g("gap_sales_3y") > 0)
     return {
         "asset_trough_informed": d["asset"] & fallen & nl & informed,
-        "preprofit_ignored_beats": d["preprofit"] & (g("ignored_beats_2y") >= 2),
+        "preprofit_beats_rewarded": d["preprofit"] & (g("ignored_beats_2y") == 0) & (g("beats_4q") >= 2),
         "preprofit_freefall_informed": d["preprofit"] & fallen & informed,
         "biotech_financed_hiring": d["bio"] & (g("dist_hi260") <= 0.5) & (g("share_g3") >= 0.10)
                                    & ((g("emp_g1") >= 0.10) | informed) & (g("netcash_mcap") > 0),

@@ -7196,7 +7196,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    out of sample; today's names in the top 5% of their market by the
     #    model's probability. Holds the interactions the boxes cannot; its
     #    lift, blow-up and what it leans on are in MULTIBAGGER_MODEL.md.
-    df['arch_mb_model_top'] = (_mb_base & (_ncol('mb_model_rank_mkt') >= 0.95).fillna(False)).astype(int)
+    df['mb_model_rank_base'] = _crank(_ncol('mb_model_p'))          # within the country, among the liquid operating base
+    df['arch_mb_model_top'] = (_mb_base & (df['mb_model_rank_base'] >= 0.95).fillna(False)).astype(int)
     # ---- the nine families of the robust mining (MULTIBAGGER_UNCOVERED.md) ----
     # Mined on USD outcomes with the search optimising the ROBUST lift: the
     # weaker of the two halves of time (to 2018 / from 2019), admitted only
@@ -7246,17 +7247,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_mb_growth_past_capex_peak'] = (
         _mb_base & (_hi260 >= 0.60).fillna(False) & (_q_hi(_g2) | _q_hi(_ncol('fq_capex_to_da'))) & _no_payout
         & _capex_rolloff & (_roic_own_hi | (_crank(_ncol('ts_vol_1y')) >= 0.8).fillna(False))).astype(int)
-    # U5. NEGLECTED, FELL MORE THAN ITS INDUSTRY, FINANCED WHILE BOOK GROWS
-    #     (fallen, 10x): share issuance with negative FCF (financing
-    #     dependence), equity compounding in the top quintile, fell more than
-    #     its industry, <= 1 analyst. Robust 7.0x, 49 events, 9 years, 11
+    # U5. FALLEN LESS THAN ITS INDUSTRY, FINANCED WHILE BOOK GROWS, NEGLECTED
+    #     (fallen, 10x; the mined condition is 'distance from 5y high MINUS the
+    #     industry's HIGH' — the name is >= 60% below its high but has held up
+    #     BETTER than its industry): share issuance with negative FCF
+    #     (financing dependence), equity compounding in the top quintile,
+    #     <= 1 analyst. Robust 7.0x, 49 events, 9 years, 11
     #     markets, blow-up 29%, 10x rate 7% (ROCK-A.CO 2015, TTRAK.IS 2019,
     #     GULFNAV.AE 2022, EUZ.DE 2017, 3324.TWO 2014).
     _financed = (((_ncol('fmp_st_shares_growth_3y') >= 0.05) & (_ncol('fcf_yield') < 0))
                  | (_ncol('fq_financing_cf') > 0)).fillna(False)
     _book_growing = _q_hi(_ncol('equity_cagr_5y').fillna(_ncol('fmp_st_equity_cagr')))
-    df['arch_mb_neglected_fell_more_financed'] = (
-        _mb_base & _mb_fallen & _financed & _book_growing & _q_lo(df['vs_ind_dist_hi260'])
+    df['arch_mb_fallen_less_than_industry_financed'] = (
+        _mb_base & _mb_fallen & _financed & _book_growing & _q_hi(df['vs_ind_dist_hi260'])
         & (_ncol('sent_n_analysts').fillna(0) <= 1)).astype(int)
     # U6. LEAN R&D MANUFACTURER STOCKING UP OFF THE LOW (10x): well off the
     #     52-week low, inventory growing faster than cost of sales, R&D top
@@ -7298,8 +7301,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     top quintile, a volume surge, R&D top quintile, EPS per share behind
     #     the price. Robust 5.5x, 97 events, 9 years, 12 markets, blow-up 22%
     #     (NVDA 2015, TRIL.NS 2022, CLS.TO 2023, DIXON 2020).
-    _vol_surge = ((_ncol('bs_cp_dvol_z13') >= 1.0) | (_ncol('ts_vol_spike') == 1)
-                  | (_ncol('ts_vol_spike4') == 1)).fillna(False)
+    _vol_surge = ((_ncol('bs_cp_dvol_z13') >= 1.0) | (_ncol('ts_vol_spike') >= 2.0)      # volume / 52w median
+                  | (_ncol('ts_vol_spike4') >= 2.5)).fillna(False)
     df['arch_mb_rd_leader_on_volume'] = (
         _mb_base & (_hi260 >= 0.60).fillna(False) & _q_hi(_ncol('ts_r104')) & _vol_surge
         & _q_hi(_ncol('fmp_rd_to_revenue')) & (_ncol('nl_eps_1y') < 0).fillna(False)).astype(int)
@@ -7311,7 +7314,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _mb_base & _q_hi(_ncol('ts_dist_lo52')) & _q_hi(_ncol('ts_vol_1y')) & (df['rel_ind_p_s'] <= 0.20).fillna(False)
         & (_ncol('fqx_fcfm_streak') >= 2).fillna(False)).astype(int)
     _SPIRITED += ['mb_industry_trough_cheapest', 'mb_reinvesting_at_trough', 'mb_stressed_not_diluting',
-                  'mb_growth_past_capex_peak', 'mb_neglected_fell_more_financed', 'mb_lean_rd_stocking_up',
+                  'mb_growth_past_capex_peak', 'mb_fallen_less_than_industry_financed', 'mb_lean_rd_stocking_up',
                   'mb_divergence_cheapest_pb', 'mb_fallen_operator_industry_low', 'mb_quality_at_distress',
                   'mb_rd_leader_on_volume', 'mb_cheap_vs_sector_recovering']
     _SPIRITED += ['mb_wave_neglected_value_accel', 'mb_leader_in_wave', 'mb_improving_unturned_sellside',
@@ -7497,7 +7500,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_conviction_confluence',
         'arch_mb_left_for_dead_insider',
         'arch_mb_asset_trough_informed',
-        'arch_mb_preprofit_ignored_beats',
+        'arch_mb_preprofit_beats_rewarded',
         'arch_mb_preprofit_freefall_informed',
         'arch_mb_biotech_financed_hiring',
         'arch_mb_wave_neglected_value_accel',
@@ -7510,11 +7513,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_model_top',
         'arch_mb_model_confluence',
         'arch_mb_model_uncovered_not_fallen',
+        'arch_mb_model_region_rule',
         'arch_mb_industry_trough_cheapest',
         'arch_mb_reinvesting_at_trough',
         'arch_mb_stressed_not_diluting',
         'arch_mb_growth_past_capex_peak',
-        'arch_mb_neglected_fell_more_financed',
+        'arch_mb_fallen_less_than_industry_financed',
         'arch_mb_lean_rd_stocking_up',
         'arch_mb_divergence_cheapest_pb',
         'arch_mb_fallen_operator_industry_low',
@@ -7719,7 +7723,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_conviction_confluence': 'MB-ConvictionConfluence',
         'arch_mb_left_for_dead_insider': 'MB-LeftForDeadInsider',
         'arch_mb_asset_trough_informed': 'MB-AssetTroughInformed',
-        'arch_mb_preprofit_ignored_beats': 'MB-PreProfitIgnoredBeats',
+        'arch_mb_preprofit_beats_rewarded': 'MB-PreProfitBeatsRewarded',
         'arch_mb_preprofit_freefall_informed': 'MB-PreProfitFreefallInformed',
         'arch_mb_biotech_financed_hiring': 'MB-BiotechFinancedHiring',
         'arch_mb_wave_neglected_value_accel': 'MB-WaveNeglectedValueAccel',
@@ -7732,11 +7736,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_model_top': 'MB-ModelTop5',
         'arch_mb_model_confluence': 'MB-ModelConfluence',
         'arch_mb_model_uncovered_not_fallen': 'MB-ModelUncoveredNotFallen',
+        'arch_mb_model_region_rule': 'MB-ModelRegionRule',
         'arch_mb_industry_trough_cheapest': 'MB-IndustryTroughCheapest',
         'arch_mb_reinvesting_at_trough': 'MB-ReinvestingAtTrough',
         'arch_mb_stressed_not_diluting': 'MB-StressedNotDiluting',
         'arch_mb_growth_past_capex_peak': 'MB-GrowthPastCapexPeak',
-        'arch_mb_neglected_fell_more_financed': 'MB-NeglectedFellMoreFinanced',
+        'arch_mb_fallen_less_than_industry_financed': 'MB-FallenLessThanIndustryFinanced',
         'arch_mb_lean_rd_stocking_up': 'MB-LeanRDStockingUp',
         'arch_mb_divergence_cheapest_pb': 'MB-DivergenceCheapestPB',
         'arch_mb_fallen_operator_industry_low': 'MB-FallenOperatorIndustryLow',
@@ -7831,13 +7836,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # the lever (deleveraging was negative), so it is a lens, not a veto.
     _nl_sales_pos = ((_ncol('nl_sales_1y') > 0) | (_ncol('nl_sales_2y') > 0) | (_ncol('nl_sales_3y') > 0)).fillna(False)
     df['arch_mb_asset_trough_informed'] = (_mb_base & _seg_asset & _mb_fallen & _nl_sales_pos & _informed).astype(int)
-    # PRE-PROFIT, BEATS THE MARKET IGNORED: the 10x family of the pre-profit
-    # population (lift 30-35x on a 10x within 5 years, ~45-50% of such
-    # month-ends went 10x: CELH 2019, ASPN 2018, PERI, LSCC 2017, POLA):
-    # earnings beats with no price reaction, in a still-loss-making operator.
+    # PRE-PROFIT, BEATS REWARDED: the 10x family of the pre-profit population
+    # (lift 30-35x on a 10x within 5 years, ~45-50% of such month-ends went
+    # 10x: CELH 2019, ASPN 2018, PERI, LSCC 2017, POLA). The mined condition
+    # is `ignored_beats_2y LOW`: a still-loss-making operator that beats and
+    # whose beats the market REWARDS (no ignored beat in two years, >= 3
+    # beats in eight quarters) — the tape is listening.
     # Blow-up 30-50%: a lottery-shaped archetype by construction.
-    df['arch_mb_preprofit_ignored_beats'] = (
-        _mb_base & _seg_preprofit & (_ncol('evt_ignored_beats_2y') >= 2).fillna(False)).astype(int)
+    df['arch_mb_preprofit_beats_rewarded'] = (
+        _mb_base & _seg_preprofit & (_ncol('evt_ignored_beats_2y') == 0).fillna(False)
+        & (_ncol('evt_beats_8q') >= 3).fillna(False)).astype(int)
     # PRE-PROFIT IN FREEFALL WITH INFORMED BUYERS: the population's best
     # cluster (lift 1.5x, 10% of its multibaggers; GME 2019, ASPN, EAT 2020,
     # BGFV, LSCC, CAR 2019): fallen 88%, 8 weeks off the 5-year low, P/S
@@ -7855,7 +7863,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_mb_biotech_financed_hiring'] = (
         is_operating & (mcap >= 10e6) & _is_drug_dev & (_hi260 <= 0.50).fillna(False) & _bio_financed
         & _bio_committed & (_ncol('net_cash_pct_mcap') > 0).fillna(False)).astype(int)
-    _SPIRITED += ['mb_asset_trough_informed', 'mb_preprofit_ignored_beats', 'mb_preprofit_freefall_informed',
+    _SPIRITED += ['mb_asset_trough_informed', 'mb_preprofit_beats_rewarded', 'mb_preprofit_freefall_informed',
                   'mb_biotech_financed_hiring']
 
     # ============ USING THE MODEL (MULTIBAGGER_MODEL.md) ============
@@ -7865,7 +7873,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # NOT-fallen names, only 1.5x on fallen ones (the rules own that ground).
     _rule_mb = [c for c in df.columns if c.startswith('arch_mb_') and c != 'arch_mb_model_top']
     df['mb_rule_count'] = df[_rule_mb].sum(axis=1)
-    _model_rank = _ncol('mb_model_rank_mkt')
+    _model_rank = df['mb_model_rank_base']
     # 1. CONFLUENCE: a rule archetype member the model also ranks in the top
     #    decile of its market — the archetype names the situation, the model
     #    says the whole feature profile looks like the ones that tripled.
@@ -7876,7 +7884,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_mb_model_uncovered_not_fallen'] = (
         _mb_base & (_model_rank >= 0.95).fillna(False) & (_hi260 >= 0.60).fillna(False)
         & (df['mb_rule_count'] == 0)).astype(int)
-    _SPIRITED += ['mb_model_confluence', 'mb_model_uncovered_not_fallen']
+    # 3. THE REGION RULE: the model's top decile rendered as a tree
+    #    (MULTIBAGGER_MODEL.md §3); its two best leaves, in words: fell far
+    #    more than its own market (bottom 12% of the distance-from-high-
+    #    minus-market rank), very volatile (top 28%), and either tiny (bottom
+    #    13% by size) or long in drawdown (> 73% of the last five years).
+    #    Out of sample: leaf lifts 3.9x / 3.1x, blow-up 30-38% — a readable,
+    #    lottery-shaped rule the boxes did not have.
+    df['arch_mb_model_region_rule'] = (
+        _mb_base & (_crank(_ncol('vs_mkt_dist_hi260')) <= 0.12).fillna(False)
+        & (_crank(_ncol('ts_vol_1y')) >= 0.72).fillna(False)
+        & ((_crank(mcap) <= 0.13).fillna(False) | (_crank(_ncol('ts_dd_time_share_260')) >= 0.73).fillna(False))).astype(int)
+    _SPIRITED += ['mb_model_confluence', 'mb_model_uncovered_not_fallen', 'mb_model_region_rule']
 
     # ---------- Biotech Deep Value (below-cash special situation) ----------
     # A drug developer trading at/below its NET CASH: the market pays you to
@@ -9110,7 +9129,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                      (_c('ts_ma30_slope13'), -1), (_c('ts_dd_time_share_260'), 1), (_c('ts_r13'), -1)],
         # pre-profit ignored beats — more ignored beats, R&D intensity, targets
         # far above price, revenue acceleration, sales ahead of price, small
-        'mb_preprofit_ignored_beats': [(_c('evt_ignored_beats_2y'), 1), (_c('evt_beats_8q'), 1),
+        'mb_preprofit_beats_rewarded': [(_c('evt_ignored_beats_2y'), -1), (_c('evt_beats_8q'), 1), (_c('evt_react_beats_4q'), 1),
                                        (_c('fmp_rd_to_revenue'), 1), (_c('evt_pt_prem_12m'), 1),
                                        (_c('rev_accel'), 1), (_c('nl_sales_1y'), 1), (_c('market_cap_usd'), -1),
                                        (_c('ts_r13'), -1)],
@@ -9146,6 +9165,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'mb_model_top': [(_c('mb_model_p'), 1), (_c('mb_model_pct_hist'), 1), (_c('mb_model_rank_mkt'), 1)],
         'mb_model_confluence': [(_c('mb_model_p'), 1), (_c('mb_rule_count'), 1), (_c('mb_model_pct_hist'), 1),
                                 (_c('ts_dist_hi260'), -1)],
+        'mb_model_region_rule': [(_c('vs_mkt_dist_hi260'), -1), (_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
+                                 (_c('ts_dd_time_share_260'), 1), (_c('mb_model_p'), 1), (_c('ts_wks_since_lo260'), -1)],
         'mb_model_uncovered_not_fallen': [(_c('mb_model_p'), 1), (_c('mb_model_pct_hist'), 1), (_c('nl_sales_3y'), 1),
                                           (_c('fmp_rd_to_revenue'), 1), (_c('vs_ind_r26'), -1), (_c('market_cap_usd'), -1)],
         # the nine mined families: each lens is one of the family's own conditions, continuous
@@ -9159,7 +9180,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'mb_growth_past_capex_peak': [(_c('fmp_st_revenue_cagr'), 1), (_c('fq_capex_to_da'), 1),
                                       (_c('fq_capex_p').abs() - _c('fq_capex').abs(), 1), (_c('fqx_roic_ttm') - _c('roic_lindy'), 1),
                                       (_c('ts_vol_1y'), 1), (_c('dividend_yield'), -1)],
-        'mb_neglected_fell_more_financed': [(_c('vs_ind_dist_hi260'), -1), (_c('equity_cagr_5y'), 1),
+        'mb_fallen_less_than_industry_financed': [(_c('vs_ind_dist_hi260'), -1), (_c('equity_cagr_5y'), 1),
                                             (_c('fmp_st_shares_growth_3y'), 1), (_c('sent_n_analysts'), -1),
                                             (_c('ts_dist_hi260'), -1), (_c('ts_dd_time_share_260'), 1)],
         'mb_lean_rd_stocking_up': [(_c('ts_dist_lo52'), 1), (_c('fq_inv_vs_cogs'), 1), (_c('fmp_rd_to_revenue'), 1),
