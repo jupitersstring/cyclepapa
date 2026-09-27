@@ -261,6 +261,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         df = df.drop(
             columns=[c for c in _ms.columns if c != 'symbol' and c in df.columns]).merge(
             _ms.drop_duplicates('symbol'), on='symbol', how='left')
+        _ms_age = (pd.Timestamp.today().normalize() - pd.to_datetime(pd.read_csv('mb_model_scores.csv', usecols=['symbol', 'week'])
+                                                                     .drop_duplicates('symbol').set_index('symbol')['week'])).dt.days
+        _stale = df['symbol'].map(_ms_age) > 42
+        for _c in ('mb_model_p', 'mb_model_rank_mkt', 'mb_model_rank', 'mb_model_pct_hist'):
+            df.loc[_stale.fillna(False), _c] = np.nan
     # weekly time-series measures (ts_snapshot.py), through-cycle annual minima
     # (fmp_throughcycle.py), quarterly growth quality (fmp_quarterly_ext.py)
     df = _merge_fmp_overlay(df, 'ts_snapshot.csv')
@@ -6947,10 +6952,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                 | (ebitda_first_pos > 0) | (ni_first_pos > 0) | (fcf_first_pos > 0)
                 | (_ncol('fmp_dyn_opinc_turned_positive') == 1)
                 | (_ncol('fmp_dyn_ni_turned_positive') == 1)).fillna(False)
-    _mb_accel = (rev_accel >= 0.10).fillna(False)
-    _mb_stressed = (((nde >= 5) & (nde < 90)) | (_ncol('equity') < 0)).fillna(False)
-    _mb_opm_gap = _ncol('op_margin') - _ncol('tc_med_opm')          # margin vs its own through-cycle median
-    _mb_trough = ((_mb_opm_gap <= -0.05) & (rev_accel > 0)).fillna(False)
+    _mb_turn = _mb_turn & ((_ncol('fqx_m_since_turn_positive') <= 12) | _ncol('fqx_m_since_turn_positive').isna())
+    # acceleration date-matched where the quarterly shape exists (audit 3: rev_accel's annual fallback is a different horizon)
+    _accel_now = ((_ncol('fqx_rev_accel_now') == 1) | (_ncol('fqx_rev_accel_now').isna() & (rev_accel > 0))).fillna(False)
+    _mb_accel = ((rev_accel >= 0.10) & (_ncol('fq_rev_growth') >= 0)).fillna(False)   # accelerating AND not shrinking
+    _mb_stressed = (((nde >= 5) & (nde < 90)) | (_ncol('equity') < 0) | (_ncol('fq_equity') < 0)
+                    | (_ncol('net_cash_pct_mcap') <= -1.0)        # EBITDA <= 0 names: net debt >= the market cap
+                    | (_ncol('debt_to_equity') >= 2.0)).fillna(False)
+    _opm_ttm_fq = _ncol('fqx_opm_ttm')                                  # FMP quarterly TTM operating margin
+    _mb_opm_gap = (_opm_ttm_fq.where(_opm_ttm_fq.notna(), _ncol('op_margin'))   # FMP TTM first: one source vs tc_med_opm
+                   - _ncol('tc_med_opm'))                                        # margin vs its own through-cycle median
+    _mb_trough = ((_mb_opm_gap <= -0.05) & _accel_now).fillna(False)
     _mb_insider = ((s('insider_buy_flag', 0) == 1) | (_ncol('insider_distinct_buyers') >= 2)
                    | (_ncol('fmp_insider_net_usd_12m') > 0)).fillna(False)
     # conjunctions (robust in BOTH periods; lift fit / test)
@@ -6965,7 +6977,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # statistics where they exist, the EDGAR cluster-buy / distinct-buyer
     # flags otherwise.
     _ins_2q = ((_ncol('usf_ins_buy_quarters_4q') >= 2)
-               | (_ncol('usf_ins_buy_quarters_4q').isna() & _mb_insider)).fillna(False)
+               | (_ncol('usf_ins_buy_quarters_4q').isna()
+                  & ((_ncol('insider_distinct_buyers') >= 2) | (_ncol('fmp_insider_net_usd_12m') > 0)))).fillna(False)
+    # revealed CORPORATE conviction (global): a buyback executed or the share count shrinking now; and 13F new
+    # positions (US-listed) — the non-SEC arrival legs the informed-buyer archetypes lacked (audit 3, #1)
+    _corp_conviction = ((_ncol('fmp_st_buyback_yield_y0') > 0.01) | (_ncol('fqx_share_shrink_now') == 1)).fillna(False)
+    _inst_arrival = (_ncol('fmp_inst_new_q0') >= 1).fillna(False)
     _operating_not_asset = ~(_ncol('ncav_pct_mcap') >= 0.5)
     _margins_not_consistent = ~(_ncol('fqx_opm_consist') > 0.5)
     df['arch_mb_fallen_insider'] = (_mb_base & _mb_fallen & _ins_2q & _operating_not_asset
@@ -6975,14 +6992,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #  FALLEN BELOW ITS CYCLE (47% of 2018+ multibaggers, 1.5x): far below the
     #  5y high, margins under their own through-cycle norm, the multiple below
     #  its own history
-    _cheap_own = ((_ncol('ev_sales_change_yoy') < 0) | (_ncol('price_vs_5y_avg') < 1.0)).fillna(False)
+    # the MULTIPLE below its own history (EV/sales 3y or 1y change); the price
+    # vs its 5-year average was 93% implied by the drawdown leg itself (audit 3)
+    _cheap_own = ((_ncol('fmp_dyn_ev_sales_change_3y') < 0) | (_ncol('ev_sales_change_yoy') < 0)).fillna(False)
     df['arch_mb_fallen_below_cycle'] = (
         _mb_base & (_hi260 <= 0.50).fillna(False) & (_mb_opm_gap <= -0.02).fillna(False) & _cheap_own
     ).astype(int)
     #  INFLECTING OPERATOR (38%, 1.1x): margins and EBIT rising, returns
     #  improving, smaller cap, a fair (not bubble) price
-    _mb_margin_up = ((_ncol('op_margin_delta_yoy') >= 0.01) | (_ncol('fqx_inc_ebit_margin') >= 0.20)).fillna(False)
-    _mb_ebit_up = ((_ncol('fqx_ebit_ttm_g') >= 0.10) | (_ncol('ebit_growth_yoy') >= 0.10)).fillna(False)
+    _mb_margin_up = ((_ncol('op_margin_delta_yoy') >= 0.01) | (df['fqx_inc_ebit_margin_dt'] >= 0.20)).fillna(False)
+    _mb_ebit_up = ((_ncol('fqx_ebit_ttm_g') >= 0.10)
+                   | (_ncol('fqx_ebit_ttm_g').isna() & (_ncol('ebit_growth_yoy') >= 0.10))).fillna(False)
     _mb_roic_up = ((_ncol('fqx_roic_ttm') > _ncol('roic_lindy')) | (_ncol('roce_delta_yoy') > 0)).fillna(False)
     df['arch_mb_inflecting_operator'] = (
         _mb_base & (mcap < 2e9) & _mb_margin_up & _mb_ebit_up & _mb_roic_up
@@ -7011,14 +7031,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    cash flow turns. Lift 17-23x on a 10x within 5 years (~20% of these),
     #    3x in ~12 months, blow-up 15%.
     _fcf_not_turned = ((_ncol('fqx_fcfm_streak') <= 1)
-                       | (_ncol('fqx_fcfm_streak').isna() & ~(_ncol('fcf_margin_delta_yoy') > 0))).fillna(False)
+                       | (_ncol('fqx_fcfm_streak').isna() & _ncol('fcf_margin_delta_yoy').notna()
+                          & ~(_ncol('fcf_margin_delta_yoy') > 0))).fillna(False)
     df['arch_mb_left_for_dead_value'] = (_mb_base & _mb_fallen & _mb_deep & _fcf_not_turned).astype(int)
     # 3. FALLEN + IGNORED BELIEVERS: few analysts, but those few are buyers,
     #    and no dividend yield propping the name up. Lift 7-9x on a 3x within
     #    24 months, blow-up 25-40%.
     _few = _ncol('sent_n_analysts').between(1, 5)
     df['arch_mb_fallen_ignored_believers'] = (
-        _mb_base & _mb_fallen & _few & (_ncol('sent_buy_share') >= 0.6)
+        _mb_base & _mb_fallen & _few & (_ncol('sent_n_analysts') >= 2) & (_ncol('sent_buy_share') >= 0.6)
         & ~(_ncol('dividend_yield') > 0.02)).fillna(False).astype(int)
     # 4. SMART MONEY IN THE WRECKAGE (the mixture model's highest-lift group):
     #    fallen + deep value + informed buyers arriving — insider buying, a new
@@ -7026,7 +7047,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    a region, blow-up 27%. The legs are SEC data (US filers); the spirit
     #    counts how many arrived.
     _smart_legs = (_ins_2q.astype(int) + _13d_recent.astype(int)
-                   + (_ncol('usf_emp_g1') >= 0.10).fillna(False).astype(int))
+                   + (_ncol('usf_emp_g1') >= 0.10).fillna(False).astype(int)
+                   + _inst_arrival.astype(int) + _corp_conviction.astype(int))
     df['mb_smart_money_legs'] = _smart_legs
     df['arch_mb_smart_money_wreckage'] = (_mb_base & _mb_fallen & _mb_deep & (_smart_legs >= 1)).astype(int)
     # 7. GREW INTO THE VALUATION, NOW TURNING: the de-rating-through-growth
@@ -7039,14 +7061,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    bottom 13%, fallen top 17%, profitability bottom 46%: 16.7% of such
     #    months led to a 3x within 24 months (lift 3.9x), blow-up 30%. The 10x
     #    variant swaps the fallen leg for cheapness above the median (5.7x).
+    _base_n = country.where(_mb_base).map(country.where(_mb_base).value_counts())
+
     def _crank(x):
         # ranks within the country AMONG THE LIQUID OPERATING BASE (the study's
         # population), not the whole universe — else the bottom-13%-by-size
-        # slice is illiquid names that the base then removes
-        return pd.to_numeric(x, errors='coerce').where(_mb_base).groupby(country).rank(pct=True)
+        # slice is illiquid names that the base then removes. A market with
+        # fewer than 50 base names (18 of 47) cannot hold a quintile; those
+        # names rank against the whole base instead (audit 3, S3).
+        xv = pd.to_numeric(x, errors='coerce').where(_mb_base)
+        local = xv.groupby(country).rank(pct=True)
+        return local.where(_base_n >= 50, xv.rank(pct=True))
     _r_vol = _crank(_ncol('ts_vol_1y')); _r_size = _crank(mcap)
     _r_fallen = _crank(1 - _ncol('ts_dist_hi260')); _r_prof = _crank(_ncol('op_margin'))
-    _r_cheap = _crank(-_ncol('p_s').where(_ncol('p_s') > 0))
+    _r_cheap = pd.concat([_crank(-_ncol('p_s').where(_ncol('p_s') > 0)), _crank(-_ncol('ev_sales').where(_ncol('ev_sales') > 0)),
+                          _crank(-_ncol('pb').where(_ncol('pb') > 0)), _crank(_ncol('fcf_yield'))], axis=1).mean(axis=1)
     df['arch_mb_tree_recipe'] = (_mb_base & (_r_vol >= 0.60) & (_r_size <= 0.13) & (_r_fallen >= 0.83)
                                  & (_r_prof <= 0.46)).fillna(False).astype(int)
     df['arch_mb_tree_recipe_10x'] = (_mb_base & (_r_vol >= 0.62) & (_r_size <= 0.12) & (_r_cheap >= 0.46)
@@ -7066,8 +7095,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # INTERSECTIONS that beat their parts (second investigation, §5): insider
     # conviction inside the smart-money wreckage (lift 5.8x vs 3.9x / 4.7x,
     # blow-up 31%), and left-for-dead value with insider conviction (5.5x)
+    # literal confluence: insiders PLUS a second, independent arrival (audit 3: with one leg the
+    # intersection reduced algebraically to fallen_insider & deep value)
     df['arch_mb_conviction_confluence'] = ((df['arch_mb_fallen_insider'] == 1)
-                                           & (df['arch_mb_smart_money_wreckage'] == 1)).astype(int)
+                                           & (df['arch_mb_smart_money_wreckage'] == 1)
+                                           & (_smart_legs >= 2)).astype(int)
     df['arch_mb_left_for_dead_insider'] = ((df['arch_mb_left_for_dead_value'] == 1)
                                            & (df['arch_mb_fallen_insider'] == 1)).astype(int)
     _SPIRITED += ['mb_conviction_confluence', 'mb_left_for_dead_insider']
@@ -7142,7 +7174,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    Strong 2020-2025, weak 2015-2018 — a re-rating needs a market that
     #    re-rates. Core tightened accordingly.
     _fund_up = ((_ncol('fq_rev_growth') >= 0.10) & (_ncol('op_margin_delta_yoy') > 0)).fillna(False)
-    _sellside_unturned = ((_ncol('sent_n_analysts') >= 1) & ~(_ncol('sent_buy_share_d12') > 0)).fillna(False)
+    _sellside_unturned = ((_ncol('sent_n_analysts') >= 1) & _ncol('sent_buy_share_d12').notna()
+                          & ~(_ncol('sent_buy_share_d12') > 0)).fillna(False)
     _low_gm = ((df['rel_ind_gross_margin'] <= 0.35) | (_ncol('gross_margin') < 0.25)).fillna(False)
     _tape_rerating = ((_ncol('price_vs_5y_avg') > 1.0) | (_ncol('ts_r52') > 0.20)).fillna(False)
     df['arch_mb_improving_unturned_sellside'] = (
@@ -7152,8 +7185,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    10x recipe: lift 24-29x, 22-27% went 10x, blow-up 11-24%; Celestica
     #    2020 41x, GME 2018, PRMB 2012, AEIN.DE 2017): EV/EBIT and ROIC at
     #    the bottom of the INDUSTRY, thin FCF margin or the lowest P/S.
+    _operator_early = ((_ncol('op_margin') >= 0) & (_ncol('fcf_margin') >= 0)).fillna(False)
     df['arch_mb_peer_worst_cheapest'] = (
-        _mb_base & (df['rel_ind_ev_ebit'] <= 0.20).fillna(False) & (df['rel_ind_roce'] <= 0.25).fillna(False)
+        _mb_base & _operator_early & (df['rel_ind_ev_ebit'] <= 0.20).fillna(False) & (df['rel_ind_roce'] <= 0.25).fillna(False)
         & ((_ncol('fcf_margin') <= 0.03) | (df['rel_ind_p_s'] <= 0.25)).fillna(False)).astype(int)
     # ---- what the not-fallen, near-highs and uncovered passes surfaced ----
     # 5. THE COMPOUNDER, INSIDERS BUYING AT THE HIGH (near-highs 10x recipe:
@@ -7167,7 +7201,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _rd_heavy = ((_ncol('fmp_rd_to_revenue') >= 0.08) | (_ncol('fmp_rd_intensive_flag') == 1)).fillna(False)
     df['arch_mb_compounder_insiders_at_high'] = (
         _mb_base & (_ncol('ts_dist_hi52') >= 0.85).fillna(False) & (df['rel_ind_roce'] >= 0.75).fillna(False)
-        & _rd_heavy & (_ins_2q | _mb_insider)).astype(int)
+        & _rd_heavy & (_ins_2q | _mb_insider | _corp_conviction)).astype(int)
     # 6. HIRING, BEATING, UNCOVERED (the uncovered population's only lifted
     #    cluster, 2.1x, blow-up 15%; 2930.T 2015, BEL.NS 2020, HARVIA.HE
     #    2018, TRIDENT.NS 2019, TATAELXSI 2013): headcount +36%, margins at
@@ -7175,19 +7209,20 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    rising, new 13F holders — at 56% of the 5y high with no analyst.
     _hiring = ((_ncol('usf_emp_g1') >= 0.15)
                | (_ncol('usf_emp_g1').isna() & (_ncol('fq_rev_growth') >= 0.20))).fillna(False)
-    _beating = ((_ncol('evt_beat_share_8q') >= 0.6) | (_ncol('evt_surprise_4q') > 0)
+    _beating = ((_ncol('evt_beat_share_8q') >= 0.6) | (_ncol('evt_surprise_4q') >= 0.05)
                 | (_ncol('fmp_earnings_beat_rate') >= 0.6)).fillna(False)
     df['arch_mb_hiring_beating_uncovered'] = (
         _mb_base & _hiring & (_mb_opm_gap >= 0.02).fillna(False) & _beating
-        & (_ncol('sent_n_analysts').fillna(0) <= 1) & _hi260.between(0.35, 0.80).fillna(False)).astype(int)
+        & (_ncol('sent_n_analysts') <= 1).fillna(False) & _hi260.between(0.35, 0.80).fillna(False)).astype(int)
     # 7. CHEAP GROWTH WITH TARGETS RISING (the largest not-fallen cluster,
     #    39% of those multibaggers, 1.25x, blow-up 8%; ISCTR 2020, ALARK
     #    2019, STRL 2021, 6920.T 2015, PGSUS 2018, TRIL.NS 2021): revenue
     #    +17%, EV/EBIT 8.5, FCF yield + growth the top axis, EV/EBIT vs
     #    growth the bottom, price targets revised up, at 70% of the 5y high.
-    _pt_up = ((_ncol('sent_pt_rev_q') > 0) | (_ncol('evt_pt_rev_90d') > 0)).fillna(False)
+    _pt_up = (((_ncol('sent_pt_rev_q') > 0) | (_ncol('evt_pt_rev_90d') > 0))
+              & ~(_ncol('evt_pt_chase_flag') == 1)).fillna(False)        # a target lifted after the run is not "rising"
     _cheap_for_growth = (((_eveb > 0) & (_eveb <= 10))
-                         | ((_ncol('fcf_yield') + _ncol('fq_rev_growth')) >= 0.20)).fillna(False)
+                         | (_ncol('fcf_yield').notna() & ((_ncol('fcf_yield') + _ncol('fq_rev_growth')) >= 0.20))).fillna(False)
     df['arch_mb_cheap_growth_targets_up'] = (
         _mb_base & (_ncol('fq_rev_growth') >= 0.15).fillna(False) & _cheap_for_growth & _pt_up
         & (_hi260 >= 0.60).fillna(False)).astype(int)
@@ -7210,7 +7245,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _evsv = _ncol('ev_sales').where(_ncol('ev_sales') > 0)
     df['ind_tape_opm_d1'] = (_ncol('op_margin_delta_yoy').where(_frame_pop & (_peer_key != ''))
                              .groupby(_peer_key).transform('median').round(4))
-    _ind_trough = (_q_lo(df['ind_tape_opm_d1']) | _q_lo(df['ind_tape_rev_growth']))
+    def _q_lo_ind(x):
+        # bottom quintile among peer GROUPS (one observation per industry), mapped back to names, so
+        # "the industry at its own trough" does not depend on how many names the industry has
+        g = pd.Series(x.values, index=_peer_key.values).groupby(level=0).first()
+        cut = g.dropna().quantile(0.20)
+        return (x <= cut).fillna(False) & (_peer_key != '')
+    _ind_trough = (_q_lo_ind(df['ind_tape_opm_d1']) | _q_lo_ind(df['ind_tape_rev_growth']))
     _asset_like = (sector.isin(['Energy', 'Materials', 'Real Estate', 'Utilities'])
                    | _ind_all.str.contains(r'shipping|marine|tanker|lessor|leasing|holding|reit|real estate|mining'
                                            r'|oil|gas|coal|steel|aluminum|gold|silver|uranium|timber|farm|metals', regex=True))
@@ -7231,7 +7272,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     near the 52-week low. Robust 6.0x, 94 events, 10 years, 9 markets,
     #     blow-up 25% (SUZLON 2020, SNBR 2020, SNH.JO 2019).
     _stressed = (((nde >= 5) & (nde < 90)) | (_ncol('equity') < 0)).fillna(False)
-    _not_diluting = ~(_ncol('fmp_st_shares_growth_3y') > 0.03)      # fmp_filled_* are fill FLAGS, not values
+    _sh_g = _ncol('fq_shares_yoy').where(_ncol('fq_shares_yoy').notna(), _ncol('fmp_st_shares_growth_3y'))
+    _not_diluting = (_sh_g <= 0.03).fillna(False)                      # measured, not assumed; fmp_filled_* are fill FLAGS
     df['arch_mb_stressed_not_diluting'] = (_mb_base & _mb_fallen & _stressed & _not_diluting
                                            & (_ncol('ts_dist_lo52') <= 1.15).fillna(False)).astype(int)
     # U4. GROWTH PAST ITS CAPEX PEAK (not fallen): two-year revenue growth in the
@@ -7242,7 +7284,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     FNOX.ST 2016-18, 001570.KS 2021, IIVI 2019, HTHT 2015).
     _capex_rolloff = ((_ncol('fq_capex').abs() < _ncol('fq_capex_p').abs()) & (_ncol('fq_capex_to_da') > 1.0)).fillna(False)
     _no_payout = ~((_ncol('dividend_yield') > 0.005) | (_ncol('buyback_yield') > 0.005)).fillna(False)
-    _g2 = _ncol('fmp_st_revenue_cagr').fillna(_ncol('fq_rev_growth'))
+    _g2 = _ncol('fmp_st_revenue_3y_cagr').where(_ncol('fmp_st_revenue_3y_cagr').notna(), _ncol('fmp_st_revenue_cagr'))
     _roic_own_hi = ((_ncol('fqx_roic_ttm') > _ncol('roic_lindy')) | (_ncol('fqx_roic_streak') >= 3)).fillna(False)
     df['arch_mb_growth_past_capex_peak'] = (
         _mb_base & (_hi260 >= 0.60).fillna(False) & (_q_hi(_g2) | _q_hi(_ncol('fq_capex_to_da'))) & _no_payout
@@ -7269,7 +7311,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _sga_rev = _ncol('fq_sga') / _ncol('fq_revenue').where(_ncol('fq_revenue') > 0)
     df['arch_mb_lean_rd_stocking_up'] = (
         _mb_base & _q_hi(_ncol('ts_dist_lo52')) & (_ncol('fq_inv_vs_cogs') > 0.05).fillna(False)
-        & _q_hi(_ncol('fmp_rd_to_revenue')) & (_q_lo(_sga_rev) | _sga_rev.isna())).astype(int)
+        & _q_hi(_ncol('fmp_rd_to_revenue').where(_ncol('fmp_rd_to_revenue') > 0)) & _q_lo(_sga_rev)).astype(int)
     # C7. DIVERGENCE + CHEAPEST P/B IN ITS INDUSTRY + WIDE RANGE (covered):
     #     fundamentals ahead of price (narrative lag >= log 1.5, or margins
     #     above their through-cycle norm with the price at half its high), P/B
@@ -7277,9 +7319,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     events, 12-14 years, 14-23 markets, blow-up 21-33%, 10x rate 5-11%
     #     (0412.HK 2013, DAC 2020, MEG.TO 2020, AXTI 2024, PR 2020, LXU 2020).
     _divergence = ((_ncol('narrative_lag_extent') >= np.log(1.5))
-                   | ((_mb_opm_gap >= 0.02) & (_hi260 <= 0.5))).fillna(False)
+                   | ((_mb_opm_gap >= 0.02) & (_hi260 <= 0.5) & (_ncol('fq_rev_growth') >= 0))).fillna(False)
     df['arch_mb_divergence_cheapest_pb'] = (
-        _mb_base & _divergence & (df['rel_ind_pb'] <= 0.20).fillna(False)
+        _mb_base & _divergence & (df['rel_ind_pb'] <= 0.20).fillna(False) & (_ncol('pb') <= 1.5).fillna(False)
         & (_crank(_ncol('ts_vol_1y')) >= 0.6).fillna(False)).astype(int)
     # C8. FALLEN OPERATOR, EV/SALES LOW, IN AN INDUSTRY FAR FROM ITS HIGH (10x):
     #     a profitable operator >= 60% below its high, EV/sales bottom quintile,
@@ -7288,7 +7330,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     51-58 events, 7 years, 7 markets, blow-up 15-19%, 10x rate 10-12%
     #     (LMB 2020, DDS 2020, SMCI 2018, ARVIND 2020, GME 2018).
     df['arch_mb_fallen_operator_industry_low'] = (
-        _mb_base & _operator & _mb_fallen & _q_lo(_evsv) & _q_lo(df['ind_tape_dist_hi260'])
+        _mb_base & _operator & _mb_fallen & _q_lo(_evsv) & _q_lo_ind(df['ind_tape_dist_hi260'])
         & (_q_lo(_ncol('ts_r104')) | (df['rel_ind_p_s'] <= 0.20).fillna(False))).astype(int)
     #     sister: QUALITY AT DISTRESS — deep drawdown, EV/sales low, ROCE x FCF
     #     yield top quintile, P/B bottom of peers. Robust 9.2x, 52 events, 6
@@ -7305,7 +7347,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                   | (_ncol('ts_vol_spike4') >= 2.5)).fillna(False)
     df['arch_mb_rd_leader_on_volume'] = (
         _mb_base & (_hi260 >= 0.60).fillna(False) & _q_hi(_ncol('ts_r104')) & _vol_surge
-        & _q_hi(_ncol('fmp_rd_to_revenue')) & (_ncol('nl_eps_1y') < 0).fillna(False)).astype(int)
+        & _q_hi(_ncol('fmp_rd_to_revenue').where(_ncol('fmp_rd_to_revenue') > 0)) & (_ncol('nl_eps_1y') < 0).fillna(False)).astype(int)
     #     sister: CHEAP VS PEERS, RECOVERING, FCF STREAK RISING — well off the
     #     52-week low, volatile, P/S bottom quintile of its peers, FCF margin
     #     rising for >= 2 quarters. Robust 4.7x, 98 events, 12 years, 16
@@ -7834,8 +7876,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # winners from lookalikes, +0.094; the GMM's 2.2x group: activist 38%,
     # insiders 12%, weeks since the 5y low = 1). Leverage present is part of
     # the lever (deleveraging was negative), so it is a lens, not a veto.
-    _nl_sales_pos = ((_ncol('nl_sales_1y') > 0) | (_ncol('nl_sales_2y') > 0) | (_ncol('nl_sales_3y') > 0)).fillna(False)
-    df['arch_mb_asset_trough_informed'] = (_mb_base & _seg_asset & _mb_fallen & _nl_sales_pos & _informed).astype(int)
+    _nl_best = pd.concat([_ncol('nl_sales_1y'), _ncol('nl_sales_2y'), _ncol('nl_sales_3y')], axis=1).max(axis=1)
+    _nl_sales_lead = (_crank(_nl_best.where(_seg_asset)) >= 0.60).fillna(False)   # top 40% of the asset segment
+    _informed_g = _informed | _corp_conviction | _inst_arrival
+    df['arch_mb_asset_trough_informed'] = (_mb_base & _seg_asset & _mb_fallen & _nl_sales_lead & _informed_g).astype(int)
     # PRE-PROFIT, BEATS REWARDED: the 10x family of the pre-profit population
     # (lift 30-35x on a 10x within 5 years, ~45-50% of such month-ends went
     # 10x: CELH 2019, ASPN 2018, PERI, LSCC 2017, POLA). The mined condition
@@ -7851,7 +7895,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # BGFV, LSCC, CAR 2019): fallen 88%, 8 weeks off the 5-year low, P/S
     # 0.30, insiders 30% (5.8x), activist 45% (5.1x), headcount SHRINKING
     # (productivity gain 8.8x). Blow-up 28%.
-    df['arch_mb_preprofit_freefall_informed'] = (_mb_base & _seg_preprofit & _mb_fallen & _informed).astype(int)
+    df['arch_mb_preprofit_freefall_informed'] = (_mb_base & _seg_preprofit & _mb_fallen & _informed_g).astype(int)
     # DRUG DEVELOPER, FINANCED AND HIRING INTO THE FALL: the drug developers'
     # highest-lift cluster (3.65x, blow-up 35%; AXSM 2017, EXEL 2014, CORT
     # 2013, ITCI 2019): headcount growing in every member, share count +15%,
@@ -7859,10 +7903,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # hand. The 10x patterns add DOWNGRADES as a positive condition.
     _bio_financed = ((_ncol('fmp_st_shares_growth_3y') >= 0.10)
                      | (_ncol('fq_financing_cf') > 0)).fillna(False)
-    _bio_committed = ((_ncol('usf_emp_g1') >= 0.10).fillna(False) | _informed)
+    _burn_q = (-_ncol('fq_cfo')).where(_ncol('fq_cfo') < 0)
+    _runway_years = (_ncol('fq_cash_sti') / (_burn_q * 4)).where(_burn_q > 0)
+    _bio_runway = ((_runway_years >= 1.0) | (_ncol('fq_cfo') >= 0) | (_runway_years.isna() & (_ncol('net_cash_pct_mcap') > 0.10))).fillna(False)
+    _bio_committed = ((_ncol('usf_emp_g1') >= 0.10).fillna(False) | _informed_g
+                      | (_ncol('usf_emp_g1').isna() & (_ncol('fmp_rd_to_revenue') > 0) & (_ncol('fq_rev_growth') >= 0.10)).fillna(False))
     df['arch_mb_biotech_financed_hiring'] = (
         is_operating & (mcap >= 10e6) & _is_drug_dev & (_hi260 <= 0.50).fillna(False) & _bio_financed
-        & _bio_committed & (_ncol('net_cash_pct_mcap') > 0).fillna(False)).astype(int)
+        & _bio_committed & _bio_runway).astype(int)
     _SPIRITED += ['mb_asset_trough_informed', 'mb_preprofit_beats_rewarded', 'mb_preprofit_freefall_informed',
                   'mb_biotech_financed_hiring']
 
@@ -9029,16 +9077,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'mb_fallen_deep_value': [(_c('ts_dist_hi260'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
                                  (_c('pb').where(_c('pb') > 0), -1), (_c('fcf_yield'), 1),
                                  (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1),
-                                 (_c('rel_ind_ev_ebit'), -1), (_c('vs_ind_dist_hi260'), -1)],
+                                 (_c('rel_ind_ev_ebit'), -1), (_c('vs_ind_dist_hi260'), -1),
+                                 # audit 3: the fresh low, the asset floor, and not too far gone (Wolf's reject rule)
+                                 (_c('ts_wks_since_lo260'), -1), (_c('ncav_pct_mcap'), 1), (_c('fmp_altman_z'), 1)],
         'mb_fallen_value_turn': [(_c('ts_dist_hi260'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
                                  (_c('fqx_ebit_ttm_g'), 1), (_c('fcf_yield'), 1),
-                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1),
+                                 # audit 3: the turn the market shrugged at, and how recent it is
+                                 (_c('fqx_m_since_turn_positive'), -1), (_c('evt_react_last'), -1), (_c('evt_ignored_beats_2y'), 1)],
         'mb_fallen_value_accel': [(_c('ts_dist_hi260'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
                                   (_c('rev_accel'), 1), (_c('fq_rev_growth'), 1),
-                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1),
+                                  (_c('ts_wks_since_lo260'), -1), (_c('fcf_yield'), 1)],
         'mb_fallen_stressed': [(_c('ts_dist_hi260'), -1), (_c('ev_sales').where(_c('ev_sales') > 0), -1),
                                (_c('fqx_ebit_ttm_g'), 1), (_c('cfo_yield'), 1),
-                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1),
+                               # audit 3: the stress must RESOLVE — debt falling, interest covered, not too far gone
+                               (_c('fq_netdebt_decline_months'), 1), (_c('fq_interest_cover'), 1),
+                               (_c('fmp_st_financing_outflow_years'), 1), (_c('fmp_altman_z'), 1)],
         'mb_fallen_insider': [(_c('ts_dist_hi260'), -1), (_c('usf_ins_buy_quarters_4q'), 1),
                               (_c('insider_distinct_buyers'), 1), (_c('market_cap_usd'), -1),
                               # §1: buybacks alongside the insiders (1.7x), reinvesting (capex, 1.6x),
@@ -9048,17 +9104,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                               (_c('pb').where(_c('pb') > 0), -1), (_c('ts_wks_since_lo260'), -1)],
         'mb_fallen_trough': [(_c('ts_dist_hi260'), -1), (_c('tc_med_opm') - _c('op_margin'), 1),
                              (_c('rev_accel'), 1), (_c('tc_min_opm'), 1),
-                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1),
+                             # audit 3: a cyclical trough is the INDUSTRY's too; survival through it
+                             (_c('ind_tape_opm_d1'), -1), (_c('fq_interest_cover'), 1), (_c('tc_opinc_pos'), 1)],
         'mb_fallen_below_cycle': [(_c('ts_dist_hi260'), -1), (_c('tc_med_opm') - _c('op_margin'), 1),
                                   (_c('ev_sales_change_yoy'), -1), (_c('tc_opinc_pos'), 1),
                                  (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1), (_c('ts_wks_since_lo260'), -1),
                                  # operator-study refinement: sell side unturned (2.6x), buy share LOW
                                  # (2.1x), few analysts (2.0x), R&D present, volatile (vol LOW 0.4x)
                                  (_c('mb_fund_up_unturned'), 1), (_c('sent_buy_share'), -1), (_c('sent_n_analysts'), -1),
-                                 (_c('fmp_rd_to_revenue'), 1), (_c('ts_vol_1y'), 1)],
+                                 (_c('fmp_rd_to_revenue'), 1), (_c('ts_vol_1y'), 1),
+                                 # audit 3: survival through the cycle; the price test moved here from the core
+                                 (_c('fq_interest_cover'), 1), (_c('tc_opinc_pos'), 1), (_c('price_vs_5y_avg'), -1)],
         'mb_inflecting_operator': [(_c('op_margin_delta_yoy'), 1), (_c('fqx_ebit_ttm_g'), 1),
-                                   (_c('fqx_roic_ttm') - _c('roic_lindy'), 1), (_c('fqx_inc_ebit_margin'), 1),
-                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
+                                   (_c('fqx_roic_ttm') - _c('roic_lindy'), 1), (_c('fqx_inc_ebit_margin_dt'), 1),
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1),
+                                   # audit 3: the perception half (FORENSICS §5: winners had the weaker tape)
+                                   (_c('evt_react_last'), -1), (_c('ts_r13'), -1), (_c('sent_n_analysts'), -1),
+                                   (_c('rel_ind_ev_ebit'), -1)],
         'mb_quiet_turn': [(_c('ts_r13'), -1), (_c('ts_dist_hi52'), -1), (_c('rev_accel'), 1),
                           (_c('fqx_opm_slope8'), 1), (_c('fqx_roic_slope8'), 1), (_c('nl_sales_1y'), 1),
                           (_c('ev_sales_change_yoy'), -1), (_c('market_cap_usd'), -1)],
@@ -9089,8 +9152,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                      (_c('ts_wks_since_lo260'), -1), (_c('buyback_yield'), 1)],
         'mb_fallen_ignored_believers': [(_c('ts_dist_hi260'), -1), (_c('sent_buy_share'), 1),
                                         (_c('sent_n_analysts'), -1), (_c('nl_sales_1y'), 1),
-                                        (_c('ts_r13'), -1), (_c('market_cap_usd'), -1)],
-        'mb_smart_money_wreckage': [(_c('mb_smart_money_legs'), 1), (_c('ts_dist_hi260'), -1),
+                                        (_c('ts_r13'), -1), (_c('market_cap_usd'), -1),
+                                        # audit 3: the study's own refinements — target premium, institutions arriving, ratings fresh
+                                        (_c('evt_pt_prem_12m'), 1), (_c('fmp_inst_shares_chg_pct_q0'), 1), (_c('sent_months_since_up'), -1)],
+        'mb_smart_money_wreckage': [(_c('mb_smart_money_legs'), 1), (_c('ts_dist_hi260'), -1), (_c('sent_buy_share'), 1), (_c('fq_dio'), 1),
                                     (_c('usf_ins_buy_quarters_4q'), 1), (-_evt_age_days('evt_sc13d_date'), 1),
                                     (_c('usf_emp_g1'), 1), (_c('pb').where(_c('pb') > 0), -1),
                                     (_c('market_cap_usd'), -1),
@@ -9102,17 +9167,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                     (_c('debt_to_equity'), 1), (_c('fqx_gm_streak'), 1), (_c('net_cash_pct_mcap'), -1)],
         'mb_grew_into_valuation_turning': [(_c('derate_growth_absorbed'), 1), (_c('fqx_opm_slope8'), 1),
                                            (_c('fqx_opm_consist'), 1), (_c('fq_rev_growth'), 1),
-                                           (_c('ts_r13'), -1), (_c('sent_n_analysts'), -1)],
+                                           (_c('ts_r13'), -1), (_c('sent_n_analysts'), -1),
+                                           # audit 3: the multiple now fair (Sub-B "already re-rated"), turn recent
+                                           (_c('fmp_dyn_ev_sales_change_3y'), -1), (_c('ev_ebit').where(_c('ev_ebit') > 0), -1),
+                                           (_c('fqx_m_since_turn_positive'), -1)],
         'mb_tree_recipe': [(_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1), (_c('ts_dist_hi260'), -1),
                            (_c('p_s').where(_c('p_s') > 0), -1), (_c('nl_sales_1y'), 1), (_c('ts_r13'), -1), (_c('ts_wks_since_lo260'), -1),
                            # operator-study refinement: buy share LOW (3.3x), few analysts (2.1x), ROIC x FCF
                            # yield (1.9x), P/B not high vs the industry (0.4x)
                            (_c('sent_buy_share'), -1), (_c('sent_n_analysts'), -1),
-                           (_c('roce').clip(-1, 1) * _c('fcf_yield').clip(-1, 1), 1), (_c('rel_ind_pb'), -1)],
+                           (_c('roce').clip(0, 1) * _c('fcf_yield').clip(0, 1), 1), (_c('rel_ind_pb'), -1),   # (-)x(-) must not rank high
+                           (_c('fqx_fcfm_streak'), -1), (_c('fq_rev_yoy_streak_m'), 1)],
         'mb_tree_recipe_10x': [(_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
                                (_c('p_s').where(_c('p_s') > 0), -1), (_c('ts_dist_hi260'), -1),
-                               (_c('nl_sales_3y'), 1), (-_evt_age_days('evt_sc13d_date'), 1), (_c('ts_wks_since_lo260'), -1)],
-        'mb_sequence_preignition': [(_c('mb_sequence_signs'), 1), (_c('fqx_opm_slope8'), 1),
+                               (_c('nl_sales_3y'), 1), (-_evt_age_days('evt_sc13d_date'), 1), (_c('ts_wks_since_lo260'), -1),
+                               (_c('net_debt_ebitda'), 1), (_c('capex_intensity'), 1), (_c('fqx_fcfm_streak'), -1)],
+        'mb_sequence_preignition': [(_c('mb_sequence_signs'), 1), (_c('fqx_opm_slope8'), 1), (_c('ncav_pct_mcap'), 1), (_c('sent_upgrades_12m'), -1),
                                     (_c('fqx_roic_slope8'), 1), (_c('rev_accel'), 1), (_c('ts_r13'), -1),
                                     (_c('ts_dist_hi52'), -1), (_c('market_cap_usd'), -1),
                                     # operator-study refinement: debt falling (1.9x), net-net / fallen
@@ -9145,7 +9215,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # operator study: the wave — deeper the market's / industry's own
         # depression, stronger the acceleration, cheaper vs peers, fewer
         # analysts, debt falling, smaller
-        'mb_wave_neglected_value_accel': [(_c('mkt_tape_dist_hi260'), -1), (_c('ind_tape_dist_hi260'), -1),
+        'mb_wave_neglected_value_accel': [(_c('mkt_tape_dist_hi260'), -1), (_c('ind_tape_dist_hi260'), -1), (_c('ts_dd_time_share_260'), 1), (_c('rel_ind_p_s'), -1), (_c('evt_react_last'), 1),
                                           (_c('rev_accel'), 1), (_c('rel_ind_ev_ebit'), -1),
                                           (_c('sent_n_analysts'), -1), (_c('fq_netdebt_decline_months'), 1),
                                           (_c('market_cap_usd'), -1), (_c('ts_dist_hi260'), -1),
@@ -9153,7 +9223,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                           # believers among the few (2.3x), off the low (1.6x), volatile (1.6x)
                                           (_c('mb_fund_up_unturned'), 1), (_c('sent_buy_share'), 1),
                                           (_c('ts_dist_lo52'), 1), (_c('ts_vol_1y'), 1)],
-        'mb_compounder_insiders_at_high': [(_c('rel_ind_roce'), 1), (_c('roce'), 1), (_c('fmp_rd_to_revenue'), 1),
+        'mb_compounder_insiders_at_high': [(_c('rel_ind_roce'), 1), (_c('roce'), 1), (_c('fmp_rd_to_revenue'), 1), (_c('fqx_eps_pos_share_8'), 1), (_c('fmp_st_buyback_yield_y0'), 1),
                                            (_c('usf_ins_buy_quarters_4q'), 1), (_c('insider_distinct_buyers'), 1),
                                            (_c('ts_dist_hi52'), 1), (_c('sent_upgrades_12m'), 1),
                                            (_c('evt_beat_share_8q'), -1), (_c('fcf_yield'), 1), (_c('net_cash_pct_mcap'), 1)],
@@ -9162,22 +9232,23 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                         (_c('ev_sales_change_yoy'), 1), (_c('fmp_inst_shares_chg_pct_q0'), 1),
                                         (_c('sent_n_analysts'), -1), (_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
                                         (_c('ts_dist_hi260'), -1)],
-        'mb_model_top': [(_c('mb_model_p'), 1), (_c('mb_model_pct_hist'), 1), (_c('mb_model_rank_mkt'), 1)],
+        'mb_model_top': [(_c('mb_model_p'), 1), (_c('mb_model_pct_hist'), 1), (_c('mb_model_rank_base'), 1),
+                         (_c('fmp_altman_z'), 1), (_c('net_cash_pct_mcap'), 1)],     # blow-up lenses on the high-variance tail
         'mb_model_confluence': [(_c('mb_model_p'), 1), (_c('mb_rule_count'), 1), (_c('mb_model_pct_hist'), 1),
                                 (_c('ts_dist_hi260'), -1)],
         'mb_model_region_rule': [(_c('vs_mkt_dist_hi260'), -1), (_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
                                  (_c('ts_dd_time_share_260'), 1), (_c('mb_model_p'), 1), (_c('ts_wks_since_lo260'), -1)],
-        'mb_model_uncovered_not_fallen': [(_c('mb_model_p'), 1), (_c('mb_model_pct_hist'), 1), (_c('nl_sales_3y'), 1),
+        'mb_model_uncovered_not_fallen': [(_c('mb_model_p'), 1), (_c('mb_model_pct_hist'), 1), (-_c('nl_sales_3y'), 1),   # price ahead of sales is the winning shape here
                                           (_c('fmp_rd_to_revenue'), 1), (_c('vs_ind_r26'), -1), (_c('market_cap_usd'), -1)],
         # the nine mined families: each lens is one of the family's own conditions, continuous
         'mb_industry_trough_cheapest': [(_c('p_s').where(_c('p_s') > 0), -1), (_c('ind_tape_opm_d1'), -1),
                                         (_c('ind_tape_rev_growth'), -1), (_c('ts_dist_hi260'), -1), (_c('nl_sales_3y'), 1),
                                         (_c('ts_ma30_slope13'), -1), (_c('market_cap_usd'), -1)],
-        'mb_reinvesting_at_trough': [(_c('capex_intensity'), 1), (_c('p_s').where(_c('p_s') > 0), -1),
+        'mb_reinvesting_at_trough': [(_c('capex_intensity'), 1), (_c('p_s').where(_c('p_s') > 0), -1), (_c('fmp_dyn_ev_sales_change_3y'), -1),
                                      (_c('ev_sales_change_yoy'), -1), (_c('ts_dist_hi260'), -1), (_c('market_cap_usd'), -1)],
         'mb_stressed_not_diluting': [(_c('net_debt_ebitda'), 1), (_c('fmp_st_shares_growth_3y'), -1), (_c('ts_dist_lo52'), -1),
                                      (_c('ts_dist_hi260'), -1), (_c('fq_netdebt_decline_months'), 1), (_c('market_cap_usd'), -1)],
-        'mb_growth_past_capex_peak': [(_c('fmp_st_revenue_cagr'), 1), (_c('fq_capex_to_da'), 1),
+        'mb_growth_past_capex_peak': [(_c('fmp_st_revenue_3y_cagr'), 1), (_c('fq_capex_to_da'), 1), (_c('fqx_fcfm_slope8'), 1),
                                       (_c('fq_capex_p').abs() - _c('fq_capex').abs(), 1), (_c('fqx_roic_ttm') - _c('roic_lindy'), 1),
                                       (_c('ts_vol_1y'), 1), (_c('dividend_yield'), -1)],
         'mb_fallen_less_than_industry_financed': [(_c('vs_ind_dist_hi260'), -1), (_c('equity_cagr_5y'), 1),
@@ -9190,7 +9261,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'mb_fallen_operator_industry_low': [(_c('ev_sales').where(_c('ev_sales') > 0), -1), (_c('ind_tape_dist_hi260'), -1),
                                             (_c('ts_r104'), -1), (_c('rel_ind_p_s'), -1), (_c('ts_dist_hi260'), -1),
                                             (_c('roce'), 1)],
-        'mb_quality_at_distress': [(_c('roce').clip(-1, 1) * _c('fcf_yield').clip(-1, 1), 1),
+        'mb_quality_at_distress': [(_c('roce').clip(0, 1) * _c('fcf_yield').clip(0, 1), 1), (_c('fmp_altman_z'), 1), (_c('fq_netdebt_decline_months'), 1),
                                    (_c('ev_sales').where(_c('ev_sales') > 0), -1), (_c('rel_ind_pb'), -1),
                                    (_c('ts_dist_hi260'), -1), (_c('ts_maxdd_5y'), -1)],
         'mb_rd_leader_on_volume': [(_c('ts_r104'), 1), (_c('bs_cp_dvol_z13'), 1), (_c('fmp_rd_to_revenue'), 1),
@@ -9216,7 +9287,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                            (_c('evt_pt_prem_12m'), 1)],
         # peer worst, cheapest — depth of the peer discount and of the
         # peer-quality gap, thin FCF, fallen, small
-        'mb_peer_worst_cheapest': [(_c('rel_ind_ev_ebit'), -1), (_c('rel_ind_roce'), -1), (_c('rel_ind_p_s'), -1),
+        'mb_peer_worst_cheapest': [(_c('rel_ind_ev_ebit'), -1), (_c('rel_ind_roce'), -1), (_c('rel_ind_p_s'), -1), (_c('fq_netdebt_decline_months'), 1),
                                    (_c('fcf_margin'), -1), (_c('ts_dist_hi260'), -1), (_c('vs_ind_r52'), -1),
                                    (_c('market_cap_usd'), -1), (_c('ts_wks_since_lo260'), -1)],
         'mb_biotech_financed_hiring': [(_c('usf_emp_g1'), 1), (_c('fmp_st_shares_growth_3y'), 1),

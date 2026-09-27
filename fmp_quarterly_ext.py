@@ -18,6 +18,7 @@ so half-yearly filers are handled as their own cadence.
   fqx_fcf_ps_g           TTM FCF per diluted share now vs a year ago (both > 0)
   fqx_roic_ttm           TTM EBIT x 0.75 / (equity + total debt - cash), latest balance sheet
   fqx_{opm,fcfm,gm,roic}_slope8 / _consist / _streak   trend shape over 8 quarters
+  fqx_{opm,fcfm,gm,roic}_ttm                        the latest TTM level of the series
   fqx_m_since_{rev_accel,margin_inflect,turn_positive,share_shrink}   months since the
                          sign first appeared in the last 18 months; fqx_<sign>_now
 """
@@ -113,6 +114,8 @@ def one(g: pd.DataFrame) -> dict:
               - (cs.fillna(0).to_numpy(float) if cs is not None else 0))
         series["roic"] = np.where(ic > 0, T["opinc"] * 0.75 / np.where(ic > 0, ic, np.nan), np.nan)
     for k, s in series.items():
+        if np.isfinite(s[-1]):
+            rec[f"fqx_{k}_ttm"] = float(s[-1])          # the latest TTM level (one source for margin-vs-cycle gaps)
         w = s[-8:]
         ok = np.isfinite(w)
         if ok.sum() >= 5:
