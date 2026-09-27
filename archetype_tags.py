@@ -2052,7 +2052,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     dividend_yield = s('dividend_yield', np.nan)
     buyback_yield = s('buyback_yield', np.nan)
     sbc_pct_revenue = s('sbc_pct_revenue', np.nan)
-    effective_tax_rate = s('effective_tax_rate', np.nan)
+    # (audit 3) the GLOBAL book tax rate from the FMP enrichment (ratios TTM,
+    # ~82% of the universe) where the EDGAR / quarterly rate is absent — the
+    # tax family's 5% reach was plumbing, not a thesis limit; sane band 0-100%
+    _fmp_etr = _ncol('fmp_effective_tax_rate').where(_ncol('fmp_effective_tax_rate').between(0.0, 1.0))
+    effective_tax_rate = _ncol('effective_tax_rate').fillna(_fmp_etr)
     roic_after_sbc = s('roic_after_sbc', np.nan)
     interest_coverage = s('interest_coverage', np.nan)
 
@@ -2155,7 +2159,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_tax_efficient'] = (
         is_operating &                          # (G1) exclude financials/REITs/utilities
         (effective_tax_rate >= 0.03) & (effective_tax_rate < 0.15) &  # etr floor: a near-0% rate is NOL/credit, not structure
-        (pretax_pos > 0) &
+        ((pretax_pos > 0) | (_ncol('fq_pretax') > 0)) &   # (audit 3) positive pretax income on the EDGAR line or the quarterly panel (global)
+        ~(_ncol('fq_cash_tax_rate') > 0.20) &             # (audit 3) the CASH rate agrees where measured (a low book rate at a 30% cash rate is a timing quirk, not structure)
         _op_viable(0)            # real OPERATING profit (impairment-robust), not a cash-pile interest print (WIMI op_margin -9%)
     ).fillna(False).astype(int)
 
@@ -4331,7 +4336,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # positive pretax income is the tax authority auditing the P&L for us.
     # Cheap on those verified earnings = forensic value. (Inverse cousin of
     # arch_tax_efficient, which hunts LOW structural rates.)
-    _etr_f11 = _ncol('effective_tax_rate')
+    _etr_f11 = _ncol('effective_tax_rate').fillna(_ncol('fmp_effective_tax_rate').where(_ncol('fmp_effective_tax_rate').between(0.0, 1.0)))   # (audit 3) the global FMP book rate where the EDGAR rate is absent
     # (non-XR review) pretax_income_ttm is NOT a master column -> the gate was
     # DEAD (all-NaN -> False everywhere). effective_tax_rate is only written
     # when pretax > 0, so the 0.18-0.40 band already implies positive pretax;
