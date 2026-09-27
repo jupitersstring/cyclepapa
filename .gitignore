@@ -72,3 +72,5 @@ mb_panel_parts/
 mb_labels_usd.parquet
 mb_today.parquet
 mb_today_parts/
+yahoo_weekly_prices.parquet
+mb_model_oos.parquet
