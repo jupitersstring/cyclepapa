@@ -56,6 +56,11 @@ def _gbm():
                                           n_iter_no_change=30, random_state=7)
 
 
+def _mem(tag):
+    import resource
+    print(f"  [{tag}] rss {resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6:.1f} GB", flush=True)
+
+
 def features(d: pd.DataFrame):
     """The full feature set with the operator, peer, industry and market
     frames, ranked within month x market (the same space every study used)."""
@@ -114,6 +119,7 @@ def walk_forward(d, R, y, w):
                      "iterations": int(clf.n_iter_), **_lift_table(d, p, test, w)})
         print(f"  {Y}: fit {fit.sum():,} test {test.sum():,} auc {auc:.3f} top5 lift {rows[-1].get('lift_top5', np.nan):.2f}", flush=True)
         last = (clf, cols, test)
+        _mem(f"fold {Y}")
         pd.DataFrame(rows).to_csv("mb_model_walkforward.csv", index=False)      # survives a later crash
         p.to_frame("p_oos").assign(symbol=d["symbol"], week=d["week"]).dropna(subset=["p_oos"]).to_parquet(
             "mb_model_oos.parquet", index=False)
@@ -224,6 +230,7 @@ def main():
     d = mm.outcome_cols(d)
     d = d[~d["bio"]].reset_index(drop=True)
     d, R = features(d)
+    _mem("features")
     y, w = d[LABEL], d["w_cc"]
     ind = d["industry"].fillna("").str.lower()
     d["asset"] = ((d["sector"].isin(["Energy", "Materials", "Real Estate", "Utilities"])
@@ -231,6 +238,13 @@ def main():
     d["preprofit"] = ((d["opm"] < 0) | (d["fcf_margin"] < 0)) & ~d["bio"] & ~d["asset"]
     A = L2.archetypes(d); A.update(mo.segment_archetypes(d)); A.update(mo.operator_archetypes(d))
     covered = pd.concat([m_.fillna(False) for m_ in A.values()], axis=1).any(axis=1)
+    del A
+    # the raw feature columns live on in R (ranked); the panel keeps only what the tables need
+    keep = {"symbol", "week", "market", "sector", "industry", "w_cc", "bio", "asset", "preprofit", LABEL, "t10_60",
+            "fwd_min_24", "fwd_ret_24", "fwd_mult_60", "months_to_3x", "dist_hi260", "opm", "fcf_margin"}
+    d = d[[c for c in d.columns if c in keep or c.startswith("st_")]].copy()
+    import gc; gc.collect()
+    _mem("panel trimmed")
     L = ["# The model archetype: a walk-forward model over every feature\n",
          f"{len(d):,} month-ends (non-biotech), {R.shape[1]} features ranked within month x market; labels "
          f"{d.attrs.get('labels', 'local')}; base 3x-within-24m rate {mm.base_rate(d, LABEL):.2%}.\n"]
