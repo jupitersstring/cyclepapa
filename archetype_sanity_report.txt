@@ -4,28 +4,21 @@ ABSENT COLUMNS (requested by gates, not in frame — gate legs read all-NaN):
   MISSING  fcf_margin_lindy
   MISSING  forensic_hidden_pct
   MISSING  is_otc
+  MISSING  mb_model_rank_mkt
   MISSING  roic_latest
   MISSING  roiic_1y_positive_flag
 NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
-  SPARSE   fmp_insider_net_usd_12m               0.27%
-  SPARSE   fmp_earnings_surprise_cv              0.35%
-  SPARSE   fmp_earnings_beat_rate                0.35%
-  SPARSE   fmp_earnings_n                        0.47%
-  SPARSE   em_fv_gap                             0.47%
-  SPARSE   em_fair_value                         0.53%
-  SPARSE   lifo_reserve                          0.65%
-  SPARSE   seg_best_ebit_usd                     1.15%
-  SPARSE   seg_total_ebit_usd                    1.15%
-  SPARSE   pension_funded_status                 1.35%
-  SPARSE   seg_mix_uplift                        1.38%
+  SPARSE   em_fv_gap                             0.33%
+  SPARSE   em_fair_value                         0.38%
+  SPARSE   fmp_earnings_surprise_cv              0.45%
+  SPARSE   fmp_earnings_beat_rate                0.45%
+  SPARSE   fmp_insider_net_usd_12m               0.46%
+  SPARSE   lifo_reserve                          0.55%
+  SPARSE   fmp_earnings_n                        0.65%
+  SPARSE   seg_best_ebit_usd                     1.24%
+  SPARSE   seg_total_ebit_usd                    1.24%
+  SPARSE   pension_funded_status                 1.36%
+  SPARSE   seg_mix_uplift                        1.44%
   SPARSE   seg_oplev                             1.52%
-  SPARSE   assets_held_for_sale                  1.88%
-  ZERO     arch_wolf_emerging fires on NOBODY — investigate
-  ZERO     arch_cluseau_buyback_accel fires on NOBODY — investigate
-  ZERO     arch_pension_overfunded fires on NOBODY — investigate
-  ZERO     arch_mb_conviction_confluence fires on NOBODY — investigate
-  ZERO     arch_mb_left_for_dead_insider fires on NOBODY — investigate
-  ZERO     arch_xr_stake_fv_gap fires on NOBODY — investigate
-  ZERO     arch_spinoff_quality fires on NOBODY — investigate
-  ZERO     arch_spinoff_asset fires on NOBODY — investigate
-  ZERO     arch_post_reorg fires on NOBODY — investigate
+  SPARSE   assets_held_for_sale                  1.71%
+  ZERO     arch_mb_model_top fires on NOBODY — investigate

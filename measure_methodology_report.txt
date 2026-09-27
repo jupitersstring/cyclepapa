@@ -1,4 +1,4 @@
-METHODOLOGY AUDIT — 232 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 233 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.068 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.260 (fraction-scale cap 5.0)
@@ -8,6 +8,7 @@ METHODOLOGY AUDIT — 232 checks, 0 FAIL, 0 WARN
   PASS  yf_institution_pct is fraction-scale (median <= 1)  — median 0.047
   PASS  yf_institution_pct within [0, 2] (overlapping 13F <= ~1.5)  — 99.95% in band; 17 outliers
   PASS  yf_earnings_growth is fraction-scale (median |x| < 5)  — median |x| = 0.382
+  PASS  yf_revenue_growth is fraction-scale (median |x| < 5)  — median |x| = 0.139
   PASS  arch_dead_option: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 40% depth
   PASS  arch_oak_deep_value: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 50% depth
   PASS  arch_levered_inflection: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 25% depth
@@ -33,7 +34,7 @@ METHODOLOGY AUDIT — 232 checks, 0 FAIL, 0 WARN
   PASS  gating: analyst_rerating_score is 0 outside arch_analyst_rerating_confirmed  — 0 non-firers with positive score
   PASS  gating: asleep_score is 0 outside arch_asleep_at_wheel  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
-  PASS  density: archetype_count_pct <= 1  — max 0.331
+  PASS  density: archetype_count_pct <= 1  — max 0.315
   PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
   PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []

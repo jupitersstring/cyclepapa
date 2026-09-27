@@ -96,6 +96,12 @@ def _fallbacks(t, g):
     if len(e) >= 50:
         check("yf_earnings_growth is fraction-scale (median |x| < 5)", float(e.abs().median()) < 5,
               f"median |x| = {float(e.abs().median()):.3f}")
+    # yf_revenue_growth: the peer frames' last-resort revenue-growth input
+    # (behind fq_rev_growth); a RANK input, so only its scale can mislead
+    r = pd.to_numeric(g.get("yf_revenue_growth"), errors="coerce").dropna()
+    if len(r) >= 50:
+        check("yf_revenue_growth is fraction-scale (median |x| < 5)", float(r.abs().median()) < 5,
+              f"median |x| = {float(r.abs().median()):.3f}")
 
 
 @measure("Beaten-down / drawdown family",
@@ -754,6 +760,7 @@ def _figure_coverage(t, g):
     CHECKED = {
         "yf_institution_pct",   # own suite: fraction scale + band
         "yf_earnings_growth",   # own suite: Lynch last-resort input
+        "yf_revenue_growth",    # own suite: peer-frame last-resort growth input
         # identity / valuation-consistency suite
         "market_cap", "price", "shares_outstanding", "enterprise_value",
         "ebitda_ttm", "revenue_ttm", "net_income_ttm", "fcf_ttm", "cfo_ttm",
