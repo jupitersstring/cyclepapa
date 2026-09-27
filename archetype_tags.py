@@ -255,12 +255,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df = _merge_fmp_overlay(df, 'fmp_sentiment.csv')
     if os.path.exists('fmp_us_filings.csv'):        # headcount + quarterly insider statistics (SEC filers)
         df = _merge_fmp_overlay(df, 'fmp_us_filings.csv')
-    if os.path.exists('mb_model_scores.csv'):       # the walk-forward model's score of today's cross-section
-        _ms = pd.read_csv('mb_model_scores.csv', usecols=['symbol', 'mb_model_p', 'mb_model_rank_mkt', 'mb_model_rank',
-                                                          'mb_model_pct_hist'])
-        df = df.drop(
-            columns=[c for c in _ms.columns if c != 'symbol' and c in df.columns]).merge(
-            _ms.drop_duplicates('symbol'), on='symbol', how='left')
     # weekly time-series measures (ts_snapshot.py), through-cycle annual minima
     # (fmp_throughcycle.py), quarterly growth quality (fmp_quarterly_ext.py)
     df = _merge_fmp_overlay(df, 'ts_snapshot.csv')
@@ -7191,15 +7185,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_mb_cheap_growth_targets_up'] = (
         _mb_base & (_ncol('fq_rev_growth') >= 0.15).fillna(False) & _cheap_for_growth & _pt_up
         & (_hi260 >= 0.60).fillna(False)).astype(int)
-    # 8. THE MODEL ARCHETYPE (multibagger_model.py): a walk-forward
-    #    gradient-boosted model over every panel feature, judged year by year
-    #    out of sample; today's names in the top 5% of their market by the
-    #    model's probability. Holds the interactions the boxes cannot; its
-    #    lift, blow-up and what it leans on are in MULTIBAGGER_MODEL.md.
-    df['arch_mb_model_top'] = (_mb_base & (_ncol('mb_model_rank_mkt') >= 0.95).fillna(False)).astype(int)
     _SPIRITED += ['mb_wave_neglected_value_accel', 'mb_leader_in_wave', 'mb_improving_unturned_sellside',
                   'mb_peer_worst_cheapest', 'mb_compounder_insiders_at_high', 'mb_hiring_beating_uncovered',
-                  'mb_cheap_growth_targets_up', 'mb_model_top']
+                  'mb_cheap_growth_targets_up']
     _SPIRITED += ['mb_fallen_deep_value', 'mb_fallen_value_turn', 'mb_fallen_value_accel', 'mb_fallen_stressed',
                   'mb_fallen_insider', 'mb_fallen_trough', 'mb_fallen_below_cycle', 'mb_inflecting_operator',
                   'mb_quiet_turn', 'mb_left_for_dead_value', 'mb_fallen_ignored_believers',
@@ -7390,7 +7378,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_compounder_insiders_at_high',
         'arch_mb_hiring_beating_uncovered',
         'arch_mb_cheap_growth_targets_up',
-        'arch_mb_model_top',
         'arch_xr_peer_margin_gap',
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
@@ -7599,7 +7586,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_compounder_insiders_at_high': 'MB-CompounderInsidersAtHigh',
         'arch_mb_hiring_beating_uncovered': 'MB-HiringBeatingUncovered',
         'arch_mb_cheap_growth_targets_up': 'MB-CheapGrowthTargetsUp',
-        'arch_mb_model_top': 'MB-ModelTop5',
         'arch_xr_cash_leads_book': 'XR-CashLeadsBook',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
@@ -8980,7 +8966,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                         (_c('ev_sales_change_yoy'), 1), (_c('fmp_inst_shares_chg_pct_q0'), 1),
                                         (_c('sent_n_analysts'), -1), (_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
                                         (_c('ts_dist_hi260'), -1)],
-        'mb_model_top': [(_c('mb_model_p'), 1), (_c('mb_model_pct_hist'), 1), (_c('mb_model_rank_mkt'), 1)],
         'mb_cheap_growth_targets_up': [(_c('fcf_yield') + _c('fq_rev_growth'), 1),
                                        (_c('ev_ebit').where(_c('ev_ebit') > 0), -1), (_c('rel_ind_ev_ebit'), -1),
                                        (_c('fq_rev_growth'), 1), (_c('rel_ind_rev_growth'), 1),

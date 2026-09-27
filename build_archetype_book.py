@@ -66,7 +66,6 @@ ARCHETYPE_LABELS = {
     'arch_mb_peer_worst_cheapest': "MB: Peer Group's Worst Name at Its Lowest Multiple (10x lift 24-29x, 22-27% went 10x, blow-up 11-24%)",
     'arch_mb_compounder_insiders_at_high': 'MB: Compounder, Insiders Buying at the High (near highs, top-quartile ROCE, R&D-heavy: 10x lift 90x+ on thin support, blow-up 0-8%)',
     'arch_mb_hiring_beating_uncovered': 'MB: Hiring, Beating, Uncovered (headcount up, margins at own best, beats, no analyst: lift 2.1x, blow-up 15%)',
-    'arch_mb_model_top': 'MB: Model Top 5% of Market (walk-forward model over every feature; lift and blow-up in MULTIBAGGER_MODEL.md)',
     'arch_mb_cheap_growth_targets_up': 'MB: Cheap Growth, Targets Rising (revenue +15%, EV/EBIT <= 10 or FCF yield + growth >= 20%, targets revised up: lift 1.25x, blow-up 8%)',
     'arch_narrative_lag': 'Narrative Lag',
     'arch_derate_through_growth': 'Derating Through Growth (grew into its valuation)',
