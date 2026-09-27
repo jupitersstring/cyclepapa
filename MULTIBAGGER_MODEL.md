@@ -87,3 +87,121 @@ Top 40 by probability:
 | IFCM3.SA  | 2026-09-25 00:00:00 |       0.4366 |              0.9971 |          0.999  |              0.9965 |
 | 4150.TWO  | 2026-09-04 00:00:00 |       0.4338 |              0.9847 |          0.9989 |              0.9964 |
 | 3285.TWO  | 2026-09-25 00:00:00 |       0.4319 |              0.9832 |          0.9989 |              0.9964 |
+
+# 3. What the model uses
+
+
+### What the last fold's model leans on (permutation importance, AUC loss)
+
+|                                           |   importance |
+|:------------------------------------------|-------------:|
+| mkt_tape_disthi                           |       0.0375 |
+| vol52                                     |       0.0193 |
+| rd_rev                                    |       0.0078 |
+| sga_rev                                   |       0.0061 |
+| pp_loss_narrowing                         |       0.006  |
+| kr_researchAndDevelopementToRevenue_d4    |       0.0054 |
+| dd_time_share_260                         |       0.005  |
+| kr_daysOfInventoryOutstanding             |       0.005  |
+| st_near_highs                             |       0.005  |
+| ind_tape_growth                           |       0.0039 |
+| gm                                        |       0.0039 |
+| ind_tape_disthi                           |       0.0035 |
+| tr_shares_consist                         |       0.0033 |
+| kr_researchAndDevelopementToRevenue       |       0.003  |
+| surprise_4q                               |       0.0029 |
+| mcap_usd_log                              |       0.0027 |
+| kr_stockBasedCompensationToRevenue_own    |       0.0026 |
+| kr_receivablesTurnover                    |       0.0024 |
+| ind_tape_opm_d1                           |       0.0024 |
+| r260                                      |       0.0022 |
+| capex_rev                                 |       0.0021 |
+| kr_intangiblesToTotalAssets               |       0.002  |
+| buy_share_d12                             |       0.0019 |
+| kr_fixedAssetTurnover                     |       0.0019 |
+| intang_assets                             |       0.0018 |
+| kr_salesGeneralAndAdministrativeToRevenue |       0.0018 |
+| mkt_tape_r52                              |       0.0015 |
+| as_payout                                 |       0.0015 |
+| maxdd104                                  |       0.0014 |
+| kr_priceToSalesRatio                      |       0.0014 |
+| kr_inventoryTurnover                      |       0.0014 |
+| tr_revg_accel                             |       0.0013 |
+| ignored_beats_2y                          |       0.0013 |
+| equity_assets                             |       0.0013 |
+| tr_shares_slope8                          |       0.0013 |
+| kr_researchAndDevelopementToRevenue_own   |       0.0013 |
+| op_ind_vol                                |       0.0012 |
+| wks_since_lo260                           |       0.0012 |
+| ncav_mcap                                 |       0.0012 |
+| dvol_usd_log                              |       0.0012 |
+
+### The top-decile region as a tree (depth 4; ranks within month x market, 0-1)
+
+```
+|--- op_vs_mkt_disthi <= 0.12
+|   |--- mcap_usd_log <= 0.13
+|   |   |--- vol52 <= 0.72
+|   |   |   |--- class: False
+|   |   |--- vol52 >  0.72
+|   |   |   |--- op_sec_disthi <= 0.05
+|   |   |   |   |--- class: True
+|   |   |   |--- op_sec_disthi >  0.05
+|   |   |   |   |--- class: True
+|   |--- mcap_usd_log >  0.13
+|   |   |--- vol52 <= 0.84
+|   |   |   |--- vol52 <= 0.61
+|   |   |   |   |--- class: False
+|   |   |   |--- vol52 >  0.61
+|   |   |   |   |--- class: False
+|   |   |--- vol52 >  0.84
+|   |   |   |--- dd_time_share_260 <= 0.73
+|   |   |   |   |--- class: False
+|   |   |   |--- dd_time_share_260 >  0.73
+|   |   |   |   |--- class: True
+|--- op_vs_mkt_disthi >  0.12
+|   |--- mcap_usd_log <= 0.17
+|   |   |--- vol52 <= 0.50
+|   |   |   |--- mkt_tape_r26 <= 0.50
+|   |   |   |   |--- class: False
+|   |   |   |--- mkt_tape_r26 >  0.50
+|   |   |   |   |--- class: False
+|   |   |--- vol52 >  0.50
+|   |   |   |--- dd_time_share_260 <= 0.50
+|   |   |   |   |--- class: False
+|   |   |   |--- dd_time_share_260 >  0.50
+|   |   |   |   |--- class: False
+|   |--- mcap_usd_log >  0.17
+|   |   |--- vol52 <= 0.85
+|   |   |   |--- vol52 <= 0.50
+|   |   |   |   |--- class: False
+|   |   |   |--- vol52 >  0.50
+|   |   |   |   |--- class: False
+|   |   |--- vol52 >  0.85
+|   |   |   |--- kr_researchAndDevelopementToRevenue <= 0.87
+|   |   |   |   |--- class: False
+|   |   |   |--- kr_researchAndDevelopementToRevenue >  0.87
+|   |   |   |   |--- class: False
+
+```
+
+
+leaves ranked by lift on the whole out-of-sample population (a leaf mostly inside the top decile is a rule the boxes did not have):
+
+|   leaf |   share_in_top_decile |      n |   rate |   lift |   p_blowup_50 |
+|-------:|----------------------:|-------:|-------:|-------:|--------------:|
+|      5 |                 0.821 |  10180 |  0.157 |  3.901 |         0.377 |
+|      6 |                 0.644 |   7832 |  0.126 |  3.117 |         0.296 |
+|     13 |                 0.539 |  14321 |  0.106 |  2.625 |         0.342 |
+|     28 |                 0.294 |  11067 |  0.093 |  2.307 |         0.269 |
+|      3 |                 0.449 |   8057 |  0.083 |  2.054 |         0.16  |
+|     21 |                 0.386 |  39803 |  0.079 |  1.953 |         0.2   |
+|     12 |                 0.315 |   9111 |  0.071 |  1.753 |         0.322 |
+|     27 |                 0.12  |  53667 |  0.065 |  1.606 |         0.283 |
+|     10 |                 0.256 |  16702 |  0.06  |  1.486 |         0.254 |
+|     18 |                 0.183 |  19667 |  0.052 |  1.296 |         0.107 |
+|      9 |                 0.12  |  18826 |  0.047 |  1.154 |         0.182 |
+|     25 |                 0.054 | 213128 |  0.043 |  1.056 |         0.176 |
+|     20 |                 0.151 |  10474 |  0.041 |  1.019 |         0.168 |
+|     24 |                 0.012 | 318504 |  0.018 |  0.453 |         0.09  |
+|     17 |                 0.029 |  18887 |  0.013 |  0.314 |         0.062 |
