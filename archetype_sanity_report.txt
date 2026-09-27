@@ -22,3 +22,4 @@ NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
   SPARSE   seg_oplev                             1.52%
   SPARSE   assets_held_for_sale                  1.71%
   ZERO     arch_mb_model_top fires on NOBODY — investigate
+  ZERO     arch_mb_stressed_not_diluting fires on NOBODY — investigate
