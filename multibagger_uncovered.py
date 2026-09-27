@@ -14,7 +14,8 @@ its own:
                       rendered in words
   USD outcomes        the labels are the USD recomputation (a lira triple is
                       not a triple)
-  demonstrated lift   a pattern is a CANDIDATE only if its lift is >= 2x in
+  demonstrated lift   the search OPTIMISES the robust lift (the smaller of the two
+                      halves' lifts), not the raw one — a pattern is a CANDIDATE only if its lift is >= 2x in
                       BOTH halves of the sample (month-ends to 2018-12 and
                       from 2019-01), its events span >= 4 calendar years and
                       >= 3 markets, and no single market holds more than 60%
@@ -133,24 +134,47 @@ def readable_features(R: pd.DataFrame) -> list:
 
 
 def mine(d, R, label, feats, min_events=40, min_share=0.0005, max_depth=4, beam=80, top=60):
-    """Beam pattern search returning the rules AND their masks."""
+    """Beam pattern search whose OBJECTIVE is the robust lift: the smaller of
+    the lifts in the two halves of time, admitted only when the events of the
+    pattern spread over >= 3 markets (none above 60%) and >= 4 years, with at
+    least min_events/2 events in each half. Returns the rules and their masks."""
     C, names = [], []
     for f in feats:
         r = R[f].to_numpy()
         C.append(r <= 0.2); names.append(f"{f} LOW")
         C.append(r >= 0.8); names.append(f"{f} HIGH")
-    for s in [c for c in R.columns if c.startswith("st_")]:
-        C.append(R[s].to_numpy() == 1); names.append(s[3:])
+    for s_ in [c for c in R.columns if c.startswith("st_")]:
+        C.append(R[s_].to_numpy() == 1); names.append(s_[3:])
     M = np.vstack([np.nan_to_num(c, nan=0).astype(bool) for c in C])
     y = d[label].to_numpy(float); ok = ~np.isnan(y)
     w = d["w_cc"].to_numpy(float) * ok; y = np.nan_to_num(y)
-    tot, br = w.sum(), (w * y).sum() / w.sum()
+    early = (d["week"] <= SPLIT).to_numpy(); late = ~early
+    we, wl = w * early, w * late
+    wy_e, wy_l = we * y, wl * y
+    br_e, br_l = wy_e.sum() / we.sum(), wy_l.sum() / wl.sum()
+    tot = w.sum()
+    ev_rows = np.flatnonzero((y > 0) & ok)
+    mk_id = pd.factorize(d["market"].astype(str))[0][ev_rows]
+    yr_id = (d["week"].dt.year.to_numpy() - 2000)[ev_rows]
+    half = max(min_events // 2, 10)
 
     def score(mask):
-        ww = w[mask]; s = ww.sum(); ev = int((y[mask] > 0).sum())
-        if s / tot < min_share or ev < min_events:
+        s = w[mask].sum()
+        if s / tot < min_share:
             return None
-        return (ww * y[mask]).sum() / s / br, s / tot, ev
+        sel = mask[ev_rows]
+        ev = int(sel.sum())
+        if ev < min_events:
+            return None
+        ev_e = int((early[ev_rows] & sel).sum()); ev_l = ev - ev_e
+        if ev_e < half or ev_l < half:
+            return None
+        mk = np.bincount(mk_id[sel]); yr = np.bincount(yr_id[sel])
+        if (mk > 0).sum() < 3 or mk.max() / ev > 0.6 or (yr > 0).sum() < 4:
+            return None
+        le = wy_e[mask].sum() / we[mask].sum() / br_e
+        ll = wy_l[mask].sum() / wl[mask].sum() / br_l
+        return min(le, ll), s / tot, ev
 
     singles, cand = [], []
     for i in range(len(names)):
@@ -175,14 +199,16 @@ def mine(d, R, label, feats, min_events=40, min_share=0.0005, max_depth=4, beam=
         lst = sorted(nxt.items(), key=lambda x: -x[1][0])
         allr += lst; beam_ = lst[:beam]
     allr.sort(key=lambda x: -x[1][0])
+    br = (w * y).sum() / tot
     keep, seen = [], []
-    for rule, (lift, share, ev) in allr:
+    for rule, (rlift, share, ev) in allr:
         m = np.logical_and.reduce([M[i] for i in rule])
         if any((m & k).sum() >= 0.7 * min(m.sum(), k.sum()) for k in seen):
             continue
         seen.append(m)
         keep.append({"rule": " & ".join(names[i] for i in rule), "conditions": [names[i] for i in rule],
-                     "lift": lift, "share": share, "events": ev, "mask": m})
+                     "lift": float((w[m] * y[m]).sum() / w[m].sum() / br), "robust_lift": rlift, "share": share,
+                     "events": ev, "mask": m})
         if len(keep) >= top:
             break
     return keep, br
@@ -207,7 +233,7 @@ def robustness(d, rules, label, br_all):
         t10 = d.loc[m, "t10_60"].dropna()
         qualifies = (np.nan_to_num(le) >= 2) and (np.nan_to_num(ll) >= 2) and yrs >= 4 and len(mk) >= 3 and (mk.iloc[0] if len(mk) else 1) <= 0.6
         rows.append({"pattern": r["rule"], "in_words": "; ".join(words(c) for c in r["conditions"]),
-                     "lift": r["lift"], "lift_to_2018": le, "lift_2019_on": ll, "events": r["events"],
+                     "lift": r["lift"], "robust_lift": r["robust_lift"], "lift_to_2018": le, "lift_2019_on": ll, "events": r["events"],
                      "share_of_month_ends": r["share"], "years": yrs, "markets": len(mk),
                      "top_market": f"{mk.index[0]} {mk.iloc[0]:.0%}" if len(mk) else "",
                      "p_blowup_50": float((fm <= -0.5).mean()) if len(fm) >= 40 else np.nan,
@@ -215,7 +241,7 @@ def robustness(d, rules, label, br_all):
                      "median_months_to_3x": float(d.loc[ev, "months_to_3x"].median()) if ev.any() else np.nan,
                      "qualifies": bool(qualifies), "examples": mm.examples(d, d.index[ev], 6)})
     t = pd.DataFrame(rows)
-    return t.sort_values(["qualifies", "lift"], ascending=[False, False])
+    return t.sort_values(["qualifies", "robust_lift"], ascending=[False, False])
 
 
 def population(L, d, name, title):
@@ -232,11 +258,13 @@ def population(L, d, name, title):
         if (d[lab] == 1).sum() < 100:
             continue
         rules, br = mine(d, R, lab, rf, min_events=me)
+        if not rules:
+            L.append(f"\n## {ttl}: no pattern met the support and spread floors\n"); continue
         t = robustness(d, rules, lab, br)
         t.drop(columns=[]).to_csv(f"mb_uncovered_{name}_{lab}.csv", index=False)
         q = t[t["qualifies"]]
         L.append(f"\n## {ttl}: {len(q)} candidates that hold in both halves of time and across markets (of {len(t)} patterns mined)\n")
-        cols = ["in_words", "lift", "lift_to_2018", "lift_2019_on", "events", "years", "markets", "top_market", "p_blowup_50",
+        cols = ["in_words", "robust_lift", "lift", "lift_to_2018", "lift_2019_on", "events", "years", "markets", "top_market", "p_blowup_50",
                 "t10_60_rate", "median_months_to_3x", "examples"]
         L.append(q.head(20)[cols].round(3).to_markdown(index=False) if len(q) else "none")
         L.append(f"\nthe strongest patterns that did NOT qualify (one era or one market):\n\n"
