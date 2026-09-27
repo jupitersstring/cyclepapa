@@ -231,48 +231,101 @@ def score_today(d, R, y, w, L):
     return out
 
 
-def main():
-    d = mc.load()
-    d = mm.outcome_cols(d)
+SLIM = "mb_model_slim.parquet"
+MM = "mb_model_ranked.npy"
+
+
+def _rank_stage():
+    """Load, add the frames, rank every row onto the disk memory map, write
+    the slim panel (what the analysis needs, ~300 MB) and exit: the heavy
+    load never shares a process with the analysis."""
+    import json
+    d = mc.load(); d = mm.outcome_cols(d)
     d = d[~d["bio"]].reset_index(drop=True)
-    stage2 = os.environ.get("MODEL_STAGE") == "2" and os.path.exists("mb_model_oos.parquet")
-    if stage2:
-        # STAGE 2 ranks only a ROW SAMPLE (the fit, region and importance need
-        # no more); coverage is computed on every row from the saved scores
-        # before any ranking, so the full ranked matrix never exists here
-        g = pd.read_csv("asymmetry_global.csv", usecols=["symbol", "sector", "industry"], low_memory=False).drop_duplicates("symbol")
-        d = d.merge(g, on="symbol", how="left")
-        d = ms.add_measures(d); d = mo.add_measures(d)
-        mc.BLOCKS = {**mc.BLOCKS, **mo.OP_BLOCKS}
-        mc.FEATS = mc.FEATS + [c for c in d.columns if c.startswith(("pp_", "as_", "op_", "ind_", "mkt_"))]
-        R = None
-    else:
-        d, R = features(d)
-    _mem("features")
-    y, w = d[LABEL], d["w_cc"]
+    g = pd.read_csv("asymmetry_global.csv", usecols=["symbol", "sector", "industry"], low_memory=False).drop_duplicates("symbol")
+    d = d.merge(g, on="symbol", how="left")
+    d = ms.add_measures(d); d = mo.add_measures(d)
+    mc.BLOCKS = {**mc.BLOCKS, **mo.OP_BLOCKS}
+    mc.FEATS = mc.FEATS + [c for c in d.columns if c.startswith(("pp_", "as_", "op_", "ind_", "mkt_"))]
+    _mem("loaded")
     ind = d["industry"].fillna("").str.lower()
-    d["asset"] = ((d["sector"].isin(["Energy", "Materials", "Real Estate", "Utilities"])
-                   | ind.str.contains(ms.ASSET_IND, regex=True)) & ~d["bio"])
+    d["asset"] = ((d["sector"].isin(["Energy", "Materials", "Real Estate", "Utilities"]) | ind.str.contains(ms.ASSET_IND, regex=True)) & ~d["bio"])
     d["preprofit"] = ((d["opm"] < 0) | (d["fcf_margin"] < 0)) & ~d["bio"] & ~d["asset"]
     A = L2.archetypes(d); A.update(mo.segment_archetypes(d)); A.update(mo.operator_archetypes(d))
-    covered = pd.concat([m_.fillna(False) for m_ in A.values()], axis=1).any(axis=1)
+    d["covered"] = pd.concat([m_.fillna(False) for m_ in A.values()], axis=1).any(axis=1).astype("int8")
     del A
-    # the raw feature columns live on in R (ranked); the panel keeps only what the tables need
-    keep = {"symbol", "week", "market", "sector", "industry", "w_cc", "bio", "asset", "preprofit", LABEL, "t10_60",
-            "fwd_min_24", "fwd_ret_24", "fwd_mult_60", "months_to_3x", "dist_hi260", "opm", "fcf_margin"}
-    if stage2:
-        # every row, ranked in column chunks onto a disk memory map
-        feats = mc.feats_all(d)
-        R = mc.ranked(d, feats, memmap_path="mb_model_ranked.npy")
-        _mem("ranked (memmap)")
-    d = d[[c for c in d.columns if c in keep or c.startswith("st_")]].copy()
-    import gc; gc.collect()
-    _mem("panel trimmed")
+    feats = mc.feats_all(d)
+    R = mc.ranked(d, feats, memmap_path=MM)
+    _mem("ranked (memmap)")
+    extra = [c for c in R.columns if c in mc.MISS or c.startswith("st_")]
+    keep = ["symbol", "week", "market", "sector", "industry", "w_cc", "asset", "preprofit", "covered", LABEL, "t10_60",
+            "fwd_min_24", "fwd_ret_24", "fwd_mult_60", "months_to_3x", "dist_hi260", "opm", "fcf_margin"]
+    slim = d[[c for c in keep if c in d.columns]].copy()
+    for c in extra:
+        slim[c] = R[c].to_numpy("float32")
+    if os.path.exists("mb_model_oos.parquet"):
+        oos_ = pd.read_parquet("mb_model_oos.parquet"); oos_["week"] = pd.to_datetime(oos_["week"])
+        slim = slim.merge(oos_, on=["symbol", "week"], how="left")
+    slim.to_parquet(SLIM, index=False)
+    json.dump({"features": [c for c in R.columns if c not in extra], "extra": extra}, open(MM + ".cols.json", "w"))
+    print(f"rank stage: {len(slim):,} rows, {len(R.columns)} ranked columns -> {SLIM}, {MM}", flush=True)
+
+
+def _analyse_stage():
+    """Coverage on every row from the saved walk-forward scores; final fit,
+    today's scores, importance and the region tree from the memory map."""
+    import json
+    meta = json.load(open(MM + ".cols.json"))
+    d = pd.read_parquet(SLIM); d["week"] = pd.to_datetime(d["week"])
+    A = np.load(MM, mmap_mode="r")
+    R = pd.DataFrame(A, index=d.index, columns=meta["features"], copy=False)
+    for c in meta["extra"]:
+        R[c] = d[c].to_numpy("float32")
+    mc.BLOCKS = {**mc.BLOCKS, **mo.OP_BLOCKS}
+    d.attrs["labels"] = "USD" if os.path.exists("mb_labels_usd.parquet") and not os.environ.get("MB_LOCAL") else "local"
+    _mem("analysis loaded")
+    return d, R
+
+
+def main():
+    stage = os.environ.get("MODEL_STAGE", "")
+    if stage == "rank":
+        return _rank_stage()
+    if stage == "analyse":
+        d, R = _analyse_stage()
+        y, w = d[LABEL], d["w_cc"]
+        covered = d["covered"] == 1
+        p = d["p_oos"].astype("float32") if "p_oos" in d.columns else pd.Series(np.nan, index=d.index)
+        tab = pd.read_csv("mb_model_walkforward.csv") if os.path.exists("mb_model_walkforward.csv") else pd.DataFrame()
+        last = None
+        stage2 = True
+    else:
+        d = mc.load()
+        d = mm.outcome_cols(d)
+        d = d[~d["bio"]].reset_index(drop=True)
+        d, R = features(d)
+        _mem("features")
+        y, w = d[LABEL], d["w_cc"]
+        ind = d["industry"].fillna("").str.lower()
+        d["asset"] = ((d["sector"].isin(["Energy", "Materials", "Real Estate", "Utilities"])
+                       | ind.str.contains(ms.ASSET_IND, regex=True)) & ~d["bio"])
+        d["preprofit"] = ((d["opm"] < 0) | (d["fcf_margin"] < 0)) & ~d["bio"] & ~d["asset"]
+        A = L2.archetypes(d); A.update(mo.segment_archetypes(d)); A.update(mo.operator_archetypes(d))
+        covered = pd.concat([m_.fillna(False) for m_ in A.values()], axis=1).any(axis=1)
+        del A
+        keep = {"symbol", "week", "market", "sector", "industry", "w_cc", "bio", "asset", "preprofit", LABEL, "t10_60",
+                "fwd_min_24", "fwd_ret_24", "fwd_mult_60", "months_to_3x", "dist_hi260", "opm", "fcf_margin"}
+        d = d[[c for c in d.columns if c in keep or c.startswith("st_")]].copy()
+        import gc; gc.collect()
+        _mem("panel trimmed")
+        stage2 = False
     L = ["# The model archetype: a walk-forward model over every feature\n",
          f"{len(d):,} month-ends (non-biotech), {R.shape[1]} features ranked within month x market; labels "
          f"{d.attrs.get('labels', 'local')}; base 3x-within-24m rate {mm.base_rate(d, LABEL):.2%}.\n"]
     L.append("\n# 1. Walk-forward, year by year\n")
-    if os.environ.get("MODEL_STAGE") == "2" and os.path.exists("mb_model_oos.parquet"):
+    if stage2:
+        pass
+    elif os.environ.get("MODEL_STAGE") == "2" and os.path.exists("mb_model_oos.parquet"):
         # the walk-forward's scores and table from the previous stage (a fresh
         # process: the fold fits and this stage's final fit never share a heap)
         oos_ = pd.read_parquet("mb_model_oos.parquet"); oos_["week"] = pd.to_datetime(oos_["week"])

@@ -75,3 +75,5 @@ mb_today_parts/
 yahoo_weekly_prices.parquet
 mb_model_oos.parquet
 mb_model_ranked.npy
+mb_model_slim.parquet
+mb_model_ranked.npy.cols.json
