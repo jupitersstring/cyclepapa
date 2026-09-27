@@ -499,7 +499,10 @@ def _one(sym, px, last_global):
     T, cv, hv, delisted = tape(px, last_global)
     wk = T["week"]
     me = T.groupby(wk.dt.to_period("M")).tail(1)
-    me = me[(me["week"] >= START) & (me["dvol26_usd"] >= LIQ_USD)]
+    if os.environ.get("MB_TODAY"):     # one row per symbol: its LATEST week, no liquidity gate (denote, never drop)
+        me = T.tail(1)
+    else:
+        me = me[(me["week"] >= START) & (me["dvol26_usd"] >= LIQ_USD)]
     if not len(me):
         return None
     idx = me.index.to_numpy()
@@ -644,8 +647,17 @@ def main(workers: int = 4) -> None:
     import pyarrow as pa
     import pyarrow.parquet as pq
     import shutil
+    global OUT
     parts_dir = "mb_panel_parts"
     samp = pd.read_parquet("base_panel_pit.parquet", columns=["symbol", "w_cc"]).drop_duplicates("symbol")
+    if os.environ.get("MB_TODAY"):
+        # TODAY'S CROSS-SECTION for the whole universe (the model scores every
+        # name, not only the study sample): the latest week of every symbol
+        # with prices, the same features, weight 1
+        OUT = "mb_today.parquet"
+        parts_dir = "mb_today_parts"
+        g = pd.read_csv("asymmetry_global.csv", usecols=["symbol"], low_memory=False)["symbol"].astype(str)
+        samp = pd.DataFrame({"symbol": g.drop_duplicates(), "w_cc": 1.0})
     if os.environ.get("MB_ASSEMBLE_ONLY") and glob.glob(os.path.join(parts_dir, "part_*.parquet")):
         print("story: assembling from existing parts", flush=True)
         return _assemble(parts_dir, samp)
@@ -719,7 +731,7 @@ def _assemble(parts_dir: str, samp: pd.DataFrame) -> None:
         else:
             tbl = tbl.cast(writer.schema)
         writer.write_table(tbl)
-        n_rows += len(d); n_ev += int((d["t3_24"] == 1).sum())
+        n_rows += len(d); n_ev += int((d["t3_24"] == 1).sum()) if "t3_24" in d.columns else 0
     if writer is not None:
         writer.close()
         os.replace(OUT + ".tmp", OUT)
