@@ -2217,8 +2217,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # operating businesses only, at investable scale.
     df['arch_strong_coverage'] = (
         is_operating & (mcap >= 50e6) &
-        ((interest_coverage >= 8.0) |        # real coverage leg
-         (_ncol('tc_min_ic') >= 8.0) |       # (endpoint matrix) >= 8x in the WORST of the cached FYs
+        ((_nde_meaningful <= 4.0) |          # (audit 4) the SOURCE's number (Tillinghast: debt / EBITDA above 4x is "scary"); interest coverage is a weight
          (nde <= 0.0) |                      # outright net cash (guarded series)
          (net_cash_pct_sane >= 0.20)) &      # deep net cash, sane denominator
         (_ebitda_ttm_guard > 0) &
@@ -2226,6 +2225,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
          | ((ebitda_margin > 0.6) & (_ncol('tc_med_opm') >= 0.40)))   # (audit 3) a > 60% margin is a franchise, not a one-off, when the through-cycle median corroborates it (royalty / IP)
     ).fillna(False).astype(int)
     _SPIRITED.append('strong_coverage')      # through-cycle coverage ranks the (broad) membership
+    _DEMOTED.setdefault('strong_coverage', []).extend([(_ncol('interest_coverage'), 1), (_ncol('tc_min_ic'), 1)])
 
     # ---------- AD-AG: Segment-level archetypes (edgartools dimensional) ----
     # These fire only on names with multi-segment 10-K disclosure that the
@@ -2466,7 +2466,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _aligned = ((_ncol('fmp_insider_aligned_flag') == 1) | (_ncol('insider_buy_flag') == 1)
                 | (_ncol('buyback_yield') >= 0.01) | (_ncol('shares_growth_3y') < 0))
     _tier('owner_operator',
-          insider.between(0.20, 0.50) | _aligned,   # (audit 3) 50-60% parent-controlled subsidiaries leave the core unless revealed alignment
+          insider.between(0.20, 0.58) | _aligned,   # (audit 4) the source's own range ("20-58% in the best cases"); above it, only with revealed alignment
           insider.between(0.30, 0.60)
           & ((_ncol('insider_buy_flag') == 1) | (_ncol('fmp_insider_aligned_flag') == 1)
              | (_ncol('fmp_insider_net_usd_12m') > 0)),
@@ -2488,7 +2488,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ~(_ncol('roce').notna() & (_ncol('roce') < 0.03)) &  # (fresh) a high lindy-ROIIC at ~0% current ROCE is a base-effect, not QARP quality (MHH roce 0.002%)
         (roiic_lindy >= 0.15) & (roiic_lindy <= 1.0) &   # (audit 3) sane ROIIC band (a tiny-denominator artifact is not quality)
         (roic_lindy >= 0.10) &                            # (audit 3) a real base ROIC under the ROIIC
-        _qarp_cheap &
         # (audit 3) "reasonable" needs two of the multiple lenses to agree, or
         # the D&A-neutral EV/EBIT <= 12 on its own (P/E <= 18 alone is ordinary)
         ((pd.concat([((s('ev_ebitda', 999) > 0) & (s('ev_ebitda', 999) <= 12)),
@@ -3245,6 +3244,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & _durable_growth & _self_funding & _not_pricey
         & _profit_present                        # (reference II) profitability LEVEL present
     ).fillna(False).astype(int)
+    # (audit 4) the SOURCE's numbers (Andreola-Deden / compendium: market cap < $300M,
+    # EV/sales < 3x, growth >= 25%) are the core; the engine's looser rule stays
+    # as sustainable_scaler_watch
+    _tier('sustainable_scaler',
+          (mcap < 300e6) & ((_sevs > 0) & (_sevs < 3.0)) & ((_sr3 >= 0.25) | (_sry >= 0.25)),
+          measured=_sevs.notna() & (_sr3.notna() | _sry.notna()))
 
     # ==================================================================
     # TREND / MOMENTUM TRADER SETUPS — O'Neil (CAN SLIM), Weinstein
@@ -6171,7 +6176,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &                           # (R1b) RE developers/REITs: structural leverage + revaluation EBITDA fakes the thesis
         (mcap > 0) & (mcap < 5e9) &
         oper_lev_any & strong_op_improvement &   # real operating improvement (any rev dir.)
-        heavy_debt &                             # levered equity stub -> convexity
+        (heavy_debt | nde_real.between(1.5, 3.0)) &   # (audit 4) the source's own band (ND/EBITDA 1.5-3x) admitted beside the heavier stubs
         (ebitda_ttm_v > 0) & ((fcf_ttm_v > 0) | (cfo_ttm_v > 0)) &  # survivable + cash
         _not_melting &   # (deep-audit) the leakiest levered gate gains the survivability leg — now cash-on-cash-aware + improvement-lenient, so a genuine melting-ice stub with no cash and no inflection (LINK.JK op-47%/fcf-/roce-9%) fails, but a cash-generative or inflecting levered stub is kept (per user: demote, don't bar on op-margin alone).
         ((ebitda_yoy_v > 0) | (ebitda_inflection > 0)) &           # deleveraging (rising EBITDA)
@@ -6181,6 +6186,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         beaten_down_any(0.25) &                  # beaten down / low expectations (any lens)
         _soft_ok_below('capex_intensity', 0.15)
     ).fillna(False).astype(int)
+    # (audit 4) the SOURCE band is the core (ND/EBITDA 1.5-3x, net debt not rising
+    # is already a leg); heavier stubs stay as levered_inflection_watch
+    _tier('levered_inflection', nde_real.between(1.5, 3.0), measured=nde_real.notna())
     # (audit 3) the levered-stub tier so sizing can follow the probability of
     # zero: 1 = nde <= 4, 2 = 4-8 (core), 3 = 8-30 (speculative, not core)
     df['levered_stub_tier'] = pd.Series(np.select(
