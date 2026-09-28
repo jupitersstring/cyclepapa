@@ -4912,9 +4912,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # FORTRESS to survive to mean-reversion — a real net-cash cushion (>=20% of
     # mcap) or very low leverage — not merely "not net-debt" (a 2%-net-cash
     # burner has no runway).
-    _deep_surv18 = ((net_cash_pct_c >= 0.20)
-                    | (_ncol('fq_total_debt') / _ncol('fq_total_assets').where(_ncol('fq_total_assets') > 0) <= 0.25)   # (audit 3) nde is 99 at EBITDA <= 0
-                    | (_ncol('debt_to_equity').between(0, 0.30)))
+    # (user) the protection is NET CASH: a negative-EBITDA trough must hold
+    # more cash than debt (a sign, not an invented size); HOW MUCH net cash,
+    # and debt / assets, are weights in the spirit score
+    _deep_surv18 = (net_cash_pct_c >= 0)
     df['arch_xr_double_trough'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         ((_num('pct_off_52w_high') <= -0.50)
@@ -5210,10 +5211,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # would bar the entry by design.
         (((ebitda_ttm_v > 0)
           & _op_viable(-0.05) & _not_melting)
-         | ((ebitda_ttm_v <= 0)
-            & ((net_cash_pct_c >= 0.20)
-               | (_ncol('fq_total_debt') / _ncol('fq_total_assets').where(_ncol('fq_total_assets') > 0) <= 0.25)   # (audit 3) nde is 99 at EBITDA <= 0: measure leverage on the balance sheet
-               | (_ncol('debt_to_equity').between(0, 0.30)))))
+         | ((ebitda_ttm_v <= 0) & (net_cash_pct_c >= 0)))   # (user) net cash protects the negative-EBITDA trough; its size is a weight
     ).fillna(False).astype(int)
     # (endpoint matrix / audit A.6, PROXY) the PHYSICAL asset base that floors
     # the downside is measured (asset intensity; the cyclical-sector set only
@@ -5228,8 +5226,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ~(_ncol('shares_yoy') > 0.05) &
         (((ebitda_ttm_v > 0)
           & _op_viable(-0.05) & _not_melting)
-         | ((ebitda_ttm_v <= 0)
-            & ((net_cash_pct_c >= 0.20) | ((nde > -90) & (nde <= 1.0)))))))
+         | ((ebitda_ttm_v <= 0) & (net_cash_pct_c >= 0)))))   # (user) net cash protects the negative-EBITDA trough; its size is a weight
 
     # XR30 — Loss-carryforward shield ('XR-NOLShield', deferred-tax nuance):
     # an accumulated DEFICIT (negative retained earnings — a bank of tax
@@ -9945,6 +9942,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     for _a in ('mb_fallen_deep_value', 'mb_fallen_below_cycle', 'mb_fallen_trough', 'mb_fallen_stressed'):
         _DEMOTED.setdefault(_a, []).extend([(_ncol('fg_ocf_ps_5y_min5'), 1), (_ncol('fg_rev_ps_5y_min5'), 1)])
     _DEMOTED.setdefault('mb_compounder_insiders_at_high', []).append((_ncol('fg_ni_ps_3y_cagr'), 1))
+    for _a in ('xr_double_trough', 'xr_cyclical_trough'):
+        _DEMOTED.setdefault(_a, []).extend([(_ncol('net_cash_pct_mcap'), 1), (_bs_d2a, -1)])
     # (audit 4 / user rule) the XR leverage caps demoted to weights
     _DEMOTED.setdefault('xr_asset_owner_catalyst', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
     _DEMOTED.setdefault('xr_baron_compounder', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
