@@ -7567,7 +7567,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    counts how many arrived.
     _smart_legs = (_ins_2q.astype(int) + _13d_recent.astype(int)
                    + (_ncol('usf_emp_g1') >= 0.10).fillna(False).astype(int)
-                   + _inst_arrival.astype(int) + _corp_conviction.astype(int))
+                   + _inst_arrival.astype(int))   # (audit 4) a buyback / share shrink is not an informed buyer ARRIVING: it is a weight, not a leg
     df['mb_smart_money_legs'] = _smart_legs
     df['arch_mb_smart_money_wreckage'] = (_mb_base & _mb_fallen & _mb_deep & (_smart_legs >= 1)).astype(int)
     # 7. GREW INTO THE VALUATION, NOW TURNING: the de-rating-through-growth
@@ -7821,7 +7821,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                  | (_ncol('fq_financing_cf') > 0)).fillna(False)
     _book_growing = _q_hi(_ncol('equity_cagr_5y').fillna(_ncol('fmp_st_equity_cagr')))
     df['arch_mb_fallen_less_than_industry_financed'] = (
-        _mb_base & _mb_fallen & _financed & _book_growing & _q_hi(df['vs_ind_dist_hi260'])
+        _mb_base & _mb_fallen & _financed & _book_growing
+        & (_crank(df['vs_ind_dist_hi260'].where(_mb_fallen)) >= 0.80).fillna(False)   # (audit 4) ranked WITHIN the fallen: among the fallen, fell LESS than its industry
         & (_ncol('sent_n_analysts').fillna(0) <= 1)).astype(int)
     # U6. LEAN R&D MANUFACTURER STOCKING UP OFF THE LOW (10x): well off the
     #     52-week low, inventory growing faster than cost of sales, R&D top
@@ -7855,7 +7856,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     sister: QUALITY AT DISTRESS — deep drawdown, EV/sales low, ROCE x FCF
     #     yield top quintile, P/B bottom of peers. Robust 9.2x, 52 events, 6
     #     years, 6 markets, blow-up 27-29% (CLS 2020, PRMB 2012, WAWI.OL 2020).
-    _roce_x_fcfy = _ncol('roce').clip(-1, 1) * _ncol('fcf_yield').clip(-1, 1)
+    _roce_x_fcfy = _ncol('roce').clip(0, 1) * _ncol('fcf_yield').clip(0, 1)   # (audit 4) gate and lens on the same bounds: a (-)x(-) product is not quality x yield
     df['arch_mb_quality_at_distress'] = (
         _mb_base & _operator & (_hi260 <= 0.5).fillna(False) & _q_lo(_evsv) & _q_hi(_roce_x_fcfy)
         & (df['rel_ind_pb'] <= 0.20).fillna(False)).astype(int)
@@ -9745,7 +9746,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                            (_c('roce').clip(0, 1) * _c('fcf_yield').clip(0, 1), 1), (_c('rel_ind_pb'), -1),   # (-)x(-) must not rank high
                            (_c('fqx_fcfm_streak'), -1), (_c('fq_rev_yoy_streak_m'), 1)],
         'mb_tree_recipe_10x': [(_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
-                               (_c('p_s').where(_c('p_s') > 0), -1), (_c('ts_dist_hi260'), -1),
+                               (_c('p_s').where(_c('p_s') > 0), -1),   # (audit 4) the fallen lens dropped: the 10x leaf is the cheapness axis, not the fallen one
                                (_c('nl_sales_3y'), 1), (-_evt_age_days('evt_sc13d_date'), 1), (_c('ts_wks_since_lo260'), -1),
                                (_c('net_debt_ebitda'), 1), (_c('capex_intensity'), 1), (_c('fqx_fcfm_streak'), -1)],
         'mb_sequence_preignition': [(_c('mb_sequence_signs'), 1), (_c('fqx_opm_slope8'), 1), (_c('ncav_pct_mcap'), 1), (_c('sent_upgrades_12m'), -1),
@@ -9817,7 +9818,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'mb_growth_past_capex_peak': [(_c('fmp_st_revenue_3y_cagr'), 1), (_c('fq_capex_to_da'), 1), (_c('fqx_fcfm_slope8'), 1),
                                       (_c('fq_capex_p').abs() - _c('fq_capex').abs(), 1), (_c('fqx_roic_ttm') - _c('roic_lindy'), 1),
                                       (_c('ts_vol_1y'), 1), (_c('dividend_yield'), -1)],
-        'mb_fallen_less_than_industry_financed': [(_c('vs_ind_dist_hi260'), -1), (_c('equity_cagr_5y'), 1),
+        'mb_fallen_less_than_industry_financed': [(_c('vs_ind_dist_hi260'), 1),   # (audit 4) lens sign matches the gate: above its industry's drawdown (_c('equity_cagr_5y'), 1),
                                             (_c('fmp_st_shares_growth_3y'), 1), (_c('sent_n_analysts'), -1),
                                             (_c('ts_dist_hi260'), -1), (_c('ts_dd_time_share_260'), 1)],
         'mb_lean_rd_stocking_up': [(_c('ts_dist_lo52'), 1), (_c('fq_inv_vs_cogs'), 1), (_c('fmp_rd_to_revenue'), 1),
@@ -9948,6 +9949,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     for _a in ('xr_double_trough', 'xr_cyclical_trough'):
         _DEMOTED.setdefault(_a, []).extend([(_ncol('net_cash_pct_mcap'), 1), (_ncol('net_cash_pct_mcap'), 1), (_bs_d2a, -1)])
         _DEMOTED_W[_a] = 0.50
+    for _a in ('mb_smart_money_wreckage', 'mb_conviction_confluence'):
+        _DEMOTED.setdefault(_a, []).append((_corp_conviction.astype(float), 1))
     # (audit 4 / user rule) the XR leverage caps demoted to weights
     _DEMOTED.setdefault('xr_asset_owner_catalyst', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
     _DEMOTED.setdefault('xr_baron_compounder', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
