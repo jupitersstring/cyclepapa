@@ -1695,11 +1695,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _cd_returns_floor &                     # real returns on capital (not a value-destroyer)
         _roce_now_ok &                          # (verify) a one-off FCF yield must not let a capital DESTROYER through the returns-floor OR (MKTW roce-76%)
         _op_viable(0) &          # positive operating profit (impairment-robust: a writedown-hit but cash-generative operator is kept)
-        (_lev_ok(1.5, missing_ok=False) | (net_cash_pct >= 0.20)) &   # (audit 3) NaN-aware clean balance sheet (a real low nde, the balance sheet where EBITDA <= 0, or a real net-cash %), not the 99 fill that dropped 37% of a Japan/Korea thesis
+        (_lev_ok(1.5) | (net_cash_pct >= 0.20)) &   # (audit 4) unmeasured leverage passes (was failing: the 99-fill direction)   # (audit 3) NaN-aware clean balance sheet (a real low nde, the balance sheet where EBITDA <= 0, or a real net-cash %), not the 99 fill that dropped 37% of a Japan/Korea thesis
         ((pb < 1.5) | ((s('ev_ebit', np.nan) > 0) & (s('ev_ebit', np.nan) <= 12)) | pb.isna()) &   # (audit 3) NOT YET RE-RATED (MR's third layer): still priced for the old cycle
         (ebitda_margin_sane >= 0.05) &          # (G2) drop one-off >60% margins
-        (price_yoy <= 3.0) &                    # (gate-audit) was <=0.30, a mean-reversion/run-up screen alien to a capital-ALLOCATION-quality thesis — it ejected 882 rewarded compounders; loosened to a data-artifact guard only
-        (yart_score >= 0.45)
+        is_operating                            # (audit 4 / user rule) the tape cut (12m <= +300%) and the Yartseva composite cut (a different family's score) are gone; Yartseva is a weight
     ).fillna(False).astype(int)
     _SPIRITED.append('capital_discipline')      # exceptional: FCF-covered payouts, persistent outflow, shrinking count
     # (audit 3) the Value-Up / PBR-reform catalyst lens: a sub-book Korean or
@@ -2534,7 +2533,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _roce_now_ok &                          # (R4) current returns not negative (BRLT roce -19%, TTEC roe -1.0)
         (cash_roic_lindy > 0.08) &
         (roic_lindy > 0) &
-        ((cash_roic_lindy - roic_lindy) >= 0.05) &
+        ((cash_roic_lindy - roic_lindy) > 0) &   # (audit 4 / user rule) cash earnings ABOVE accounting earnings is the thesis; the size of the gap is the spirit lens, not a second cut
         ~((_ncol('fq_capex_to_da') < 0.8) & (revenue_3y_cagr_v < 0)) &   # (audit 3) a harvester under-investing on a falling top line produces the same gap — not quality
         (shares_growth_3y <= 0.05) &            # non-dilution: the cash-earnings gap must not be an SBC add-back on a serial diluter
         ~(_ncol('roic_after_sbc').notna() & (_ncol('roic_after_sbc') < 0)) &  # (audit) share-count is not enough — 45/266 firers earn NEGATIVE returns once SBC is expensed (DOCU roic_after_sbc -0.16 on roce +0.25). The cash-earnings gap must not BE the SBC add-back.
@@ -2618,7 +2617,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (fcf_margin_v > 0.0) &
         (ebitda_margin >= 0.10) &
         (s('op_margin', np.nan) > 0) &          # (fresh) a D&A-heavy operating loss-maker is not "safe quality" (GENL.L op-47%)
-        (nde <= 2.5) &
+        # (audit 4 / user rule) leverage is a weight on the BAB family, not a cap
         ((roce_v >= 0.10) | (cash_conv_v >= 0.60))
     )
     # Two ways a boring low-beta business still compounds hard: a yartseva
@@ -2742,12 +2741,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # beta) is denoted bab_becoming_proxy_watch, not the core
     df['bab_becoming_proxy_watch'] = (is_operating & (_ncol('revenue_ttm_usd') >= 20e6) &
                                       (fcf_margin_v > -0.05) & _roce_now_ok & (rev_yoy > -0.05) &
-                                      (nde <= 3.0) & _b3.isna() & _becoming_proxy).fillna(False).astype(int)
+                                      _b3.isna() & _becoming_proxy).fillna(False).astype(int)
     _reframe('bab_becoming', (
         is_operating & (_ncol('revenue_ttm_usd') >= 20e6) &
         (fcf_margin_v > -0.05) & _roce_now_ok & (rev_yoy > -0.05) &
         (s('op_margin', np.nan) > 0) &
-        (nde <= 3.0) &
         _compress))
 
     # ---------- Lynch multiples (One Up on Wall Street) ----------
@@ -3430,7 +3428,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (5) paying dividends  [C]
     _c5 = _cdiv > 0
     # (6) debt judiciously employed, room to expand  [C] (financials exempt)
-    _c6 = (((_cnde.fillna(99) < 2.5) | (_cd2e.fillna(99) < 1.0) | (_cncash > 0))
+    _c6 = (((_cnde < 2.5) | (_cd2e < 1.0) | (_cncash > 0)
+            | (_cnde.isna() & _cd2e.isna() & _cncash.isna()))   # (audit 4) unmeasured debt passes (the 99-fill made it fail)
            | is_financial)
     df['arch_cundill_deep_value'] = (
         _c1 & _c2 & _c3 & _c4 & _c5 & _c6
@@ -3844,7 +3843,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_oak_nav_discount'] = (
         _nav_vehicle & _nav_not_eroding &   # (audit 3) the industry test (holdco / investment company / trust / asset manager) in ANY sector
         (((pb > 0) & (pb < 0.7)) | ((_ptb_nav > 0) & (_ptb_nav < 0.7))) &
-        ~(_ncol('debt_to_equity') > 0.5) &
         _nav_addressed
     ).fillna(False).astype(int)
 
@@ -8756,6 +8754,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
            | _ncol('fqx_roic_ttm').between(0.20, 1.0))
         & ~_roce_oneoff_suspect                  # (audit) drop tiny-denominator ROCE artifacts (KPLT 1.05 on ~0% op-margin) — the guard sibling large_cap_quality already uses
     ).fillna(False).astype(int)
+    # (audit 4) Greenblatt's own method is a COMBINED RANK of earnings yield and
+    # return on capital (one pre-tax basis: ROCE, else the TTM after-tax ROIC
+    # grossed up by 1/0.75), ranked within the listing market; the core is the
+    # top decile of that combined rank, the absolute-cut rule is greenblatt_magic_watch
+    _gb_roc = _ncol('roce').where(~_roce_oneoff_suspect).fillna(_ncol('fqx_roic_ttm').where(_ncol('fqx_roic_ttm') <= 1.0) / 0.75)
+    _gb_rank = (_crank(_greenblatt_ey) + _crank(_gb_roc)) / 2.0
+    df['greenblatt_combined_rank'] = _gb_rank.round(4)
+    _tier('greenblatt_magic', _crank(_gb_rank) >= 0.90, measured=_gb_rank.notna())
 
     # Post-reorg / fresh-start (Assembly Theory): the single most powerful screen
     # is EBIT yield > 20% at emergence (Verdad: +61% 2yr); de-levering + intact
@@ -9977,6 +9983,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _DEMOTED.setdefault('double_inflect', []).append(((_ncol('op_margin_delta_yoy') > 0.30).astype(float).where(_ncol('op_margin_delta_yoy').notna()), -1))
     _DEMOTED.setdefault('financials_value', []).append((_ncol('fq_equity') / _ncol('fq_total_assets').where(_ncol('fq_total_assets') > 0), 1))
     _DEMOTED.setdefault('xr_monetization_trifecta', []).append((_ncol('net_income_ttm'), 1))
+    # (audit 4, sources slice) demoted legs kept as weights
+    for _a in ('bab_low_beta', 'bab_multibagger', 'bab_becoming'):
+        _DEMOTED.setdefault(_a, []).append((_ncol('net_debt_ebitda'), -1))
+    _DEMOTED.setdefault('capital_discipline', []).extend([(_ncol('yartseva_score'), 1)])
+    _DEMOTED.setdefault('oak_nav_discount', []).append((_ncol('debt_to_equity'), -1))
+    _DEMOTED.setdefault('templeton_pessimism', []).append((_ncol('revenue_ttm') / _ncol('normalized_revenue').where(_ncol('normalized_revenue') > 0), -1))
+    _DEMOTED.setdefault('liger_asset_backed', []).append((_ncol('net_debt_ebitda'), -1))
+    _DEMOTED.setdefault('wolf_emerging', []).append((_ncol('shares_yoy'), -1))
     # (audit 4 / user rule) the XR leverage caps demoted to weights
     _DEMOTED.setdefault('xr_asset_owner_catalyst', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
     _DEMOTED.setdefault('xr_baron_compounder', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
