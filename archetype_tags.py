@@ -4876,7 +4876,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_cannibal_below_cash'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         (net_cash_pct_c >= 1.0) &                           # price fully covered by net cash
-        (_ncol('buyback_yield') >= 0.01) &                   # (audit 3) a MATERIAL buyback (>= 1% of mcap), then...
+        (_ncol('buyback_yield').fillna(_ncol('fmp_st_buyback_yield_y0')) >= 0.01) &   # (audit 3/4) a MATERIAL buyback (>= 1% of mcap): EDGAR yield, else the global FY repurchase yield
         ((_ncol('net_buyback_ttm') > 0) | (_ncol('shares_yoy') < 0)) &  # (audit) ...CORROBORATED by real $ retired or actual shrinkage — a bare buyback_yield at 0% shrinkage is a creation/redemption artifact (RVP/JVA/ETNs)
         ~(_ncol('shares_yoy') > 0.02) &                     # and NOT net-diluting (SBC-offset buyback illusion)
         ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)
@@ -4891,8 +4891,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Two discounts compound: the multiple re-rates AND earnings mean-revert.
     _nrm18 = _midcyc_ebitda   # margin-based mid-cycle
     _evn18 = (_ncol('enterprise_value') / _nrm18.where(_nrm18 > 0))
-    _surv18 = ((net_cash_pct_c >= 0) | (_ncol('interest_coverage') >= 4)
-               | ((nde > -90) & (nde <= 1.5)))
+    # (user rule) no fixed coverage / leverage number on the positive-EBITDA
+    # trough: survival there is _not_melting; leverage and coverage are weights
+    _surv18 = pd.Series(True, index=df.index)
     # (user) a DOUBLE TROUGH is at its highest asymmetry when trailing EBITDA
     # is NEGATIVE while the MID-CYCLE base is strongly positive — the deepest
     # trough. The old `ebitda>0` floor excluded all of those (0 of 263 firers
@@ -4945,7 +4946,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((ebitda_yoy_v >= 0) | (_ncol('fqx_ebit_ttm_g') >= 0)) &   # (audit 3) the profit line grew too — no NI>0 escape
         ~(_ncol('ts_r13') < -0.05) &                               # (audit 3) the selling has cleared: entry follows the calendar, not the collapse
         ~(_ncol('shares_yoy') > 0.02) &
-        ((nde < 3.0) | (net_cash_pct_c >= 0)) &
         _not_melting
     ).fillna(False).astype(int)
     # (endpoint matrix, LEG->EXC) a NAMED forced seller where observable: the
@@ -4994,7 +4994,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (rev_yoy_c >= 0.12) &                                 # ...still alive now
         (((_gm_x22 - _om_x22) >= 0.15) & (_gm_x22 >= 0.35)    # reinvesting through P&L
          | (_ncol('capex_intensity') >= 0.08)) &              # or building ahead
-        ((nde <= 2.0) | (net_cash_pct_c >= 0)) &              # survives the decade
         (((_ncol('evsg') > 0) & (_ncol('evsg') <= 0.40))      # growth-adjusted fair price
          | ((_ncol('p_s') > 0) & (_ncol('p_s') <= 6.0))) &
         (_ncol('revenue_ttm_usd') >= 25e6) &
@@ -5018,7 +5017,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((s('gross_margin_delta_yoy', np.nan) >= -0.03)
          | (_oe_loc > 0) | (_ncol('oe_avg') > 0)) &           # economics intact
         ((ebitda_margin > -0.10) | (fcf_yield > 0)) &         # (audit) current-economics floor: an insider cluster-buy does not redeem a -130%-margin cash bonfire (FLY, NEOV)
-        ((nde < 3.0) | (net_cash_pct_c >= 0)) &
         _not_melting
     ).fillna(False).astype(int)
 
@@ -5049,7 +5047,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (ebitda_margin >= 0.15) &
         ((_ncol('rev_yoy_streak_q') >= 6) | (_ncol('rev_3y_cagr') >= 0.12)
          | (rev_yoy_c >= 0.12)) &
-        ((nde <= 2.0) | (net_cash_pct_c >= 0)) &
         (((_ncol('evsg') > 0) & (_ncol('evsg') <= 0.40))
          | ((_ncol('ev_ebit') > 0) & (_ncol('ev_ebit') <= 22))) &
         ~(_ncol('shares_yoy') > 0.05) &
@@ -5084,7 +5081,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         beaten_down_any(0.25) &                            # entered on a DISLOCATION
         (((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0))
          | (_ncol('cfo_yield') > 0)) &                     # a real business, not a shell
-        ((nde < 3.0) | (net_cash_pct_c >= 0)) &
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
     ).fillna(False).astype(int)
@@ -5212,7 +5208,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # substitutes a HARD balance-sheet fortress (the pb<1 asset discount +
         # net cash / very low leverage), since at a real trough the melt gate
         # would bar the entry by design.
-        (((ebitda_ttm_v > 0) & ((nde < 3.5) | (net_cash_pct_c >= 0))
+        (((ebitda_ttm_v > 0)
           & _op_viable(-0.05) & _not_melting)
          | ((ebitda_ttm_v <= 0)
             & ((net_cash_pct_c >= 0.20)
@@ -5230,7 +5226,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_nrm29 > 0) & ((ebitda_ttm_v < 0.75 * _nrm29) | _below_midcyc_opm) &
         ((_ncol('enterprise_value') / _nrm29.where(_nrm29 > 0)) <= 7.0) &
         ~(_ncol('shares_yoy') > 0.05) &
-        (((ebitda_ttm_v > 0) & ((nde < 3.5) | (net_cash_pct_c >= 0))
+        (((ebitda_ttm_v > 0)
           & _op_viable(-0.05) & _not_melting)
          | ((ebitda_ttm_v <= 0)
             & ((net_cash_pct_c >= 0.20) | ((nde > -90) & (nde <= 1.0)))))))
@@ -5334,7 +5330,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_assoc_pct32 >= 0.30) &                          # off-consol stakes >= 30% of mcap
         _profit_present &                                  # consolidated business is real
         (((pb > 0) & (pb < 1.5)) | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 10))) &  # cheap on consol
-        ((nde < 3.0) | (net_cash_pct_c >= 0)) &
         _not_melting
     ).fillna(False).astype(int)
 
@@ -5348,12 +5343,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_cannibal_below_tbook'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         (_ptb33 > 0) & (_ptb33 < 1.0) &                   # below TANGIBLE book
-        (_ncol('buyback_yield') >= 0.01) &                   # (audit 3) a MATERIAL buyback (>= 1% of mcap), then...
-        ~(_ncol('roce') < 0.05) &                            # (audit 3) accretion on a business worth owning (where ROCE is observed)
+        (_ncol('buyback_yield').fillna(_ncol('fmp_st_buyback_yield_y0')) >= 0.01) &   # (audit 3/4) a MATERIAL buyback (>= 1% of mcap): EDGAR yield, else the global FY repurchase yield
         ((_ncol('net_buyback_ttm') > 0) | (_ncol('shares_yoy') < 0)) &  # (audit) ...CORROBORATED by real $ or actual shrinkage — excludes commodity/crypto ETF lines (PALL/PPLT/FBTC) whose buyback_yield is a creation/redemption artifact
         ~(_ncol('shares_yoy') > 0.02) &                    # and NOT net-diluting (SBC-offset buyback illusion)
         ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)) &  # earning
-        ((nde < 3.0) | (net_cash_pct_c >= 0)) &
         _not_melting
     ).fillna(False).astype(int)
 
@@ -5703,7 +5696,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & (_cont_x45 > 0)                                    # the CORE (continuing ops) is profitable
         & _mask_present_x45                                  # ...but a discontinued/held-for-sale drag masks it
         & (_cont_yield_x45 >= 0.06)                          # on continuing-ops earnings alone, the stock is cheap
-        & (_ncol('cfo_yield') > 0) & ((nde < 3.0) | (net_cash_pct_c >= 0))   # (audit 3) cash and leverage guards
+        & (_ncol('cfo_yield') > 0)                           # (audit 3) cash guard (leverage cap demoted to a weight: user rule)
         & _not_melting
     ).fillna(False).astype(int)
 
@@ -9942,6 +9935,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _SPEC = {}
     if os.path.exists(_spec_path):
         _SPEC = {k: v for k, v in _json.load(open(_spec_path)).items() if not k.startswith('_')}
+    # (audit 4 / user rule) the XR leverage caps demoted to weights
+    _DEMOTED.setdefault('xr_asset_owner_catalyst', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
+    _DEMOTED.setdefault('xr_baron_compounder', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
+    _DEMOTED.setdefault('xr_cannibal_below_tbook', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1), (_ncol('roce'), 1)])
+    _DEMOTED.setdefault('xr_cyclical_trough', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
+    _DEMOTED.setdefault('xr_discops_mask', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
+    _DEMOTED.setdefault('xr_double_trough', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
+    _DEMOTED.setdefault('xr_forced_seller', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
+    _DEMOTED.setdefault('xr_insider_capitulation', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
+    _DEMOTED.setdefault('xr_look_through_value', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
+    _DEMOTED.setdefault('xr_reusable_assembler', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
     # One list: the tiered archetypes, the matrix-augmented ones (_SPIRITED)
     # and every archetype in the source-grounded spec. The original tiered
     # archetypes keep their own lenses; for the others the spec's lenses and
