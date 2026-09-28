@@ -7426,15 +7426,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # unchanged.
     _fallen_ctx = ((_num('bs_prior_dd') <= 0.60).fillna(False)
                    & ~(_ncol('shares_growth_3y') > 0.20)        # (audit 3) the fall is per share, not a dilution-driven price collapse
-                   # (audit 3 / III.BK) survived: not carrying a crushing debt load — read
-                   # NaN-aware on the balance sheet where EBITDA <= 0, at the tangible-value
-                   # bar (4x): a lease-carrying logistics operator at 3.96x (Triple i, never a
-                   # loss year in 8) is a survivor, not a zombie; 4-6x is denoted below
-                   & _lev_ok(4.0)
+                   # (user) no leverage cap: survival is read by the never-a-deep-loss-year leg below
                    & ~(_ncol('tc_min_opm') < -0.10)             # (audit 3) never a deep-loss year on file
                    & ~(_num('bs_coil_rev') < -0.10))            # (audit 3) business intact: sales not collapsing over the base
     df['arch_coiled_fallen_angel'] = ((df['arch_coiled_base'] == 1) & _fallen_ctx).astype(int)
-    df['fallen_angel_levered_flag'] = ((df['arch_coiled_fallen_angel'] == 1) & (_nde_known > 3.0)).fillna(False).astype(int)
     df['arch_ignition_fallen_angel'] = ((df['arch_base_ignition'] == 1) & _fallen_ctx).astype(int)
     _SPIRITED += ['coiled_fallen_angel', 'ignition_fallen_angel']
 
@@ -10100,7 +10095,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'micro_activist_13d_flag', 'xr_streak_norerate_lenses', 'ev_norm_midcyc',
                             # (audit 3) surfaced flags, tiers and measures
                             'lynch_reward_gap3', 'levered_stub_tier', 'value_up_reform_flag',
-                            'per_share_compounder_flag', 'fallen_angel_levered_flag',
+                            'per_share_compounder_flag',
                             'esb_beat_share_8q', 'esb_surprise_4q', 'esb_beat_streak', 'esb_react_last', 'esb_ignored_beats_2y',
                             'fg_rev_ps_5y_cagr', 'fg_ni_ps_3y_cagr', 'fg_ocf_ps_5y_cagr', 'fg_eq_ps_5y_cagr',
                             'fg_shares_dil_g1', 'fg_rev_ps_5y_min5', 'fg_ocf_ps_5y_min5',
