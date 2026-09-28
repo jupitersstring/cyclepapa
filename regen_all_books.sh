@@ -30,7 +30,7 @@ fi
 step "3/4 methodology_audit (gate)"
 audit_out=$(python3 methodology_audit.py 2>&1)
 echo "$audit_out" | grep -E "METHODOLOGY AUDIT|  FAIL|  WARN"
-echo "$audit_out" | grep -qE "checks, 0 FAIL" || { echo "AUDIT GATE FAILED — books not rebuilt"; exit 1; }
+grep -qE "checks, 0 FAIL" <<< "$audit_out" || { echo "AUDIT GATE FAILED — books not rebuilt"; exit 1; }
 
 step "4/4 books"
 failed=()
