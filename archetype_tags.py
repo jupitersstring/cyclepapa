@@ -7722,7 +7722,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _rd_heavy = ((_ncol('fmp_rd_to_revenue') >= 0.08) | (_ncol('fmp_rd_intensive_flag') == 1)).fillna(False)
     df['arch_mb_compounder_insiders_at_high'] = (
         _mb_base & (_ncol('ts_dist_hi52') >= 0.85).fillna(False) & (df['rel_ind_roce'] >= 0.75).fillna(False)
-        & _rd_heavy & (_ins_2q | _mb_insider | _corp_conviction)).astype(int)
+        & _rd_heavy & (_ins_2q | _corp_conviction)).astype(int)   # (audit 4) _ins_2q already falls back to the distinct-buyer / net-dollar record where the quarterly count is absent; a bare single purchase no longer bypasses a measured < 2 quarters
     # 6. HIRING, BEATING, UNCOVERED (the uncovered population's only lifted
     #    cluster, 2.1x, blow-up 15%; 2930.T 2015, BEL.NS 2020, HARVIA.HE
     #    2018, TRIDENT.NS 2019, TATAELXSI 2013): headcount +36%, margins at
@@ -7734,7 +7734,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                 | (_ncol('fmp_earnings_beat_rate') >= 0.6)).fillna(False)
     df['arch_mb_hiring_beating_uncovered'] = (
         _mb_base & _hiring & (_mb_opm_gap >= 0.02).fillna(False) & _beating
-        & (_ncol('sent_n_analysts') <= 1).fillna(False) & _hi260.between(0.35, 0.80).fillna(False)).astype(int)
+        & ((_ncol('sent_n_analysts') <= 1) | (_ncol('sent_n_analysts').isna() & _ncol('esb_beats_8q').notna())).fillna(False)   # (audit 4) uncovered: <= 1 analyst on file, or no rating coverage at all on a name with a real earnings record
+        & _hi260.between(0.35, 0.80).fillna(False)).astype(int)
     # 7. CHEAP GROWTH WITH TARGETS RISING (the largest not-fallen cluster,
     #    39% of those multibaggers, 1.25x, blow-up 8%; ISCTR 2020, ALARK
     #    2019, STRL 2021, 6920.T 2015, PGSUS 2018, TRIL.NS 2021): revenue
@@ -8428,7 +8429,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _runway_years = (_ncol('fq_cash_sti') / (_burn_q * 4)).where(_burn_q > 0)
     _bio_runway = ((_runway_years >= 1.0) | (_ncol('fq_cfo') >= 0) | (_runway_years.isna() & (_ncol('net_cash_pct_mcap') > 0.10))).fillna(False)
     _bio_committed = ((_ncol('usf_emp_g1') >= 0.10).fillna(False) | _informed_g
-                      | (_ncol('usf_emp_g1').isna() & (_ncol('fmp_rd_to_revenue') > 0) & (_ncol('fq_rev_growth') >= 0.10)).fillna(False))
+                      | (_ncol('usf_emp_g1').isna() & (_ncol('fmp_rd_to_revenue') > 0)
+                         & ((_ncol('fq_rev_growth') >= 0.10) | (_ncol('fg_rd_g1') > 0))).fillna(False))   # (audit 4) R&D spend growing (financial-growth, global) reaches the pre-revenue clinical names
     df['arch_mb_biotech_financed_hiring'] = (
         is_operating & (mcap >= 10e6) & _is_drug_dev & (_hi260 <= 0.50).fillna(False) & _bio_financed
         & _bio_committed & _bio_runway).astype(int)
@@ -9407,6 +9409,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ['arch_discounted_vehicle', 'arch_negative_ev_value', 'arch_tangible_value', 'arch_oak_asset_floor'],
         ['arch_owner_earnings_power', 'arch_overdepreciated_assets'],
         ['arch_tax_verified_earnings', 'arch_understated_earnings', 'arch_cash_quality'],
+        # (audit 4) literal subsets: turn / accel each AND one fact onto fallen + deep value
+        ['arch_mb_fallen_deep_value', 'arch_mb_fallen_value_turn', 'arch_mb_fallen_value_accel'],
     ]
     # (audit 3) DESCRIPTORS and MODIFIERS carry no thesis of their own and must
     # not add density: a negative risk flag (concentrated_segments), a mix
@@ -9935,6 +9939,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _SPEC = {}
     if os.path.exists(_spec_path):
         _SPEC = {k: v for k, v in _json.load(open(_spec_path)).items() if not k.startswith('_')}
+    # (audit 4) survivor lenses on the two industry-trough siblings; through-cycle per-share quality on the fallen family
+    for _a in ('mb_industry_trough_cheapest', 'mb_fallen_operator_industry_low'):
+        _DEMOTED.setdefault(_a, []).extend([(_ncol('fq_interest_cover'), 1), (_ncol('fmp_altman_z'), 1)])
+    for _a in ('mb_fallen_deep_value', 'mb_fallen_below_cycle', 'mb_fallen_trough', 'mb_fallen_stressed'):
+        _DEMOTED.setdefault(_a, []).extend([(_ncol('fg_ocf_ps_5y_min5'), 1), (_ncol('fg_rev_ps_5y_min5'), 1)])
+    _DEMOTED.setdefault('mb_compounder_insiders_at_high', []).append((_ncol('fg_ni_ps_3y_cagr'), 1))
     # (audit 4 / user rule) the XR leverage caps demoted to weights
     _DEMOTED.setdefault('xr_asset_owner_catalyst', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
     _DEMOTED.setdefault('xr_baron_compounder', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
