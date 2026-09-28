@@ -279,6 +279,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _evt = _evt.rename(columns={c: 'evt_' + c[3:] for c in _evt.columns if c.startswith('ev_')})
         df = df.drop(columns=[c for c in _evt.columns if c != 'symbol' and c in df.columns])
         df = df.merge(_evt, on='symbol', how='left')
+    # UNIVERSE-WIDE EPS surprise history (fmp_earnings_bulk.py, esb_*): the
+    # bulk feed's beat record and price reactions for ~17.5k names (8.7k
+    # non-US) stand behind the per-symbol evt_* event fields wherever the
+    # events layer did not reach a name (same construction, same panel).
+    df = _merge_fmp_overlay(df, 'fmp_earnings_bulk.csv')
+    for _k in ('beats_8q', 'beat_share_8q', 'surprise_4q', 'react_last', 'pead_4w',
+               'last_report_days', 'react_beats_4q', 'ignored_beats_2y'):
+        if 'esb_' + _k in df.columns:
+            _prim = pd.to_numeric(df['evt_' + _k], errors='coerce') if 'evt_' + _k in df.columns \
+                else pd.Series(np.nan, index=df.index)
+            df['evt_' + _k] = _prim.fillna(pd.to_numeric(df['esb_' + _k], errors='coerce'))
+    # PER-SHARE compounding history (fmp_financial_growth.py, fg_*) and the
+    # DATED enterprise-value series (fmp_ev_history.py, evh_*): global.
+    df = _merge_fmp_overlay(df, 'fmp_financial_growth.csv')
+    df = _merge_fmp_overlay(df, 'fmp_ev_history.csv')
 
     # FMP INSTITUTIONAL overlay (fmp_institutional.py): 13F ownership
     # trajectory over the last three complete quarters (US-listed names).
@@ -353,7 +368,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # newly-filled column). They remain available as fmp_ columns so a later,
     # per-archetype step can adopt them WITH that archetype's own guards.
     for _b, _f in (('earnings_beat_rate', 'fmp_earnings_beat_rate'),
-                   ('avg_earnings_surprise', 'fmp_avg_earnings_surprise')):
+                   ('avg_earnings_surprise', 'fmp_avg_earnings_surprise'),
+                   # the universe-wide bulk feed (same statistics: 4-report beat
+                   # share, mean surprise, consecutive-beat streak) fills last
+                   ('earnings_beat_rate', 'esb_beat_share_4q'),
+                   ('avg_earnings_surprise', 'esb_surprise_4q'),
+                   ('earnings_beat_streak', 'esb_beat_streak')):
         _fmp_fill(_b, _f)
 
     # STATEMENT-HISTORY fills: the EDGAR-only multi-year quality columns, filled
@@ -1866,6 +1886,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     # I — Durable reinvestment: lindy ROIIC > 15% over a multi-cycle history.
     # The Mauboussin / Mayer compounder signature.
+    # (financial-growth) PER-SHARE COMPOUNDER, held in every window: the 5-year
+    # per-share revenue AND operating-cash-flow growth >= +47% (8%/yr) on EACH
+    # of the last five FY rows, no FY with diluted-share growth > 5%. Surfaced
+    # for the books and the exceptional tiers, never a gate.
+    df['per_share_compounder_flag'] = ((_ncol('fg_rev_ps_5y_min5') >= 0.47) & (_ncol('fg_ocf_ps_5y_min5') >= 0.47)
+                                       & ~(_ncol('fg_shares_dil_g_max3') > 0.05)).fillna(False).astype(int)
     df['arch_durable_reinvestment'] = (
         is_operating &                               # (R1b) exclude financials/REITs
         _roce_now_ok &                               # (R4) current returns not negative
@@ -2027,6 +2053,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_no_dilution'] = (
         is_operating &                               # (R1b) exclude financials/REITs
         _roce_now_ok & _not_melting &                # (deep-audit) the ONLY EDGAR-durability gate lacking a current-state floor — it fired on HISTORY (4/5y FCF+ROIC) while the name melts NOW: MED nde 84.9x/roce-7.7%, BRLT roce-19%, SLP op-76%. Add the two legs its siblings (lindy_fcf/owner_operator/buyback_compounder) already carry.
+        ~(_ncol('fg_shares_dil_g_max3') > 0.05) &     # (financial-growth) no FY with diluted-share growth > 5% in the last three where measured
         (((shares_growth_3y <= 0.02) & _not_split_3y) |
          (_ncol('shares_growth_3y').isna() & (_ncol('shares_yoy') <= 0.007)   # (audit 3) the 1-year fallback at the same bar as +2% over 3 years (~0.7%/yr)
           & _not_split_yoy)) &
@@ -2302,7 +2329,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (revenue_accel_lindy > 0) &
         (asset_5y_cagr > 0.03) &
         (years_of_history >= 5) &
-        ~(_ncol('fmp_st_sales_ps_5y_g') < 0.47) &   # (audit 3) PER SHARE: 5-year sales per share >= +47% (8%/yr) where measured
+        ~(_ncol('fmp_st_sales_ps_5y_g').fillna(_ncol('fg_rev_ps_5y')) < 0.47) &   # (audit 3) PER SHARE: 5-year sales per share >= +47% (8%/yr) where measured (statement engine, else financial-growth)
         ~(_ncol('rev_yoy') < 0.5 * revenue_5y_cagr)   # (audit 3) still growing now: TTM >= half the 5-year rate (where present)
     ).fillna(False).astype(int)
     # (audit 3) NOMINAL local-currency growth measures the CURRENCY in a
@@ -2380,7 +2407,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # (non-XR review) the gross-buyback-yield leg must be corroborated by
         # net non-dilution — a serial-SBC issuer out-diluting a token buyback
         # is not a cannibal (TTEC class)
-        ((_bb_yield_g >= 0.03) & ~(_ncol('shares_yoy') > 0.02))
+        ((_bb_yield_g >= 0.03) & ~(_ncol('shares_yoy') > 0.02)) |
+        # (financial-growth) the FY diluted count shrinking >= 3% (global), split-guarded
+        ((_ncol('fg_shares_dil_g1') <= -0.03) & (_ncol('fg_shares_dil_g1') >= -0.30))
     )
     df['arch_buyback_compounder'] = (
         ~(_ncol('fqx_fcf_ps_g') < -0.10) &      # (audit 3) the compounding must show per share: TTM FCF/share not shrinking where measured
@@ -2748,7 +2777,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (audit 3) a Yahoo growth at/above its clip (>= 0.50 before clipping) is
     # UNMEASURED, not g = 50% (38% of firers sat at the cap); a share-issuing
     # acquirer's NI growth is netted for the count where it is measured
-    _g_ly = (_ncol('fqx_ni_ttm_g').fillna(_ncol('fmp_st_ni_g1'))
+    # (financial-growth) Lynch's growth is the LONG-TERM per-share rate: the
+    # 3-year net-income-per-share CAGR first, the TTM / latest-FY prints where
+    # a loss year makes it unmeasurable, Yahoo last
+    _g_ly = (_ncol('fg_ni_ps_3y_cagr').fillna(_ncol('fqx_ni_ttm_g')).fillna(_ncol('fmp_st_ni_g1'))
              .fillna(_ncol('yf_earnings_growth').where(_ncol('yf_earnings_growth') < 0.50)))
     _g_ly = ((1.0 + _g_ly) / (1.0 + _ncol('fq_shares_yoy').fillna(0).clip(lower=-0.5)) - 1.0)
     _dy_ly = _ncol('dividend_yield').fillna(0)
@@ -3196,7 +3228,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _not_pricey = ((_sevs > 0) & (_sevs <= 8)) | _sevs.isna()
     df['arch_sustainable_scaler'] = (
         is_operating & (mcap < 2e9) & (_srev >= 20e6)  # (non-XR review) match documented $20M base
-        & ((_ssh3 <= 0.05) | (_ssh3.isna() & (_ncol('fq_shares_yoy') <= 0.05)))   # (audit 3) the cardinal sin must be MEASURED absent: 3-year count, else the quarterly count; no history does not pass
+        & ((_ssh3 <= 0.05) | (_ssh3.isna() & ((_ncol('fq_shares_yoy') <= 0.05) | (_ncol('fg_shares_dil_g_max3') <= 0.05))))   # (audit 3) the cardinal sin must be MEASURED absent: 3-year count, else the quarterly / FY diluted count; no history does not pass
         & ~(_ncol('fqx_ebit_ttm_g') < 0)          # (audit 3) earnings growing with the sales where the TTM measures it
         & ~(_nde_known > 1.0)                     # (audit 3) net cash or light leverage (the MCC leg)
         & _durable_growth & _self_funding & _not_pricey
@@ -3335,6 +3367,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
           & ~(_ncol('fqx_eps_accel') < 0)            # (audit 3) C: the latest quarter not DECELERATING (two-quarter shape)
           & ~(_ncol('fq_disc_ops_share') > 0.20)     # (audit 3) continuing operations (O'Neil excludes non-recurring items)
           & (_roce_v >= 0.15) & ~_roce_oneoff_suspect   # (audit 3) A in the core: annual returns >= 15%
+          & ~(_ncol('fg_ni_ps_3y') < 0.52)             # (financial-growth) A: 3-year NI per share >= +52% (25%/yr) where measured
           & ~_clin_bio_e,                           # (audit 3) a clinical binary is not an earnings leader
           (_ncol('fqx_eps_accel') > 0) & (_ncol('fqx_eps_pos_share_8') >= 0.75) & (_ncol('ts_mkt_breadth30') >= 0.5),
           elite_metric=_ncol('fqx_eps_q_yoy'),
@@ -4405,7 +4438,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # series to fake (audited, cumulative), and a discount on a compounding
     # book is latent value by arithmetic. REITs excluded; financials ALLOWED
     # (book compounding is the native lens there).
-    _eqc_f14 = _ncol('equity_cagr_5y')
+    _eqc_f14 = _ncol('equity_cagr_5y').fillna(_ncol('fg_eq_ps_5y_cagr'))   # (financial-growth) book value PER SHARE, 5-year CAGR, global where the EDGAR series is absent
     df['arch_book_compounder_discount'] = (
         (is_operating | is_financial) & ~is_utility & (mcap > 0) &   # (audit) exclude UTILITY preferreds (DTE/WEL stubs) that passed ~is_reit; keep financials (book-compounding is native there)
         (_eqc_f14 >= 0.08) &
@@ -6445,7 +6478,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_pe_exp_au <= 0.10),
         (_num('fmp_dyn_unrerated_gap') >= 0.15),
         ((_num('bs_coil_rev') - _sh1_au * (2 / 3)) >= np.log(1.25)),
-        (_num('bs_coil_ebit') >= np.log(1.40))], axis=1).fillna(False).astype(int).sum(axis=1)
+        (_num('bs_coil_ebit') >= np.log(1.40)),
+        # (dated EV series) the multiple itself: EV/Sales down >= 10% over the
+        # year, or >= 15% below its own 3-year median
+        (_ncol('evh_evs_log_chg_1y') <= -0.10),
+        (_ncol('evh_evs_vs_med_3y') <= -0.15)], axis=1).fillna(False).astype(int).sum(axis=1)
     _no_rerate_au = (_no_rerate_lenses >= 2)
     # (endpoint matrix, for xr_audited_streak_unrerated) the 1-year coil on
     # the panel: date-matched TTM sales growth >= the 52-week TOTAL return
@@ -6746,7 +6783,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (audit 3) read the FILLED (global) share-growth columns; "dilution is
     # the biggest risk" so MISSING share history cannot pass as stable — a
     # name with no count on any lens is credible_watch, not credible
-    _tb_sh1 = _ncol('fq_shares_yoy').fillna(_ncol('shares_yoy'))
+    _tb_sh1 = _ncol('fq_shares_yoy').fillna(_ncol('shares_yoy')).fillna(_ncol('fg_shares_dil_g1'))   # (financial-growth) the FY diluted count as the last lens
     _tb_sh3 = _ncol('shares_growth_3y').fillna(_ncol('shares_3y_cagr'))
     stable_share_count = (~(_tb_sh1 > 0.05) & ~(_tb_sh3 > 0.10)
                           & (_tb_sh1.notna() | _tb_sh3.notna()))
@@ -6785,14 +6822,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # at +1000%. rev_yoy_c is already clipped to [-1, 10].
     _stk_ret = (_num('price_yoy').fillna(_num('momentum_12m'))
                 .fillna(_num('roc_12m'))).clip(-1.0, 10.0)
-    mult_compression = (rev_yoy_c - _stk_ret).clip(-11.0, 11.0)  # sales growth minus stock return
+    # (dated EV series) the multiple compression READ, not inferred: minus the
+    # log change of EV/Sales over the last year from quarterly enterprise
+    # values paired with TTM revenue; the sales-growth-minus-return inference
+    # only where the dated series does not reach the name
+    mult_compression = (-_ncol('evh_evs_log_chg_1y')).fillna(rev_yoy_c - _stk_ret).clip(-11.0, 11.0)
     df['evsales_derate_gap'] = mult_compression.round(3)
     _evsg_exceptional = (evsg_v > 0) & (evsg_v <= 0.08)   # cheap per unit of growth
     # The derate itself, seen through more than one base: the 1y gap, a 3y
     # version (sales CAGR outrunning annualized 3.5y price ROC), or an
     # exceptional growth-adjusted multiple with confirmed growth.
     _roc35_ann = (1.0 + _num('roc_3_5y')).clip(lower=0.0).pow(1.0 / 3.5) - 1.0
-    _derate_3y = _num('revenue_3y_cagr') - _roc35_ann
+    _derate_3y = (-_ncol('evh_evs_log_chg_3y') / 3.0).fillna(_num('revenue_3y_cagr') - _roc35_ann)   # (dated EV series) annualised 3-year compression read where the series reaches the name
     derate_any = (
         (mult_compression >= 0.15) |
         (_derate_3y >= 0.15) |
@@ -6806,7 +6847,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (rev_yoy_c >= 0.15) & ~(_ncol('rev_3y_cagr') < 0) &  # (deep-audit) HARD positive top-line floor. The old rev_growth_score>=0.6 OR-branch admitted FALLING-sales names (TTEC rev_yoy-3.2%/3y-4.4%/roce-9.7%) because that composite stays high while sales fall, and derate_any rewards a collapsing STOCK — a melting value trap, the anti-thesis. rev_growth_score stays an upweight in the score, not a gate-opener.
         derate_any &                                    # EV/Sales compressing (any base)
         ~(_ncol('fq_shares_yoy').fillna(_ncol('shares_yoy')) > 0.10) &   # (audit 3) the derate is per share (a serial issuer's sales growth is not the holder's)
-        ~(_ncol('fmp_dyn_ev_sales_change_3y') > 0.25) &   # (audit 3) the dated EV/Sales series must not contradict the derate where it covers the name (multiple up > 25% over 3y)
+        ~(_ncol('evh_evs_log_chg_1y') > 0.20) &          # (dated EV series) a multiple that EXPANDED > 20% over the year contradicts the derate
+        ~(_ncol('evh_evs_log_chg_1y').isna() & (_ncol('fmp_dyn_ev_sales_change_3y') > 0.25)) &   # (audit 3) the annual series as the fallback contradiction
         (ev_sales_v > 0.10) & (ev_sales_v <= 6.0) &     # room left; lower bound drops artifacts
         ((_num('gross_margin') >= 0.20) | (ebitda_ttm_v > 0) | (fcf_ttm_v > 0)) &  # not a trap
         ~((ebitda_ttm_v < 0) & (fcf_ttm_v < 0) & (_num('gross_margin') < 0.40))   # (gate-audit) cash sanity, but EXEMPT high-gross-margin (>=40%) pre-profit SaaS scalers — the coiled-spring the thesis is built for (12 were wrongly barred)
@@ -7384,10 +7426,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # unchanged.
     _fallen_ctx = ((_num('bs_prior_dd') <= 0.60).fillna(False)
                    & ~(_ncol('shares_growth_3y') > 0.20)        # (audit 3) the fall is per share, not a dilution-driven price collapse
-                   & ~(_nde_known > 3.0)                        # (audit 3) survived: not carrying a crushing debt load
+                   # (audit 3 / III.BK) survived: not carrying a crushing debt load — read
+                   # NaN-aware on the balance sheet where EBITDA <= 0, at the tangible-value
+                   # bar (4x): a lease-carrying logistics operator at 3.96x (Triple i, never a
+                   # loss year in 8) is a survivor, not a zombie; 4-6x is denoted below
+                   & _lev_ok(4.0)
                    & ~(_ncol('tc_min_opm') < -0.10)             # (audit 3) never a deep-loss year on file
                    & ~(_num('bs_coil_rev') < -0.10))            # (audit 3) business intact: sales not collapsing over the base
     df['arch_coiled_fallen_angel'] = ((df['arch_coiled_base'] == 1) & _fallen_ctx).astype(int)
+    df['fallen_angel_levered_flag'] = ((df['arch_coiled_fallen_angel'] == 1) & (_nde_known > 3.0)).fillna(False).astype(int)
     df['arch_ignition_fallen_angel'] = ((df['arch_base_ignition'] == 1) & _fallen_ctx).astype(int)
     _SPIRITED += ['coiled_fallen_angel', 'ignition_fallen_angel']
 
@@ -10053,6 +10100,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'micro_activist_13d_flag', 'xr_streak_norerate_lenses', 'ev_norm_midcyc',
                             # (audit 3) surfaced flags, tiers and measures
                             'lynch_reward_gap3', 'levered_stub_tier', 'value_up_reform_flag',
+                            'per_share_compounder_flag', 'fallen_angel_levered_flag',
+                            'esb_beat_share_8q', 'esb_surprise_4q', 'esb_beat_streak', 'esb_react_last', 'esb_ignored_beats_2y',
+                            'fg_rev_ps_5y_cagr', 'fg_ni_ps_3y_cagr', 'fg_ocf_ps_5y_cagr', 'fg_eq_ps_5y_cagr',
+                            'fg_shares_dil_g1', 'fg_rev_ps_5y_min5', 'fg_ocf_ps_5y_min5',
+                            'evh_ev_sales_now', 'evh_evs_log_chg_1y', 'evh_evs_log_chg_3y', 'evh_evs_vs_med_3y',
                             'special_return_event_flag', 'dirty_spin_flag', 'discounted_vehicle_catalyst_flag',
                             'discounted_vehicle_governance_trap_flag', 'wolf_value_catalyst_dated_flag'] if c in df.columns]
              + ['exceptional_count', 'elite_count']
