@@ -535,6 +535,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _re_cap = 1.05 * _num_or_nan('fq_equity') + _num_or_nan('fq_treasury').abs().fillna(0)
         df['fq_retained_earnings_valid'] = _re_q.where((_re_q > 0) & (_re_q <= _re_cap) | (_re_q <= 0))
         _lvl['retained_earnings'] = 'fq_retained_earnings_valid'
+    # (audit 4) a total-assets figure of zero or less is a provider zero-fill,
+    # not a balance sheet (2,247 names: equity then "exceeds assets" and the
+    # data-quality flag fires on a clean ledger) — it is not filled
+    if 'fq_total_assets' in df.columns:
+        df['fq_total_assets_valid'] = _num_or_nan('fq_total_assets').where(_num_or_nan('fq_total_assets') > 0)
+        _lvl['assets'] = 'fq_total_assets_valid'
     for _b, _f in _lvl.items():
         if _f in df.columns:
             df['fq_conv_' + _b] = _conv(_f)
@@ -1126,9 +1132,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _dq0_as = _ncol('assets'); _dq0_eq = _ncol('equity'); _dq0_teq = _ncol('tangible_equity')
     _dq0_cash = _ncol('cash'); _dq0_rev = _ncol('revenue_ttm'); _dq0_eb = _ncol('ebitda_ttm')
     df['data_quality_flag'] = (
-        ((_dq0_eq > _dq0_as * 1.02) & _dq0_eq.notna() & _dq0_as.notna())
+        ((_dq0_eq > _dq0_as * 1.02) & _dq0_eq.notna() & (_dq0_as > 0))
         | ((_dq0_teq > _dq0_eq * 1.02) & (_dq0_eq > 0))
-        | ((_dq0_cash > _dq0_as * 1.02) & _dq0_cash.notna() & _dq0_as.notna())
+        | ((_dq0_cash > _dq0_as * 1.02) & _dq0_cash.notna() & (_dq0_as > 0))
         | ((_dq0_eb > _dq0_rev * 2.0) & (_dq0_rev > 0) & is_operating)
     ).fillna(False).astype(int)
     # (audit 3) EV SANITY BAND, universe-wide: an FX-corrupt / cross-line EV
@@ -9168,9 +9174,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _dq_as = _ncol('assets'); _dq_eq = _ncol('equity'); _dq_teq = _ncol('tangible_equity')
     _dq_cash = _ncol('cash'); _dq_rev = _ncol('revenue_ttm'); _dq_eb = _ncol('ebitda_ttm')
     df['data_quality_flag'] = (
-        ((_dq_eq > _dq_as * 1.02) & _dq_eq.notna() & _dq_as.notna())      # equity > assets
+        ((_dq_eq > _dq_as * 1.02) & _dq_eq.notna() & (_dq_as > 0))      # equity > assets
         | ((_dq_teq > _dq_eq * 1.02) & (_dq_eq > 0))                      # tangible equity > equity
-        | ((_dq_cash > _dq_as * 1.02) & _dq_cash.notna() & _dq_as.notna())  # cash > assets
+        | ((_dq_cash > _dq_as * 1.02) & _dq_cash.notna() & (_dq_as > 0))  # cash > assets
         # (audit-2) EBITDA > 2x revenue is a broken-ledger tell for an OPERATING
         # company only: a financial / REIT / utility books investment gains and
         # spread income outside "revenue", so the leg over-fired on 63 of 219
