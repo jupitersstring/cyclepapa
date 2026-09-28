@@ -1255,6 +1255,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # a gate: where it still carries information it is a WEIGHTING — extra
     # lenses blended into the archetype's spirit score (25%), never a veto.
     _DEMOTED = {}
+    _DEMOTED_W = {}   # per-archetype blend share of the demoted weights (default 25%)
     # Archetypes re-measured where the matrix calls the old rule a proxy that
     # measured something else: the old rule survives as <name>_watch.
     def _reframe(name, new_rule):
@@ -9942,8 +9943,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     for _a in ('mb_fallen_deep_value', 'mb_fallen_below_cycle', 'mb_fallen_trough', 'mb_fallen_stressed'):
         _DEMOTED.setdefault(_a, []).extend([(_ncol('fg_ocf_ps_5y_min5'), 1), (_ncol('fg_rev_ps_5y_min5'), 1)])
     _DEMOTED.setdefault('mb_compounder_insiders_at_high', []).append((_ncol('fg_ni_ps_3y_cagr'), 1))
+    # (user) an IMPORTANT weight: the size of the net-cash cushion (and debt /
+    # assets) carries half of the trough archetypes' spirit score
     for _a in ('xr_double_trough', 'xr_cyclical_trough'):
-        _DEMOTED.setdefault(_a, []).extend([(_ncol('net_cash_pct_mcap'), 1), (_bs_d2a, -1)])
+        _DEMOTED.setdefault(_a, []).extend([(_ncol('net_cash_pct_mcap'), 1), (_ncol('net_cash_pct_mcap'), 1), (_bs_d2a, -1)])
+        _DEMOTED_W[_a] = 0.50
     # (audit 4 / user rule) the XR leverage caps demoted to weights
     _DEMOTED.setdefault('xr_asset_owner_catalyst', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
     _DEMOTED.setdefault('xr_baron_compounder', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
@@ -9995,7 +9999,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # (user) the demoted former gates weigh 25% of the spirit score where measured
         if _n in _DEMOTED and not (_n not in _TIERED and _n not in _SPEC and _n not in _SPIRIT):
             _w = _spirit(_core, _DEMOTED[_n])
-            sc = (0.75 * sc + 0.25 * _w).fillna(sc)
+            _sh = _DEMOTED_W.get(_n, 0.25)
+            sc = ((1 - _sh) * sc + _sh * _w).fillna(sc)
         df[_n + '_spirit'] = sc.where(_core).round(3)
         df[_n + '_exceptional'] = (_core & (sc >= 0.75)).fillna(False).astype(int)
         if _n in _pre_exc:
