@@ -8,6 +8,7 @@ ABSENT COLUMNS (requested by gates, not in frame — gate legs read all-NaN):
   MISSING  roic_latest
   MISSING  roiic_1y_positive_flag
 NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
+  SPARSE   evh_evs_log_chg_3y                    0.00%
   SPARSE   em_fv_gap                             0.33%
   SPARSE   em_fair_value                         0.38%
   SPARSE   fmp_earnings_surprise_cv              0.45%
