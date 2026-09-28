@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+# raw API pulls and intermediate panels (rebuild with the pipeline)
+data/crypto_multibaggers/cache/

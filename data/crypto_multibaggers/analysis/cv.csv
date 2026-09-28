@@ -1,0 +1,13 @@
+auc,cap,n,n_pos,sample,model,split,train_until
+0.7335242931183926,0.3655000389741991,38453,12829,"Re-rating (any) vs placebo, pre-event tape",gbm,symbol-grouped 5-fold,
+0.7007776053956993,0.3300174341093221,29239,9751,"Re-rating (any) vs placebo, pre-event tape",gbm,"train 2017-21, test 2022+",2022-01-01
+0.7110712028805523,0.3389196352014966,38453,12829,"Re-rating (any) vs placebo, pre-event tape",logit,symbol-grouped 5-fold,
+0.7058931758335931,0.34037534611834686,29239,9751,"Re-rating (any) vs placebo, pre-event tape",logit,"train 2017-21, test 2022+",2022-01-01
+0.7685895722205814,0.4367572156196944,26616,2356,"Multibagger (3x+) vs placebo, pre-event tape",gbm,symbol-grouped 5-fold,
+0.7108916354005739,0.3288888888888889,19474,1350,"Multibagger (3x+) vs placebo, pre-event tape",gbm,"train 2017-21, test 2022+",2022-01-01
+0.7397311524696377,0.37436332767402375,26616,2356,"Multibagger (3x+) vs placebo, pre-event tape",logit,symbol-grouped 5-fold,
+0.7143508913901762,0.3385185185185185,19474,1350,"Multibagger (3x+) vs placebo, pre-event tape",logit,"train 2017-21, test 2022+",2022-01-01
+0.7585221850110188,0.43760611205432937,6074,2356,"Multibagger vs faded pop, pre-event + day 0",gbm,symbol-grouped 5-fold,
+0.6365435362659422,0.21703703703703703,4376,1350,"Multibagger vs faded pop, pre-event + day 0",gbm,"train 2017-21, test 2022+",2022-01-01
+0.704201717702436,0.34125636672325976,6074,2356,"Multibagger vs faded pop, pre-event + day 0",logit,symbol-grouped 5-fold,
+0.6121522116961642,0.21481481481481482,4376,1350,"Multibagger vs faded pop, pre-event + day 0",logit,"train 2017-21, test 2022+",2022-01-01
