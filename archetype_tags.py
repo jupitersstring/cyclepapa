@@ -1119,6 +1119,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         if missing_ok:
             ok = ok | (_nde_meaningful.isna() & ~_bs_lev_known)
         return ok
+    # (audit 4) the DATA-QUALITY flag is computed here, before its first reader:
+    # 14 XR gates read df.get('data_quality_flag', 0) before the later
+    # definition existed, so the lookup returned 0 and the check was a no-op.
+    # Same definition as the one recomputed further down (idempotent).
+    _dq0_as = _ncol('assets'); _dq0_eq = _ncol('equity'); _dq0_teq = _ncol('tangible_equity')
+    _dq0_cash = _ncol('cash'); _dq0_rev = _ncol('revenue_ttm'); _dq0_eb = _ncol('ebitda_ttm')
+    df['data_quality_flag'] = (
+        ((_dq0_eq > _dq0_as * 1.02) & _dq0_eq.notna() & _dq0_as.notna())
+        | ((_dq0_teq > _dq0_eq * 1.02) & (_dq0_eq > 0))
+        | ((_dq0_cash > _dq0_as * 1.02) & _dq0_cash.notna() & _dq0_as.notna())
+        | ((_dq0_eb > _dq0_rev * 2.0) & (_dq0_rev > 0) & is_operating)
+    ).fillna(False).astype(int)
     # (audit 3) EV SANITY BAND, universe-wide: an FX-corrupt / cross-line EV
     # (ADR, .F line) reads EV/EBITDA ~0 and passes every "cheap on EV" gate.
     # EV within 0.2-5x the USD market cap, NaN-permissive (missing EV twin).
@@ -2422,8 +2434,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _shares_shrink &
         ~(_ncol('shares_yoy') > 0.02) &         # (audit) current-year non-dilution on ALL shrink legs, not just the buyback-yield leg: OMC fired via a 5yr shrink while issuing +58% NOW (IPG-merger stock)
         (roic_lindy >= 0.08) &
-        (n_yrs_roic_pos >= 4) &
-        (nde <= 1.5)
+        (n_yrs_roic_pos >= 4)                   # (audit 4 / user rule) the nde <= 1.5 cap is a weight, not a gate
     ).fillna(False).astype(int)
     _SPIRITED.append('buyback_compounder')   # (endpoint matrix, EXC) depth/persistence of the shrink ranks the members
 
@@ -5390,7 +5401,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (mcap > 0)
         & (net_cash_pct_c >= 0.20)                        # net-cash survivability
         & (_nol_ratio_tri >= 0.50) & (_nol_ratio_tri <= 20.0)  # monetizable NOL: >= ~10% of mcap in TAX value (x0.21), sane band (audit 3)
-        & (_ncol('net_income_ttm') > 0)                   # (audit 3) taxable income exists to shield
         & ~(_ncol('shares_yoy') > 0.05)                    # (audit 3) a Section 382 change of control would impair the NOL
         & _inflecting_tri                                 # the turn is happening now
         & (ebitda_margin > 0.03)                          # GENUINE operating profitability NOW — the NOL must have real earnings to shield and the turn must be real, not a working-capital FCF blip on a still-lossmaking business (HMDCF ebitda -5%, API ebitda ~0 / fcf -6% excluded). Also excludes data-empty shells (ONCO) that pass _not_melting vacuously.
@@ -8567,8 +8577,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
          | (s('roic_lindy', np.nan) >= 0.15)) &  # high ROIC (>15%) = the moat (no uncorroborated one-off roce)
         ((_num('fcf_ttm') > 0) | (s('n_yrs_positive_fcf', 0) >= 3)) &  # strong / durable FCF
         (s('op_margin', np.nan) > 0) &                  # profitable
-        _not_melting &
-        (nde <= 2.0)                                    # low leverage (strong balance sheet)
+        _not_melting                                    # (audit 4 / user rule) leverage (nde <= 2) is a weight, not a gate
     ).fillna(False).astype(int)
     # (tighten) same insider-band / revealed-alignment fix as owner_operator.
     # Exceptional: genuinely unwatched (observed <= 2 analysts) and FCF
@@ -9951,6 +9960,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _DEMOTED_W[_a] = 0.50
     for _a in ('mb_smart_money_wreckage', 'mb_conviction_confluence'):
         _DEMOTED.setdefault(_a, []).append((_corp_conviction.astype(float), 1))
+    # (audit 4) facts the de-gating left without a weight, and the leftover caps
+    _DEMOTED.setdefault('buyback_compounder', []).append((_ncol('net_debt_ebitda'), -1))
+    _DEMOTED.setdefault('flyover', []).append((_ncol('net_debt_ebitda'), -1))
+    _DEMOTED.setdefault('fixed_cost_demand_shock', []).append((_ncol('net_debt_ebitda'), -1))
+    _DEMOTED.setdefault('regime_cyclical', []).append((_ncol('net_debt_ebitda'), -1))
+    _DEMOTED.setdefault('dta_reversal', []).append((_ncol('shares_yoy'), -1))
+    _DEMOTED.setdefault('double_inflect', []).append(((_ncol('op_margin_delta_yoy') > 0.30).astype(float).where(_ncol('op_margin_delta_yoy').notna()), -1))
+    _DEMOTED.setdefault('financials_value', []).append((_ncol('fq_equity') / _ncol('fq_total_assets').where(_ncol('fq_total_assets') > 0), 1))
+    _DEMOTED.setdefault('xr_monetization_trifecta', []).append((_ncol('net_income_ttm'), 1))
     # (audit 4 / user rule) the XR leverage caps demoted to weights
     _DEMOTED.setdefault('xr_asset_owner_catalyst', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
     _DEMOTED.setdefault('xr_baron_compounder', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
