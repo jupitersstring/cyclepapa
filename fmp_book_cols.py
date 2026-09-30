@@ -22,8 +22,16 @@ FMP_COLS = ['fmp_signals', 'fmp_piotroski', 'roic_lindy_eff', 'inst_accum_score'
             'fmp_seg_fastest_name', 'fmp_seg_fastest_yoy', 'cluseau_sizing_tier',
             'arch_institutional_accumulation', 'inst_accum_accelerating']
 
-FMP_HEADERS = ['Piotroski', 'ROIC lindy %', 'Inst Δown pp', 'Inst accum', 'EM rev %', 'FMP signals']
-FMP_WIDTHS = [9, 11, 11, 9, 9, 58]
+# Leledc exhaustion levels (leledc_levels.py, weekly and monthly bars): the
+# last exhaustion signal and its age, and the close's distance to the latest
+# exhaustion resistance (high of the last sell bar) and support (low of the
+# last buy bar). + = above the level, - = below it.
+LELEDC_SOURCE = 'leledc_levels.csv'
+LELEDC_COLS = ['lel_w_signal', 'lel_w_bars_since', 'lel_w_res_dist', 'lel_w_sup_dist',
+               'lel_m_signal', 'lel_m_bars_since', 'lel_m_res_dist', 'lel_m_sup_dist']
+FMP_HEADERS = ['Piotroski', 'ROIC lindy %', 'Inst Δown pp', 'Inst accum', 'EM rev %', 'FMP signals',
+               'Lel W', 'Lel W res %', 'Lel W sup %', 'Lel M', 'Lel M res %', 'Lel M sup %']
+FMP_WIDTHS = [9, 11, 11, 9, 9, 58, 10, 10, 10, 10, 10, 10]
 
 
 def attach_fmp(df: pd.DataFrame, source: str = FMP_SOURCE) -> pd.DataFrame:
@@ -35,7 +43,13 @@ def attach_fmp(df: pd.DataFrame, source: str = FMP_SOURCE) -> pd.DataFrame:
         return df
     fmp = pd.read_csv(source, usecols=['symbol'] + cols, low_memory=False).drop_duplicates('symbol')
     df = df.drop(columns=[c for c in cols if c in df.columns])
-    return df.merge(fmp, on='symbol', how='left')
+    df = df.merge(fmp, on='symbol', how='left')
+    if os.path.exists(LELEDC_SOURCE):
+        lhave = pd.read_csv(LELEDC_SOURCE, nrows=0).columns
+        lcols = [c for c in LELEDC_COLS if c in lhave]
+        lel = pd.read_csv(LELEDC_SOURCE, usecols=['symbol'] + lcols, low_memory=False).drop_duplicates('symbol')
+        df = df.drop(columns=[c for c in lcols if c in df.columns]).merge(lel, on='symbol', how='left')
+    return df
 
 
 def write_fmp_block(ws, row: int, start_col: int, r, font=None) -> None:
@@ -56,3 +70,14 @@ def write_fmp_block(ws, row: int, start_col: int, r, font=None) -> None:
     if font is not None:
         c.font = font
     c.alignment = _TXT_ALIGN_LEFT
+    # Leledc: "Buy 3" = the last exhaustion signal was a BUY (downside
+    # exhausted) 3 bars ago; "Sell 12" = a SELL (upside exhausted) 12 bars ago
+    for k, tf in enumerate(('w', 'm')):
+        base = start_col + 6 + 3 * k
+        s_, n_ = g(f'lel_{tf}_signal'), g(f'lel_{tf}_bars_since')
+        txt = '' if s_ is None else (('Buy ' if s_ > 0 else 'Sell ') + ('' if n_ is None else str(int(n_))))
+        cc = ws.cell(row=row, column=base, value=txt)
+        if font is not None:
+            cc.font = font
+        _write_pct(ws, row, base + 1, g(f'lel_{tf}_res_dist'), font=font)
+        _write_pct(ws, row, base + 2, g(f'lel_{tf}_sup_dist'), font=font)
