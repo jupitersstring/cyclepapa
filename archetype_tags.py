@@ -6901,7 +6901,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    the top line, gross profit, EPS durability, cash generation, operating
     #    income durability, reinvestment economics, durable margins, or a
     #    confirmed inflection. Fire on ANY (broadens the pool); score breadth.
+    # (Fannie Mae chapter) the business advanced PER SHARE for years
+    # (-0.87 -> 0.52 -> 1.44 -> 1.55 -> 2.14): 3- and 5-year NI per share up;
+    # it was REINVENTED from a cyclical into a steady earner ("no down quarter
+    # since"): loss years on file, yet EPS positive in 7+ of the last 8
+    # quarters; and the CORE improved beneath a quiet headline (the block of
+    # granite chipped away): TTM EBIT growing faster than revenue
+    _lr_transformed = (((_ncol('tc_opinc_pos') < _ncol('tc_years')) & (_ncol('tc_years') >= 5))
+                       & (_ncol('fqx_eps_pos_share_8') >= 0.875)).astype(float).where(
+                           _ncol('tc_years').notna() & _ncol('fqx_eps_pos_share_8').notna())
+    _lr_core_gain = (_ncol('fqx_ebit_ttm_g') - _ncol('fq_rev_growth'))
+    df['lynch_transformed_flag'] = (_lr_transformed == 1).fillna(False).astype(int)
     lr_progress_any, lr_progress_score = _confirm([
+        (_ncol('fg_ni_ps_3y'),             lambda x: x > 0),       # 3y NI per share up (Fannie)
+        (_ncol('fg_ni_ps_5y'),             lambda x: x > 0),       # 5y NI per share up (Fannie)
+        (_lr_transformed,                  lambda x: x == 1),      # cyclical reinvented as steady (Fannie)
+        (_lr_core_gain,                    lambda x: x > 0),       # core improving beneath the headline (Fannie)
         (revenue_5y_cagr,                  lambda x: x >= 0.08),   # 5y top line
         (revenue_3y_cagr_v,                lambda x: x >= 0.10),   # 3y top line
         # (audit 3) gross_profit_yoy (one year) and inflection_confirm_score
@@ -6913,8 +6928,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (roiic_lindy,                      lambda x: x >= 0.10),   # reinvestment econ
         (op_margin_lindy,                  lambda x: x >= 0.08),   # durable margins
     ])
+    # the ORIGINAL nine-lens breadth, kept for the exceptional leg so the
+    # Fannie lenses add to it rather than dilute its share
+    _, _lr_prog_orig = _confirm([
+        (revenue_5y_cagr, lambda x: x >= 0.08), (revenue_3y_cagr_v, lambda x: x >= 0.10),
+        (_num('eps_yoy_positive_share'), lambda x: x >= 0.6), (n_yrs_fcf_pos, lambda x: x >= 4),
+        (n_yrs_opinc_pos, lambda x: x >= 4), (roiic_lindy, lambda x: x >= 0.10),
+        (op_margin_lindy, lambda x: x >= 0.08)])
     # (audit 3) "years" = at least TWO multi-year lenses agree
     _lr_multi_n = sum(((sr.notna()) & pred(sr).fillna(False)).astype(int) for sr, pred in [
+        (_ncol('fg_ni_ps_3y'), lambda x: x > 0), (_ncol('fg_ni_ps_5y'), lambda x: x > 0),
+        (_lr_transformed, lambda x: x == 1),
         (revenue_5y_cagr, lambda x: x >= 0.08), (revenue_3y_cagr_v, lambda x: x >= 0.10),
         (_num('eps_yoy_positive_share'), lambda x: x >= 0.6), (n_yrs_fcf_pos, lambda x: x >= 4),
         (n_yrs_opinc_pos, lambda x: x >= 4), (roiic_lindy, lambda x: x >= 0.10),
@@ -7069,7 +7093,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (((_num('asym_m') - 50).abs() <= 2) & (_num('asym_m_roc') >= 10)) |
         (((_num('asym_q') - 50).abs() <= 2) & (_num('asym_q_roc') >= 10)) |
         ((_num('roc_3_5y') <= -0.30) & (_num('roc_accel_3_5y') >= 0.30)) |
-        (lr_progress_score >= 0.66)
+        (_lr_transformed == 1) |                                   # (Fannie) reinvented as a steady earner
+        (_lr_prog_orig >= 0.66)
     ).fillna(False)
     # GAAP-masked flag (US-exam lesson: TENB P/E 573, NOVT 113, THRM 49 while
     # EV/EBITDA is modest — GAAP EPS depressed by one-offs/SBC/amortization,
@@ -10069,6 +10094,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _DEMOTED.setdefault('templeton_pessimism', []).append((_ncol('revenue_ttm') / _ncol('normalized_revenue').where(_ncol('normalized_revenue') > 0), -1))
     _DEMOTED.setdefault('liger_asset_backed', []).append((_ncol('net_debt_ebitda'), -1))
     _DEMOTED.setdefault('wolf_emerging', []).append((_ncol('shares_yoy'), -1))
+    # (Fannie Mae chapter) ranking weights on lynch_reward: the reward-to-price
+    # ("earn back the price in one year": normalised EBIT over EV), the market
+    # still skeptical (ignored beats, price targets cut, thin coverage), a
+    # buyback into weakness (the 1987 repurchase), and per-share progress size
+    _DEMOTED.setdefault('lynch_reward', []).extend([
+        (_ncol('normalized_ebit') / _ncol('enterprise_value').where(_ncol('enterprise_value') > 0), 1),
+        (_ncol('evt_ignored_beats_2y'), 1), (_ncol('evt_pt_rev_90d'), -1), (_ncol('sent_n_analysts'), -1),
+        (_ncol('fmp_st_buyback_yield_y0'), 1), (_ncol('fg_ni_ps_3y_cagr'), 1)])
     # (audit 4 / user rule) the XR leverage caps demoted to weights
     _DEMOTED.setdefault('xr_asset_owner_catalyst', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
     _DEMOTED.setdefault('xr_baron_compounder', []).extend([(_ncol('net_debt_ebitda'), -1), (_ncol('interest_coverage'), 1)])
@@ -10235,7 +10268,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'micro_activist_13d_flag', 'xr_streak_norerate_lenses', 'ev_norm_midcyc',
                             # (audit 3) surfaced flags, tiers and measures
                             'lynch_reward_gap3', 'levered_stub_tier', 'value_up_reform_flag',
-                            'per_share_compounder_flag',
+                            'per_share_compounder_flag', 'lynch_transformed_flag',
                             'esb_beat_share_8q', 'esb_surprise_4q', 'esb_beat_streak', 'esb_react_last', 'esb_ignored_beats_2y',
                             'fg_rev_ps_5y_cagr', 'fg_ni_ps_3y_cagr', 'fg_ocf_ps_5y_cagr', 'fg_eq_ps_5y_cagr',
                             'fg_shares_dil_g1', 'fg_rev_ps_5y_min5', 'fg_ocf_ps_5y_min5',
