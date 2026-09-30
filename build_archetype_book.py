@@ -79,6 +79,8 @@ ARCHETYPE_LABELS = {
     'arch_mb_cheap_vs_sector_recovering': 'MB: Cheap vs Peers, Recovering, FCF Streak Rising (robust lift 4.7x, 16 markets, blow-up 20%)',
     'arch_mb_model_confluence': 'MB: Model Confluence (a rule archetype member the model also ranks in the top decile of its market)',
     'arch_mb_model_uncovered_not_fallen': "MB: Model's Own Ground (top 5% of market, not fallen, in no rule archetype: lift 3.1x / 2.6x, blow-up 22-30%)",
+    'arch_cheap_net_cash_steady_earner': "Cheap Net-Cash Steady Earner (EV/EBIT < 5x, net cash, a profit in 90%+ of years, capital not wasted or diluted, low starting expectations)",
+    'arch_psix': "PSIX (low expectations, survivable balance sheet, revenue accelerating, gross margin rising, incremental operating margin above the existing margin, self-funded, no dilution, still cheap vs its own history)",
     'arch_mb_model_region_rule': "MB: Model Region Rule (fell far more than its market, very volatile, tiny or long in drawdown: leaf lifts 3.1-3.9x, blow-up 30-38%)",
     'arch_mb_model_top': 'MB: Model Top 5% of Market (walk-forward model over every feature; lift and blow-up in MULTIBAGGER_MODEL.md)',
     'arch_mb_cheap_growth_targets_up': 'MB: Cheap Growth, Targets Rising (revenue +15%, EV/EBIT <= 10 or FCF yield + growth >= 20%, targets revised up: lift 1.25x, blow-up 8%)',

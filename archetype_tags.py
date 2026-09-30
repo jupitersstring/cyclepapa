@@ -7927,7 +7927,77 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['coiled_base_legs'] = (_coil_n.astype(str) + 'C/' + _perc_n.astype(str) + 'P/'
                               + _ign_n.astype(str) + 'I').where(df['arch_coiled_base'] == 1, '')
 
+    # ============ USER ARCHETYPES (2026-09-29) ============
+    # Shared: LOW STARTING EXPECTATIONS read by sign, never by an invented size —
+    # the price is below where it was a year ago, OR the EV/sales multiple is
+    # below its own 3-year median, OR no sell-side coverage at all where the
+    # estimate feed reaches the name. The depth of each is a weight.
+    _low_expect = ((_ncol('ts_r52') <= 0) | (_ncol('evh_evs_vs_med_3y') < 0)
+                   | ((_ncol('sent_n_analysts') == 0) | (_ncol('sent_n_analysts').isna() & _ncol('esb_beats_8q').notna()))
+                   ).fillna(False)
+    # NET CASH by sign: cash above debt on the latest balance sheet (quarterly
+    # panel, same currency), else the master's net-cash share, else net debt /
+    # EBITDA at or below zero
+    _nc_q = (_ncol('fq_cash_sti') - _ncol('fq_total_debt').fillna(0)).where(_ncol('fq_cash_sti').notna())
+    _net_cash = ((_nc_q > 0) | (_nc_q.isna() & (net_cash_pct > 0))
+                 | (_nc_q.isna() & net_cash_pct.isna() & (_nde_meaningful <= 0))).fillna(False)
+    # PROFIT 90%+ OF THE TIME (user's number): operating income positive in
+    # >= 90% of the fiscal years on file (>= 5 years), else the statement-history
+    # count, else EPS positive in >= 90% of the last 8 quarters
+    _yrs_tc = _ncol('tc_years').where(_ncol('tc_years') >= 5)
+    _prof_share = (_ncol('tc_opinc_pos') / _yrs_tc).fillna(
+        _ncol('fmp_st_n_yrs_positive_opinc') / _ncol('fmp_st_years_of_history').where(_ncol('fmp_st_years_of_history') >= 5))
+    _steady_profit = ((_prof_share >= 0.90)
+                      | (_prof_share.isna() & (_ncol('fqx_eps_pos_share_8') >= 0.875))).fillna(False)
+    # REASONABLE CAPITAL ALLOCATION by sign: the share count is not growing
+    # (3-year, else the FY diluted count) and returns to owners are not paid
+    # out of cash the business did not earn (no uncovered payout year of 3)
+    _sh3_ca = _ncol('shares_growth_3y').fillna(_ncol('fg_shares_dil_g1'))
+    _capalloc_ok = (~(_sh3_ca > 0.0) & ~(_ncol('tc_uncov_payout_3y') >= 1))
+    _ev_ebit_u = s('ev_ebit', np.nan)
+    # 1. CHEAP NET-CASH STEADY EARNER (user): EV/EBIT below 5x, net cash, a
+    #    profit in 90%+ of years, reasonable capital allocation, low starting
+    #    expectations.
+    df['arch_cheap_net_cash_steady_earner'] = (
+        is_operating & (mcap > 0) & _ev_sane
+        & (_ev_ebit_u > 0) & (_ev_ebit_u < 5.0)
+        & _net_cash & _steady_profit & _capalloc_ok & _low_expect
+    ).fillna(False).astype(int)
+    _DEMOTED.setdefault('cheap_net_cash_steady_earner', []).extend([
+        (_ev_ebit_u.where(_ev_ebit_u > 0), -1), (net_cash_pct, 1), (_prof_share, 1),
+        (_ncol('roic_lindy'), 1), (_ncol('ts_dist_hi260'), -1), (_ncol('sent_n_analysts'), -1)])
+    # 2. PSIX (user; Power Solutions International 2024): low starting
+    #    expectations, balance-sheet survivorship, revenue ACCELERATING, gross
+    #    margin RISING, incremental operating margin above the existing margin,
+    #    capex and R&D funded internally, no dilution, valuation still low.
+    _surv_psix = (_not_melting & ((_ncol('fq_interest_cover') > 1) | _net_cash
+                                  | (_ncol('fq_interest_cover').isna() & (_nde_meaningful <= 0)))).fillna(False)
+    _rev_accel_psix = ((_ncol('fq_rev_growth') > 0)
+                       & ((_ncol('fqx_rev_accel_now') == 1) | (rev_accel > 0))).fillna(False)
+    _gm_rising = ((_ncol('gross_margin_delta_yoy') > 0) | (_ncol('fq_gm_inflection_flag') == 1)).fillna(False)
+    _inc_opm_high = (_ncol('fqx_inc_ebit_margin_dt') > _ncol('fqx_opm_ttm').fillna(s('op_margin', np.nan))).fillna(False)
+    _self_funded = ((_ncol('fq_fcf') > 0) | (_ncol('fcf_ttm') > 0)).fillna(False)   # CFO (after R&D, expensed) covers capex
+    # "no dilution": the count not growing — a rounding tolerance of 0.5% for
+    # share-count noise, stated rather than hidden
+    _no_dil_psix = (~(_ncol('fq_shares_yoy').fillna(_ncol('shares_yoy')).fillna(_ncol('fg_shares_dil_g1')) > 0.005)).fillna(False)
+    # still LOW, not merely de-rated: EV/EBIT positive and at or below the
+    # median of its own listing market (a peer comparison, not an invented
+    # number), AND the multiple not above its own 3-year median where dated
+    _evb_mkt_med = _ev_ebit_u.where(is_operating & (_ev_ebit_u > 0)).groupby(country).transform('median')
+    _still_low = ((_ev_ebit_u > 0) & (_ev_ebit_u <= _evb_mkt_med)
+                  & ~(_ncol('evh_evs_vs_med_3y') > 0)).fillna(False)
+    df['arch_psix'] = (
+        is_operating & (mcap > 0) & _ev_sane
+        & _low_expect & _surv_psix & _rev_accel_psix & _gm_rising
+        & _inc_opm_high & _self_funded & _no_dil_psix & _still_low
+    ).fillna(False).astype(int)
+    _DEMOTED.setdefault('psix', []).extend([
+        (_ncol('fqx_inc_ebit_margin_dt'), 1), (_ncol('gross_margin_delta_yoy'), 1),
+        (_ncol('fq_rev_growth'), 1), (net_cash_pct, 1), (_ncol('evh_evs_vs_med_3y'), -1),
+        (_ncol('ts_dist_hi260'), -1)])
+
     arch_cols = [
+        'arch_cheap_net_cash_steady_earner', 'arch_psix',
         'arch_narrative_lag',
         'arch_derate_through_growth',
         'arch_fixed_cost_demand_shock',
@@ -8322,6 +8392,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_model_confluence': 'MB-ModelConfluence',
         'arch_mb_model_uncovered_not_fallen': 'MB-ModelUncoveredNotFallen',
         'arch_mb_model_region_rule': 'MB-ModelRegionRule',
+        'arch_cheap_net_cash_steady_earner': 'CheapNetCashSteadyEarner',
+        'arch_psix': 'PSIX',
         'arch_mb_industry_trough_cheapest': 'MB-IndustryTroughCheapest',
         'arch_mb_reinvesting_at_trough': 'MB-ReinvestingAtTrough',
         'arch_mb_stressed_not_diluting': 'MB-StressedNotDiluting',
