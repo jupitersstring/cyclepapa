@@ -14,6 +14,14 @@ promise — durable, high, non-eroding — rather than "usually positive".
   tc_min_ic              EBIT / interest expense, worst year with interest > 0
   tc_fcf_margin_avg      mean FCF / revenue
   tc_uncov_payout_3y     of the last 3 FYs, years where dividends + buybacks > FCF
+  tc_loss_years          fiscal years with operating income <= 0
+  tc_loss_years_covid    of those, fiscal years ENDING 2020-03-01 .. 2022-03-31 (the pandemic
+                         window: calendar 2020-21 plus March-2022 year-ends, which are mostly 2021)
+  tc_loss_years_other    loss years outside that window
+  tc_last_loss_fy        fiscal-year-end date of the latest loss year
+  tc_swing_recent / tc_swing_early   mean |year-to-year change in operating income| / that
+                         year's revenue: the last 3 changes vs the earlier ones (>= 2 needed)
+  tc_swing_ratio         recent / early (< 1 = earnings steadier now than before)
 """
 from __future__ import annotations
 
@@ -51,6 +59,7 @@ def one(sym: str) -> dict:
     I = {str(r.get("fiscalYear") or str(r.get("date"))[:4]): r for r in isr if r.get("reportedCurrency") == ccy}
     C = {str(r.get("fiscalYear") or str(r.get("date"))[:4]): r for r in cf if r.get("reportedCurrency") == ccy}
     yrs = sorted(I, reverse=True)
+    fye = [pd.to_datetime(I[y].get("date"), errors="coerce") for y in yrs]
     rev = np.array([_f(I[y].get("revenue")) for y in yrs])
     op = np.array([_f(I[y].get("operatingIncome")) for y in yrs])
     gp = np.array([_f(I[y].get("grossProfit")) for y in yrs])
@@ -85,6 +94,22 @@ def one(sym: str) -> dict:
     fm = fm[np.isfinite(fm)]
     if len(fm) >= 3:
         rec["tc_fcf_margin_avg"] = float(np.clip(fm, -1, 1).mean())
+    lossy = [d for d, o, k in zip(fye, op, ok) if k and math.isfinite(o) and o <= 0]
+    rec["tc_loss_years"] = float(len(lossy))
+    cov = [d for d in lossy if pd.notna(d) and pd.Timestamp("2020-03-01") <= d <= pd.Timestamp("2022-03-31")]
+    rec["tc_loss_years_covid"] = float(len(cov))
+    rec["tc_loss_years_other"] = float(len(lossy) - len(cov))
+    if any(pd.notna(d) for d in lossy):
+        rec["tc_last_loss_fy"] = max(d for d in lossy if pd.notna(d)).date().isoformat()
+    # year-to-year operating-income change scaled by revenue, newest first (index i = FY i vs FY i+1)
+    sw = np.array([abs(op[i] - op[i + 1]) / rev[i] if ok[i] and ok[i + 1] and math.isfinite(op[i])
+                   and math.isfinite(op[i + 1]) else np.nan for i in range(len(yrs) - 1)])
+    rec_sw, early_sw = sw[:3], sw[3:]
+    if np.isfinite(rec_sw).sum() >= 2 and np.isfinite(early_sw).sum() >= 2:
+        a, b = float(np.nanmean(np.clip(rec_sw, 0, 2))), float(np.nanmean(np.clip(early_sw, 0, 2)))
+        rec["tc_swing_recent"], rec["tc_swing_early"] = a, b
+        if b > 0:
+            rec["tc_swing_ratio"] = a / b
     last3 = [(p_, f_) for p_, f_ in zip(pay[:3], fcf[:3]) if math.isfinite(f_)]
     if len(last3) >= 2:
         rec["tc_uncov_payout_3y"] = float(sum(1 for p_, f_ in last3 if p_ > max(f_, 0) and p_ > 0))

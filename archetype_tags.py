@@ -6912,10 +6912,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                            _ncol('tc_years').notna() & _ncol('fqx_eps_pos_share_8').notna())
     _lr_core_gain = (_ncol('fqx_ebit_ttm_g') - _ncol('fq_rev_growth'))
     df['lynch_transformed_flag'] = (_lr_transformed == 1).fillna(False).astype(int)
+    # REINVENTED = transformed for business reasons: at least one loss year
+    # OUTSIDE the pandemic window (FY ending 2020-03 .. 2022-03), and the
+    # earnings pattern itself changed (Maxwell's "no down quarter" measured):
+    # mean |yearly change in operating income| / revenue over the last 3 FYs at
+    # most two-thirds of the earlier years'. Unmeasured swing = not reinvented.
+    # PANDEMIC RECOVERY = transformed, but every loss year sits inside that
+    # window: a rebound to the old pattern, surfaced separately, not reinvention.
+    _lr_reinvented = (_lr_transformed * ((_ncol('tc_loss_years_other') >= 1)
+                                         & (_ncol('tc_swing_ratio') <= 2 / 3)).astype(float)).where(
+                          _lr_transformed.notna() & _ncol('tc_loss_years_other').notna()
+                          & (_ncol('tc_swing_ratio').notna() | (_lr_transformed == 0)))
+    df['lynch_reinvented_flag'] = (_lr_reinvented == 1).fillna(False).astype(int)
+    df['lynch_pandemic_recovery_flag'] = ((_lr_transformed == 1) & (_ncol('tc_loss_years_other') == 0)
+                                          & (_ncol('tc_loss_years_covid') >= 1)).fillna(False).astype(int)
     lr_progress_any, lr_progress_score = _confirm([
         (_ncol('fg_ni_ps_3y'),             lambda x: x > 0),       # 3y NI per share up (Fannie)
         (_ncol('fg_ni_ps_5y'),             lambda x: x > 0),       # 5y NI per share up (Fannie)
-        (_lr_transformed,                  lambda x: x == 1),      # cyclical reinvented as steady (Fannie)
+        (_lr_reinvented,                   lambda x: x == 1),      # reinvented as steady, not a pandemic rebound (Fannie)
         (_lr_core_gain,                    lambda x: x > 0),       # core improving beneath the headline (Fannie)
         (revenue_5y_cagr,                  lambda x: x >= 0.08),   # 5y top line
         (revenue_3y_cagr_v,                lambda x: x >= 0.10),   # 3y top line
@@ -6938,7 +6952,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (audit 3) "years" = at least TWO multi-year lenses agree
     _lr_multi_n = sum(((sr.notna()) & pred(sr).fillna(False)).astype(int) for sr, pred in [
         (_ncol('fg_ni_ps_3y'), lambda x: x > 0), (_ncol('fg_ni_ps_5y'), lambda x: x > 0),
-        (_lr_transformed, lambda x: x == 1),
+        (_lr_reinvented, lambda x: x == 1),
         (revenue_5y_cagr, lambda x: x >= 0.08), (revenue_3y_cagr_v, lambda x: x >= 0.10),
         (_num('eps_yoy_positive_share'), lambda x: x >= 0.6), (n_yrs_fcf_pos, lambda x: x >= 4),
         (n_yrs_opinc_pos, lambda x: x >= 4), (roiic_lindy, lambda x: x >= 0.10),
@@ -7093,7 +7107,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (((_num('asym_m') - 50).abs() <= 2) & (_num('asym_m_roc') >= 10)) |
         (((_num('asym_q') - 50).abs() <= 2) & (_num('asym_q_roc') >= 10)) |
         ((_num('roc_3_5y') <= -0.30) & (_num('roc_accel_3_5y') >= 0.30)) |
-        (_lr_transformed == 1) |                                   # (Fannie) reinvented as a steady earner
+        (_lr_reinvented == 1) |                                    # (Fannie) reinvented as a steady earner (ex pandemic rebounds)
         (_lr_prog_orig >= 0.66)
     ).fillna(False)
     # GAAP-masked flag (US-exam lesson: TENB P/E 573, NOVT 113, THRM 49 while
@@ -10268,7 +10282,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'micro_activist_13d_flag', 'xr_streak_norerate_lenses', 'ev_norm_midcyc',
                             # (audit 3) surfaced flags, tiers and measures
                             'lynch_reward_gap3', 'levered_stub_tier', 'value_up_reform_flag',
-                            'per_share_compounder_flag', 'lynch_transformed_flag',
+                            'per_share_compounder_flag', 'lynch_transformed_flag', 'lynch_reinvented_flag', 'lynch_pandemic_recovery_flag',
                             'esb_beat_share_8q', 'esb_surprise_4q', 'esb_beat_streak', 'esb_react_last', 'esb_ignored_beats_2y',
                             'fg_rev_ps_5y_cagr', 'fg_ni_ps_3y_cagr', 'fg_ocf_ps_5y_cagr', 'fg_eq_ps_5y_cagr',
                             'fg_shares_dil_g1', 'fg_rev_ps_5y_min5', 'fg_ocf_ps_5y_min5',
