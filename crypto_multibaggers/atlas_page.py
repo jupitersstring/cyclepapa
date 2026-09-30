@@ -15,13 +15,15 @@ TEMPLATE = r"""<title>Crypto Multibagger Tape Atlas</title>
 <style>
 :root{--paper:#f2f5f5;--surface:#ffffff;--ink:#132028;--ink2:#46545e;--muted:#74828c;--rule:#d4dcdc;--grid:#e3e9e8;
 --accent:#0b6e6b;--t1:#0d366b;--t2:#1c5cab;--t3:#3987e5;--t4:#86b6ef;--fade:#eb6834;--plc:#8b939b;
---lo:#2a78d6;--mid:#eceeec;--hi:#d64545;--good:#006300;--bad:#c23b3b;color-scheme:light}
+--lo:#2a78d6;--mid:#eceeec;--hi:#d64545;--good:#006300;--bad:#c23b3b;
+--c1:#2a78d6;--c2:#1baf7a;--c3:#eb6834;--c4:#4a3aa7;color-scheme:light}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0f1417;--surface:#151c20;--ink:#e6eeef;--ink2:#b3c0c4;
 --muted:#87959b;--rule:#2a3439;--grid:#222c31;--accent:#43b8b2;--t1:#9ec5f4;--t2:#5598e7;--t3:#256abf;--t4:#184f95;--fade:#d95926;
---plc:#7a838c;--lo:#3987e5;--mid:#2a3037;--hi:#e06060;--good:#3fbf5f;--bad:#e36b6b;color-scheme:dark}}
+--plc:#7a838c;--lo:#3987e5;--mid:#2a3037;--hi:#e06060;--good:#3fbf5f;--bad:#e36b6b;
+--c1:#3987e5;--c2:#199e70;--c3:#d95926;--c4:#9085e9;color-scheme:dark}}
 :root[data-theme="dark"]{--paper:#0f1417;--surface:#151c20;--ink:#e6eeef;--ink2:#b3c0c4;--muted:#87959b;--rule:#2a3439;--grid:#222c31;
 --accent:#43b8b2;--t1:#9ec5f4;--t2:#5598e7;--t3:#256abf;--t4:#184f95;--fade:#d95926;--plc:#7a838c;--lo:#3987e5;--mid:#2a3037;
---hi:#e06060;--good:#3fbf5f;--bad:#e36b6b;color-scheme:dark}
+--hi:#e06060;--good:#3fbf5f;--bad:#e36b6b;--c1:#3987e5;--c2:#199e70;--c3:#d95926;--c4:#9085e9;color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;margin:0}
 .wrap{max-width:1100px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
@@ -138,6 +140,23 @@ with buy-side BVC imbalance where direction matters.</p>
 <h3>Out-of-sample classifiers</h3>
 <div class="tiles" id="cv"></div></section>
 
+<section class="ex"><span class="eyebrow">Exhibit P · price-action schools</span><h2>Schabacker, the Japanese methods and Dalton, put to the test</h2>
+<p class="take" id="take-p"></p>
+<div class="two" id="pa-cards"></div>
+<div class="chart" id="pa-nav"></div>
+<div class="legend" id="pa-legend"></div>
+<p class="small" id="pa-port-note"></p>
+<div class="scroll"><table id="pa-port"></table></div>
+<h3>Once a coin pops: the price action that picked the follow-through</h3>
+<p class="small" id="pa-follow-note"></p>
+<div class="scroll"><table id="pa-follow"></table></div>
+<h3>Before re-ratings: events vs matched placebo</h3>
+<p class="small" id="pa-grid-note"></p>
+<div class="scroll"><table id="pa-grid"></table></div>
+<h3>Today: where the rule fired</h3>
+<p class="small" id="pa-live-note"></p>
+<div class="scroll"><table id="pa-live"></table></div></section>
+
 <section class="ex"><span class="eyebrow">Exhibit O · on-chain layer</span><h2>Network activity, holders, supply and TVL before re-ratings</h2>
 <p class="small" id="oc-note"></p>
 <div class="scroll"><table id="ocgrid"></table></div>
@@ -226,13 +245,14 @@ function mix(a,b,t){const p=c=>c.replace('#','').match(/\w\w/g).map(x=>parseInt(
 function aucColor(a){const t=Math.max(-1,Math.min(1,(a-.5)/.18));return t<0?mix(css('--mid'),css('--lo'),-t):mix(css('--mid'),css('--hi'),t);}
 function lum(h){const c=h.replace('#','').match(/\w\w/g).map(x=>parseInt(x,16)/255);return .2126*c[0]+.7152*c[1]+.0722*c[2];}
 const GROUP_LABEL={volume:'Volume',flow:'Flow and toxicity',price:'Price path',liquidity:'Liquidity',toxic:'Toxic overlays',size:'Size and age',
-  'on-chain':'Network activity (CoinMetrics)',defi:'DeFi fundamentals (DefiLlama)',day0:'Day 0'};
+  'on-chain':'Network activity (CoinMetrics)',defi:'DeFi fundamentals (DefiLlama)',day0:'Day 0',
+  Schabacker:'Schabacker (chart patterns)',Japanese:'Japanese (candles, Ichimoku, Renko, three-line break)',Dalton:'Dalton (market profile, daily adaptation)'};
 function gridTable(id,G,showAll,keyFeats){const t=document.getElementById(id);if(!G)return;
   const byF={};G.rows.forEach(r=>{(byF[r.feature]=byF[r.feature]||{label:r.label,group:r.group,cells:{}}).cells[r.family]=r;});
   let feats=Object.keys(byF);
   const strength=f=>Math.max(...G.families.map(fm=>{const c=byF[f].cells[fm.key];return c&&ok(c.auc)?Math.abs(c.auc-.5):0;}));
   if(!showAll&&keyFeats)feats=feats.filter(f=>keyFeats.includes(f));
-  const order=['volume','flow','toxic','price','liquidity','size','on-chain','defi'];
+  const order=['volume','flow','toxic','price','liquidity','size','on-chain','defi','Schabacker','Japanese','Dalton'];
   feats.sort((a,b)=>order.indexOf(byF[a].group)-order.indexOf(byF[b].group)||strength(b)-strength(a));
   let h='<thead><tr><th>Pre-event measure</th>'+G.families.map(f=>`<th>${f.label}</th>`).join('')+'</tr></thead><tbody>';let g0='';
   feats.forEach(f=>{const r=byF[f];if(r.group!==g0){g0=r.group;h+=`<tr class="grp"><td colspan="${G.families.length+1}">${GROUP_LABEL[g0]||g0}</td></tr>`;}
@@ -318,6 +338,61 @@ function cv(){const h=document.getElementById('cv');if(!D.cv)return;
   D.cv.filter(c=>c.model==='gbm').forEach(c=>{h.insertAdjacentHTML('beforeend',`<div class="tile"><span class="k">${c.sample} · ${c.split}</span>
   <span class="v num">${f2(c.auc)}</span><span class="k">AUC · ${pct(c.cap)} caught at a 10% false-positive rate · n=${n0(c.n)}</span></div>`);});}
 
+function paSection(){const P=D.pa;if(!P)return;const T=D.takes||{};
+  document.getElementById('take-p').textContent=T.p||'';
+  const port=P.portfolio||[];const by={};port.forEach(r=>{(by[r.rule]=by[r.rule]||{})[r.period]=r;});
+  const tr={};(P.trades||[]).forEach(r=>{if(r.exit==='3 ATR chandelier')tr[r.rule]=r;});
+  const best=by['don+candles+sanyaku'],base=by['donchian55'],bt=tr['don+candles+sanyaku']||{};
+  const cards=[
+    {h:'The rulebook that held up',p:`<b>Enter</b> on a close at a new 55-day high when that day closes strong (white marubozu or top quarter of its range), no bearish candle pattern printed in the prior five days, and all four Ichimoku lines agree (price above the cloud, Tenkan above Kijun, future cloud bullish, Chikou above price 26 days ago). <b>Exit</b> on a close below the highest close since entry minus 3 ATR, or below Kijun-sen for a faster exit. <b>Size</b> each trade at a fixed 1% of equity, one position per coin, no averaging.`},
+    {h:'What it is like to trade',p:best&&base?`2022 onward: ${pct(bt.win_test)} of ${n0(bt.n_test)} trades won, the average win was ${f2(bt.payoff_test)}x the average loss, the median trade lost ${sgn(-Math.abs(bt.median_test))} and the mean made ${sgn(bt.mean_test)}. The book compounded ${sgn(best.test.cagr)} a year (Sharpe ${f2(best.test.sharpe)}, worst drawdown ${sgn(best.test.max_dd)}) while the plain breakout lost ${sgn(base.test.cagr)} a year. 2017–21: ${sgn(best.train.cagr)} a year, Sharpe ${f2(best.train.sharpe)}.`:''}];
+  document.getElementById('pa-cards').innerHTML=cards.map(c=>`<div class="card"><h3>${c.h}</h3><p class="small">${c.p}</p></div>`).join('');
+  // out-of-sample equity curves (log scale)
+  const N=P.nav;if(N){const host=document.getElementById('pa-nav');const W=1040,H=340,L=52,R=172,Tp=26,B=34;
+   const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Out-of-sample equity curves, 2022 onward'},host);
+   const keys=Object.keys(N.series);const COL={'don+candles+sanyaku':'--c1','don+sanyaku':'--c2','donchian55':'--c3','trigger_top':'--c4','BTC buy and hold':'--plc'};
+   const all=[];keys.forEach(k=>N.series[k].forEach(v=>{if(ok(v)&&v>0)all.push(Math.log(v));}));
+   let lo=Math.min(...all),hi=Math.max(...all);const pad=(hi-lo)*.06;lo-=pad;hi+=pad;
+   const n=N.dates.length;const X=i=>L+i/(n-1)*(W-L-R),Y=v=>Tp+(hi-Math.log(v))/(hi-lo)*(H-Tp-B);
+   [0.25,0.5,1,2,4,8].filter(v=>Math.log(v)>=lo&&Math.log(v)<=hi).forEach(v=>{el('line',{x1:L,x2:W-R,y1:Y(v),y2:Y(v),stroke:v===1?css('--muted'):css('--grid')},svg);
+     const t=el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end','font-size':10,fill:css('--muted')},svg);t.textContent=v+'x';});
+   N.dates.forEach((d,i)=>{if(d.slice(5,10)<='01-07'&&(i===0||N.dates[i-1].slice(0,4)!==d.slice(0,4))){const t=el('text',{x:X(i),y:H-12,'text-anchor':'middle','font-size':10,fill:css('--muted')},svg);t.textContent=d.slice(0,4);}});
+   const tt=el('text',{x:L,y:14,'font-size':12,'font-weight':600,fill:css('--ink')},svg);tt.textContent='Growth of 1, fixed-fraction books from 1 January 2022 (log scale)';
+   const ends=[];keys.slice().reverse().forEach(k=>{const col=css(COL[k]||'--ink2');let d='';N.series[k].forEach((v,i)=>{if(!ok(v)||v<=0)return;d+=(d?'L':'M')+X(i).toFixed(1)+','+Y(v).toFixed(1);});
+     el('path',{d,fill:'none',stroke:col,'stroke-width':k==='don+candles+sanyaku'?2.5:2,'stroke-linejoin':'round'},svg);
+     const lv=[...N.series[k]].reverse().find(v=>ok(v)&&v>0);if(lv)ends.push({k,y:Y(lv),v:lv,col});});
+   ends.sort((a,b)=>a.y-b.y);for(let i=1;i<ends.length;i++)if(ends[i].y-ends[i-1].y<13)ends[i].y=ends[i-1].y+13;
+   const SHORT={'don+candles+sanyaku':'Breakout + candles + cloud','don+sanyaku':'Breakout + cloud','donchian55':'Plain breakout','trigger_top':'Scored pop','BTC buy and hold':'BTC'};
+   ends.forEach(e=>{const t=el('text',{x:W-R+6,y:e.y+4,'font-size':10.5,fill:css('--ink')},svg);t.textContent=`${e.v.toFixed(2)}x ${SHORT[e.k]||e.k}`;});
+   const tip=document.createElement('div');tip.className='tip';host.appendChild(tip);const cross=el('line',{y1:Tp,y2:H-B,stroke:css('--ink2'),'stroke-width':1,visibility:'hidden'},svg);
+   svg.addEventListener('mousemove',ev=>{const r=svg.getBoundingClientRect();const px=(ev.clientX-r.left)/r.width*W;let i=Math.round((px-L)/(W-L-R)*(n-1));i=Math.max(0,Math.min(n-1,i));
+     cross.setAttribute('x1',X(i));cross.setAttribute('x2',X(i));cross.setAttribute('visibility','visible');
+     let h=`<b>${N.dates[i]}</b><br>`;keys.forEach(k=>{h+=`<span style="color:${css(COL[k]||'--ink2')}">■</span> ${N.labels[k]}: ${ok(N.series[k][i])?N.series[k][i].toFixed(2)+'x':'–'}<br>`;});
+     tip.innerHTML=h;tip.style.display='block';const bx=host.getBoundingClientRect();tip.style.left=Math.min(ev.clientX-bx.left+12,bx.width-260)+'px';tip.style.top=(ev.clientY-bx.top+12)+'px';});
+   svg.addEventListener('mouseleave',()=>{tip.style.display='none';cross.setAttribute('visibility','hidden');});
+   document.getElementById('pa-legend').innerHTML=keys.map(k=>`<span><i style="background:${css(COL[k]||'--ink2')}"></i>${N.labels[k]}</span>`).join('');}
+  // portfolio table
+  document.getElementById('pa-port-note').textContent='Every rule is traded the same way: 1% of equity per entry, no rebalancing, one position per coin, 3 ATR chandelier exit, 0.25% cost per side (0.5% below $1M a day). 2017–21 and 2022+ are separate books. Sorted by the 2022+ Sharpe ratio.';
+  const rules=Object.keys(by).filter(r=>by[r].train&&by[r].test).sort((a,b)=>by[b].test.sharpe-by[a].test.sharpe);
+  let h='<thead><tr><th>Entry rule</th><th>Trades 2022+</th><th>Return/yr 2017–21</th><th>Sharpe 2017–21</th><th>Return/yr 2022+</th><th>Sharpe 2022+</th><th>Max drawdown 2022+</th><th>Profit factor 2022+</th></tr></thead><tbody>';
+  rules.forEach(r=>{const a=by[r].train,b=by[r].test,t=tr[r]||{};h+=`<tr><td>${b.label}</td><td class="num">${n0(b.trades)}</td><td class="num ${a.cagr>0?'pos':'neg'}">${sgn(a.cagr)}</td><td class="num">${f2(a.sharpe)}</td><td class="num ${b.cagr>0?'pos':'neg'}"><b>${sgn(b.cagr)}</b></td><td class="num">${f2(b.sharpe)}</td><td class="num">${sgn(b.max_dd)}</td><td class="num">${f2(t.pf_test)}</td></tr>`;});
+  document.getElementById('pa-port').innerHTML=h+'</tbody>';
+  // follow-through
+  const F=(P.follow||[]).filter(r=>r.consistent&&r.lift_test>1).slice(0,14);const FI=P.follow_info||{};
+  document.getElementById('pa-follow-note').textContent=`Triggers only. 3x rate within 180 days when the factor is present (top fifth for levels), against ${pct(FI.base_test)} for all 2022+ triggers; only factors that lifted the rate in both periods are listed.`;
+  let g='<thead><tr><th>Factor</th><th>School</th><th>Triggers with it, 2022+</th><th>3x rate with</th><th>3x rate without</th><th>Lift 2017–21</th><th>Lift 2022+</th></tr></thead><tbody>';
+  F.forEach(r=>{g+=`<tr><td>${r.label}</td><td>${r.group}</td><td class="num">${n0(r.n_test)}</td><td class="num"><b>${pct(r.hit_test)}</b></td><td class="num">${pct(r.hit_off_test)}</td><td class="num">${f2(r.lift_train)}×</td><td class="num"><b>${f2(r.lift_test)}×</b></td></tr>`;});
+  document.getElementById('pa-follow').innerHTML=g+'</tbody>';
+  // grid (key factors)
+  const S=P.screen||[];const bestS=S.length?S[0]:null;
+  document.getElementById('pa-grid-note').textContent=`AUC against matched placebo windows, as in Exhibit C; for patterns, the share of events showing it is in the hover. As standalone screens none of these factors was dependable: the best 2022+ hit rate was ${bestS?f2(bestS.lift_test)+'x':'–'} the same-day base rate${bestS?' ('+bestS.label.toLowerCase()+')':''}, and most flipped between periods.`;
+  const keyPA=['sch_rect','sch_tri','sch_dbl_setup','sch_rounding','sch_res_bo','sch_dtl_bo','jp_bull5','jp_bear5','ichi_cloud','ichi_sanyaku','ichi_kijun_dist','ha_streak','renko_run','dal_pos','dal_migration','dal_higher_value','dal_accept','dal_balance','dal_otf','dal_excess_low','dal_trend_days','dal_va_width'];
+  gridTable('pa-grid',P.grid,false,keyPA);
+  // live
+  const LV=P.live;if(LV){document.getElementById('pa-live-note').textContent=`As of ${LV.asof}. ${n0(LV.n_breakout)} of ${n0(LV.n)} tradeable coins closed at a new 55-day high in the last five days; the full rule fired on ${n0(LV.n_fired)}. Checks count the nine items of the checklist that hold today. A fired rule is an entry signal under the book above, not a forecast: most of its trades lose small and a few carry the result.`;
+   let q='<thead><tr><th>Coin</th><th>Checks (of 9)</th><th>$ volume, last 7d</th><th>Strong close today</th><th>No bearish candles</th><th>Ichimoku all bullish</th><th>Value migrating up</th><th>Above Kijun (ATR)</th></tr></thead><tbody>';
+   (LV.fired||[]).forEach(r=>{const yn=x=>x?'Yes':'No';q+=`<tr><td>${r.symbol.replace(/USD$/,'')} <span class="small">${r.name||''}</span></td><td class="num">${r.checks}</td><td class="num">${money(r.usd_vol_7d)}</td><td>${yn(r.strong_candle)}</td><td>${yn(r.no_bear_candles)}</td><td>${yn(r.sanyaku)}</td><td>${yn(r.value_up)}</td><td class="num">${f2(r.kijun_dist_atr)}</td></tr>`;});
+   document.getElementById('pa-live').innerHTML=q+'</tbody>';}}
 function onchain(){const O=D.onchain;if(!O)return;const cov=O.coverage||{},tok=O.tokens||{};
   const mx=Math.max(...Object.values(cov));
   document.getElementById('oc-note').textContent=`Coverage is partial: CoinMetrics community data carries network activity for about a hundred large coins and a market-cap estimate `+
@@ -343,7 +418,7 @@ function useCards(){const U=D.use||[];document.getElementById('use').innerHTML=U
 function takes(){const T=D.takes||{};['b','d','g'].forEach(k=>{const e=document.getElementById('take-'+k);if(e)e.textContent=T[k]||'';});
   document.getElementById('foot').innerHTML=(D.footer||[]).map(x=>`<span>${x}</span>`).join('');}
 
-header();fams();takes();grid();winners();durable();archetypes();archOos();screen();recipes();triggerLb();cv();onchain();validation();live();useCards();
+header();fams();takes();grid();winners();durable();archetypes();archOos();screen();recipes();triggerLb();cv();paSection();onchain();validation();live();useCards();
 document.getElementById('gridtog').addEventListener('click',()=>{gridAll=!gridAll;grid();});
 pathsChart('pav','av','Abnormal log volume (z vs own baseline)',v=>v.toFixed(1),-60,30,[-60,-40,-20,0,20]);
 pathsChart('pcar','car','Median cumulative abnormal return from day −60',v=>(100*(Math.exp(v)-1)).toFixed(0)+'%',-60,30,[-60,-40,-20,0,20]);

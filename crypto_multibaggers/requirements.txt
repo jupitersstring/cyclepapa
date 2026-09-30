@@ -4,3 +4,4 @@ scipy>=1.11
 scikit-learn>=1.4
 pyarrow>=14
 requests>=2.31
+numba>=0.60

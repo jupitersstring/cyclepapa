@@ -219,6 +219,68 @@ Classifiers:
 | Multibagger vs faded pop, pre-event + day 0 | logit | symbol-grouped 5-fold | 0.70 | 34% | 6,074 |
 | Multibagger vs faded pop, pre-event + day 0 | logit | train 2017-21, test 2022+ | 0.61 | 21% | 4,376 |
 
+## Exhibit P: price-action schools (Schabacker, Japanese, Dalton)
+
+Qualitative confirmation works the way the old books describe, but only on top of a breakout. A plain 55-day breakout lost 12% a year from 2022; requiring a strong close without bearish candles and all four Ichimoku lines bullish made 19% a year with a 36% worst drawdown, and the same filters also improved 2017-21 (98% a year vs 93%). Reversal-style entries (Heikin-Ashi, Renko and three-line-break turns, trendline and head-and-shoulders breaks) lost heavily after 2021. Once a coin pops, Dalton's value migration and acceptance, a wide pop-day range and Ichimoku alignment raised the 3x odds by 1.2-1.3x in both periods.
+
+Rulebook that held up in both periods: enter on a close at a new 55-day high when that day closes strong (white marubozu or top quarter of its range), no bearish candle pattern printed in the prior five days and all four Ichimoku lines agree; exit on a close below the highest close since entry minus 3 ATR (or below Kijun-sen); 1% of equity per trade, one position per coin.
+
+Books: 1% of equity per entry, no rebalancing, 3 ATR chandelier exit, 0.25% cost per side (0.5% below $1M/day).
+
+| Entry rule | Trades 2022+ | Return/yr 2017-21 | Sharpe 2017-21 | Return/yr 2022+ | Sharpe 2022+ | Max DD 2022+ | Profit factor 2022+ |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 55-day breakout + strong candle, no bearish patterns + Ichimoku all bullish | 3,383 | 98% | 1.72 | 19% | 0.67 | -36% | 1.36 |
+| 55-day breakout + strong candle, no bearish patterns | 4,197 | 103% | 1.72 | 15% | 0.58 | -41% | 1.31 |
+| 55-day breakout + Ichimoku + value migration + volume | 5,476 | 86% | 1.49 | 15% | 0.55 | -60% | 1.36 |
+| Re-rating trigger, top-quintile follow-through score | 770 | 39% | 1.33 | 11% | 0.54 | -29% | 1.43 |
+| Schabacker: flag breakout | 550 | 26% | 1.10 | 6% | 0.42 | -23% | 1.33 |
+| 55-day breakout + Ichimoku all bullish | 7,021 | 94% | 1.59 | 5% | 0.32 | -57% | 1.39 |
+| Schabacker: six-month resistance break | 3,254 | 62% | 1.32 | 3% | 0.25 | -45% | 1.15 |
+| 55-day breakout + Schabacker pattern in the last 10 days | 7,957 | 85% | 1.51 | -3% | 0.15 | -65% | 1.31 |
+| Schabacker: triangle breakout | 748 | 41% | 1.67 | 1% | 0.14 | -29% | 1.08 |
+| 55-day breakout + volume 1.5x median | 6,892 | 96% | 1.54 | -4% | 0.12 | -71% | 1.28 |
+| Schabacker: rectangle breakout on volume | 4,196 | 79% | 1.62 | -7% | 0.01 | -68% | 1.06 |
+| 55-day breakout + value migrating higher | 7,827 | 97% | 1.61 | -9% | 0.00 | -63% | 1.31 |
+| Dalton: value moves higher with acceptance | 11,728 | 122% | 1.67 | -13% | -0.03 | -73% | 1.21 |
+| 55-day breakout (Donchian) | 8,412 | 93% | 1.56 | -12% | -0.07 | -66% | 1.30 |
+| Schabacker: double-bottom breakout | 4,713 | 97% | 1.79 | -10% | -0.10 | -72% | 1.25 |
+| Schabacker: inverse head-and-shoulders breakout | 1,656 | 45% | 1.33 | -6% | -0.12 | -59% | 0.82 |
+| Ichimoku: TK cross above the cloud | 4,833 | 66% | 1.36 | -14% | -0.24 | -68% | 1.08 |
+| Dalton: breakout from balance on volume | 1,476 | 35% | 1.11 | -11% | -0.37 | -50% | 0.70 |
+| Ichimoku: cloud breakout with all signals bullish | 5,829 | 71% | 1.39 | -20% | -0.38 | -75% | 1.08 |
+| Schabacker: falling-wedge breakout | 2,476 | 43% | 1.42 | -17% | -0.53 | -74% | 0.94 |
+| Three-line break turns white | 19,223 | 30% | 0.74 | -50% | -1.04 | -97% | 0.83 |
+| Schabacker: any breakout | 22,431 | 79% | 1.25 | -50% | -1.15 | -97% | 0.91 |
+| Heikin-Ashi turns bullish | 36,529 | 50% | 0.93 | -51% | -1.18 | -98% | 0.76 |
+| Re-rating trigger (study day 0) | 4,662 | 43% | 0.98 | -47% | -1.21 | -96% | 0.68 |
+| Schabacker: downtrend-line break | 20,832 | 75% | 1.23 | -53% | -1.34 | -98% | 0.90 |
+| Renko turns up | 14,681 | 32% | 0.75 | -67% | -1.69 | -100% | 0.80 |
+
+Once a coin pops (triggers only; base 3x rate 14.9% in 2022+), factors that lifted the rate in both periods:
+
+| Factor | School | Triggers with it 2022+ | 3x rate with | without | Lift 2017-21 | Lift 2022+ |
+|---|---|---:|---:|---:|---:|---:|
+| Pop-day range vs 20-day average range | Dalton | 1,796 | 19.9% | 13.6% | 1.23x | 1.34x |
+| Three white soldiers | Japanese | 525 | 19.2% | 14.6% | 1.09x | 1.29x |
+| Higher, non-overlapping value | Dalton | 1,152 | 19.2% | 14.3% | 1.18x | 1.29x |
+| Ichimoku: sanyaku kouten (all bullish) | Japanese | 1,486 | 18.8% | 14.1% | 1.16x | 1.26x |
+| Falling-wedge breakout | Schabacker | 183 | 18.0% | 14.8% | 1.13x | 1.21x |
+| Pop day breaks six-month resistance | Schabacker | 850 | 17.9% | 14.6% | 1.22x | 1.20x |
+| Value migration: 5-day POC vs prior value | Dalton | 1,781 | 17.9% | 14.1% | 1.25x | 1.20x |
+| Close vs 20-day value (0 = POC, +/-0.5 = VA edge) | Dalton | 1,785 | 17.8% | 14.2% | 1.20x | 1.20x |
+| Ichimoku: future cloud bullish | Japanese | 2,482 | 17.6% | 13.8% | 1.09x | 1.19x |
+| Renko turned up | Japanese | 1,712 | 17.6% | 14.2% | 1.16x | 1.18x |
+| Acceptance: closes above prior value high, 5 days | Dalton | 2,042 | 17.5% | 14.1% | 1.20x | 1.17x |
+| Ichimoku: distance above Kijun (ATR) | Japanese | 1,780 | 17.5% | 14.2% | 1.19x | 1.17x |
+| Pop day closes with all Ichimoku signals bullish | Japanese | 2,862 | 17.4% | 13.7% | 1.14x | 1.17x |
+| Up trend days, last 20 | Dalton | 2,736 | 17.4% | 13.8% | 1.05x | 1.17x |
+
+As standalone screens (3x hits vs the same-day base rate) the best 2022+ factor reached 1.17x (Renko turned up); most factors flipped between periods.
+
+Live (2026-09-30): 218 of 544 tradeable coins made a 55-day breakout in the last five days; the full rule fired on 28: SHX, CHEX, QNT, MNT, DIA, QUBIC, PAAL, ALPH, HBAR, JST, ORCA, CRO, KSM, AHT, BZZ, LINK, ONDO, ALGO, GRASS, RUNE, KAS, TRB, KAIA, CLOUD, FUN, HOT, DSYNC, CAKE.
+
+Dalton's market profile is built from intraday time-price data; here it is adapted to daily bars (value area from a 20-day volume-weighted price distribution). Windows (gaps) barely exist in a 24/7 market, so gap patterns drop out.
+
 ## Exhibit O: on-chain layer (coverage-limited; indicative)
 
 | Measure | Events covered | All re-ratings | 10x+ within 180 days | 5-10x | 3-5x | Under 2x (faded pops) |

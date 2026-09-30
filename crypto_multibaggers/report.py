@@ -222,13 +222,85 @@ def export_events() -> str:
     return str(out)
 
 
+def pa_narrative(pa: dict) -> str:
+    by = {}
+    for r in pa.get("portfolio", []):
+        by.setdefault(r["rule"], {})[r["period"]] = r
+    b, base = by.get("don+candles+sanyaku"), by.get("donchian55")
+    if not b or not base:
+        return ""
+    return (f"Qualitative confirmation works the way the old books describe, but only on top of a breakout. A plain 55-day "
+            f"breakout lost {_p(-base['test']['cagr'])} a year from 2022; requiring a strong close without bearish candles "
+            f"and all four Ichimoku lines bullish made {_p(b['test']['cagr'])} a year with a {_p(-b['test']['max_dd'])} worst "
+            f"drawdown, and the same filters also improved 2017-21 ({_p(b['train']['cagr'])} a year vs "
+            f"{_p(base['train']['cagr'])}). Reversal-style entries (Heikin-Ashi, Renko and three-line-break turns, "
+            f"trendline and head-and-shoulders breaks) lost heavily after 2021. Once a coin pops, Dalton's value migration "
+            f"and acceptance, a wide pop-day range and Ichimoku alignment raised the 3x odds by 1.2-1.3x in both periods.")
+
+
+def pa_report(pa: dict) -> list[str]:
+    by = {}
+    for r in pa.get("portfolio", []):
+        by.setdefault(r["rule"], {})[r["period"]] = r
+    trades = {r["rule"]: r for r in pa.get("trades", []) if r["exit"] == "3 ATR chandelier"}
+    rows = sorted([r for r in by if "test" in by[r] and "train" in by[r]], key=lambda r: -by[r]["test"]["sharpe"])
+    out = ["", "## Exhibit P: price-action schools (Schabacker, Japanese, Dalton)", "",
+           pa_narrative(pa), "",
+           "Rulebook that held up in both periods: enter on a close at a new 55-day high when that day closes strong (white "
+           "marubozu or top quarter of its range), no bearish candle pattern printed in the prior five days and all four "
+           "Ichimoku lines agree; exit on a close below the highest close since entry minus 3 ATR (or below Kijun-sen); "
+           "1% of equity per trade, one position per coin.", "",
+           "Books: 1% of equity per entry, no rebalancing, 3 ATR chandelier exit, 0.25% cost per side (0.5% below $1M/day).", "",
+           "| Entry rule | Trades 2022+ | Return/yr 2017-21 | Sharpe 2017-21 | Return/yr 2022+ | Sharpe 2022+ | Max DD 2022+ | Profit factor 2022+ |",
+           "|---|---:|---:|---:|---:|---:|---:|---:|"]
+    for r in rows:
+        a, b, t = by[r]["train"], by[r]["test"], trades.get(r, {})
+        out.append(f"| {b['label']} | {b['trades']:,} | {_p(a['cagr'])} | {_f(a['sharpe'])} | {_p(b['cagr'])} | "
+                   f"{_f(b['sharpe'])} | {_p(b['max_dd'])} | {_f(t.get('pf_test'))} |")
+    fi = pa.get("follow_info", {})
+    out += ["", f"Once a coin pops (triggers only; base 3x rate {_p(fi.get('base_test'), 1)} in 2022+), factors that lifted "
+            "the rate in both periods:", "",
+            "| Factor | School | Triggers with it 2022+ | 3x rate with | without | Lift 2017-21 | Lift 2022+ |",
+            "|---|---|---:|---:|---:|---:|---:|"]
+    for r in [r for r in pa.get("follow", []) if r.get("consistent") and r["lift_test"] > 1][:14]:
+        out.append(f"| {r['label']} | {r['group']} | {r['n_test']:,} | {_p(r['hit_test'], 1)} | {_p(r['hit_off_test'], 1)} | "
+                   f"{_f(r['lift_train'])}x | {_f(r['lift_test'])}x |")
+    sc = pa.get("screen", [])
+    if sc:
+        out += ["", f"As standalone screens (3x hits vs the same-day base rate) the best 2022+ factor reached "
+                f"{_f(sc[0]['lift_test'])}x ({sc[0]['label']}); most factors flipped between periods."]
+    lv = pa.get("live")
+    if lv:
+        out += ["", f"Live ({lv['asof']}): {lv['n_breakout']:,} of {lv['n']:,} tradeable coins made a 55-day breakout in the "
+                f"last five days; the full rule fired on {lv['n_fired']}: "
+                + ", ".join(f"{r['symbol'][:-3]}" for r in lv["fired"]) + "."]
+    out += ["", "Dalton's market profile is built from intraday time-price data; here it is adapted to daily bars (value area "
+            "from a 20-day volume-weighted price distribution). Windows (gaps) barely exist in a 24/7 market, so gap "
+            "patterns drop out."]
+    return out
+
+
 def main():
     print(export_events())
     a = json.loads((DATA_DIR / "atlas.json").read_text())
     nar = narrative(a)
-    print(write_report(a, nar))
+    pa_path = DATA_DIR / "pa_atlas.json"
+    pa = json.loads(pa_path.read_text()) if pa_path.exists() else None
+    if pa:
+        nar["takes"]["p"] = pa_narrative(pa)
+    path = write_report(a, nar)
+    if pa:
+        txt = open(path).read().rstrip("\n").split("\n")
+        cut = txt.index("## Exhibit O: on-chain layer (coverage-limited; indicative)") if \
+            "## Exhibit O: on-chain layer (coverage-limited; indicative)" in txt else len(txt)
+        txt = txt[:cut] + pa_report(pa)[1:] + [""] + txt[cut:]
+        open(path, "w").write("\n".join(txt) + "\n")
+    print(path)
     from . import atlas_page
-    print(atlas_page.build(extra=nar))
+    extra = dict(nar)
+    if pa:
+        extra["pa"] = pa
+    print(atlas_page.build(extra=extra))
 
 
 if __name__ == "__main__":

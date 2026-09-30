@@ -1,0 +1,545 @@
+symbol,name,last_date,close,usd_vol_7d,breakout_55,strong_candle,no_bear_candles,sanyaku,value_up,higher_value,accept,otf,pattern,kijun_dist_atr,best_rule_fired,rules_fired,checks
+SHXUSD,Stronghold Token,2026-09-30,0.006013600000000002,1910902.0,True,True,True,True,True,True,True,True,True,4.976246262184312,True,"sch_dbl_bo, sch_any_bo, tlb_turn, renko_turn, donchian55, ichi_tk_cross, dal_value_up, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",9
+CHEXUSD,Chintai,2026-09-30,0.018281679999999998,446018.14285714284,True,True,True,True,True,True,True,True,True,0.9343231635504968,True,"sch_rect_bo, sch_wedge_bo, sch_dbl_bo, sch_dtl_bo, sch_any_bo, renko_turn, donchian55, ichi_kumo_sanyaku, ichi_tk_cross, dal_value_up, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",9
+QNTUSD,Quant,2026-09-30,288.99,665119624.8571428,True,False,True,True,True,True,True,True,True,2.3309521504708743,True,"donchian55, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",8
+MNTUSD,Mantle,2026-09-30,0.6953,45172515.28571428,True,True,True,True,True,True,True,False,True,1.930943970512267,True,"donchian55, don+sanyaku, don+value, don+candles, don+pattern, don+candles+sanyaku",8
+DIAUSD,DIA,2026-09-30,0.16572999999999996,2772718.5714285714,True,True,True,True,True,True,True,False,True,3.1636340582007216,True,"donchian55, don+sanyaku, don+value, don+candles, don+pattern, don+candles+sanyaku",8
+QUBICUSD,Qubic,2026-09-30,6.873640000000006e-07,2051187.142857143,True,True,True,True,True,True,True,False,True,6.236508610235295,True,"renko_turn, donchian55, ichi_tk_cross, dal_value_up, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",8
+PAALUSD,PAAL AI,2026-09-30,0.012031450000000006,682445.7142857143,True,True,True,True,True,True,True,False,True,3.6444868043233876,True,"donchian55, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",8
+ALPHUSD,Alephium,2026-09-30,0.07059908,135411.85714285713,True,True,True,True,True,True,True,False,True,3.3180809047621156,True,"sch_dtl_bo, sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+candles, don+pattern, don+candles+sanyaku",8
+HBARUSD,Hedera,2026-09-30,0.10833999999999998,381219735.4285714,True,True,False,True,True,True,True,False,True,0.8469356328918972,True,"sch_flag_bo, sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",7
+JSTUSD,JUST,2026-09-30,0.13280999999999998,45672892.71428572,True,True,False,True,True,True,True,False,True,3.196007644935226,True,"donchian55, dal_value_up, don+sanyaku, don+value, don+candles, don+pattern, don+candles+sanyaku",7
+ORCAUSD,Orca,2026-09-30,1.63609,17762233.0,True,True,False,True,True,True,True,False,True,0.790760419853262,True,"donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",7
+CROUSD,Cronos,2026-09-30,0.06671,16972488.714285713,True,False,True,True,True,True,True,False,True,0.6895316790723235,True,"donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",7
+KSMUSD,Kusama,2026-09-30,5.12695,7335944.428571428,True,False,True,True,True,True,True,False,True,1.87185282278843,True,"sch_dtl_bo, sch_any_bo, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",7
+AHTUSD,AhaToken,2026-09-30,0.0011871099999999997,229760.14285714287,True,False,True,True,True,True,True,False,True,0.9978117161703189,True,"donchian55, don+sanyaku, don+value, don+candles, don+pattern, don+candles+sanyaku",7
+BZZUSD,Swarm,2026-09-30,0.06690585999999998,125463.14285714286,True,False,False,True,True,True,True,True,True,3.0270343489964926,True,"renko_turn, donchian55, ichi_kumo_sanyaku, dal_value_up, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",7
+LINKUSD,Chainlink,2026-09-30,14.332999999999998,724604888.1428572,True,False,False,True,True,True,True,False,True,1.380630705444308,True,"donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",6
+ONDOUSD,Ondo,2026-09-30,0.49536,497032951.71428573,True,False,False,True,True,True,True,False,True,0.6868106722804452,True,"donchian55, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",6
+ALGOUSD,Algorand,2026-09-30,0.12388999999999999,155320226.2857143,True,False,False,True,True,True,True,False,True,1.1937262459183102,True,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",6
+GRASSUSD,Grass,2026-09-30,0.68922,59844356.85714286,True,False,False,True,True,True,True,False,True,2.1504666729518256,True,"sch_res_bo, sch_any_bo, tlb_turn, donchian55, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",6
+RUNEUSD,THORChain,2026-09-30,0.80106,43976804.571428575,True,False,False,True,True,True,True,False,True,2.591702821901107,True,"donchian55, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",6
+KASUSD,Kaspa,2026-09-30,0.043565650000000004,30390098.42857143,True,False,False,True,True,True,True,False,True,1.205271841698887,True,"donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",6
+TRBUSD,Tellor,2026-09-30,21.19,25060956.285714287,True,False,True,True,True,False,True,False,True,1.8184222121159386,True,"donchian55, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",6
+KAIAUSD,Kaia,2026-09-30,0.03427724,7625413.571428572,True,False,False,True,True,True,True,False,True,1.2926391744418149,True,"donchian55, don+sanyaku, don+value, don+candles, don+pattern, don+candles+sanyaku",6
+CLOUDUSD,Cloud,2026-09-30,0.07264470999999999,1479645.857142857,True,False,False,True,True,True,True,False,True,1.0639458184726192,True,"donchian55, don+sanyaku, don+value, don+volume, don+candles, don+pattern, don+all3, don+candles+sanyaku",6
+FUNUSD,FUNToken,2026-09-30,0.007225729999999998,632613.7142857143,True,True,False,True,True,True,True,False,False,0.8402923358332347,True,"donchian55, don+sanyaku, don+value, don+candles, don+candles+sanyaku",6
+HOTUSD,Holo,2026-09-30,0.00044185903100000005,3532405.8571428573,True,False,False,True,True,False,True,False,True,0.8204297663985417,True,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+candles, don+pattern, don+candles+sanyaku",5
+DSYNCUSD,Destra Network,2026-09-30,0.009669400000000003,1156675.2857142857,True,False,False,True,True,True,True,False,False,3.584850842215738,True,"donchian55, don+sanyaku, don+value, don+candles, don+pattern, don+candles+sanyaku",5
+CAKEUSD,PancakeSwap,2026-09-30,2.59629,78304166.85714285,True,False,False,True,True,False,True,False,False,1.2759350075447298,True,"donchian55, don+sanyaku, don+value, don+candles, don+candles+sanyaku",4
+PONDUSD,Marlin,2026-09-30,0.0017700000000000007,6356780.428571428,True,False,True,True,True,True,True,True,True,0.1375883747438818,False,"renko_turn, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",8
+TELUSD,Telcoin,2026-09-30,0.0023869300000000006,2718774.285714286,True,True,False,True,True,True,True,True,True,2.355440814579226,False,"tlb_turn, ha_turn, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",8
+LCXUSD,LCX,2026-09-30,0.05340000000000001,823378.1428571428,True,True,False,True,True,True,True,True,True,3.2257556413503488,False,"sch_dtl_bo, sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",8
+PIVXUSD,PIVX,2026-09-30,0.06487842,646092.5714285715,True,False,True,True,True,True,True,True,True,2.6592743793608244,False,"sch_dtl_bo, sch_any_bo, tlb_turn, renko_turn, donchian55, ichi_kumo_sanyaku, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",8
+DIMOUSD,DIMO,2026-09-30,0.01761459,554023.5714285715,True,True,False,True,True,True,True,True,True,2.8334163870105953,False,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",8
+AAVEUSD,Aave,2026-09-30,158.80739,437312503.71428573,True,False,True,True,True,True,True,False,True,1.3060551880216391,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+FETUSD,Fetch.ai,2026-09-30,0.22758000000000003,205092573.85714287,True,True,False,True,True,True,True,False,True,1.2044991357738069,False,"donchian55, don+sanyaku, don+value, don+pattern",7
+GALAUSD,Gala,2026-09-30,0.002325999999999999,41157703.428571425,True,True,False,True,True,True,True,False,True,1.980452751842085,False,"donchian55, don+sanyaku, don+value, don+pattern",7
+MOVRUSD,Moonriver,2026-09-30,1.9579,38192200.14285714,True,True,False,True,True,True,True,False,True,4.04539553582646,False,"tlb_turn, donchian55, ichi_kumo_sanyaku, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+JASMYUSD,JasmyCoin,2026-09-30,0.004982799999999999,26889092.57142857,True,False,False,True,True,True,True,True,True,1.277735293204691,False,"donchian55, ichi_tk_cross, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+XDCUSD,XDC Network,2026-09-30,0.03440415,17631738.0,True,True,False,True,True,True,True,False,True,1.3330806592563935,False,"sch_dbl_bo, sch_res_bo, sch_any_bo, renko_turn, donchian55, ichi_tk_cross, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+WAXPUSD,WAX,2026-09-30,0.006230030000000001,16502220.285714285,True,False,True,True,True,True,True,False,True,0.8603446745978348,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+ALICEUSD,MyNeighborAlice,2026-09-30,0.16402000000000003,15264906.285714285,True,False,True,True,True,True,True,False,True,1.4168534503314452,False,"sch_res_bo, sch_any_bo, renko_turn, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+GASUSD,Gas,2026-09-30,1.41951,5882060.285714285,True,False,True,True,True,True,True,False,True,0.44688767192006984,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+AEVOUSD,Aevo,2026-09-30,0.025733459999999996,3438415.0,True,False,True,True,True,True,True,False,True,0.9912576325122927,False,"sch_dbl_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+pattern",7
+WOOUSD,WOO Network,2026-09-30,0.013940000000000001,2155657.285714286,True,True,False,True,True,True,True,False,True,2.6141286123904233,False,"sch_dtl_bo, sch_any_bo, donchian55, ichi_tk_cross, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+BANDUSD,Band Protocol,2026-09-30,0.21778,1878859.142857143,True,False,True,True,True,True,True,False,True,1.1730322683961907,False,"donchian55, don+sanyaku, don+value, don+pattern",7
+SBDUSD,Steem Dollars,2026-09-30,0.59234,1228809.7142857143,True,False,True,True,True,True,True,False,True,1.09288789392113,False,"sch_res_bo, sch_any_bo, renko_turn, donchian55, don+sanyaku, don+value, don+pattern",7
+AVTUSD,Aventus,2026-09-30,0.3115299999999999,851186.8571428572,False,False,True,True,True,True,True,True,True,0.4857875859956331,False,"tlb_turn, renko_turn, ichi_kumo_sanyaku, ichi_tk_cross, dal_value_up",7
+NOSUSD,Nosana,2026-09-30,0.5028,783704.0,True,True,False,True,True,True,True,False,True,2.4846341489395707,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+BALUSD,Balancer,2026-09-30,0.13382999999999998,723864.2857142857,True,True,True,False,True,True,True,False,True,-0.5815268614514645,False,"sch_rect_bo, sch_any_bo, tlb_turn, renko_turn, donchian55, ichi_kumo_sanyaku, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+TORNUSD,Tornado Cash,2026-09-30,7.18402,246290.42857142858,True,False,True,True,True,True,True,False,True,0.7439123389442917,False,"sch_dtl_bo, sch_any_bo, tlb_turn, donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",7
+HTRUSD,Hathor,2026-09-30,0.008204590000000001,208842.14285714287,True,False,True,True,True,True,True,False,True,0.5773683911586487,False,"sch_res_bo, sch_any_bo, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+ASMUSD,Assemble Protocol,2026-09-30,0.006110000000000001,193766.0,True,True,False,True,True,True,True,False,True,0.48672566371681447,False,"sch_rect_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",7
+IXSUSD,IX Swap,2026-09-30,0.08733932,171914.57142857142,True,False,True,True,True,True,True,False,True,3.181183001742445,False,"donchian55, don+sanyaku, don+value, don+pattern",7
+NEARUSD,NEAR Protocol,2026-09-30,5.3308,1562409545.142857,True,True,False,True,True,True,True,False,False,2.7859166329421288,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+WLDUSD,Worldcoin,2026-09-30,0.5348,566520029.8571428,True,False,False,True,True,True,True,False,True,1.41542052987425,False,"sch_dbl_bo, sch_any_bo, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+XLMUSD,Stellar,2026-09-30,0.22637999999999997,418788903.5714286,True,False,False,True,True,True,True,False,True,1.5133986130954444,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+FILUSD,Filecoin,2026-09-30,1.04,194288336.0,True,False,False,True,True,True,True,False,True,0.46162915632636453,False,"sch_dtl_bo, sch_any_bo, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+VIRTUALUSD,Virtuals Protocol,2026-09-30,0.79466,147637402.2857143,True,False,False,True,True,True,True,False,True,1.5556262716849416,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+SEIUSD,Sei,2026-09-30,0.07289000000000001,138049842.0,True,False,False,True,True,True,True,False,True,1.7048704141857396,False,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+TONUSD,Toncoin,2026-09-30,1.5157,127549248.0,True,False,False,True,True,True,True,False,True,-0.08049600428071021,False,"sch_dbl_bo, sch_any_bo, donchian55, ichi_kumo_sanyaku, dal_value_up, don+sanyaku, don+value, don+pattern",6
+ICPUSD,Internet Computer,2026-09-30,3.33406,118555862.14285715,True,False,False,True,True,True,True,False,True,1.528522791837977,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+LDOUSD,Lido DAO,2026-09-30,0.44857,91473564.57142857,True,False,False,True,True,True,True,False,True,0.819385201799535,False,"sch_res_bo, sch_any_bo, donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",6
+CRVUSD,Curve DAO Token,2026-09-30,0.3933,90283802.0,True,False,True,True,True,False,True,False,True,1.175680214981526,False,"sch_rect_bo, sch_dtl_bo, sch_res_bo, sch_any_bo, tlb_turn, donchian55, ichi_tk_cross, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+WUSD,Wormhole,2026-09-30,0.013360000000000006,84131898.42857143,True,False,False,True,True,True,True,False,True,0.8298313548169507,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+JUPUSD,Jupiter,2026-09-30,0.32610000000000006,82406704.57142857,True,False,False,True,True,True,True,False,True,1.2915040859898417,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+ARKUSD,Ark,2026-09-30,0.25675,66238874.14285714,True,False,False,True,True,True,True,False,True,0.11615074766870803,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+RNDRUSD,Render,2026-09-30,1.9093,62937552.0,True,False,False,True,True,True,True,False,True,1.8298824846110788,False,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+pattern",6
+GRTUSD,The Graph,2026-09-30,0.029224999999999998,52239420.428571425,True,False,False,True,True,True,True,False,True,0.9488872486882838,False,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+NMRUSD,Numeraire,2026-09-30,10.989999999999998,48009088.428571425,True,False,False,True,True,True,True,False,True,-1.1316526610644275,False,"sch_dbl_bo, sch_res_bo, sch_any_bo, donchian55, ichi_tk_cross, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+EIGENUSD,EigenLayer,2026-09-30,0.24214999999999998,39622714.71428572,True,False,False,True,True,True,True,False,True,0.2975616808018484,False,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+AMPUSD,Amp,2026-09-30,0.0006307999999999998,31450133.285714287,True,False,False,True,True,True,True,False,True,-0.31554698457934993,False,"sch_tri_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+SKYUSD,Sky,2026-09-30,0.07714185,28462851.0,True,False,False,True,True,True,True,False,True,0.9272585060617916,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+AUDIOUSD,Audius,2026-09-30,0.017607,28164211.0,True,False,False,True,True,True,True,False,True,0.5073469552041534,False,"sch_dbl_bo, sch_any_bo, renko_turn, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+IMXUSD,Immutable,2026-09-30,0.1649,17876846.714285713,True,False,False,True,True,True,True,False,True,0.8435808116842243,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+WINUSD,WINkLink,2026-09-30,4.7467439999999975e-05,16920481.42857143,True,False,True,False,True,True,True,False,True,2.92807407345699,False,"donchian55, dal_value_up, don+value, don+pattern",6
+SNXUSD,Synthetix,2026-09-30,0.25008,16620071.42857143,True,False,False,True,True,True,True,False,True,0.7746188710341987,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+GLMRUSD,Moonbeam,2026-09-30,0.009262380000000004,15594698.142857144,False,False,False,True,True,True,True,True,True,1.1837340428367027,False,"sch_dbl_bo, sch_any_bo, renko_turn, ichi_kumo_sanyaku, dal_value_up",6
+BLURUSD,Blur,2026-09-30,0.021051200000000003,14446921.857142856,False,False,True,True,True,True,True,False,True,1.114339015744858,False,,6
+BLASTUSD,Blast,2026-09-30,0.00042758000200000004,13754426.857142856,False,True,True,True,True,False,True,False,True,0.27803514714619937,False,,6
+ZKUSD,zkSync,2026-09-30,0.011952229999999998,13033091.857142856,True,False,False,True,True,True,True,False,True,0.9526345661723474,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+HIGHUSD,Highstreet,2026-09-30,0.035930000000000004,12201615.857142856,True,True,False,True,True,False,True,False,True,0.10304424643008335,False,"sch_dbl_bo, sch_dtl_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+pattern",6
+LPTUSD,Livepeer,2026-09-30,1.776,12191156.714285715,True,False,False,True,True,True,True,False,True,1.6175675157689406,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",6
+SUPERUSD,SuperVerse,2026-09-30,0.1966,12054263.714285715,True,False,False,True,True,True,True,False,True,2.1448533620660633,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+CFXUSD,Conflux,2026-09-30,0.05478968,12022575.285714285,True,False,False,True,True,True,True,False,True,1.4108506904006706,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+AXLUSD,Axelar,2026-09-30,0.050316709999999994,11486607.42857143,True,False,False,True,True,True,True,False,True,0.07726262314790018,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+XVGUSD,Verge,2026-09-30,0.003231650000000001,11158087.42857143,True,False,False,True,True,True,True,False,True,0.4340622392183263,False,"sch_dtl_bo, sch_any_bo, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+SPELLUSD,Spell Token,2026-09-30,9.682079599999999e-05,11034139.142857144,True,False,False,True,True,True,True,False,True,-1.2300376396448098,False,"sch_dbl_bo, sch_any_bo, renko_turn, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+API3USD,API3,2026-09-30,0.28572,10599364.285714285,True,False,False,True,True,True,True,False,True,1.1651616661811812,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+TAIKOUSD,Taiko,2026-09-30,0.08931304999999999,10341233.42857143,True,False,True,True,True,False,True,False,True,-0.8289246827269691,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+TRACUSD,OriginTrail,2026-09-30,0.41595,10034745.42857143,True,False,False,True,True,True,True,False,True,1.2396178195969092,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+TLMUSD,Alien Worlds,2026-09-30,0.0015182400000000003,8887268.42857143,True,False,True,False,True,True,True,False,True,-0.3207892500143363,False,"sch_rect_bo, sch_any_bo, renko_turn, donchian55, dal_value_up, don+value, don+volume, don+pattern",6
+UMAUSD,UMA,2026-09-30,0.4093,7536140.142857143,True,False,False,True,True,True,True,False,True,0.7227361246348588,False,"tlb_turn, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+BATUSD,Basic Attention Token,2026-09-30,0.08898568999999999,7231116.285714285,True,False,False,True,True,True,True,False,True,0.9244826339424258,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+ZIGUSD,Zigcoin,2026-09-30,0.05666365999999999,6994109.428571428,True,True,False,True,True,False,True,False,True,2.3522391564902536,False,"sch_dtl_bo, sch_any_bo, tlb_turn, donchian55, don+sanyaku, don+value, don+pattern",6
+CBKUSD,Cobak Token,2026-09-30,0.21283000000000002,6302141.714285715,True,False,False,True,True,True,True,False,True,-0.09019078820582035,False,"sch_dtl_bo, sch_any_bo, tlb_turn, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+DYDXUSD,dYdX,2026-09-30,0.1441,6227337.857142857,True,False,False,True,True,True,True,False,True,1.5858646201920863,False,"sch_dbl_bo, sch_dtl_bo, sch_any_bo, tlb_turn, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+NOTUSD,Notcoin,2026-09-30,0.0004901224889999998,6170162.285714285,True,False,False,True,True,True,True,False,True,0.5096314534806397,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",6
+ROSEUSD,Oasis Network,2026-09-30,0.008908359999999999,5660145.285714285,True,False,False,True,True,True,True,False,True,1.6800984569254882,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+FLUXUSD,Flux,2026-09-30,0.07435168,5313026.428571428,True,True,False,True,True,True,True,False,False,2.275592464730021,False,"donchian55, don+sanyaku, don+value",6
+YGGUSD,Yield Guild Games,2026-09-30,0.026285,5214463.428571428,True,False,False,True,True,True,True,False,True,0.8631268337404352,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+IDUSD,SPACE ID,2026-09-30,0.03695231999999999,5156625.142857143,True,False,False,True,True,True,True,False,True,0.5771594865273079,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+YFIUSD,yearn.finance,2026-09-30,2436.2400000000002,4928173.428571428,True,False,False,True,True,True,True,False,True,1.7658643869748576,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",6
+ZRXUSD,0x Protocol,2026-09-30,0.12132,4694871.571428572,True,False,False,True,True,True,True,False,True,0.9914166782478637,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+ETHDYDXUSD,dYdX (ethDYDX),2026-09-30,0.1439,4405491.285714285,True,False,False,True,True,True,True,False,True,1.7619119044047793,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",6
+VELOUSD,Velo,2026-09-30,0.005341580000000001,4273138.428571428,True,True,False,True,False,False,True,True,True,2.0421903241164054,False,"sch_dtl_bo, sch_res_bo, sch_any_bo, tlb_turn, renko_turn, donchian55, ichi_tk_cross, don+sanyaku, don+pattern",6
+STPTUSD,STP,2026-09-30,0.07255762999999998,3727434.1428571427,True,False,False,True,True,True,True,False,True,1.4334422138122707,False,"sch_dbl_bo, sch_res_bo, sch_any_bo, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+CTCUSD,Creditcoin,2026-09-30,0.11390000000000003,2975131.4285714286,True,False,False,True,True,True,True,False,True,0.8429350104821822,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+BNTUSD,Bancor,2026-09-30,0.34435,2924673.5714285714,True,False,False,True,True,True,True,False,True,0.8553329689057513,False,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+XYOUSD,XYO,2026-09-30,0.00361356,2808013.714285714,True,False,True,True,True,False,True,False,True,0.4094402536216786,False,"sch_dtl_bo, sch_any_bo, renko_turn, donchian55, ichi_tk_cross, don+sanyaku, don+pattern",6
+LISTAUSD,Lista DAO,2026-09-30,0.08741484999999999,2649577.4285714286,True,False,False,True,True,True,True,False,True,1.3375388274492015,False,"tlb_turn, donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",6
+ASTRUSD,Astar,2026-09-30,0.007210009999999999,2451837.8571428573,True,False,False,True,True,True,True,False,True,0.18720462957580852,False,"donchian55, ichi_tk_cross, dal_value_up, don+sanyaku, don+value, don+pattern",6
+MAVUSD,Maverick Protocol,2026-09-30,0.011436399999999998,2451763.4285714286,True,False,False,True,True,True,True,False,True,0.14007818282302334,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+MNDEUSD,Marinade,2026-09-30,0.025959999999999997,1999161.857142857,True,False,False,True,True,True,True,False,True,-1.023118887957172,False,"donchian55, ichi_tk_cross, dal_value_up, don+value, don+pattern",6
+DKAUSD,dKargo,2026-09-30,0.004184899999999999,1945164.5714285714,True,False,False,True,True,True,True,False,True,0.10590340703152971,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",6
+CTXUSD,Cryptex Finance,2026-09-30,0.6323,1871533.5714285714,True,False,False,True,True,True,True,False,True,0.22783687943262262,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",6
+LAZIOUSD,S.S. Lazio Fan Token,2026-09-30,0.4074,1325844.857142857,True,False,False,True,True,True,True,False,True,1.2652179604660265,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",6
+SWFTCUSD,SwftCoin,2026-09-30,0.0030889999999999997,1139537.857142857,True,False,False,True,True,True,True,False,True,0.5865249745807014,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+PRIMEUSD,Echelon Prime,2026-09-30,0.23872000000000002,1119713.2857142857,True,False,True,False,True,True,True,False,True,-2.0943332772826637,False,"sch_rect_bo, sch_dbl_bo, sch_any_bo, renko_turn, donchian55, ichi_kumo_sanyaku, dal_balance_bo, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+TKOUSD,Toko Token,2026-09-30,0.059414230000000005,1028427.5714285715,True,False,False,True,True,True,True,False,True,1.1825285905126408,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+NAKAUSD,Nakamoto Games,2026-09-30,0.12310999999999997,1013371.1428571428,True,False,False,True,True,True,True,False,True,1.6199415648652968,False,"sch_dtl_bo, sch_res_bo, sch_any_bo, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+POKTUSD,Pocket Network,2026-09-30,0.008802860000000001,650757.4285714285,True,False,False,True,True,True,True,False,True,0.493026668862856,False,"sch_dtl_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+pattern",6
+ABTUSD,Arcblock,2026-09-30,0.312,587100.5714285715,True,False,False,True,True,True,True,False,True,0.16228537449518102,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+RIOUSD,Realio Network,2026-09-30,0.07479735000000001,469966.4285714286,True,False,False,True,True,True,True,False,True,1.574721347517479,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+INFUSD,Sanctum Infinity (INF),2026-09-30,171.23425999999998,436849.85714285716,True,False,False,True,True,True,True,False,True,1.483745688294041,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+FORTUSD,Forta,2026-09-30,0.015624109999999997,423097.4285714286,True,False,False,True,True,True,True,False,True,-0.1074920820876629,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+MKRUSD,Maker,2026-09-30,1784.1387200000004,412950.85714285716,True,False,False,True,True,True,True,False,True,0.6537201630983699,False,"sch_res_bo, sch_any_bo, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+MOCUSD,Moss Coin,2026-09-30,0.02244462,405043.14285714284,True,False,False,True,True,True,True,False,True,1.1311360738863638,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",6
+SHPINGUSD,SHPING,2026-09-30,0.0006779007850000002,391674.4285714286,True,False,False,True,True,True,True,False,True,-0.4351290629423275,False,"sch_dbl_bo, sch_dtl_bo, sch_any_bo, donchian55, ichi_kumo_sanyaku, ichi_tk_cross, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+EOSUSD,EOS,2026-09-30,0.09665929,237349.7142857143,True,False,False,True,True,True,True,False,True,1.143085377036365,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+UPPUSD,Sentinel Protocol,2026-09-30,0.014580990000000005,195839.14285714287,True,False,False,True,True,True,True,False,True,1.2142402651389108,False,"donchian55, don+sanyaku, don+value, don+pattern",6
+MVLUSD,MVL,2026-09-30,0.0011346900000000003,182092.0,True,True,False,True,True,True,True,False,False,1.4704029906684166,False,"donchian55, don+sanyaku, don+value",6
+CREOUSD,Creo Engine,2026-09-30,0.0037414500000000008,179409.0,True,True,False,True,True,False,True,False,True,3.0034926780826305,False,"sch_flag_bo, sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+pattern",6
+POLSUSD,Polkastarter,2026-09-30,0.06568138999999999,118940.85714285714,True,False,True,True,True,False,True,False,True,0.00907852402692329,False,"sch_rect_bo, sch_any_bo, donchian55, ichi_tk_cross, don+sanyaku, don+value, don+volume, don+pattern, don+all3",6
+SOLUSD,Solana,2026-09-30,118.05999999999999,2915513009.0,False,False,False,True,True,True,True,False,True,1.4020175830031982,False,,5
+SUIUSD,Sui,2026-09-30,1.1603,1243369554.142857,True,False,False,True,True,True,True,False,False,1.989320371926225,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+AVAXUSD,Avalanche,2026-09-30,10.931000000000001,687902435.8571428,True,False,False,True,True,False,True,False,True,1.6745726415916538,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+TAOUSD,Bittensor,2026-09-30,301.49559999999997,347496068.5714286,True,False,False,True,True,False,True,False,True,1.0058775500054293,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+DOTUSD,Polkadot,2026-09-30,1.22813,198394729.57142857,True,False,False,True,True,False,True,False,True,1.5225929259860207,False,"sch_dtl_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+pattern",5
+RAYUSD,Raydium,2026-09-30,1.9673,86148220.85714285,True,False,False,True,True,True,True,False,False,1.5779975426666417,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+APTUSD,Aptos,2026-09-30,0.7673,83741881.14285715,False,False,False,True,True,True,True,False,True,0.8454519432828109,False,,5
+ETHFIUSD,ether.fi,2026-09-30,0.762,66747991.85714286,True,False,False,True,True,False,True,False,True,0.38423432577990047,False,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+PYTHUSD,Pyth Network,2026-09-30,0.07677269000000002,43061348.28571428,True,False,False,True,True,True,True,False,False,1.033396735538555,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+COMPUSD,Compound,2026-09-30,24.552280000000007,39275301.14285714,True,False,False,True,True,True,True,False,False,1.219094075518182,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+IOUSD,io.net,2026-09-30,0.16155,34254174.0,True,False,False,True,True,True,True,False,False,1.1220678947589269,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+CHZUSD,Chiliz,2026-09-30,0.016124019999999996,32508188.57142857,False,False,True,True,True,False,True,False,True,0.7332152597437848,False,,5
+STXUSD,Stacks,2026-09-30,0.36179,32423149.714285713,True,True,False,True,True,False,True,False,False,1.4603652449045426,False,"tlb_turn, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+ARKMUSD,Arkham,2026-09-30,0.13127999999999998,29601745.42857143,True,False,False,True,True,True,True,False,False,1.0221209138475864,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+APEUSD,ApeCoin,2026-09-30,0.14977,23752920.42857143,True,False,False,True,True,False,True,False,True,0.31913852178169205,False,"renko_turn, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+PROMUSD,Prom,2026-09-30,6.46659,21532670.714285713,False,False,True,False,True,True,True,False,True,1.7128376063269946,False,"sch_dbl_bo, sch_any_bo, dal_value_up",5
+GOMININGUSD,Gomining,2026-09-30,0.39007,20225606.57142857,True,True,False,True,False,False,True,False,True,2.5585958214020588,False,"sch_res_bo, sch_any_bo, ha_turn, donchian55, don+sanyaku, don+pattern",5
+SUSHIUSD,SushiSwap,2026-09-30,0.26853,19696380.285714287,True,False,False,True,True,False,True,False,True,1.5228165686551443,False,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+pattern",5
+MEWUSD,Cats in a Dog World,2026-09-30,0.0004965620940000003,18735270.0,False,False,True,True,True,False,True,False,True,0.721077750221883,False,,5
+VETUSD,VeChain,2026-09-30,0.008795999999999998,17439958.57142857,False,False,True,True,True,False,True,False,True,0.6823118432838922,False,,5
+CGLDUSD,Celo,2026-09-30,0.09951603000000002,15986468.857142856,True,False,False,True,True,True,True,False,False,0.4572515082305243,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+ATHUSD,Aethir,2026-09-30,0.005948010000000002,14965321.285714285,True,False,False,True,True,True,True,False,False,1.475160107694573,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+CPOOLUSD,Clearpool,2026-09-30,0.0357369,12743618.42857143,True,False,False,True,True,False,True,False,True,1.0288860056410516,False,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+C98USD,Coin98,2026-09-30,0.01617800000000001,10679644.285714285,False,False,True,True,True,False,True,False,True,0.3544837214724815,False,,5
+TUSD,Threshold,2026-09-30,0.005520499999999999,9997168.714285715,True,False,False,True,True,True,True,False,False,0.7431830947644601,False,"donchian55, dal_value_up, don+sanyaku, don+value",5
+SCUSD,Siacoin,2026-09-30,0.0010507000000000001,9587712.857142856,True,False,False,True,True,False,True,False,True,0.23835328607792752,False,"sch_res_bo, sch_any_bo, donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+RPLUSD,Rocket Pool,2026-09-30,1.943,9248404.0,False,False,False,True,True,True,True,False,True,0.3469491603830312,False,,5
+ACHUSD,Alchemy Pay,2026-09-30,0.006023,8346402.714285715,True,False,False,True,True,False,True,False,True,0.9367032104910764,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+MPLXUSD,Metaplex,2026-09-30,0.05514,7686763.142857143,True,False,False,True,True,False,True,False,True,0.9790848739271979,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+GMTUSD,GMT,2026-09-30,0.008590000000000002,7149875.0,True,False,False,True,True,False,True,False,True,1.1294990681156534,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+ENJUSD,Enjin Coin,2026-09-30,0.029160969999999998,7026196.428571428,True,False,False,False,True,True,True,False,True,0.5942672413075564,False,"sch_rect_bo, sch_any_bo, donchian55, don+volume, don+pattern",5
+ALTUSD,Altlayer,2026-09-30,0.007700000000000002,6715413.571428572,True,False,False,False,True,True,True,False,True,-0.46967043464416225,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+ENAUSD,Ethena,2026-09-30,0.26135,6653130.428571428,True,False,False,True,True,True,True,False,False,2.044296740057285,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+ARPAUSD,ARPA,2026-09-30,0.01105111,6530300.857142857,True,False,False,True,True,False,True,False,True,0.8189103424500728,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+BEAMUSD,Beam,2026-09-30,0.001957000000000001,6286147.714285715,True,False,False,False,True,True,True,False,True,1.1112609733356058,False,"sch_res_bo, sch_any_bo, donchian55, dal_value_up, don+value, don+pattern",5
+THEUSD,THENA,2026-09-30,0.07563744,6243930.0,False,False,False,True,True,True,True,False,True,-0.16278065479076198,False,,5
+AGIUSD,Delysium,2026-09-30,0.006854930000000002,5945530.857142857,False,False,False,True,True,True,True,False,True,1.1636978109272362,False,"sch_dtl_bo, sch_any_bo, dal_value_up",5
+RSRUSD,Reserve Rights,2026-09-30,0.0016812599999999995,5749404.714285715,False,False,True,True,True,False,True,False,True,0.9006494103487716,False,,5
+AIXBTUSD,aixbt,2026-09-30,0.02277231,5605084.571428572,True,False,False,True,True,False,True,False,True,0.3541850729106275,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+CGPTUSD,ChainGPT,2026-09-30,0.022564959999999995,5408291.428571428,False,False,True,True,True,False,True,False,True,1.49487346418519,False,,5
+FLRUSD,Flare,2026-09-30,0.007397,5127167.0,False,False,False,True,True,True,True,False,True,1.4412241895799522,False,"sch_dtl_bo, sch_any_bo, ichi_tk_cross",5
+BRETTUSD,Brett,2026-09-30,0.0058342700000000025,4605475.142857143,True,False,False,True,True,False,True,False,True,0.8066359948914051,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+OGNUSD,Origin Protocol,2026-09-30,0.0202,4409050.0,True,False,False,True,True,False,True,False,True,0.2730145973226604,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+1000SATSUSD,1000SATS (Ordinals),2026-09-30,1.2674999999999996e-08,3619661.714285714,False,True,False,False,True,True,True,False,True,2.1540457873760186,False,dal_value_up,5
+GTUSD,GateToken,2026-09-30,10.880000000000003,3597418.4285714286,True,False,False,True,True,True,True,False,False,1.9827355610143453,False,"donchian55, don+sanyaku, don+value",5
+XVSUSD,Venus,2026-09-30,3.66195,3469669.714285714,True,False,False,True,True,False,True,False,True,2.1393367147873588,False,"sch_res_bo, sch_any_bo, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+BOBAUSD,Boba Network,2026-09-30,0.02070043,2880158.714285714,True,False,False,True,True,False,True,False,True,-0.5053765833260864,False,"sch_rect_bo, sch_any_bo, renko_turn, donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+MOCAUSD,Moca Network,2026-09-30,0.010494799999999995,2866820.4285714286,True,False,False,True,True,True,True,False,False,1.1232014089542632,False,"donchian55, don+sanyaku, don+value",5
+RLCUSD,iExec RLC,2026-09-30,0.3547,2794247.1428571427,True,False,False,True,True,True,True,False,False,1.3953588218878121,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+CKBUSD,Nervos Network,2026-09-30,0.0013032899999999997,2662541.5714285714,True,False,False,True,True,True,True,False,False,0.5745619930994263,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+ORBSUSD,Orbs,2026-09-30,0.007296459999999998,2495458.714285714,False,False,False,True,True,True,True,False,True,1.5152860234145094,False,,5
+SATSUSD,SATS (Ordinals),2026-09-30,1.2407999999999996e-08,2395695.285714286,False,False,False,True,True,True,True,False,True,0.863703267589043,False,dal_value_up,5
+POLYXUSD,Polymesh,2026-09-30,0.0430546,2341858.1428571427,True,False,False,True,True,True,True,False,False,0.3381842747473976,False,"donchian55, don+sanyaku, don+value, don+volume, don+all3",5
+RONINUSD,Ronin,2026-09-30,0.06295715,2334174.285714286,True,False,False,True,True,False,True,False,True,0.9332816658644449,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+pattern",5
+MLKUSD,MiL.k,2026-09-30,0.04317308000000001,2009604.857142857,True,False,True,True,True,False,True,False,False,0.864080677326476,False,"donchian55, don+sanyaku, don+value",5
+USTCUSD,TerraClassicUSD,2026-09-30,0.005704060000000002,1751367.142857143,True,False,False,True,True,False,True,False,True,-0.027336408679303134,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+MTLUSD,Metal DAO,2026-09-30,0.3296,1682623.2857142857,False,False,True,True,True,False,True,False,True,0.8088191772713808,False,dal_value_up,5
+FLUIDUSD,FluidFi,2026-09-30,1.468,1626906.4285714286,True,False,False,True,True,True,True,False,False,1.8629953136344648,False,"donchian55, don+value, don+pattern",5
+POLUSD,Polygon (ex-MATIC),2026-09-30,0.11204999999999998,952057.1428571428,False,False,False,True,True,True,True,False,True,0.5484768126253147,False,dal_value_up,5
+OMGUSD,OMG Network,2026-09-30,0.049937619999999995,871096.2857142857,True,False,False,False,True,True,True,False,True,-0.409605457828233,False,"sch_dtl_bo, sch_any_bo, renko_turn, donchian55, dal_value_up, don+value, don+volume, don+pattern",5
+CHEQUSD,cheqd,2026-09-30,0.0024390400000000004,605066.0,True,False,False,True,True,False,True,False,True,-4.5398099412182455,False,"sch_rect_bo, sch_dbl_bo, sch_res_bo, sch_any_bo, renko_turn, donchian55, ichi_kumo_sanyaku, ichi_tk_cross, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+ATAUSD,Automata Network,2026-09-30,0.0008355301209999998,556620.7142857143,False,False,False,True,True,True,True,False,True,-0.8653391562014984,False,"sch_dbl_bo, sch_any_bo, renko_turn, dal_value_up",5
+BORAUSD,BORA,2026-09-30,0.028117129999999997,530184.8571428572,True,False,False,True,True,False,True,False,True,0.9875505829468901,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+GHXUSD,GamerCoin,2026-09-30,0.011846999999999996,460729.14285714284,False,False,False,True,True,True,True,False,True,1.0184389311483393,False,,5
+KLVUSD,Klever,2026-09-30,0.000748634631,443953.0,True,False,False,False,True,True,True,False,True,0.5117714163494373,False,"donchian55, dal_value_up, don+value, don+volume, don+pattern",5
+ALEPHUSD,Aleph.im,2026-09-30,0.01714999999999999,410819.4285714286,True,False,False,True,True,False,True,False,True,0.9270609654278812,False,"donchian55, ichi_kumo_sanyaku, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+AICUSD,AI Companions,2026-09-30,0.04517812,252865.85714285713,False,False,True,True,False,False,True,True,True,0.973925566905142,False,"sch_dtl_bo, sch_any_bo, ha_turn, renko_turn",5
+EWTUSD,Energy Web Token,2026-09-30,0.33617,232787.7142857143,True,False,False,True,True,False,True,False,True,0.28863049095607274,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+GRNDUSD,SuperWalk,2026-09-30,0.011883409999999995,195513.14285714287,True,False,False,True,True,False,True,False,True,1.1497440652892326,False,"donchian55, don+sanyaku, don+value, don+pattern",5
+NUMUSD,Numbers Protocol,2026-09-30,0.00255058,173927.57142857142,True,False,False,False,True,True,True,False,True,-1.226109719368366,False,"sch_rect_bo, sch_dbl_bo, sch_dtl_bo, sch_any_bo, renko_turn, donchian55, ichi_kumo_sanyaku, dal_balance_bo, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+BZRUSD,Bazaars,2026-09-30,77.82354999999997,156953.14285714287,False,False,False,True,True,True,True,False,True,1.1490557879952845,False,,5
+ATLASUSD,Star Atlas,2026-09-30,0.00016095740799999987,153176.14285714287,True,False,False,False,True,True,True,False,True,-0.04122422988447146,False,"sch_dbl_bo, sch_any_bo, donchian55, dal_value_up, don+value, don+volume, don+pattern",5
+KRLUSD,Kryll,2026-09-30,0.13962,150701.7142857143,True,False,False,True,True,False,True,False,True,-0.28224917309812625,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",5
+ELAUSD,Elastos,2026-09-30,0.34609000000000006,133069.57142857142,True,False,True,False,True,False,True,False,True,0.433692560993865,False,"donchian55, ichi_tk_cross, don+value, don+pattern",5
+ETHUSD,Ethereum,2026-09-30,2682.4500000000003,12717304705.857143,False,False,False,True,True,False,True,False,True,0.9877705280001609,False,,4
+ZECUSD,Zcash,2026-09-30,1421.1374800000006,1311277561.2857144,True,False,False,True,True,False,True,False,False,0.5185920691148431,False,"donchian55, don+sanyaku, don+value",4
+UNIUSD,Uniswap,2026-09-30,8.845099999999999,904257657.0,False,False,True,True,False,False,True,False,True,0.5193901644014202,False,"sch_res_bo, sch_any_bo",4
+LTCUSD,Litecoin,2026-09-30,66.57900000000001,663630685.2857143,False,False,False,True,True,False,True,False,True,0.35899584832463927,False,,4
+ADAUSD,Cardano,2026-09-30,0.24483,613395997.7142857,False,False,False,True,True,False,True,False,True,1.129956527466735,False,,4
+PENGUUSD,Pudgy Penguins,2026-09-30,0.009639999999999998,275318618.28571427,True,False,False,True,False,False,True,False,True,0.8638158994548553,False,"donchian55, don+sanyaku, don+value, don+pattern",4
+OPUSD,Optimism,2026-09-30,0.12935999999999998,103267532.28571428,True,False,False,True,True,False,True,False,False,0.703604133411742,False,"donchian55, don+sanyaku, don+value, don+pattern",4
+PHAUSD,Phala Network,2026-09-30,0.07937730000000001,92426450.0,False,False,False,True,True,False,True,False,True,1.6327253287078463,False,renko_turn,4
+ETCUSD,Ethereum Classic,2026-09-30,8.83728,92055575.14285715,True,False,False,True,False,False,True,False,True,0.16531990810218677,False,"donchian55, don+sanyaku, don+value, don+pattern",4
+SHIBUSD,Shiba Inu,2026-09-30,5.749848e-06,90827364.28571428,False,False,True,True,False,False,True,False,True,0.7198983166561146,False,,4
+BONKUSD,Bonk,2026-09-30,3.748049999999997e-06,79542284.85714285,False,False,False,True,True,False,True,False,True,1.400555297310191,False,,4
+AXSUSD,Axie Infinity,2026-09-30,1.1378,44583406.14285714,False,False,False,True,True,False,True,False,True,1.1613749863303315,False,,4
+ZENUSD,Horizen,2026-09-30,7.345,28101616.714285713,False,False,True,True,False,False,True,False,True,-0.0020041646541514024,False,,4
+ENSUSD,Ethereum Name Service,2026-09-30,6.952,26153523.714285713,False,False,False,True,True,False,True,False,True,1.4032047385642046,False,,4
+ORDIUSD,Ordinals,2026-09-30,4.611879999999999,24427507.57142857,False,False,False,True,True,False,True,False,True,0.08824281823243295,False,,4
+CFGUSD,Centrifuge,2026-09-30,0.1467,20824932.85714286,False,False,True,False,True,True,True,False,False,0.7129125280358853,False,,4
+STEEMUSD,Steem,2026-09-30,0.06446881000000002,18358097.714285713,True,False,True,False,False,False,True,False,True,-0.0822616366954803,False,"donchian55, don+volume, don+pattern",4
+MANAUSD,Decentraland,2026-09-30,0.08830000000000002,18050031.0,False,False,False,True,True,True,True,False,False,1.4411541795138254,False,,4
+MINAUSD,Mina,2026-09-30,0.14209,15801592.142857144,False,False,False,True,True,True,True,False,False,1.2709449090168805,False,,4
+BBUSD,BounceBit,2026-09-30,0.009468650000000004,14823815.57142857,False,False,True,False,True,False,True,False,True,0.07159750843012902,False,,4
+DYMUSD,Dymension,2026-09-30,0.019051639999999998,11428687.142857144,False,False,False,True,True,False,True,False,True,0.9041789570249094,False,,4
+MOGUSD,MOG Coin,2026-09-30,1.1999999999999996e-07,9838367.285714285,False,True,False,True,False,False,True,False,True,0.3212448881907134,False,"ichi_tk_cross, dal_value_up",4
+ANKRUSD,Ankr,2026-09-30,0.004895600000000001,8786212.0,False,False,False,True,True,False,True,False,True,0.6205625363265959,False,,4
+1INCHUSD,1inch Network,2026-09-30,0.10075,8586961.142857144,False,False,False,True,True,False,True,False,True,1.0161443494776956,False,,4
+CETUSUSD,Cetus Protocol,2026-09-30,0.02786834,8199044.714285715,True,False,False,True,True,False,True,False,False,1.2751457013455636,False,"donchian55, don+sanyaku, don+value, don+volume, don+pattern, don+all3",4
+QTUMUSD,Qtum,2026-09-30,0.98925,7777767.428571428,False,False,False,True,True,False,True,False,True,0.5307826531824104,False,,4
+AUCTIONUSD,Bounce Token,2026-09-30,3.6995999999999998,7508108.571428572,False,False,False,True,True,False,True,False,True,0.7223956956363281,False,,4
+FIDAUSD,Bonfida,2026-09-30,0.021272,7443014.857142857,True,False,False,True,False,False,True,False,True,0.06456792588281743,False,"sch_rect_bo, sch_any_bo, donchian55, ichi_tk_cross, don+sanyaku, don+value, don+volume, don+pattern, don+all3",4
+P2PSUSD,P2P Solutions foundation,2026-09-30,242.15641999999997,6599814.142857143,False,False,False,True,True,False,True,False,True,0.8995473778558456,False,ha_turn,4
+THETAUSD,Theta Network,2026-09-30,0.22400999999999996,6574959.714285715,False,False,False,True,True,True,True,False,False,1.1360659848970356,False,,4
+DUSKUSD,Dusk,2026-09-30,0.08831945000000001,6554968.142857143,True,False,False,True,False,False,True,False,True,1.1207135016167198,False,"donchian55, don+sanyaku, don+value, don+pattern",4
+KCSUSD,KuCoin Token,2026-09-30,7.395209999999999,6506922.428571428,False,False,True,False,True,False,True,False,True,1.435839574351348,False,,4
+ONTUSD,Ontology,2026-09-30,0.05882298999999999,6107912.428571428,False,False,False,True,True,False,True,False,True,1.613167836016146,False,"ichi_kumo_sanyaku, dal_value_up",4
+NEOUSD,Neo,2026-09-30,2.51116,5921780.285714285,False,False,False,True,True,False,True,False,True,0.8483068917497761,False,,4
+TOSHIUSD,Toshimon,2026-09-30,0.00012456999999999993,5719737.857142857,False,False,True,True,False,False,True,False,True,0.3283096980659035,False,"ha_turn, ichi_kumo_sanyaku",4
+GTCUSD,Gitcoin,2026-09-30,0.09378512999999998,5230963.0,True,False,False,True,True,False,True,False,False,-0.6248114386643882,False,"donchian55, ichi_kumo_sanyaku, don+sanyaku, don+value, don+volume, don+all3",4
+RADUSD,Radworks,2026-09-30,0.25589,5033152.714285715,False,False,False,False,True,True,True,False,True,-0.050193367892701346,False,"sch_rect_bo, sch_dbl_bo, sch_any_bo",4
+BABYDOGEUSD,Baby Doge Coin,2026-09-30,4.121963626267786e-10,3715152.1428571427,False,False,False,True,True,False,True,False,True,1.3607988568530551,False,dal_value_up,4
+SNTUSD,Status,2026-09-30,0.00838944,3218163.285714286,False,False,False,True,True,False,True,False,True,0.7562583705097473,False,,4
+BELUSD,Bella Protocol,2026-09-30,0.12656,3041317.714285714,True,False,False,True,False,False,True,False,True,0.348034006376197,False,"donchian55, don+sanyaku, don+value, don+pattern",4
+MBLUSD,MovieBloc,2026-09-30,0.0008055378380000002,3028863.285714286,False,False,True,True,True,False,True,False,False,0.21010502869823028,False,,4
+LQTYUSD,Liquity,2026-09-30,0.2361,2989908.5714285714,False,False,False,True,True,False,True,False,True,0.4627109417528574,False,,4
+ILVUSD,Illuvium,2026-09-30,3.85029,2957073.1428571427,True,False,False,True,True,False,True,False,False,0.46437659033079004,False,"donchian55, ichi_tk_cross, don+sanyaku, don+value",4
+ELFUSD,aelf,2026-09-30,0.07731618999999999,2665940.4285714286,True,True,False,True,False,False,True,False,False,0.6601289559606657,False,"tlb_turn, donchian55, ichi_kumo_sanyaku, ichi_tk_cross, don+sanyaku",4
+NYMUSD,NYM,2026-09-30,0.027376510000000003,2643349.4285714286,False,False,True,True,True,False,True,False,False,-0.6268226817342308,False,dal_value_up,4
+ETHWUSD,EthereumPoW,2026-09-30,0.28571,2560841.4285714286,False,False,False,True,True,False,True,False,True,0.4192883947969861,False,,4
+WELLUSD,WELL,2026-09-30,0.002265,2006262.2857142857,False,False,False,False,True,True,True,False,True,1.0128786175341522,False,"renko_turn, dal_value_up",4
+PONKEUSD,Ponke,2026-09-30,0.023789080000000004,1964667.0,False,False,False,True,True,False,True,False,True,0.4943118426505059,False,,4
+SLPUSD,Smooth Love Potion,2026-09-30,0.0006624288050000002,1729547.2857142857,False,False,False,True,True,False,True,False,True,0.4279126878171338,False,,4
+INSTUSD,Instadapp,2026-09-30,1.47203,1723623.7142857143,False,False,False,True,True,True,True,False,False,1.9277763950708757,False,ichi_kumo_sanyaku,4
+SFPUSD,SafePal,2026-09-30,0.30273,1391386.4285714286,True,False,False,True,True,False,True,False,False,0.8987299465240631,False,"donchian55, don+sanyaku, don+value, don+pattern",4
+OMIUSD,ECOMI,2026-09-30,0.00024033794400000018,1359754.5714285714,False,False,True,False,True,True,True,False,False,1.5279888254864602,False,"ichi_tk_cross, dal_value_up",4
+PNGUSD,Pangolin,2026-09-30,0.034923300000000004,1076121.2857142857,True,False,False,True,False,False,True,False,True,-0.4739965737154089,False,"donchian55, dal_value_up, don+sanyaku, don+value, don+volume, don+pattern, don+all3",4
+SDUSD,Stader,2026-09-30,0.1246,989909.5714285715,True,False,False,False,True,False,True,False,True,-0.12371365911263296,False,"donchian55, dal_value_up, don+value, don+volume, don+pattern",4
+SIXUSD,SIX,2026-09-30,0.0053402300000000005,782775.7142857143,True,False,True,False,False,False,True,False,True,-0.7033938162410989,False,"donchian55, ichi_kumo_sanyaku, don+sanyaku, don+value, don+pattern",4
+DAOUSD,DAO Maker,2026-09-30,0.02464434,682735.8571428572,False,False,False,False,True,True,True,False,True,0.9634632926771839,False,,4
+STRAXUSD,Stratis,2026-09-30,0.01140181,574920.8571428572,True,False,False,True,True,False,True,False,False,0.356419607678337,False,"donchian55, ichi_tk_cross, don+sanyaku, don+value",4
+CTKUSD,Cryptyk Token,2026-09-30,0.12522,507162.0,False,False,True,True,False,False,True,False,True,0.3714460409660635,False,,4
+PIRATEUSD,PirateCash,2026-09-30,0.022759390000000004,303188.71428571426,True,False,False,True,True,False,True,False,False,0.26517449889108263,False,"donchian55, don+sanyaku, don+value, don+pattern",4
+WANUSD,Wanchain,2026-09-30,0.060622499999999996,270227.28571428574,True,True,True,False,False,False,False,False,True,0.8911726801103059,False,"sch_dtl_bo, sch_any_bo, tlb_turn, ha_turn, donchian55, don+candles, don+pattern",4
+XEMUSD,NEM,2026-09-30,0.0005894386699999998,263914.0,False,True,False,True,True,False,True,False,False,0.3491565558184088,False,,4
+GODSUSD,Gods Unchained,2026-09-30,0.024690000000000004,259893.0,True,False,False,False,True,False,True,False,True,-0.5497859298092183,False,"donchian55, don+value, don+volume, don+pattern",4
+CLVUSD,CLV,2026-09-30,0.0023881599999999994,256701.85714285713,True,True,True,False,False,False,True,False,False,0.15454501200336945,False,"donchian55, don+candles",4
+ALCXUSD,Alchemix,2026-09-30,2.74349,222887.85714285713,False,True,True,True,False,False,False,False,True,-1.1886341093412671,False,ichi_tk_cross,4
+SWAPUSD,TrustSwap,2026-09-30,0.043664259999999996,179382.2857142857,True,False,False,True,False,False,True,False,True,-0.0013796029030689056,False,"donchian55, don+sanyaku, don+value, don+pattern",4
+ERGUSD,Ergo,2026-09-30,0.32988,170708.0,False,False,False,True,True,False,True,False,True,1.219014056305313,False,"sch_res_bo, sch_any_bo, ha_turn",4
+SAFEUSD,SafeCoin,2026-09-30,0.06678841999999999,109106.14285714286,True,False,False,False,True,False,True,False,True,-1.7026624966419297,False,"donchian55, don+sanyaku, don+value, don+pattern",4
+LIMEUSD,iMe Lab,2026-09-30,0.0018355400000000007,100698.85714285714,False,False,False,False,True,True,True,False,True,0.8261668360566096,False,"sch_dtl_bo, sch_any_bo, renko_turn, dal_value_up",4
+BTCUSD,Bitcoin,2026-09-30,83737.32000000002,31144736928.142857,False,False,False,True,False,False,True,False,True,1.0966276124229652,False,ha_turn,3
+XRPUSD,XRP,2026-09-30,1.4921,4501198088.857142,False,False,False,True,False,False,True,False,True,0.42624747896700316,False,,3
+BNBUSD,BNB,2026-09-30,767.80205,1527829796.5714285,False,False,False,True,False,False,True,False,True,0.5420937937419942,False,"sch_res_bo, sch_any_bo",3
+DOGEUSD,Dogecoin,2026-09-30,0.09444676999999999,1208371252.7142856,False,False,False,True,False,False,True,False,True,0.4215442064487223,False,,3
+HYPEUSD,Hyperliquid,2026-09-30,90.52900000000002,910336401.4285715,False,True,False,True,False,False,True,False,False,0.8425988090326116,False,,3
+BCHUSD,Bitcoin Cash,2026-09-30,305.7000000000001,328188859.28571427,False,False,False,True,False,False,True,False,True,0.7660584561783613,False,,3
+DASHUSD,Dash,2026-09-30,60.18000000000002,172316730.14285713,True,False,True,False,False,False,False,False,True,-1.447610297958649,False,"sch_res_bo, sch_any_bo, renko_turn, donchian55, dal_balance_bo, don+volume, don+pattern",3
+WIFUSD,dogwifhat,2026-09-30,0.24657999999999997,83201187.42857143,False,False,False,True,False,False,True,False,True,0.9447684885144364,False,ha_turn,3
+ATOMUSD,Cosmos,2026-09-30,1.736,53204842.428571425,True,False,False,True,False,False,True,False,False,-0.15549492231540796,False,"donchian55, ichi_tk_cross, don+sanyaku",3
+JTOUSD,Jito,2026-09-30,0.5248,48771961.0,False,False,False,False,True,True,True,False,False,0.08083988384585161,False,,3
+TIAUSD,Celestia,2026-09-30,0.439,47206901.71428572,False,False,False,True,False,False,True,False,True,0.26235646201104845,False,,3
+FLOKIUSD,FLOKI,2026-09-30,2.755946799999999e-05,42260659.428571425,False,False,False,True,False,False,True,False,True,0.48692787607212407,False,,3
+XAIUSD,Xai,2026-09-30,0.009227770000000003,27009533.42857143,False,False,False,True,False,False,True,False,True,-0.20189688094926805,False,,3
+ARUSD,Arweave,2026-09-30,4.04422,25318606.85714286,False,False,True,True,False,False,True,False,False,0.4039175157479622,False,,3
+SANDUSD,The Sandbox,2026-09-30,0.04315182000000001,22578424.57142857,False,False,False,False,True,True,True,False,False,1.0913135575119863,False,,3
+BSVUSD,Bitcoin SV,2026-09-30,19.807079999999996,21279876.85714286,False,False,False,True,False,False,True,False,True,-0.10061520172265652,False,,3
+FTMUSD,Sonic (prev. FTM),2026-09-30,0.039850000000000003,14843240.42857143,False,True,False,True,False,False,False,False,True,1.0463410263772166,False,,3
+TURBOUSD,Turbo,2026-09-30,0.0010219899999999997,11446287.285714285,False,False,False,True,False,False,True,False,True,0.2796160969642033,False,,3
+JOEUSD,JOE,2026-09-30,0.03781691999999999,8940345.857142856,False,False,False,True,True,False,True,False,False,0.6489170999330128,False,,3
+AKTUSD,Akash Network,2026-09-30,0.6387,8013092.571428572,False,False,False,True,False,False,True,False,True,0.19360588397988282,False,,3
+NEXOUSD,Nexo,2026-09-30,0.84929,7135365.0,False,False,False,True,False,False,True,False,True,0.3343875601238714,False,ha_turn,3
+SSVUSD,ssv.network,2026-09-30,3.1273399999999993,6601874.571428572,False,False,False,True,False,False,True,False,True,0.44967609492314053,False,,3
+FLOWUSD,Flow,2026-09-30,0.03108267,6395405.571428572,False,False,False,True,False,False,True,False,True,0.16835530366135418,False,,3
+EULUSD,Euler,2026-09-30,1.407,6014683.285714285,True,False,False,False,True,False,True,False,False,0.36481843476556425,False,"donchian55, don+value, don+volume, don+pattern",3
+COREUSD,Core,2026-09-30,0.02282,5809150.428571428,False,False,True,False,False,False,True,False,True,0.889413297224153,False,,3
+AGLDUSD,Adventure Gold,2026-09-30,0.20332,5311959.142857143,False,False,False,True,True,False,True,False,False,0.5444793037142005,False,,3
+SKLUSD,SKALE,2026-09-30,0.004560509999999999,5272665.285714285,True,False,False,True,False,False,False,False,True,0.21438388037265524,False,"donchian55, ichi_kumo_sanyaku, don+sanyaku, don+pattern",3
+CHRUSD,Chromia,2026-09-30,0.0218068,4782574.428571428,True,False,False,True,False,False,False,False,True,0.12930492291974854,False,"donchian55, don+sanyaku, don+volume, don+pattern",3
+ARDRUSD,Ardor,2026-09-30,0.029929930000000007,4412493.571428572,False,False,False,True,True,False,True,False,False,-0.31901016947491534,False,"ichi_tk_cross, dal_value_up",3
+ASRUSD,AS Roma Fan Token,2026-09-30,0.85827,3857035.5714285714,False,False,False,False,True,False,True,False,True,-0.13758203526527923,False,,3
+GMXUSD,GMX,2026-09-30,7.838019999999999,3727350.285714286,False,False,False,True,False,False,True,False,True,0.17116966356177216,False,,3
+ADXUSD,AdEx,2026-09-30,0.06244506999999999,3696850.285714286,False,False,False,False,True,False,True,False,True,-0.49979251352013615,False,ichi_kumo_sanyaku,3
+ALPINEUSD,Alpine F1 Team Fan Token,2026-09-30,0.34892,3504328.1428571427,False,False,False,False,True,False,True,False,True,0.4490701990611017,False,,3
+ATMUSD,Atletico De Madrid Fan Token,2026-09-30,1.05844,3436740.0,False,True,True,False,False,False,False,False,True,-2.0260718936893882,False,"sch_dtl_bo, sch_any_bo, ha_turn",3
+NPCUSD,Non-Playable Coin,2026-09-30,0.021873319999999998,3391425.714285714,False,False,False,True,False,False,True,False,True,0.2817177814926782,False,"sch_res_bo, sch_any_bo, ha_turn",3
+KNCUSD,Kyber Network Crystal v2,2026-09-30,0.13696,3113784.8571428573,False,False,False,True,False,False,True,False,True,0.14945054945054953,False,,3
+LRCUSD,Loopring,2026-09-30,0.01050988,2866776.8571428573,True,False,False,False,True,False,True,False,False,0.5029402777053161,False,"donchian55, dal_balance_bo, don+value",3
+OSMOUSD,Osmosis,2026-09-30,0.03622096999999999,2836991.1428571427,False,False,False,False,True,False,True,False,True,-0.4803460359015963,False,,3
+MANTAUSD,Manta Network,2026-09-30,0.06776539,2427066.1428571427,False,False,False,True,False,False,True,False,True,0.9455532186903067,False,"sch_dtl_bo, sch_any_bo",3
+GLMUSD,Golem,2026-09-30,0.12600000000000003,2420698.285714286,True,False,False,True,False,False,True,False,False,0.27234463976232,False,"donchian55, ichi_tk_cross, don+sanyaku, don+value",3
+POWRUSD,Powerledger,2026-09-30,0.06702029,2374062.8571428573,True,False,True,False,False,False,False,False,True,-0.4086648046798068,False,"donchian55, don+pattern",3
+HIVEUSD,Hive,2026-09-30,0.05637279,2095483.7142857143,True,False,False,True,False,False,True,False,False,0.39213228543661055,False,"donchian55, don+sanyaku",3
+IQUSD,IQ,2026-09-30,0.0009108732630000003,1887067.5714285714,False,False,False,True,True,False,True,False,False,0.5949457729600603,False,,3
+DCRUSD,Decred,2026-09-30,18.401109999999996,1787601.5714285714,False,False,False,True,True,False,True,False,False,1.2329237996296074,False,ha_turn,3
+LATUSD,PlatON,2026-09-30,0.0006778528160000003,1701480.857142857,False,True,False,True,False,False,True,False,False,-0.27402691268947954,False,dal_value_up,3
+UOSUSD,Ultra,2026-09-30,0.003674989999999999,1428387.5714285714,False,False,True,True,False,False,False,False,True,-2.0771804607403,False,,3
+GNOUSD,Gnosis,2026-09-30,118.51361999999999,1334466.7142857143,False,False,True,False,True,False,False,False,True,0.09875611216440665,False,"sch_dtl_bo, sch_any_bo, ha_turn",3
+XCHUSD,Chia,2026-09-30,1.64846,845083.2857142857,False,False,False,True,False,False,True,False,True,1.272984441301272,False,"sch_dtl_bo, sch_any_bo, ha_turn, ichi_kumo_sanyaku",3
+SPAUSD,Sperax,2026-09-30,0.0029178799999999994,746610.2857142857,False,False,False,True,False,False,True,False,True,-0.4346673734428851,False,ha_turn,3
+MAPUSD,MAP Protocol,2026-09-30,0.0012997299999999996,698541.4285714285,False,False,False,False,True,False,True,False,True,-0.6112306319947843,False,dal_value_up,3
+FXSUSD,Frax Share,2026-09-30,0.30616,642796.1428571428,False,False,False,False,True,False,True,False,True,0.24892292963140264,False,,3
+FARMUSD,Harvest Finance,2026-09-30,7.6309,618069.5714285715,False,False,False,True,False,False,True,False,True,-0.9822685754473802,False,,3
+BTRUSD,Bitrue Coin,2026-09-30,0.01421774,612112.2857142857,False,False,True,False,False,False,False,True,True,0.24065776019021307,False,,3
+ANYONEUSD,ANyONe Protocol,2026-09-30,0.24993000000000004,600368.8571428572,False,False,True,True,False,False,True,False,False,0.11557955568187321,False,,3
+ELUSD,ELYSIA,2026-09-30,0.0016465600000000003,557534.0,False,False,False,True,False,False,True,False,True,-0.2765003357594997,False,,3
+OBSRUSD,Observer,2026-09-30,0.0006358298049999997,476108.85714285716,False,False,False,False,True,False,True,False,True,0.3796051833091737,False,"sch_dtl_bo, sch_any_bo",3
+ADSUSD,Adshares,2026-09-30,0.48404,344424.71428571426,False,False,False,True,False,False,True,False,True,1.0070936674778685,False,,3
+TLOSUSD,Telos,2026-09-30,0.015575640000000003,322625.28571428574,False,True,True,False,False,False,False,False,True,-3.8423505734390653,False,"sch_dtl_bo, sch_any_bo",3
+ETNUSD,Electroneum,2026-09-30,0.0022873400000000006,316362.0,False,False,True,True,False,False,True,False,False,-0.45053307859150166,False,renko_turn,3
+CCDUSD,Concordium,2026-09-30,0.003612989999999999,256882.0,False,False,False,False,True,False,True,False,True,0.2572065556168588,False,"renko_turn, dal_value_up",3
+MLNUSD,Enzyme,2026-09-30,1.51257,233377.0,False,False,True,False,False,False,True,False,True,-0.5002359965770903,False,,3
+DEPUSD,DEAPcoin,2026-09-30,0.0009623014999999997,202050.0,False,True,True,False,False,False,False,False,True,0.17834428050461015,False,"sch_dtl_bo, sch_any_bo, ichi_tk_cross",3
+CELLUSD,Cellframe,2026-09-30,0.03736336,180968.0,False,False,True,False,False,False,False,True,True,0.26482039437199384,False,"sch_ihs_bo, sch_dtl_bo, sch_any_bo, ha_turn",3
+SAUCEUSD,SaucerSwap,2026-09-30,0.014530299999999998,162115.0,False,True,False,True,True,False,False,False,False,-0.6468182040991238,False,ha_turn,3
+RARIUSD,Rarible,2026-09-30,0.12739999999999999,148186.14285714287,False,True,False,True,False,False,False,False,True,0.8286684004055174,False,,3
+LADYSUSD,Milady Meme Coin,2026-09-30,7.481824129184891e-09,119975.28571428571,False,False,False,True,False,False,True,False,True,1.2925522785425303,False,"ichi_kumo_sanyaku, ichi_tk_cross",3
+SKEYUSD,Skey Network,2026-09-30,0.0013647200000000003,101849.28571428571,False,False,False,False,True,False,False,True,True,-0.6467620244636554,False,"sch_dtl_bo, sch_any_bo",3
+HMNDUSD,Humanode,2026-09-30,0.0015544299999999999,97428.42857142857,False,False,False,True,False,False,True,False,True,-0.30482958031251295,False,ichi_tk_cross,3
+ARRRUSD,Pirate Chain,2026-09-30,0.2912600000000001,85779.0,False,False,True,True,False,False,True,False,False,0.8979424640933967,False,,3
+TRXUSD,TRON,2026-09-30,0.33805,415672211.28571427,False,False,True,False,False,False,False,True,False,-0.4478967013013212,False,ha_turn,2
+ARBUSD,Arbitrum,2026-09-30,0.20397999999999997,318757187.5714286,False,False,False,True,False,False,True,False,False,0.5416477014110129,False,,2
+PEPEUSD,Pepe,2026-09-30,4.287100000000003e-06,301661941.14285713,False,False,False,True,False,False,False,False,True,0.016402211640291587,False,ha_turn,2
+INJUSD,Injective,2026-09-30,7.361,133635316.28571428,False,False,False,True,False,False,True,False,False,0.9454033130220434,False,,2
+SAGAUSD,Saga,2026-09-30,0.025244,127828632.85714285,False,False,False,True,False,False,False,False,True,-2.441029936034589,False,,2
+LSKUSD,Lisk,2026-09-30,0.28798000000000007,61972800.571428575,False,False,True,False,False,False,False,False,True,-3.8095053170488598,False,,2
+ONEUSD,Harmony,2026-09-30,0.0021504600000000003,49429002.28571428,False,False,True,True,False,False,False,False,False,-0.9619984630196445,False,ha_turn,2
+PENDLEUSD,Pendle,2026-09-30,2.35714,48044533.14285714,False,False,False,True,False,False,True,False,False,-0.012605449432757107,False,,2
+MORPHOUSD,Morpho,2026-09-30,2.4832,46420322.571428575,False,False,True,False,False,False,True,False,False,-0.1961438467642572,False,,2
+STRKUSD,Starknet,2026-09-30,0.042449999999999995,45373235.71428572,False,False,True,True,False,False,False,False,False,0.9297176982711827,False,ha_turn,2
+MOVEUSD,Movement,2026-09-30,0.009097520000000001,45368642.0,False,False,True,False,False,False,True,False,False,0.47521255658173317,False,,2
+OKBUSD,OKB,2026-09-30,121.03637999999998,35134865.0,False,False,False,True,False,False,True,False,False,0.8884545206657454,False,ha_turn,2
+FARTCOINUSD,Fartcoin,2026-09-30,0.1768,22016996.14285714,False,False,False,False,False,False,True,False,True,0.10261563289790324,False,,2
+BOMEUSD,BOOK OF MEME,2026-09-30,0.0010031700000000003,19306029.42857143,False,False,False,False,False,False,True,False,True,-0.23919964712432337,False,,2
+PEOPLEUSD,ConstitutionDAO,2026-09-30,0.00929206,13466479.0,False,False,False,False,False,False,True,False,True,1.1414186505653703,False,,2
+LUNCUSD,Terra Classic,2026-09-30,5.2637905000000034e-05,13360502.857142856,False,False,True,False,False,False,True,False,False,0.052531935366655874,False,,2
+BTTUSD,BitTorrent(New),2026-09-30,3.734740000000003e-07,12927152.142857144,False,False,False,True,False,False,False,False,True,0.7282597614435793,False,,2
+POPCATUSD,Popcat (SOL),2026-09-30,0.05260402999999999,11355595.42857143,False,False,False,False,False,False,True,False,True,0.05973585453171367,False,,2
+KAVAUSD,Kava,2026-09-30,0.0683,10565267.857142856,False,False,False,True,False,False,False,False,True,0.5600436500404019,False,"sch_dtl_bo, sch_any_bo",2
+TWTUSD,Trust Wallet Token,2026-09-30,0.60862,9221145.142857144,False,True,False,False,True,False,False,False,False,1.244279653939941,False,ichi_tk_cross,2
+MXUSD,MX TOKEN,2026-09-30,1.87512,8332789.285714285,False,False,False,True,False,False,True,False,False,0.7168892654911314,False,ha_turn,2
+MELANUSD,Melania Meme,2026-09-30,0.10205,7656409.0,False,False,True,False,False,False,False,False,True,-0.5088961935760035,False,,2
+DODOUSD,DODO,2026-09-30,0.01860972,7549444.857142857,False,True,False,False,False,False,True,False,False,0.20326930940540192,False,,2
+LUNAUSD,Terra,2026-09-30,0.050772689999999995,6800501.714285715,False,False,False,True,False,False,False,False,True,-0.7137700094817239,False,,2
+JUVUSD,Juventus Fan Token,2026-09-30,0.31755,5675322.857142857,False,False,False,False,True,False,True,False,False,-0.857184105099792,False,"ichi_kumo_sanyaku, dal_value_up",2
+AURORAUSD,Aurora,2026-09-30,0.06518199999999999,5542631.714285715,False,False,False,True,False,False,False,False,True,-0.6697734519775966,False,,2
+AIOZUSD,AIOZ Network,2026-09-30,0.11231000000000001,5537205.428571428,False,False,False,True,False,False,True,False,False,0.46745562130177604,False,,2
+RVNUSD,Ravencoin,2026-09-30,0.0023353100000000006,5286262.714285715,False,False,True,False,False,False,False,False,True,-1.6214598278919157,False,,2
+QUICKUSD,Quickswap,2026-09-30,0.01060988,4643365.428571428,False,False,False,True,False,False,True,False,False,-1.2081385395403967,False,dal_value_up,2
+ELONUSD,Dogelon Mars,2026-09-30,3.261099999999998e-08,4259411.285714285,False,False,True,False,False,False,False,False,True,1.0892536718282626,False,,2
+METISUSD,MetisDAO,2026-09-30,3.30945,4015450.5714285714,True,False,False,True,False,False,False,False,False,0.0915455035002703,False,"donchian55, don+sanyaku, don+value, don+volume, don+all3",2
+ALUUSD,Altura,2026-09-30,0.005650990000000002,3602561.4285714286,False,True,False,True,False,False,False,False,False,0.412399881051624,False,ha_turn,2
+DRIFTUSD,Drift,2026-09-30,0.01891257,3395795.4285714286,False,False,False,True,False,False,False,False,True,0.05817040764445777,False,,2
+BARUSD,FC Barcelona Fan Token,2026-09-30,0.28263,3134677.0,False,False,False,False,True,False,True,False,False,0.8339634870908497,False,,2
+OGUSD,OG Fan Token,2026-09-30,2.80116,3041775.4285714286,False,False,False,False,False,False,True,False,True,0.08083978032236193,False,,2
+COSUSD,Contentos,2026-09-30,0.00033655486900000014,2767862.714285714,False,False,False,False,True,False,False,False,True,-1.0837399642996044,False,"sch_dtl_bo, sch_any_bo, renko_turn, ichi_kumo_sanyaku, ichi_tk_cross, dal_balance_bo",2
+CITYUSD,Manchester City Fan Token,2026-09-30,0.35147,2454336.8571428573,False,False,True,False,False,False,False,False,True,-0.7726312687263576,False,,2
+PYRUSD,Vulcan Forged PYR,2026-09-30,0.05788999999999999,1841711.0,False,True,False,False,False,False,False,False,True,0.06452799425115305,False,,2
+ACMUSD,Actinium,2026-09-30,0.27949,1670489.0,False,False,False,False,True,False,False,False,True,-0.02805311389563935,False,,2
+ICXUSD,ICON,2026-09-30,0.01348679,1643126.5714285714,False,True,False,False,False,False,False,False,True,-1.0225767788413502,False,"ha_turn, renko_turn",2
+SRXUSD,StorX Network,2026-09-30,0.05291568000000001,1244735.0,False,True,False,False,False,False,False,False,True,-1.6331967032827268,False,,2
+TOKENUSD,TokenFi,2026-09-30,0.002285160000000001,1238244.2857142857,False,False,False,False,False,False,True,False,True,-0.50693665565289,False,,2
+VANRYUSD,Vanar Chain,2026-09-30,0.0006981858169999997,1095343.5714285714,False,False,False,False,True,False,True,False,False,0.3343044437453499,False,,2
+GNSUSD,Gains Network,2026-09-30,0.46208,999121.7142857143,False,False,False,False,True,False,True,False,False,-0.8397405609724669,False,,2
+DAGUSD,Constellation,2026-09-30,0.00707622,679540.0,False,False,False,False,True,False,True,False,False,0.80032645447126,False,"tlb_turn, renko_turn",2
+XSGDUSD,XSGD,2026-09-30,0.78352,533589.5714285715,False,False,True,False,False,False,False,True,False,-0.36529060293319987,False,ha_turn,2
+NEWUSD,Newton,2026-09-30,0.00061068367,430472.5714285714,False,False,True,False,False,False,False,True,False,-4.529884247014406,False,,2
+MEDUSD,MediBloc,2026-09-30,0.0017731100000000003,400905.28571428574,False,True,True,False,False,False,False,False,False,-2.0248434810805405,False,,2
+REEFUSD,Reef,2026-09-30,5.246162800000001e-05,352594.4285714286,False,True,False,False,False,False,True,False,False,0.5486274906724448,False,renko_turn,2
+ELGUSD,EscoinToken,2026-09-30,0.28362,334845.28571428574,False,True,False,False,False,False,True,False,False,3.302835268382971,False,"tlb_turn, renko_turn",2
+ARGUSD,Argentine Football Association Fan Token,2026-09-30,0.07044811000000001,334477.0,False,True,True,False,False,False,False,False,False,-1.2354945893592673,False,,2
+BTSEUSD,BTSE Token,2026-09-30,1.00516,292911.71428571426,False,False,False,True,False,False,True,False,False,1.4717497390764742,False,ha_turn,2
+CAWUSD,CAW(A Hunters Dream),2026-09-30,2.6233000000000034e-08,291984.28571428574,False,False,True,False,False,False,False,True,False,0.2593553167840324,False,ha_turn,2
+HUNTUSD,HUNT,2026-09-30,0.10098999999999997,285188.14285714284,False,False,False,True,False,False,True,False,False,-0.1556599142194196,False,ichi_tk_cross,2
+BTRSTUSD,Braintrust,2026-09-30,0.06219323999999998,259221.7142857143,True,False,False,False,False,False,True,False,False,-0.7156784606914283,False,"donchian55, ichi_tk_cross, don+sanyaku, don+value, don+volume, don+pattern, don+all3",2
+AVLUSD,Aston Villa Fan Token,2026-09-30,0.06225746,201693.2857142857,False,False,True,False,False,False,False,False,True,-0.8410274394434799,False,,2
+KUBUSD,Bitkub Coin,2026-09-30,0.61173,196574.42857142858,False,True,False,False,False,False,False,False,True,-0.1800322061191622,False,ichi_tk_cross,2
+VINUUSD,Viral Inu,2026-09-30,9.587020747247038e-10,188238.0,False,False,False,False,False,False,True,False,True,-0.2789881604473883,False,"sch_dtl_bo, sch_any_bo",2
+FIROUSD,Firo,2026-09-30,1.20969,186894.42857142858,False,True,False,False,False,False,True,False,False,-0.5396711474324231,False,,2
+NKNUSD,NKN,2026-09-30,0.006906999999999998,177997.0,False,False,False,False,False,False,True,False,True,0.3052412232128744,False,"sch_dtl_bo, sch_any_bo",2
+WILDUSD,Wilder World,2026-09-30,0.013510589999999996,160280.85714285713,False,False,True,False,False,False,False,False,True,-0.5913022359130046,False,"sch_dtl_bo, sch_any_bo, ha_turn",2
+EXCCUSD,ExchangeCoin,2026-09-30,0.09031573999999999,155452.57142857142,False,False,False,True,False,False,False,False,True,-0.24870887592082633,False,,2
+TCUSD,TTcoin,2026-09-30,0.00011926918700000007,147953.85714285713,False,True,False,True,False,False,False,False,False,0.09910536845384761,False,,2
+PEPECOINUSD,PepeCoin,2026-09-30,0.14195,141457.42857142858,False,True,True,False,False,False,False,False,False,0.2002296899186105,False,,2
+TTUSD,ThunderCore,2026-09-30,9.744855099999992e-05,137058.42857142858,False,True,False,False,False,False,False,False,True,,False,"sch_dtl_bo, sch_any_bo",2
+AZEROUSD,Aleph Zero,2026-09-30,0.008439499999999999,126652.0,False,True,False,False,False,False,False,False,True,-1.3437241769445922,False,ichi_kumo_sanyaku,2
+IMPTUSD,IMPT,2026-09-30,0.00290143,124741.28571428571,False,False,True,False,False,False,False,False,True,-0.7737478102320275,False,ichi_tk_cross,2
+TRAUSD,Trabzonspor Fan Token,2026-09-30,0.19283,117705.28571428571,False,False,True,False,False,False,False,False,True,-0.49385145105755274,False,,2
+NRGUSD,Energi,2026-09-30,0.008398139999999997,115495.42857142857,False,False,True,False,False,False,False,False,True,-0.08852111998464328,False,"sch_dtl_bo, sch_any_bo, tlb_turn",2
+MLUSD,Mintlayer,2026-09-30,0.00589936,105221.85714285714,False,False,False,False,False,False,False,True,True,1.331426768021164,False,tlb_turn,2
+WBTUSD,WhiteBIT Coin,2026-09-30,83.60880999999999,118871572.14285715,False,False,False,True,False,False,False,False,False,1.5377214789575777,False,ha_turn,1
+XMRUSD,Monero,2026-09-30,541.1864,113266723.85714285,False,False,False,False,False,False,False,False,True,-0.5067075078734776,False,,1
+VTHOUSD,VeThor Token,2026-09-30,0.000673471302,77919134.85714285,False,False,False,False,False,False,False,False,True,-0.9075862739977211,False,,1
+BGBUSD,Bitget Token,2026-09-30,1.97543,26336098.42857143,False,False,False,False,False,False,False,False,True,-0.5978126485972443,False,ha_turn,1
+OTRUMPUSD,Trump Official,2026-09-30,2.043,20209438.285714287,False,False,False,False,False,False,False,False,True,-0.6129887342610987,False,,1
+SUNUSD,Sun (New),2026-09-30,0.01719007,18645525.85714286,False,False,False,False,False,False,True,False,False,0.7943114810960652,False,ha_turn,1
+SYNUSD,SynLev,2026-09-30,0.15843999999999997,17050064.14285714,False,False,True,False,False,False,False,False,False,-0.4997129145903193,False,,1
+GUSD,Gravity,2026-09-30,0.0046619999999999995,16020470.57142857,False,False,True,False,False,False,False,False,False,-3.3414209704449873,False,,1
+DEXEUSD,DeXe,2026-09-30,1.83904,12915450.42857143,False,False,False,False,False,False,False,False,True,-0.5190181638497096,False,,1
+SPXUSD,SPX6900,2026-09-30,0.4357,12292697.142857144,False,False,True,False,False,False,False,False,False,-1.5890137675864386,False,ha_turn,1
+AVAUSD,AVA,2026-09-30,0.24461000000000002,12239399.857142856,False,False,False,True,False,False,False,False,False,0.2597899050444197,False,ha_turn,1
+CVXUSD,Convex Finance,2026-09-30,2.158,11607573.857142856,False,False,False,False,False,False,True,False,False,0.4384664038965263,False,ichi_tk_cross,1
+PORTALUSD,Portal,2026-09-30,0.01665153,11160206.857142856,False,False,False,True,False,False,False,False,False,-1.2646401831437688,False,ichi_kumo_sanyaku,1
+XTZUSD,Tezos,2026-09-30,0.31449999999999995,9849250.285714285,False,False,False,True,False,False,False,False,False,0.0018167944478739498,False,,1
+ZETAUSD,ZetaChain,2026-09-30,0.05149999999999999,9729426.285714285,False,False,False,True,False,False,False,False,False,0.014434218869575776,False,,1
+WAVESUSD,Waves,2026-09-30,0.29084,7364470.857142857,False,False,False,True,False,False,False,False,False,-0.09339890809006073,False,ichi_tk_cross,1
+RIFUSD,Rootstock Infrastructure Framework,2026-09-30,0.08326784,7225198.428571428,False,False,False,False,False,False,True,False,False,-0.5205772185993679,False,,1
+NFTUSD,APENFT,2026-09-30,2.403120000000001e-07,6723636.571428572,False,False,False,False,False,False,False,False,True,0.9986510412275841,False,"sch_dtl_bo, sch_any_bo",1
+XECUSD,eCash,2026-09-30,8.181267000000007e-06,6552909.571428572,False,False,True,False,False,False,False,False,False,,False,,1
+CELRUSD,Celer Network,2026-09-30,0.003091399999999999,6107994.428571428,False,False,False,False,False,False,False,False,True,-1.264550683109345,False,"sch_res_bo, sch_any_bo",1
+ZILUSD,Zilliqa,2026-09-30,0.0035096999999999997,4865930.857142857,False,False,False,True,False,False,False,False,False,-0.09666884389288172,False,,1
+TRUMPUSD,MAGA Trump,2026-09-30,0.030700429999999997,4377870.142857143,False,False,False,False,False,False,False,False,True,-4.952862233518851,False,,1
+MASKUSD,Mask Network,2026-09-30,0.45717,4214935.142857143,False,False,False,True,False,False,False,False,False,-0.3551395719901962,False,ha_turn,1
+PSGUSD,Paris Saint-Germain Fan Token,2026-09-30,0.46246,3270438.0,False,False,False,False,False,False,False,False,True,-1.5890435011632495,False,,1
+DGBUSD,DigiByte,2026-09-30,0.004366380000000001,2920811.285714286,False,False,False,False,False,False,False,False,True,-0.030054535273338855,False,"sch_ihs_bo, sch_dtl_bo, sch_any_bo",1
+EDUUSD,Open Campus (EDU),2026-09-30,0.05156551,2517229.8571428573,False,False,False,False,False,False,False,False,True,-0.9032962172522346,False,"sch_dtl_bo, sch_any_bo",1
+PUNDIXUSD,Pundi X (New),2026-09-30,0.12362999999999998,2418723.5714285714,True,False,False,False,False,False,False,False,False,0.056915640106032034,False,donchian55,1
+OXTUSD,Orchid,2026-09-30,0.010249059999999999,2354816.1428571427,False,False,True,False,False,False,False,False,False,-1.2869009217142076,False,,1
+SANTOSUSD,Santos FC Fan Token,2026-09-30,0.51197,2315057.1428571427,False,False,False,False,False,False,True,False,False,0.2997561791843952,False,,1
+GIGAUSD,Gigachad,2026-09-30,0.00214161,2176950.0,False,False,False,False,False,False,False,False,True,-0.45926173284583516,False,,1
+TFUELUSD,Theta Fuel,2026-09-30,0.010421850000000003,1782707.0,True,False,False,False,False,False,False,False,False,-1.1549695199544252,False,"donchian55, don+volume",1
+DOGUSD,Dog (Runes),2026-09-30,0.0009961135429999999,1610419.4285714286,False,False,True,False,False,False,False,False,False,-0.36116594454326756,False,ha_turn,1
+QAIUSD,QuantixAI,2026-09-30,18.620520000000003,1284618.0,False,False,False,False,False,False,False,False,True,-0.3188666750618484,False,,1
+SUNDOGUSD,SUNDOG,2026-09-30,0.0028355100000000007,1129811.4285714286,False,False,True,False,False,False,False,False,False,-0.7050025863441021,False,tlb_turn,1
+VRUSD,Victoria VR,2026-09-30,0.0014786299999999999,917355.1428571428,False,False,False,False,False,False,False,False,True,-1.7881948960745067,False,,1
+CRTSUSD,Cratos,2026-09-30,6.531188400000004e-05,869481.1428571428,False,False,False,False,False,False,False,False,True,-0.9318549048360019,False,ha_turn,1
+WMTUSD,World Mobile Token,2026-09-30,0.0257648,851494.4285714285,False,True,False,False,False,False,False,False,False,1.089534677025912,False,,1
+SAUBERUSD,Alfa Romeo Racing ORLEN Fan Token,2026-09-30,0.11205999999999999,764370.7142857143,False,False,False,False,False,False,False,False,True,-0.37690891367919543,False,"sch_dtl_bo, sch_any_bo, ha_turn",1
+RLBUSD,Rollbit Coin,2026-09-30,0.08392607999999999,742176.5714285715,False,True,False,False,False,False,False,False,False,2.0070022818372406,False,,1
+BITCOINUSD,HarryPotterObamaSonic10Inu (ETH),2026-09-30,0.01686421,665026.7142857143,False,False,True,False,False,False,False,False,False,0.28620901965591206,False,ha_turn,1
+NCTUSD,PolySwarm,2026-09-30,0.01021891,640441.4285714285,False,False,False,False,False,False,False,False,True,-0.8690456785402398,False,"sch_dtl_bo, sch_any_bo",1
+VSYUSD,v.systems,2026-09-30,0.0002531009759999998,635748.0,False,False,False,False,False,False,True,False,False,0.8297718852447293,False,,1
+EBSOUSD,eBlockStock,2026-09-30,0.019553340000000002,622625.1428571428,False,False,False,False,False,False,False,True,False,-0.1553917419212115,False,,1
+ZANOUSD,Zano,2026-09-30,5.87062,605155.7142857143,False,False,True,False,False,False,False,False,False,-1.3891389944503412,False,,1
+WEMIXUSD,WEMIX,2026-09-30,0.19249,534361.0,False,False,False,False,False,False,False,False,True,0.07916475447452605,False,,1
+LEOUSD,UNUS SED LEO,2026-09-30,9.034699999999999,493991.85714285716,False,False,False,False,False,False,False,False,True,-0.3176139363012589,False,"sch_wedge_bo, sch_any_bo",1
+RAILUSD,Railgun,2026-09-30,2.37459,483129.85714285716,False,False,False,True,False,False,False,False,False,-1.0289692217239594,False,ha_turn,1
+PROUSD,Propy,2026-09-30,0.35355,457689.0,False,False,True,False,False,False,False,False,False,0.005827053065027117,False,,1
+SWCHUSD,SwissCheese,2026-09-30,0.02882059,439610.71428571426,False,True,False,False,False,False,False,False,False,-0.7955231641171399,False,ha_turn,1
+WXTUSD,Wirex Token,2026-09-30,0.0007086850769999999,306737.5714285714,False,False,True,False,False,False,False,False,False,-3.392364233289946,False,,1
+INTERUSD,Inter Milan Fan Token,2026-09-30,0.20295,292513.0,False,False,False,False,False,False,False,False,True,-1.0323307618965103,False,,1
+FORTHUSD,Ampleforth Governance Token,2026-09-30,0.28665,266895.28571428574,False,False,False,False,False,False,False,False,True,-2.0979464052774768,False,"sch_dtl_bo, sch_any_bo",1
+GMEEUSD,GAMEE,2026-09-30,0.0010005700000000005,244995.14285714287,False,False,True,False,False,False,False,False,False,-2.7223543537663537,False,,1
+HOOKUSD,Hooked Protocol,2026-09-30,0.004004849999999999,224084.2857142857,False,False,True,False,False,False,False,False,False,-0.816097659397751,False,,1
+DMTRUSD,Dimitra,2026-09-30,0.008514100000000004,223205.7142857143,False,True,False,False,False,False,False,False,False,-1.5973954621049207,False,,1
+OZONEUSD,Ozonechain,2026-09-30,0.13099999999999998,221011.14285714287,False,False,True,False,False,False,False,False,False,-0.3955174686882281,False,,1
+PXPUSD,PointPay,2026-09-30,0.023204500000000003,198634.85714285713,False,True,False,False,False,False,False,False,False,-1.8742158994417935,False,,1
+MCRTUSD,MagicCraft,2026-09-30,0.00013073283899999998,182472.85714285713,False,False,True,False,False,False,False,False,False,-1.0317953839114788,False,ha_turn,1
+BTCMTUSD,Minto,2026-09-30,0.65226,174941.42857142858,False,False,True,False,False,False,False,False,False,-0.5960543726693185,False,ha_turn,1
+ORAIUSD,Oraichain,2026-09-30,0.42273,173243.14285714287,False,True,False,False,False,False,False,False,False,-0.39012071126355746,False,ha_turn,1
+SCRTUSD,Secret,2026-09-30,0.008350160000000004,158375.2857142857,False,False,False,False,False,False,False,False,True,-0.8932736444121693,False,"sch_dtl_bo, sch_any_bo",1
+XENUSD,XEN Crypto,2026-09-30,4.314516372114083e-09,158076.7142857143,False,False,False,False,False,False,False,False,True,0.2753109674416118,False,,1
+MVCUSD,MileVerse,2026-09-30,0.0015104000000000005,150724.57142857142,True,False,False,False,False,False,False,False,False,-0.9337581442524673,False,donchian55,1
+XRDUSD,Radix,2026-09-30,0.0003766332689999998,145553.14285714287,False,False,True,False,False,False,False,False,False,-1.8754058057724072,False,,1
+TOWERUSD,TOWER,2026-09-30,0.00015135745500000005,144563.85714285713,False,False,True,False,False,False,False,False,False,-0.35142814777829684,False,ha_turn,1
+OLTUSD,OneLedger,2026-09-30,0.0001372436399999999,139208.0,False,False,True,False,False,False,False,False,False,-0.16355040902379775,False,,1
+VOXELUSD,Voxies,2026-09-30,0.004690999999999998,139192.7142857143,False,False,False,True,False,False,False,False,False,0.08769935943671565,False,,1
+RDNTUSD,Radiant Capital,2026-09-30,0.000462911933,138799.0,False,False,True,False,False,False,False,False,False,-1.2656199260879257,False,ha_turn,1
+TOMOUSD,TomoChain,2026-09-30,0.004731399999999999,138044.2857142857,False,False,False,False,False,False,False,False,True,-0.08383994472242116,False,renko_turn,1
+IBSUSD,IBStoken,2026-09-30,0.0006806397000000002,137452.85714285713,False,False,False,False,False,False,False,False,True,-2.4648262898266755,False,,1
+HELLOUSD,HELLO Labs,2026-09-30,0.0010217200000000003,136057.57142857142,False,False,False,False,False,False,False,False,True,-1.1947724175683365,False,"sch_dtl_bo, sch_any_bo",1
+PORUSD,Portugal National Team Fan Token,2026-09-30,0.07617885,131167.42857142858,False,False,True,False,False,False,False,False,False,-0.29827232216789795,False,ha_turn,1
+METAUSD,Metadium,2026-09-30,0.008766130000000002,127910.14285714286,False,False,False,True,False,False,False,False,False,-0.017964439229576967,False,ichi_tk_cross,1
+OCEANUSD,Ocean Protocol,2026-09-30,0.15679999999999997,114158.0,False,False,False,True,False,False,False,False,False,-0.7127771911298874,False,,1
+MTVUSD,MultiVAC,2026-09-30,9.825565600000001e-05,112314.85714285714,False,False,True,False,False,False,False,False,False,-1.3933759509200858,False,ha_turn,1
+SISUSD,Symbiosis,2026-09-30,0.016684330000000004,110375.85714285714,False,False,False,False,False,False,False,False,True,-2.974270002957104,False,,1
+CRETAUSD,Creta World,2026-09-30,0.002663650000000001,108145.57142857143,False,True,False,False,False,False,False,False,False,-1.76732784885456,False,tlb_turn,1
+DENTUSD,Dent,2026-09-30,6.6218784e-05,107553.14285714286,False,False,True,False,False,False,False,False,False,-1.971354262423441,False,ha_turn,1
+XELSUSD,XELS,2026-09-30,0.010789859999999997,100324.28571428571,False,False,False,False,False,False,False,False,True,-6.577012339959765,False,,1
+BMXUSD,BitMart Token,2026-09-30,0.00414197,97265.42857142857,False,False,False,False,False,False,True,False,False,-2.303009823752631,False,,1
+SUKUUSD,Suku,2026-09-30,0.00536525,55462.42857142857,False,False,False,False,False,False,False,False,True,-0.5708291556783904,False,,1
+EGLDUSD,MultiversX,2026-09-30,4.4824,32492450.42857143,False,False,False,False,False,False,False,False,False,-0.4591808319483159,False,renko_turn,0
+COTIUSD,COTI,2026-09-30,0.013043600000000006,21860485.14285714,False,False,False,False,False,False,False,False,False,-2.577643132314125,False,,0
+CVCUSD,Civic,2026-09-30,0.031330000000000004,13771312.142857144,False,False,False,False,False,False,False,False,False,-0.6932834685467991,False,,0
+IOSTUSD,IOST,2026-09-30,0.0008920397439999997,9740816.42857143,False,False,False,False,False,False,False,False,False,-6.689944949827554,False,,0
+ULTIMAUSD,Ultima,2026-09-30,1607.4642399999998,7915907.428571428,False,False,False,False,False,False,False,False,False,-3.937549348563774,False,,0
+BICOUSD,Biconomy,2026-09-30,0.021583999999999996,6606604.285714285,False,False,False,False,False,False,False,False,False,0.11923906142744892,False,,0
+DOGSUSD,Dogs,2026-09-30,4.8044962999999956e-05,5799766.857142857,False,False,False,False,False,False,False,False,False,-0.5985589532251085,False,ha_turn,0
+HNTUSD,Helium,2026-09-30,0.4675,5425415.0,False,False,False,False,False,False,False,False,False,-0.8017311717336554,False,,0
+BDXUSD,Beldex,2026-09-30,0.07456212,5020643.0,False,False,False,False,False,False,False,False,False,-1.6939963190068952,False,,0
+DEGENUSD,Degen,2026-09-30,0.0010759999999999997,3226817.8571428573,False,False,False,False,False,False,False,False,False,0.7277417171981955,False,ha_turn,0
+CSPRUSD,Casper,2026-09-30,0.002606190000000001,2853185.5714285714,False,False,False,False,False,False,False,False,False,-0.9060841589368085,False,,0
+STORJUSD,Storj,2026-09-30,0.030822440000000006,2410483.5714285714,False,False,False,False,False,False,False,False,False,-2.920833271638002,False,ha_turn,0
+IOTXUSD,IoTeX,2026-09-30,0.0034415299999999986,2379163.5714285714,False,False,False,False,False,False,False,False,False,-1.9949617905888544,False,,0
+FTTUSD,FTX Token,2026-09-30,0.25172,2291626.285714286,False,False,False,False,False,False,False,False,False,-0.6567091681845771,False,ha_turn,0
+CTSIUSD,Cartesi,2026-09-30,0.028479690000000005,2205074.1428571427,False,False,False,False,False,False,False,False,False,-0.42177122637924935,False,,0
+XPRUSD,XPR Network,2026-09-30,0.0023865299999999996,1978527.5714285714,False,False,False,False,False,False,False,False,False,-2.7902571339149924,False,,0
+QKCUSD,QuarkChain,2026-09-30,0.0027319000000000006,1845223.5714285714,False,False,False,False,False,False,False,False,False,-0.7497399864055859,False,,0
+RSS3USD,RSS3,2026-09-30,0.0040154200000000004,1569438.5714285714,False,False,False,False,False,False,False,False,False,-0.015372910521558652,False,"ha_turn, renko_turn",0
+FISTUSD,Fistbump,2026-09-30,0.23395999999999997,1039123.4285714285,False,False,False,False,False,False,False,False,False,-1.0882182911319245,False,ha_turn,0
+DACXIUSD,DACXI,2026-09-30,0.0008645543490000001,1028762.2857142857,False,False,False,False,False,False,False,False,False,0.74729176531371,False,,0
+BLZUSD,Bluzelle,2026-09-30,0.01047,900187.7142857143,False,False,False,False,False,False,False,False,False,-1.4310132035097998,False,"ichi_kumo_sanyaku, ichi_tk_cross",0
+REQUSD,Request,2026-09-30,0.05639999999999999,883113.8571428572,False,False,False,False,False,False,False,False,False,-0.39955268901310165,False,,0
+NAPUSD,Napoli Fan Token,2026-09-30,0.21061999999999997,754427.2857142857,False,False,False,False,False,False,False,False,False,-1.8314629125439956,False,,0
+LMWRUSD,LimeWire,2026-09-30,0.011080950000000001,750098.4285714285,False,False,False,False,False,False,False,False,False,-0.39867516895227995,False,ha_turn,0
+LBTUSD,Law Blocks,2026-09-30,0.31989,711347.0,False,False,False,False,False,False,False,False,False,-1.0322896281800145,False,,0
+ADPUSD,Adappter Token,2026-09-30,0.0005177108690000001,652919.1428571428,False,False,False,False,False,False,False,False,False,-1.702449710864463,False,,0
+BRISEUSD,Bitgert,2026-09-30,1.537400000000002e-08,557106.4285714285,False,False,False,False,False,False,False,False,False,-1.2417101735571376,False,"ha_turn, ichi_kumo_sanyaku",0
+XNOUSD,Nano,2026-09-30,0.35922999999999994,497302.71428571426,False,False,False,False,False,False,False,False,False,-0.8294703771579934,False,,0
+AZITUSD,Azit,2026-09-30,0.0021322,476580.85714285716,False,False,False,False,False,False,False,False,False,-2.370099445473029,False,renko_turn,0
+EGGUSD,Nestree,2026-09-30,0.00038015077000000006,442823.85714285716,False,False,False,False,False,False,False,False,False,-1.7606914398663036,False,,0
+ECOREALUSD,Ecoreal Estate,2026-09-30,0.37448,396861.5714285714,False,False,False,False,False,False,False,False,False,-0.47042384722871994,False,ha_turn,0
+CHSBUSD,SwissBorg,2026-09-30,0.17313,299137.4285714286,False,False,False,False,False,False,False,False,False,-0.3066447522892688,False,ha_turn,0
+BNCUSD,Bionic,2026-09-30,0.009458109999999999,289238.4285714286,False,False,False,False,False,False,False,False,False,,False,ha_turn,0
+HONEYUSD,Hivemapper,2026-09-30,0.0013289999999999999,271372.14285714284,False,False,False,False,False,False,False,False,False,-0.22865724561175793,False,ha_turn,0
+VRAUSD,Verasity,2026-09-30,1.4591978000000003e-05,262006.85714285713,False,False,False,False,False,False,False,False,False,-1.8875679611719622,False,,0
+EFCUSD,Everton Fan Token,2026-09-30,0.05064983000000001,250278.85714285713,False,False,False,False,False,False,False,False,False,-1.306482166481976,False,,0
+TOPUSD,TOP,2026-09-30,6.9469247e-05,231273.7142857143,False,False,False,False,False,False,False,False,False,0.49889137140892625,False,,0
+GHSTUSD,Aavegotchi,2026-09-30,0.06737162000000001,195679.0,False,False,False,False,False,False,False,False,False,-0.9003051454262486,False,,0
+RSCUSD,ResearchCoin,2026-09-30,0.05653,185691.2857142857,False,False,False,False,False,False,False,False,False,-1.4852672092876484,False,,0
+CRPUSD,Crypton,2026-09-30,0.13693,177740.7142857143,False,False,False,False,False,False,False,False,False,-0.7079013228459092,False,,0
+CHEELUSD,Cheelee,2026-09-30,0.33334,165470.0,False,False,False,False,False,False,False,False,False,-0.5080120355468425,False,ha_turn,0
+DARUSD,Mines of Dalarnia,2026-09-30,0.0002833789299999999,155930.7142857143,False,False,False,False,False,False,False,False,False,,False,,0
+XAVAUSD,Avalaunch,2026-09-30,0.15745,114519.85714285714,False,False,False,False,False,False,False,False,False,-3.4517766497461917,False,,0
+BTSUSD,BitShares,2026-09-30,0.0013850499999999999,109594.57142857143,False,False,False,False,False,False,False,False,False,-0.9863870289413995,False,ha_turn,0
+AIDOGEUSD,ArbDoge AI,2026-09-30,1.005027058598632e-11,107173.71428571429,False,False,False,False,False,False,False,False,False,-1.9477731689815616,False,,0
+STATUSD,STAT,2026-09-30,0.025197430000000003,106380.42857142857,False,False,False,False,False,False,False,False,False,-1.2362113363270766,False,,0
+VAIUSD,Vai,2026-09-30,0.99099,101060.28571428571,False,False,False,False,False,False,False,False,False,-2.488312792180178,False,,0
+SGBUSD,SubGame,2026-09-30,0.0009835883470000004,99993.28571428571,False,False,False,False,False,False,False,False,False,-1.124706108203519,False,"tlb_turn, ha_turn",0
+FLIPUSD,Chainflip,2026-09-30,0.31328,94056.85714285714,False,False,False,False,False,False,False,False,False,-2.540215191221902,False,ha_turn,0
