@@ -115,8 +115,8 @@ CRM,Mega Multi-Strats / Quants,1.6,1,0,0.0
 CRM,Other / Unclassified,4.5,1,0,2.9
 BLK,Activists / Special Situations,14.7,1,1,1487.8
 NSIT,Activists / Special Situations,4.2,1,0,0.0
-LLYVK,Activists / Special Situations,5.6,2,0,300.0
-LLYVK,Small-cap / Multibagger Specialists,2.4,1,0,0.0
+LLYVK,Activists / Special Situations,15.4,2,0,300.0
+LLYVK,Small-cap / Multibagger Specialists,6.6,1,0,0.0
 LLYVA,Activists / Special Situations,5.6,2,0,229.0
 TOST,Activists / Special Situations,2.8,1,0,0.0
 TOST,Concentrated Growth / Tech,3.0,1,0,11.4
@@ -302,9 +302,9 @@ TYRA,Biotech Specialists,3.9,1,0,467.0
 RAPT,Small-cap / Multibagger Specialists,2.4,1,0,21.8
 RAPT,Foreign / EM Value,2.0,1,0,0.0
 RAPT,Biotech Specialists,6.5,2,0,30.0
-MLYS,Small-cap / Multibagger Specialists,22.8,2,1,210.0
-MLYS,Activists / Special Situations,7.7,1,0,3.6
-MLYS,Biotech Specialists,9.1,1,0,208.0
+MLYS,Small-cap / Multibagger Specialists,14.4,2,1,210.0
+MLYS,Activists / Special Situations,2.8,1,0,3.6
+MLYS,Biotech Specialists,4.5,1,0,208.0
 BALY,Small-cap / Multibagger Specialists,13.8,1,1,537.0
 TPB,Small-cap / Multibagger Specialists,2.4,2,0,1.0
 TPB,Activists / Special Situations,15.4,2,0,1045.3
@@ -1010,7 +1010,7 @@ SRZN,Mega Multi-Strats / Quants,0.6,1,0,0.0
 SRZN,Biotech Specialists,1.9,1,0,0.0
 CTMX,Mega Multi-Strats / Quants,0.6,1,0,0.0
 CTMX,Biotech Specialists,1.9,1,0,0.0
-HMH,Mega Multi-Strats / Quants,2.0,1,0,0.0
+HMH,Mega Multi-Strats / Quants,0.6,1,0,0.0
 KRRO,Mega Multi-Strats / Quants,0.6,1,0,0.0
 EDSA,Mega Multi-Strats / Quants,0.6,1,0,0.0
 EDSA,Biotech Specialists,1.9,1,0,0.0
@@ -1096,7 +1096,7 @@ PRLD,Biotech Specialists,29.9,3,0,0.0
 ACRV,Biotech Specialists,11.1,1,0,1.8
 VOR,Biotech Specialists,11.1,1,0,0.0
 VOR,Activists / Special Situations,2.8,1,0,6.0
-WVE,Biotech Specialists,8.4,1,0,0.0
+WVE,Biotech Specialists,3.9,1,0,0.0
 ACET,Biotech Specialists,7.8,2,0,0.0
 OKUR,Biotech Specialists,1.9,1,0,0.0
 ZLAB,Biotech Specialists,1.9,1,0,0.0
@@ -1423,8 +1423,8 @@ SLM,Activists / Special Situations,11.2,1,1,336.0
 AN,Value / Concentrated Quality,14.4,1,0,321.0
 MRP,Value / Concentrated Quality,22.4,1,0,257.0
 MRP,Activists / Special Situations,19.6,1,1,340.0
-LEN,Value / Concentrated Quality,33.6,2,1,1286.0
-LEN,Other / Unclassified,11.5,1,1,0.0
+LEN,Value / Concentrated Quality,44.8,2,1,1286.0
+LEN,Other / Unclassified,15.0,1,1,0.0
 BLDR,Value / Concentrated Quality,17.6,2,0,245.0
 BLDR,Activists / Special Situations,27.3,2,2,490.1
 SGOV,Value / Concentrated Quality,14.4,2,1,236.8
@@ -1697,7 +1697,7 @@ CY25,Activists / Special Situations,12.6,1,1,7.0
 INCY,Biotech Specialists,13.0,1,1,2890.0
 ONC,Biotech Specialists,13.0,1,1,2610.0
 ACAD,Biotech Specialists,9.8,1,0,955.0
-KOD,Biotech Specialists,5.8,1,0,759.0
+KOD,Biotech Specialists,10.4,1,0,759.0
 GLUE,Biotech Specialists,1.9,1,0,0.0
 GRAL,Biotech Specialists,1.9,1,0,0.0
 ABCL,Biotech Specialists,11.1,1,0,0.0
@@ -1814,6 +1814,7 @@ SSBI,Value / Concentrated Quality,2.4,1,0,0.0
 NFBK,Value / Concentrated Quality,3.2,1,0,0.0
 GDOT,Value / Concentrated Quality,3.2,1,0,0.0
 GDOT,Activists / Special Situations,9.8,1,1,13.8
+CX,Macro / Trend,2.1,1,0,289.0
 STUB,Macro / Trend,0.9,1,0,0.0
 ACMR,Foreign / EM Value,7.0,1,1,28.1
 ACMR,Activists / Special Situations,5.6,1,0,108.8
