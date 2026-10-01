@@ -246,6 +246,23 @@ def enrich_symbol(sym: str):
     for src, key in CF_FLOWS.items():
         L[key] = _ttm(cp, n, spacing, src)
         L[key + "_p"] = _ttm(cp, n, spacing, src, year_ago=True)
+    # SG&A and R&D: FMP derives CN A-share Q2 rows as H1 minus Q1 from
+    # inconsistent sources and prints NEGATIVE SG&A (Rockchip -CNY 11m,
+    # 688777.SS -107m; audit 2026-10: 16% of CN base names), and an
+    # undisclosed line reads 0. A window holding any negative period, or a
+    # TTM <= 0, is "not measured", never "lean".
+    for src, key in (("sellingGeneralAndAdministrativeExpenses", "sga"),
+                     ("researchAndDevelopmentExpenses", "rnd")):
+        for ya, sfx in ((False, ""), (True, "_p")):
+            start = 0
+            if ya:
+                target = ip[0][0] - dt.timedelta(days=365)
+                idx = [i for i, (d, _) in enumerate(ip) if abs((d - target).days) <= 45]
+                start = idx[0] if idx else None
+            w = _window(ip, n, start, spacing) if start is not None else None
+            vals = [_f(r.get(src)) for _, r in w] if w else []
+            if (not vals) or any(math.isfinite(v) and v < 0 for v in vals) or not (L.get(key + sfx, np.nan) > 0):
+                L[key + sfx] = np.nan
     # Quarterly incomeTaxesPaid is unusable in FMP: zero-filled for many
     # filers (KO, NESN every period), sporadic for others, and corrupted in
     # fourth quarters that FMP derives as annual minus nine-month YTD (AAPL

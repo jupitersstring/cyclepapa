@@ -26,6 +26,7 @@ Outputs:
 """
 from __future__ import annotations
 import json
+import os
 import sys
 from datetime import date
 
@@ -187,6 +188,44 @@ def fx_convert(df: pd.DataFrame, fx: dict) -> pd.DataFrame:
     return df
 
 
+def apply_fmp_profile(df: pd.DataFrame) -> pd.DataFrame:
+    """Fill identity gaps from the cached FMP profile-bulk frames (fmp_bulk.py):
+    country (missing for 49% of the universe, 2026-10 audit), industry (14%;
+    62% of Korea and India), sector; add isin / cik / fmp_exchange /
+    is_actively_trading / is_adr. Existing values are kept; only NaNs fill.
+    No-op when the bulk files are absent."""
+    import glob as _glob
+    files = sorted(_glob.glob(os.path.join('fmp_cache', 'bulk', 'profile-bulk__part-*.parquet')))
+    if not files:
+        return df
+    try:
+        p = pd.concat([pd.read_parquet(f) for f in files], ignore_index=True)
+    except Exception:
+        return df
+    p = p[p.symbol.notna()].drop_duplicates('symbol')
+    keep = {'country': 'country', 'industry': 'industry', 'sector': 'sector', 'isin': 'isin', 'cik': 'cik',
+            'exchange': 'fmp_exchange', 'isActivelyTrading': 'is_actively_trading', 'isAdr': 'is_adr',
+            'ipoDate': 'ipo_date', 'fullTimeEmployees': 'fmp_employees'}
+    p = p[['symbol'] + [c for c in keep if c in p.columns]].rename(columns=keep)
+    for c in p.columns:
+        if c != 'symbol':
+            p[c] = p[c].replace('', np.nan)
+    m = df[['symbol']].merge(p, on='symbol', how='left', suffixes=('', '_fmp'))
+    filled = {}
+    for c in ('country', 'industry', 'sector'):
+        if c in df.columns and c in m.columns:
+            before = df[c].isna().sum()
+            df[c] = df[c].fillna(m[c].values)
+            filled[c] = int(before - df[c].isna().sum())
+        elif c in m.columns:
+            df[c] = m[c].values
+    for c in ('isin', 'cik', 'fmp_exchange', 'is_actively_trading', 'is_adr', 'ipo_date', 'fmp_employees'):
+        if c in m.columns:
+            df[c] = m[c].values if c not in df.columns else df[c].fillna(m[c].values)
+    print(f'  fmp profile fills: {filled}', file=sys.stderr)
+    return df
+
+
 def fix_asymmetry_global(in_path: str = 'asymmetry_global.csv',
                           out_path: str = 'asymmetry_global.csv'):
     print(f'\n=== Fixing {in_path} ===', file=sys.stderr)
@@ -227,6 +266,7 @@ def fix_asymmetry_global(in_path: str = 'asymmetry_global.csv',
     df = fx_convert(df, fx)
     df = reject_data_anomalies(df)
     df = dedup_dual_listings(df)
+    df = apply_fmp_profile(df)
 
     # Add an as_of stamp
     df['as_of'] = date.today().isoformat()
