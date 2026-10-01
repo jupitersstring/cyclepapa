@@ -35,7 +35,7 @@ import os
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -481,7 +481,7 @@ def latest_annual_value(facts: dict, aliases: list[str], unit: str = "USD"):
 
 
 def ttm_value(facts: dict, aliases: list[str], unit: str = "USD",
-              allow_rollfwd: bool = True):
+              allow_rollfwd: bool = True, prefer_larger: bool = False):
     """Trailing-twelve-month value, built ROBUSTLY (methodology audit 2026-09-11).
 
     The old implementation summed the 4 most recent 3-month rows with NO
@@ -506,8 +506,13 @@ def ttm_value(facts: dict, aliases: list[str], unit: str = "USD",
     # must come from the SAME concept — pooling let the roll-forward
     # difference e.g. Revenue-excluding-tax against Revenue-including-tax,
     # or parent NetIncomeLoss against NCI-inclusive ProfitLoss, yielding a
-    # "TTM" of nothing. Aliases are tried IN ORDER; the first concept that
-    # yields a TTM by any strategy wins.
+    # "TTM" of nothing. Every alias is tried and the concept whose TTM ENDS
+    # LATEST wins (audit 2026-10: "first alias that yields anything" let a
+    # retired tag win — NVDA's `Revenues` stopped at FY2022 while the newer
+    # RevenueFromContractWithCustomer... ran to 2026, so the master carried
+    # a four-year-old revenue; 540 of 5,913 names, Boeing/Lockheed at 2019).
+    # Ties (same end) keep alias order.
+    best = None
     for _c_try in aliases:
         obs_pool = [{**o, "_concept": _c_try}
                     for o in _facts_unit_iter(facts, _c_try, unit=unit)
@@ -515,9 +520,16 @@ def ttm_value(facts: dict, aliases: list[str], unit: str = "USD",
         if not obs_pool:
             continue
         _res = _ttm_from_pool(obs_pool, allow_rollfwd)
-        if _res is not None:
-            return _res
-    return None
+        if _res is None:
+            continue
+        if best is None or str(_res.get("end") or "") > str(best.get("end") or ""):
+            best = _res
+        elif prefer_larger and str(_res.get("end") or "") == str(best.get("end") or "") \
+                and (_res.get("val") or 0) > (best.get("val") or 0):
+            # same end, revenue-like series: the TOTAL concept beats a subset
+            # (ADM: Revenues $80B vs RevenueFromContractWithCustomer $25B)
+            best = _res
+    return best
 
 
 def _ttm_from_pool(obs_pool: list, allow_rollfwd: bool = True):
@@ -550,7 +562,28 @@ def _ttm_from_pool(obs_pool: list, allow_rollfwd: bool = True):
 
     annuals = [o for o in unique if (o.get("fp") == "FY" and (o["_dur"] is None or o["_dur"] >= 330))
                or (o["_dur"] is not None and 330 <= o["_dur"] <= 380)]
+    # Same-end annual rows: the 10-K total (fp FY) beats a 12-month comparative
+    # from a 10-Q note, then the larger value (a component never exceeds the
+    # total). Audit 2026-10: Comfort Systems' `Revenues` carried a $1.83B
+    # 12-month row from a 10-Q beside the $8.9B 10-K total; the roll-forward
+    # used the component as its base and printed a $3.96B TTM.
+    annuals.sort(key=lambda o: (o["_end_dt"], o.get("fp") == "FY", abs(o["val"] or 0)), reverse=True)
     flows = [o for o in unique if o["_dur"] is not None and 60 <= o["_dur"] <= 290]
+    _nonneg = all((o.get("val") or 0) >= 0 for o in unique)      # revenue-like series
+
+    def _total_ok(F):
+        """A 12-month total of a non-negative series is >= every partial-period
+        observation whose window lies inside its own (3/6/9-month YTD rows)."""
+        fs = _d(F.get("start")) if F.get("start") else None
+        if fs is None:
+            return True
+        inside = [o["val"] for o in flows
+                  if o.get("start") and _d(o["start"]) is not None
+                  and _d(o["start"]) >= fs - timedelta(days=7) and o["_end_dt"] <= F["_end_dt"] + timedelta(days=7)]
+        return not inside or (F["val"] or 0) >= max(inside) * 0.98
+
+    if _nonneg:
+        annuals = [F for F in annuals if _total_ok(F)]
 
     # --- 1) roll-forward: TTM = FY + R - P
     # ...but an ANNUAL row NEWER than every flow row IS the freshest TTM
@@ -572,6 +605,12 @@ def _ttm_from_pool(obs_pool: list, allow_rollfwd: bool = True):
                 continue
             for F in annuals:
                 if not (P["_end_dt"] <= F["_end_dt"] < R["_end_dt"]):
+                    continue
+                # A 12-month total of a non-negative series (revenue, capex)
+                # cannot be below a year-to-date partial of the same year: when
+                # it is, F is a component row leaking under the concept, not
+                # the total (Comfort Systems $1.83B vs a $4.0B H1; ADM) — skip it.
+                if _nonneg and not _total_ok(F):
                     continue
                 # R must START at the fiscal-year end (the post-FY YTD
                 # stub) — a bare Q3 3-month row satisfies every other
@@ -803,9 +842,28 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
             row["equity_cagr_5y"] = (_new_e / _old_e) ** (1.0 / _span) - 1.0
             row["equity_cagr_years"] = _span
 
-    # Flow items: TTM + annual
+    # Flow items: TTM + annual. A TTM whose period ends more than 15 months
+    # before the newest balance-sheet instant is a retired concept, not the
+    # current business (audit 2026-10): leave the field empty so the merge
+    # falls through to the fresher source instead of carrying 2019-22 revenue.
+    _instants = [str(v)[:10] for k, v in row.items()
+                 if k.endswith("_end") and not k.endswith(("_ttm_end", "_fy_end")) and v]
+    _bs_ref = max(_instants) if _instants else None
+
+    def _stale(end):
+        if not _bs_ref or not end:
+            return False
+        try:
+            return (datetime.strptime(_bs_ref, "%Y-%m-%d")
+                    - datetime.strptime(str(end)[:10], "%Y-%m-%d")).days > 455
+        except Exception:
+            return False
+
     def fl(aliases, field):
-        ttm = ttm_value(facts, aliases)
+        ttm = ttm_value(facts, aliases, prefer_larger=(field == "revenue"))
+        if ttm and _stale(ttm.get("end")):
+            row[field + "_ttm_stale_end"] = ttm["end"]
+            ttm = None
         if ttm:
             row[field + "_ttm"] = ttm["val"]
             row[field + "_ttm_end"] = ttm["end"]

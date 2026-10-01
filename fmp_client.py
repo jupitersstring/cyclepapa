@@ -310,6 +310,17 @@ def cache_gc(max_bytes: int, *, reserve: float = 0.9) -> dict:
     """
     if not os.path.isdir(CACHE_DIR):
         return {"evicted": 0, "freed_bytes": 0, "final_bytes": 0}
+    # Disk protection ONLY (audit 2026-10): the pull scripts passed caps of
+    # 300 MB-3.5 GB while the statements alone take 2 GB, so every run shed
+    # the profile / key-metrics / ratios / estimates / grades / dividends /
+    # segments of all 46.5k names (every surviving entry was <= 4.5 days old).
+    # Evict nothing while the volume still has >= 20 GB free.
+    try:
+        _st = os.statvfs(CACHE_DIR)
+        if _st.f_bavail * _st.f_frsize >= 20 * 1024 ** 3:
+            return {"evicted": 0, "freed_bytes": 0, "final_bytes": -1, "skipped": "disk not short"}
+    except OSError:
+        pass
     entries = []
     total = 0
     for root, _dirs, files in os.walk(CACHE_DIR):

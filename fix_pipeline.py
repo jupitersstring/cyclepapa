@@ -163,21 +163,19 @@ def fx_convert(df: pd.DataFrame, fx: dict) -> pd.DataFrame:
             df.get('src', pd.Series('USD', index=df.index)).map(_country_to_currency)
         )
 
-    # Sub-currency units: Yahoo quotes some markets in 1/100 units (London
-    # pence, Israeli agora, SA cents). Their market_cap is 100x too large AND
-    # the code isn't in the FX table, so without this it would default to
-    # fx=1.0 — a ~100x error. Normalise to the parent currency's rate / 100.
-    SUBUNIT = {'GBp': ('GBP', 100.0), 'GBX': ('GBP', 100.0),
-               'ZAc': ('ZAR', 100.0), 'ZAC': ('ZAR', 100.0),
-               'ILA': ('ILS', 100.0), 'ILa': ('ILS', 100.0),
-               'KWf': ('KWD', 1000.0)}
+    # Sub-currency units (London pence, Israeli agora, SA cents, Kuwaiti fils)
+    # label the PRICE quote only: the aggregates converted here (market cap,
+    # revenue, EBITDA, FCF, EV, net cash, NCAV) are stored in the parent unit.
+    # Audit 2026-10: for all 108 names still labelled GBp/ZAC/ILA the local
+    # market cap matched FMP's profile market cap (in rand / shekels / pounds)
+    # within 10%, and dividing by 100 had crushed Sasol, Sanlam, MTN,
+    # AngloGold, Naspers, Standard Bank and Schroders to "micro-caps" in the
+    # books. Convert at the parent rate; never divide the aggregates.
+    SUBUNIT = {'GBp': 'GBP', 'GBX': 'GBP', 'ZAc': 'ZAR', 'ZAC': 'ZAR',
+               'ILA': 'ILS', 'ILa': 'ILS', 'KWf': 'KWD'}
 
     def _rate(ccy):
-        if ccy in SUBUNIT:
-            parent, div = SUBUNIT[ccy]
-            base = fx.get(parent)
-            return base / div if base is not None else np.nan
-        return fx.get(ccy, np.nan)
+        return fx.get(SUBUNIT.get(ccy, ccy), np.nan)
 
     df['fx_to_usd'] = df['currency'].map(_rate).fillna(1.0)
 
