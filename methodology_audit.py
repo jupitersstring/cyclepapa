@@ -614,6 +614,10 @@ def _regression(t, g):
                 "arch_lynch_evgy", "arch_concentrated_segments",
                 # reference-gap additions (new archetypes)
                 "arch_bottleneck", "arch_flyover",
+                # Gayner (Markel) lenses — operating-gated
+                "arch_gayner_four_lens", "arch_gayner_pay_up_quality",
+                "arch_gayner_missed_it", "arch_gayner_frugal_operator",
+                "arch_gayner_wiggle_not_obsolete",
                 # event-driven sleeve (operating-gated ones)
                 "arch_spinoff_value", "arch_spinoff_quality",
                 "arch_spinoff_asset",

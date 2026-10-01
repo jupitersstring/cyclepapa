@@ -86,6 +86,9 @@ ARCH_FAMILY = {
     'arch_cash_reinvest': 'quality', 'arch_wolf_seal': 'quality',
     'arch_large_cap_quality': 'quality',
     'arch_bottleneck': 'quality', 'arch_flyover': 'quality',
+    'arch_gayner_four_lens': 'quality', 'arch_gayner_pay_up_quality': 'quality',
+    'arch_gayner_frugal_operator': 'quality',
+    'arch_gayner_missed_it': 'contrarian', 'arch_gayner_wiggle_not_obsolete': 'contrarian',
     'arch_midcap_garp': 'growth',
     # inflection / turnaround / cyclical
     'arch_double_inflect': 'inflection', 'arch_reinvest_inflect': 'inflection',

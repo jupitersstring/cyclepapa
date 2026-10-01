@@ -8035,8 +8035,177 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_ncol('fq_rev_growth'), 1), (net_cash_pct, 1), (_ncol('evh_evs_vs_med_3y'), -1),
         (_ncol('ts_dist_hi260'), -1)])
 
+    # ============ GAYNER (Markel) ARCHETYPES (2026-10-01) ============
+    # Tom Gayner, Ben Graham Centre fireside chat. The catechism repeated in
+    # every Markel annual report for 35 years — four lenses on any investment:
+    #   1. a profitable business with good returns on capital ("a profit margin
+    #      is a social stamp of approval");
+    #   2. management with equal measures of talent and integrity ("one without
+    #      the other is worthless");
+    #   3. reinvestment dynamics — organic runway, acquisitions that earn, or
+    #      capital discipline in dividends / buybacks ("the single biggest
+    #      change" in his thinking: lens 3 matters most);
+    #   4. a FAIR price — "the least important of the four" (American Express
+    #      bought the day BEFORE the salad-oil scandal: the difference dissolves
+    #      over 50 years).
+    # Plus two observations about the tape: Markel doubled eight times from the
+    # IPO and had eight drawdowns of 20%+ along the way ("oh, I missed it" at
+    # every sideways stretch), and the obsolescence test ("if this business did
+    # not exist, would we start it?") that separates a temporary wiggle
+    # (alcohol, bread) from a shot horse (newspapers). Every number below is
+    # Gayner's own (20% drawdowns, Markel's 15% compounding), a sign, or a peer
+    # frame — never an invented absolute. Coverage: lindy ROIC / the
+    # through-cycle record reach ~87% of the universe; exec-comp alignment
+    # reaches <1% and is therefore a WEIGHT, never a gate.
+    _g_roic = _ncol('roic_lindy').fillna(_ncol('fmp_st_roic_lindy'))
+    _g_roiic = _ncol('roiic_lindy').fillna(_ncol('fmp_st_roiic_lindy'))
+    _g_years = _ncol('tc_years').fillna(_ncol('fmp_st_years_of_history'))
+    # lens 1 — profitable through the cycle (operating income positive in >= 90%
+    # of the fiscal years on file, >= 5 years) with good returns on capital
+    # (lindy ROIC >= 12%: the multi-year read, never a one-off spot)
+    _g_prof_share = (_ncol('tc_opinc_pos') / _ncol('tc_years').where(_ncol('tc_years') >= 5)).fillna(
+        _ncol('fmp_st_n_yrs_positive_opinc')
+        / _ncol('fmp_st_years_of_history').where(_ncol('fmp_st_years_of_history') >= 5))
+    _g_lens1 = ((_g_roic >= 0.12) & (_g_prof_share >= 0.90) & (_opm_now > 0)).fillna(False)
+    # lens 2 — talent AND integrity, read from what the statements reveal:
+    # talent = the business is run at or above its own through-cycle margin
+    # (not coasting on a legacy franchise; the 8-quarter margin slope where no
+    # through-cycle record exists; unmeasured passes). Integrity = earnings are
+    # cash (CFO/NI not < 0.6 on the quarterly panel), no manipulation-risk
+    # print (Beneish), no data-quality flag, SBC not polluting the P&L (<= 5%
+    # of revenue), no one-off-inflated earnings.
+    _g_sbc = _ncol('sbc_pct_revenue').fillna(_ncol('fq_sbc_pct_revenue')).fillna(_ncol('fmp_sbc_to_revenue'))
+    _g_tcm = _ncol('tc_med_opm')
+    _g_slope = _ncol('fqx_opm_slope8')
+    _g_talent = ((_g_tcm.notna() & (_opm_now >= 0.9 * _g_tcm))
+                 | (_g_tcm.isna() & _g_slope.notna() & (_g_slope >= 0))
+                 | (_g_tcm.isna() & _g_slope.isna()))
+    _g_integrity = (~(_ncol('fq_cfo_to_ni') < 0.6) & ~(_ncol('fq_beneish_risk_flag') == 1)
+                    & ~(_ncol('data_quality_flag') == 1) & ~(_g_sbc > 0.05)
+                    & ~(_ncol('earnings_oneoff_flag') == 1))
+    _g_lens2 = (_g_talent & _g_integrity).fillna(False)
+    # lens 3 — reinvestment dynamics, any of the three forms Gayner names:
+    # (a) organic runway: incremental capital earns (lindy ROIIC >= 12%) and the
+    #     business is actually deploying it (revenue or assets compounding
+    #     >= 5%/yr over 3-5 years);
+    # (b) acquisitions that earn: acquisition spend on the balance sheet (>= 2%
+    #     of assets) with ROIC held >= 12% — the return survives the deals;
+    # (c) capital discipline: returns to owners (>= 2% yield) out of cash the
+    #     business earned (no uncovered payout year of three) with the share
+    #     count not growing.
+    _g_rev5 = _ncol('revenue_5y_cagr').fillna(_ncol('fmp_st_revenue_5y_cagr'))
+    _g_growth = ((_g_rev5.fillna(_ncol('revenue_3y_cagr')) >= 0.05)
+                 | (_ncol('asset_3y_cagr').fillna(_ncol('fmp_st_asset_3y_cagr')) >= 0.05))
+    _g_organic = ((_g_roiic >= 0.12) & _g_growth).fillna(False)
+    _g_acquirer = ((_ncol('fq_acq_pct_assets') >= 0.02) & (_g_roic >= 0.12)).fillna(False)
+    _g_capret = _ncol('capital_return_yield').fillna(_ncol('fmp_st_capital_return_yield'))
+    _g_sh3 = _ncol('shares_growth_3y').fillna(_ncol('fmp_st_shares_growth_3y')).fillna(_ncol('fg_shares_dil_g1'))
+    _g_discipline = ((_g_capret >= 0.02) & ~(_ncol('tc_uncov_payout_3y') >= 1) & ~(_g_sh3 > 0.0)).fillna(False)
+    _g_lens3 = _g_organic | _g_acquirer | _g_discipline
+    # lens 4 — a FAIR price, not a cheap one: EV/EBIT positive and no more than
+    # 1.5x the median of its own listing market (a peer frame), within the EV
+    # sanity band. Gayner's point is that lenses 1-3 let you pay up a little.
+    _g_evb_mkt_med = _ev_ebit_u.where(is_operating & (_ev_ebit_u > 0)).groupby(country).transform('median')
+    _g_lens4 = ((_ev_ebit_u > 0) & (_ev_ebit_u <= 1.5 * _g_evb_mkt_med) & _ev_sane).fillna(False)
+    # 1. GAYNER FOUR-LENS: all four lenses at once — the catechism as a screen.
+    df['arch_gayner_four_lens'] = (
+        is_operating & (mcap > 0) & _g_lens1 & _g_lens2 & _g_lens3 & _g_lens4 & _not_melting
+    ).fillna(False).astype(int)
+    _DEMOTED.setdefault('gayner_four_lens', []).extend([
+        (_g_roic, 1), (_g_roiic, 1), (_g_prof_share, 1), (_g_years, 1),
+        (_ncol('ts_maxdd_5y'), 1), (_ev_ebit_u.where(_ev_ebit_u > 0), -1),
+        (insider, 1), (_ncol('fmp_insider_alignment_ratio'), 1), (_g_sbc, -1)])
+    # 2. GAYNER PAY-UP QUALITY: lenses 1-3 at their strongest (Markel's own 15%
+    #    compounding: lindy ROIC and ROIIC >= 15%, a record of >= 7 years,
+    #    revenue compounding >= 8%/yr) and the FOURTH lens deliberately failed
+    #    — EV/EBIT ABOVE its market's median (not cheap) but no more than 3x it
+    #    (not absurd). The American-Express-the-day-before set: every
+    #    conventional cheapness screen drops it; the reinvestment runway is the
+    #    thesis.
+    _g_strong = ((_g_roic >= 0.15) & (_g_roiic >= 0.15) & (_g_years >= 7)
+                 & (_g_prof_share >= 0.90) & (_g_rev5 >= 0.08)).fillna(False)
+    _g_not_cheap = ((_ev_ebit_u > _g_evb_mkt_med) & (_ev_ebit_u <= 3.0 * _g_evb_mkt_med) & _ev_sane).fillna(False)
+    df['arch_gayner_pay_up_quality'] = (
+        is_operating & (mcap > 0) & _g_strong & _g_lens2 & _g_lens3 & _g_not_cheap
+        & ~(_g_sh3 > 0.0) & _not_melting
+    ).fillna(False).astype(int)
+    _DEMOTED.setdefault('gayner_pay_up_quality', []).extend([
+        (_g_roiic, 1), (_g_rev5, 1), (_ncol('fmp_st_ebit_ps_5y_g').fillna(_ncol('fg_ni_ps_5y')), 1),
+        (_g_years, 1), (_ncol('ts_maxdd_5y'), 1), (_ev_ebit_u / _g_evb_mkt_med, -1)])
+    # 3. GAYNER "I MISSED IT": a long compounding record (per-share EBIT, net
+    #    income or book compounding >= 12%/yr over 5 years, lindy ROIC >= 12%,
+    #    profitable 90%+ of years) whose tape has gone sideways — flat over 12
+    #    months, or in one of its 20%+ drawdowns from the 5-year high (the
+    #    52-week high where the weekly panel does not reach) — while the
+    #    earnings kept growing (TTM EBIT up, else the latest fiscal year).
+    #    Markel sitting at 32 "for a while": the psychology says it is done; the
+    #    same people are still going to work every day. No dilution.
+    _g_ps5 = (_ncol('fmp_st_ebit_ps_5y_g').fillna(_ncol('fg_ni_ps_5y'))
+              .fillna(_ncol('equity_cagr_5y')).fillna(_ncol('fmp_st_equity_cagr')))
+    _g_record = ((_g_ps5 >= 0.12) & (_g_roic >= 0.12) & (_g_prof_share >= 0.90)).fillna(False)
+    _g_stalled = ((_ncol('ts_r52') <= 0.05) | (_ts_hi260 <= 0.80)
+                  | (_ts_hi260.isna() & (_ncol('pct_off_52w_high') <= -0.20))).fillna(False)
+    _g_still_growing = ((_ncol('fqx_ebit_ttm_g') > 0)
+                        | (_ncol('fqx_ebit_ttm_g').isna() & (_ncol('fmp_st_ebit_g1') > 0))).fillna(False)
+    df['arch_gayner_missed_it'] = (
+        is_operating & (mcap > 0) & _g_record & _g_stalled & _g_still_growing
+        & ~(_g_sh3 > 0.0) & _g_integrity & _not_melting
+    ).fillna(False).astype(int)
+    _DEMOTED.setdefault('gayner_missed_it', []).extend([
+        (_g_ps5, 1), (_g_roic, 1), (_ncol('fqx_ebit_ttm_g'), 1), (_ts_hi260, -1),
+        (_ncol('ts_r52'), -1), (_ncol('ts_dd_time_share_260'), 1), (_g_years, 1)])
+    # 4. GAYNER FRUGAL OPERATOR: the one factor the Davis study found in good
+    #    investors — frugality — read on the company: a lean cost structure
+    #    (SG&A/revenue not above its industry median), SBC <= 2% of revenue,
+    #    operating margin not below its industry median (the frugality shows
+    #    up as margin), owners' money treated as owners' money (no uncovered
+    #    payout, no share-count growth), insiders aligned (>= 10% owned, or
+    #    buying), good returns on capital, a profit through the cycle. Exec
+    #    comp relative to profit is a weight where disclosed.
+    _g_sga_rev = _ncol('fq_sga') / _ncol('fq_revenue').where(_ncol('fq_revenue') > 0)
+    _ind_g = (df['industry'].fillna('').astype(str).str.lower()
+              if 'industry' in df.columns else pd.Series('', index=df.index))
+    _g_sga_ind_med = _g_sga_rev.where(is_operating & (_ind_g != '')).groupby(_ind_g).transform('median')
+    _g_opm_ind_med = _opm_now.where(is_operating & (_ind_g != '')).groupby(_ind_g).transform('median')
+    _g_lean = ~(_g_sga_rev > _g_sga_ind_med) & ~(_opm_now < _g_opm_ind_med)
+    _g_aligned = ((insider >= 0.10) | (_ncol('insider_buy_flag') == 1)
+                  | (_ncol('fmp_insider_aligned_flag') == 1)).fillna(False)
+    df['arch_gayner_frugal_operator'] = (
+        is_operating & (mcap > 0) & _g_lean & ~(_g_sbc > 0.02) & _g_aligned
+        & ~(_ncol('tc_uncov_payout_3y') >= 1) & ~(_g_sh3 > 0.0)
+        & (_g_roic >= 0.12) & (_g_prof_share >= 0.90) & _g_integrity & _not_melting
+    ).fillna(False).astype(int)
+    _DEMOTED.setdefault('gayner_frugal_operator', []).extend([
+        (_g_sga_rev / _g_sga_ind_med.where(_g_sga_ind_med > 0), -1), (_opm_now - _g_opm_ind_med, 1),
+        (_g_sbc, -1), (insider, 1), (_ncol('fmp_insider_alignment_ratio'), 1), (_g_roic, 1),
+        (_ncol('fmp_exec_comp_total') / _ncol('net_income_ttm').where(_ncol('net_income_ttm') > 0), -1)])
+    # 5. GAYNER WIGGLE, NOT OBSOLETE: a franchise with a long record (the full
+    #    statement window on file — 8 fiscal years, the cap of both history
+    #    sources — at most one non-COVID loss year, lindy ROIC >= 10%)
+    #    whose price is 20%+ off its 5-year high while perception has turned
+    #    against it (buy share falling, targets cut, or the stock down on the
+    #    year) — yet the business passes the "would we start it today" test as
+    #    far as the statements can tell: sales not shrinking (TTM >= -5%) and
+    #    the operating margin still at >= 75% of its through-cycle median. The
+    #    alcohol / bread case, not the newspaper case.
+    _g_long = ((_g_years >= 8) & ~(_ncol('tc_loss_years_other') > 1) & (_g_roic >= 0.10)).fillna(False)
+    _g_rev_now = _ncol('fq_rev_growth').fillna(_ncol('rev_yoy'))
+    _g_intact = ((_g_rev_now >= -0.05) & (_opm_now >= 0.75 * _g_tcm) & (_opm_now > 0)).fillna(False)
+    _g_out_of_favour = (((_ts_hi260 <= 0.80) | (_ts_hi260.isna() & (_ncol('pct_off_52w_high') <= -0.20)))
+                        & ((_ncol('sent_buy_share_d12') < 0) | (_ncol('sent_pt_rev_q') < 0)
+                           | (_ncol('ts_r52') < 0))).fillna(False)
+    df['arch_gayner_wiggle_not_obsolete'] = (
+        is_operating & (mcap > 0) & _g_long & _g_intact & _g_out_of_favour
+        & ~(_g_sh3 > 0.0) & _g_integrity & _not_melting     # integrity: a wiggle in a clean set of books, not a fraud at 0.4x EBIT
+    ).fillna(False).astype(int)
+    _DEMOTED.setdefault('gayner_wiggle_not_obsolete', []).extend([
+        (_ncol('tc_min_opm'), 1), (_g_years, 1), (_g_roic, 1), (_g_rev_now, 1),
+        (_opm_now / _g_tcm.where(_g_tcm > 0), 1), (_ts_hi260, -1), (_ncol('sent_buy_share_d12'), -1)])
+
     arch_cols = [
         'arch_cheap_net_cash_steady_earner', 'arch_psix',
+        'arch_gayner_four_lens', 'arch_gayner_pay_up_quality', 'arch_gayner_missed_it',
+        'arch_gayner_frugal_operator', 'arch_gayner_wiggle_not_obsolete',
         'arch_narrative_lag',
         'arch_derate_through_growth',
         'arch_fixed_cost_demand_shock',
@@ -8433,6 +8602,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_model_region_rule': 'MB-ModelRegionRule',
         'arch_cheap_net_cash_steady_earner': 'CheapNetCashSteadyEarner',
         'arch_psix': 'PSIX',
+        'arch_gayner_four_lens': 'Gayner-FourLens',
+        'arch_gayner_pay_up_quality': 'Gayner-PayUpQuality',
+        'arch_gayner_missed_it': 'Gayner-MissedIt',
+        'arch_gayner_frugal_operator': 'Gayner-FrugalOperator',
+        'arch_gayner_wiggle_not_obsolete': 'Gayner-WiggleNotObsolete',
         'arch_mb_industry_trough_cheapest': 'MB-IndustryTroughCheapest',
         'arch_mb_reinvesting_at_trough': 'MB-ReinvestingAtTrough',
         'arch_mb_stressed_not_diluting': 'MB-StressedNotDiluting',
