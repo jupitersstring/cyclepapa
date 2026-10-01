@@ -27,7 +27,9 @@ LOOKBACK_DAYS = 730
 def _get(path, **p):
     q = "&".join(f"{k}={v}" for k, v in p.items())
     url = f"{API}/{path}?{q}&apikey={api_key()}"
-    for attempt in range(4):
+    # patient enough for a passing FMP hiccup or rate-limit window (~2 min):
+    # four tries 2-8 s apart once stopped the whole daily refresh
+    for wait in (5, 10, 20, 30, 60, 0):
         r = subprocess.run(["curl", "-sS", "--max-time", "60", url], capture_output=True, text=True)
         try:
             d = json.loads(r.stdout)
@@ -35,7 +37,7 @@ def _get(path, **p):
                 return d
         except ValueError:
             pass
-        time.sleep(2 * (attempt + 1))
+        time.sleep(wait)
     raise RuntimeError(f"FMP {path} page {p.get('page')} failed after retries")
 
 def amount_range(s):

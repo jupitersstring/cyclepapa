@@ -21,7 +21,9 @@
 Table sec_events: one row per filing (accession): kind, form, filed, the
 company (subject) and the other party (dissident, bidder, parent, insider),
 a detail field (spin parent + ticker, Form 3 role). Rolling windows: proxy and
-tender 180 days, spin 365, form3 120. Idempotent: re-runs replace the window.
+tender 180 days, spin 365, form3 120. A re-run adds and updates filings; a
+stored filing leaves only when it ages out of its window (EDGAR's search
+sometimes answers short, and a short read must not erase real filings).
 """
 import html, json, os, re, sqlite3, subprocess, sys, time
 import datetime as dt
@@ -364,18 +366,33 @@ def run():
                         continue
                     r[9] = f"tracked person: {hit}" + (f" · {role}" if role else "")
                     time.sleep(0.15)
-        conn.execute(f"DELETE FROM sec_events WHERE kind = ?", (kind,))
+        # EDGAR's full-text search sometimes answers short (a page of hits, a
+        # whole ten-day Form 3 window, missing); replacing the window with such
+        # a read silently dropped 1,167 real filings in September 2026. A
+        # re-read adds and updates: a stored filing leaves when it ages out of
+        # the window, never because one search missed it.
+        stored = {a for (a,) in conn.execute("SELECT accession FROM sec_events WHERE kind = ? AND filed >= ?",
+                                             (kind, start))}
+        conn.execute("DELETE FROM sec_events WHERE kind = ? AND filed < ?", (kind, start))
         conn.executemany("INSERT OR REPLACE INTO sec_events VALUES (?,?,?,?,?,?,?,?,?,?)", [r[:10] for r in rows])
         conn.commit()
-        n_sub = len({r[4] for r in rows})
-        extra = ""
-        if kind == "spin":
-            extra = f"; {sum(1 for r in rows if (r[9] or '').startswith('parent'))} filings name a parent"
-        if kind == "form3":
-            extra = f"; {sum(1 for r in rows if (r[9] or '').startswith('tracked'))} by tracked people"
+        kept = len(stored - {r[3] for r in rows})
+        n_all, n_sub = conn.execute("SELECT COUNT(*), COUNT(DISTINCT subject_cik) FROM sec_events WHERE kind = ?",
+                                    (kind,)).fetchone()
+        extra = f" ({len(rows):,} returned by today's search"
+        extra += f", {kept:,} stored ones it missed kept)" if kept else ")"
+        if kept > 0.10 * max(len(stored), 1):
+            print(f"  ! {kind}: EDGAR search answered short ({len(rows):,} filings, {kept:,} of {len(stored):,} "
+                  f"stored ones missing) — stored filings kept", flush=True)
+        if kind in ("spin", "form3"):
+            what, pat = {"spin": ("filings name a parent", "parent %"),
+                         "form3": ("by tracked people", "tracked person%")}[kind]
+            n_d = conn.execute("SELECT COUNT(*) FROM sec_events WHERE kind = ? AND detail LIKE ?",
+                               (kind, pat)).fetchone()[0]
+            extra += f"; {n_d} {what}"
         if unread:
             extra += f"; {unread} documents EDGAR would not serve (marked, retried next run)"
-        print(f"{kind}: {len(rows):,} filings about {n_sub:,} companies in {WINDOW[kind]} days{extra}", flush=True)
+        print(f"{kind}: {n_all:,} filings about {n_sub:,} companies in {WINDOW[kind]} days{extra}", flush=True)
     conn.close()
     return failed
 
