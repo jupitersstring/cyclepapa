@@ -33,7 +33,6 @@ step enrich_fmp python3 pipeline/enrich_fmp.py
 step price_stats python3 pipeline/build_price_stats.py
 step prices python3 pipeline/ingest_prices_fmp.py             # daily closes (not snapshotted: re-fetched)
 step sec_events python3 pipeline/ingest_sec_events.py         # proxy fights, spin-offs, tenders, Form 3s
-step short_interest python3 pipeline/ingest_short_interest.py # FINRA
 step earnings python3 pipeline/ingest_fmp_earnings.py
 step insider_fmp python3 pipeline/ingest_insider_fmp.py      # every Form 4 code; buys/sells the SEC scan missed
 step cluster python3 pipeline/cluster_detector.py

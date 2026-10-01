@@ -1,9 +1,10 @@
 #!/bin/bash
 # Daily refresh: the fast-moving feeds — insider trades (every Form 4 code,
 # via FMP), Congress trades, 13D/G stakes, 8-K catalysts, SEC event filings
-# (proxy fights, spin-offs, tenders, Form 3s), FINRA short interest, prices
-# and valuations — then track records, the scores, the four books and the
-# snapshot. The books'
+# (proxy fights, spin-offs, tenders, Form 3s), prices and valuations — then
+# track records, the scores, the four books and the snapshot. FINRA short
+# interest is no longer refreshed (ingest_short_interest.py, run by hand if
+# wanted): the books show the last settlement loaded, with its date. The books'
 # "What Changed" sheet compares against the last committed snapshot, so commit
 # after each delivered build. The quarterly 13F roll is rebuild_13f.sh (run it
 # once the 13F deadline, 45 days after quarter end, has passed).
@@ -30,7 +31,6 @@ step congress python3 pipeline/ingest_congress.py              # STOCK Act discl
 step 13d python3 pipeline/refresh_13d_efts.py                  # 13D/G stakes, rolling 21 months
 step 8k python3 pipeline/ingest_8k_sharded.py 1500             # M&A / control / dilution / bankruptcy items
 step sec_events python3 pipeline/ingest_sec_events.py           # proxy fights, spin-offs, tenders, Form 3s
-step short_interest python3 pipeline/ingest_short_interest.py   # FINRA, twice a month
 step map_pb_tickers python3 pipeline/map_pb_tickers.py         # board companies -> listings (people monitor)
 step enrich_fmp python3 pipeline/enrich_fmp.py                 # prices, valuations, profiles
 step price_stats python3 pipeline/build_price_stats.py
