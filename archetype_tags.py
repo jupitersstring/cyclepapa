@@ -2257,6 +2257,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # only genuine distress, keeps every real diversified operator.
         & ((s('fcf_ttm') > 0) | (ebitda_margin > 0.05))
         & _roce_now_ok   # (deep-audit) the last missing leg vs geographic_global: TUSK roce-27%, SLP roce-59% (one-off +fcf) slipped the fcf/ebitda guard. Now byte-identical to the guarded sibling (3 melters vs 14).
+        & _not_melting   # (rebuild audit 2026-10-02) the cash-aware melt gate: HGIT (non-traded REIT, sector/industry blank so the REIT exclusion missed it) passed on a depreciation-inflated 33% EBITDA margin with op margin -51% and negative FCF
     ).fillna(False).astype(int)
 
     # AE — Concentrated Segment Risk: HHI >= 0.70 OR largest segment >= 70%.

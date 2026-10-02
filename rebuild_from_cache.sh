@@ -18,9 +18,9 @@
 #    (statements -> through-cycle -> quarterly -> quarterly-ext -> dynamics)
 #    and the rest.
 #  * The master is rebuilt IN PLACE through the same steps as the Yahoo driver
-#    (apply_ticker_yf -> fill gaps -> derive -> rebuild_scores [FX, dedup,
-#    profile fill, company map, freshness] -> enrich -> archetype_tags ->
-#    enrich), never through the from-scratch ranker, which would drop the
+#    (fill gaps -> rebuild_scores [FX, dedup, profile fill, company map,
+#    freshness] -> derive -> apply_ticker_yf [final harmonizer] -> enrich ->
+#    archetype_tags -> enrich), never through the from-scratch ranker, which would drop the
 #    appended expansion names. The master chain is fail-fast; the audit gate
 #    then decides whether the books are rebuilt.
 set -u
@@ -88,8 +88,13 @@ if [ -z "${ONLY_MASTER:-}" ]; then
 fi
 
 # ---- master table, in place, fail-fast ----
-for step in "apply_ticker_yf:apply_ticker_yf.py" "fill_asymmetry_gaps:fill_asymmetry_gaps.py" \
-            "derive_missing_columns:derive_missing_columns.py" "rebuild_scores:rebuild_scores.py" \
+# ORDER (refresh_valuations.sh): every FILLER first — gap fill, FX/dedup/profile
+# fill/company map (rebuild_scores), derive — then apply_ticker_yf LAST as the
+# harmonizer that reconciles price/mcap/EV and recomputes every derived ratio.
+# A filler after the harmonizer re-introduces the identity violations the
+# audit gate checks (mcap = price x shares, fcf_yield = fcf / mcap, ...).
+for step in "fill_asymmetry_gaps:fill_asymmetry_gaps.py" "rebuild_scores:rebuild_scores.py" \
+            "derive_missing_columns:derive_missing_columns.py" "apply_ticker_yf:apply_ticker_yf.py" \
             "enrich_pre:enrich_asymmetry_global.py" "archetype_tags:archetype_tags.py" \
             "enrich_post:enrich_asymmetry_global.py"; do
     label=${step%%:*}; script=${step#*:}
