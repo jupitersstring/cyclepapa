@@ -1,0 +1,230 @@
+"""Elite country book — every archetype made extremely stringent.
+
+Separate from the main country books: it shows only the most exceptional
+opportunities per country. Every archetype now carries a CONTINUOUS spirit
+score (archetype_tags: <name>_spirit = mean within-core percentile rank over
+several independent lenses of the archetype's own thesis, grounded in the
+source write-ups — docs/spirit_spec.json). A name qualifies for an archetype
+ONLY IF
+
+      spirit >= 0.90 (near the top on EVERY lens; ★), OR
+      in the top 2% of that archetype's members by spirit (>= 3 names),
+      globally OR within the name's own country (so every market's own best
+      appear on its sheet on their own terms)
+  Thin liquidity is DENOTED (⚠ thin), never a limit.
+  archetypes whose core is too small to rank (< 5 members) fall back to:
+      member AND top 5% of that archetype's members by confirm_overall AND no
+      red forensic tell AND clean data (liquidity denoted, not required)
+
+Common guards for every name: common stock, not RED-verdict, not a clinical-
+stage biotech (their moves are binary-event driven), market cap >= $10M.
+
+Sheets: Cover (elite counts by archetype x country, how to read), one sheet per
+country (>= 1 elite name) ranked by the number of archetypes a name is elite
+on, then by entry_confirmed.
+"""
+from __future__ import annotations
+
+import argparse
+import sys
+
+import numpy as np
+import pandas as pd
+
+import tab_colors
+from build_archetype_book import load_data, ARCHETYPE_LABELS, _sheet_safe
+from build_harvard_workbook import (Workbook, INK, MUTED, RULE, _font, _section_rule,
+                                    _write_money, _write_pct, _write_score, _write_int,
+                                    _TXT_ALIGN_LEFT, _NUM_ALIGN_CENTER)
+from build_forensic_xr_book import acct_check
+from openpyxl.styles import Border, Side
+from openpyxl.utils import get_column_letter
+from otc_flag import apply_otc_mode
+from universe_gate import add_gate_arg, apply_gates, gate_label
+from region_map import classify, ordered_countries
+
+OUT = "elite_country_book.xlsx"
+
+
+def _label(col: str) -> str:
+    return str(ARCHETYPE_LABELS.get(col, col.replace("arch_", ""))).split(" (")[0]
+
+
+def elite_matrix(df: pd.DataFrame, arch_cols: list) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """(elite 0/1 frame, both-tiers 0/1 frame) over archetypes."""
+    n = lambda c: pd.to_numeric(df[c], errors="coerce") if c in df.columns else pd.Series(np.nan, index=df.index)
+    E, B = pd.DataFrame(index=df.index), pd.DataFrame(index=df.index)
+    # VALIDITY for elite status (not a thesis test): tradeable — >= $250k a
+    # week on the weekly panel, or where the panel lacks the name the daily
+    # dollar-volume fallback (>= $50k/day) — and a clean data record
+    _adv = n("pew_avg_dollar_volume")
+    liquid = ((n("ts_dvol26_usd") >= 250_000)
+              | (n("ts_dvol26_usd").isna() & (_adv >= 50_000))).fillna(False)
+    clean = ~(n("fq_forensic_red_count") > 0)
+    dq_ok = ~(n("data_quality_flag") == 1)
+    conf = n("confirm_overall")
+    for col in arch_cols:
+        name = col[len("arch_"):]
+        mem = n(col) == 1
+        if not mem.any():
+            continue
+        if f"{name}_spirit" in df.columns and n(f"{name}_spirit").where(mem).notna().sum() >= 5:
+            # STRINGENT: spirit >= 0.90 (near the top on EVERY lens: star), or
+            # the top 2% of the archetype's own members by spirit (>= 3 names)
+            # — so a large core contributes only its very best, and a varied
+            # core whose averaged ranks rarely reach 0.90 still shows its top
+            sp = n(f"{name}_spirit").where(mem)
+            k = max(3, int(np.ceil(0.02 * sp.notna().sum())))
+            top = sp >= sp.nlargest(k).min()
+            # ...and the top 2% WITHIN THE NAME'S OWN COUNTRY (>= 3 names, of a
+            # country with >= 10 members): every market's own best appear on
+            # its country sheet on their own terms, whatever the global cut
+            ctry = df["src"].astype(str).str.upper()
+            n_c = sp.notna().groupby(ctry).transform("sum")
+            k_c = np.maximum(3, np.ceil(0.02 * n_c))
+            rank_c = sp.groupby(ctry).rank(ascending=False, method="first")
+            top_c = (rank_c <= k_c) & (n_c >= 10)
+            el = sp >= 0.90
+            # liquidity is DENOTED on the name (the ⚠ tags), never a limit
+            E[col] = (mem & (el | top | top_c) & dq_ok).fillna(False).astype(int)
+            B[col] = (mem & el & dq_ok).fillna(False).astype(int)
+        else:
+            c = conf.where(mem)
+            cut = c.quantile(0.95) if c.notna().sum() >= 20 else np.inf
+            E[col] = (mem & (c >= cut) & clean & dq_ok).fillna(False).astype(int)
+            B[col] = 0
+    return E, B
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=OUT)
+    ap.add_argument("--min-mcap", type=float, default=10e6)
+    add_gate_arg(ap)
+    args = ap.parse_args()
+    df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode="all")
+    df = apply_otc_mode(df, "ex-otc")
+    num = lambda c: pd.to_numeric(df[c], errors="coerce") if c in df.columns else pd.Series(np.nan, index=df.index)
+    keep = ~(num("non_common_flag") == 1) & ~(num("is_clinical_biotech") == 1)
+    if "verdict" in df.columns:
+        keep &= df["verdict"].astype(str) != "RED"
+    df = df[keep].copy()
+    df = apply_gates(df, args.gate)
+    df["src"] = df["src"].fillna("").astype(str).str.upper()
+    E, B = elite_matrix(df, arch_cols)
+    E = E.loc[:, E.sum() > 0]
+    df["elite_n"] = E.sum(axis=1)
+    # ⚠ VERIFY: rank-based spirit cannot tell a data error from a genuine
+    # extreme, so implausible values are surfaced for a human check (kept, not
+    # dropped — some are real deep value): FCF yield > 50%, net cash > 2x the
+    # market cap, P/E < 1.5, P/B < 0.1, P/S < 0.05, revenue < $5M
+    _v = pd.concat({
+        "FCF yld>50%": num("fcf_yield") > 0.5, "net cash>2x mcap": num("net_cash_pct_mcap") > 2,
+        "P/E<1.5": num("p_e").between(0, 1.5, inclusive="neither"), "P/B<0.1": num("pb").between(0, 0.1, inclusive="neither"),
+        "P/S<0.05": num("p_s").between(0, 0.05, inclusive="neither"), "rev<$5M": num("revenue_ttm_usd") < 5e6}, axis=1)
+    _thin = num("ts_dvol26_usd").fillna(num("pew_avg_dollar_volume") * 5)
+    _v["thin: <$250k/wk"] = _thin < 250_000
+    _v["no volume data"] = _thin.isna()
+    df["verify"] = _v.fillna(False).apply(lambda r: ", ".join(k for k, v in r.items() if bool(v)), axis=1)
+    # one line per company: share classes / cross-listings / listed notes of
+    # the same issuer collapse to the most-traded line
+    _nm = (df["name"].astype(str).str.lower().str.replace(r"[^a-z0-9 ]", "", regex=True)
+           .str.replace(r"\b(inc|corp|co|ltd|plc|ag|sa|nv|limited|holdings|group|company|the)\b", "", regex=True)
+           .str.split().str.join(" "))
+    _liq = num("ts_dvol26_usd").fillna(num("pew_avg_dollar_volume") * 5)
+    _dup = (df.assign(_k=_nm, _l=_liq)[df["elite_n"] > 0].sort_values("_l", ascending=False)
+            .duplicated(subset=["_k", "src"], keep="first"))
+    df.loc[_dup[_dup].index, "elite_n"] = 0
+    df["elite_both_n"] = B.reindex(columns=E.columns, fill_value=0).sum(axis=1)
+    df["elite_list_raw"] = [
+        "; ".join(("★ " if B.at[i, c] == 1 else "") + _label(c) for c in E.columns if E.at[i, c] == 1)
+        for i in df.index]
+    df["elite_list"] = [("⚠ verify (" + v + ") · " if v else "") + s for v, s in zip(df["verify"], df["elite_list_raw"])]
+    el = df[df["elite_n"] > 0].copy()
+    sort_col = "entry_confirmed" if "entry_confirmed" in el.columns else "entry_today_asymmetry"
+    el = el.sort_values(["elite_n", "elite_both_n", sort_col], ascending=[False, False, False])
+    print(f"  elite names: {len(el):,} across {el['src'].nunique()} countries; "
+          f"{E.shape[1]} archetypes contribute", file=sys.stderr)
+
+    wb = Workbook()
+    cover = wb.active
+    cover.title = "Cover"
+    tab_colors.set_tab(cover, tab_colors.COVER)
+    cover.cell(row=2, column=2, value="Elite Country Book — only the most exceptional").font = _font(bold=True, size=14)
+    notes = [
+        "Each archetype is made extremely stringent. A name appears for an archetype only if:",
+        "• every archetype has a continuous SPIRIT score: the average within-archetype rank across several independent "
+        "measures of its own thesis. Listed only if spirit >= 0.90 (★: near the top on every measure) or in the top 2% of the "
+        "archetype's members by spirit — globally or within its own country",
+        "⚠ tags denote thin liquidity (< $250k/week) and implausible values to verify; they never exclude a name.",
+        "• archetypes too small to rank (< 5 members): top 5% by multi-measure confirmation AND no red accounting tell AND "
+        ">= $250k/week traded AND clean data",
+        "Excluded everywhere: preferred / warrant lines, RED verdicts, clinical-stage biotech (binary-event driven).",
+        "Country sheets rank names by the number of archetypes they are elite on, then by confirmed entry asymmetry.",
+    ] + ([f"UNIVERSAL GATE applied to every name: {gate_label(args.gate)}"] if args.gate else [])
+    for i, t in enumerate(notes, start=4):
+        cover.cell(row=i, column=2, value=t).font = _font(italic=(i > 4), color=INK if i == 4 else MUTED)
+    _section_rule(cover, 11, "Elite names by archetype (columns = countries with the most elite names)", span_cols=12)
+    top_c = el["src"].value_counts().head(10).index.tolist()
+    cover.cell(row=12, column=2, value="Archetype").font = _font(bold=True, color=MUTED)
+    cover.cell(row=12, column=3, value="All").font = _font(bold=True, color=MUTED)
+    for j, c in enumerate(top_c, start=4):
+        cover.cell(row=12, column=j, value=c).font = _font(bold=True, color=MUTED)
+    r = 13
+    for col in sorted(E.columns, key=lambda c: -int(E[c].sum())):
+        cover.cell(row=r, column=2, value=_label(col)).font = _font()
+        cover.cell(row=r, column=3, value=int(E[col].sum())).font = _font(bold=True)
+        for j, c in enumerate(top_c, start=4):
+            v = int(E.loc[df["src"] == c, col].sum())
+            if v:
+                cover.cell(row=r, column=j, value=v).font = _font()
+        r += 1
+    cover.column_dimensions["B"].width = 40
+    cover.sheet_view.showGridLines = False
+
+    hdr = ["#", "Ticker", "Name", "Sector", "Mcap (USD)", "Elite #", "★ #", "Elite archetypes (★ = spirit >= 0.90)",
+           "EV/EBITDA", "P/E", "P/B", "FCF yld %", "ROCE %", "Mom 12m %", "Accounting check", "Signals"]
+    widths = [4, 11, 30, 16, 14, 7, 5, 70, 9, 8, 7, 9, 8, 10, 40, 60]
+    for country in ordered_countries(el["src"].value_counts().index.tolist()):
+        cdf = el[el["src"] == country]
+        if cdf.empty:
+            continue
+        ws = wb.create_sheet(_sheet_safe(f"{country} ({len(cdf)})"))
+        bucket, region = classify(country)
+        tab_colors.set_tab(ws, tab_colors.FAMILY_COLORS.get("quality", tab_colors.COVER))
+        ws.cell(row=1, column=1, value=f"{country} — {region} ({bucket}): {len(cdf)} elite names").font = _font(bold=True, size=12)
+        for j, h in enumerate(hdr, start=1):
+            ws.cell(row=3, column=j, value=h).font = _font(bold=True, color=MUTED)
+            ws.cell(row=3, column=j).border = Border(bottom=Side(style="thin", color=INK))
+        for i, (_, rr) in enumerate(cdf.iterrows(), start=1):
+            row = 3 + i
+            ws.cell(row=row, column=1, value=i).font = _font(color=MUTED)
+            ws.cell(row=row, column=2, value=rr["symbol"]).font = _font(bold=True)
+            ws.cell(row=row, column=3, value=str(rr.get("name") or "")[:32])
+            ws.cell(row=row, column=4, value=str(rr.get("sector") or "")[:18]).font = _font(color=MUTED)
+            _write_money(ws, row, 5, rr.get("market_cap_usd"))
+            _write_int(ws, row, 6, int(rr["elite_n"]))
+            _write_int(ws, row, 7, int(rr["elite_both_n"]))
+            c = ws.cell(row=row, column=8, value=rr["elite_list"]); c.alignment = _TXT_ALIGN_LEFT
+            _write_score(ws, row, 9, rr.get("ev_ebitda")); _write_score(ws, row, 10, rr.get("p_e"))
+            _write_score(ws, row, 11, rr.get("pb")); _write_pct(ws, row, 12, rr.get("fcf_yield"))
+            _write_pct(ws, row, 13, rr.get("roce")); _write_pct(ws, row, 14, rr.get("momentum_12m"))
+            ak = acct_check(rr)
+            c = ws.cell(row=row, column=15, value=ak)
+            c.font = _font(color=("B42318" if ak.startswith("WARN") else INK)); c.alignment = _TXT_ALIGN_LEFT
+            c = ws.cell(row=row, column=16, value=str(rr.get("fmp_signals") or "")[:200]); c.alignment = _TXT_ALIGN_LEFT
+            for j in range(1, len(hdr) + 1):
+                ws.cell(row=row, column=j).border = Border(bottom=Side(style="thin", color=RULE))
+        for j, w in enumerate(widths, start=1):
+            ws.column_dimensions[get_column_letter(j)].width = w
+        ws.freeze_panes = "D4"
+        ws.auto_filter.ref = f"A3:{get_column_letter(len(hdr))}{ws.max_row}"
+        ws.sheet_view.showGridLines = False
+    wb.save(args.out)
+    from harvard_style import sanitize_nan_text
+    sanitize_nan_text(args.out)
+    print(f"wrote {args.out}: {len(wb.worksheets)} sheets", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()

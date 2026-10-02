@@ -1,0 +1,20 @@
+region,verdict,symbol,name,country,why_avoid
+NorthAmerica,RED,HOLO,MicroCloud Hologram,US,Chinese ADR with 800x cumulative reverse splits + continuous dilution; quant signal is data artifact
+EU_Periphery,RED,REN.MC,Renta Corporacion Real Estate,ES,Distressed-cycle balance sheet; precedent for dilutive restructuring; not a fortress
+EU_Periphery,RED,BAL1R.RG,AS Latvijas balzams,LV,In active legal protection; tax-debt crisis with Latvian state; controlled by SPI Group / Shefler (geopolitical risk)
+EU_Nordic,RED,DLAB.ST,Dlaboratory Sweden,SE,Cash burn + collapsed equity (solidity 19% vs 42% prior yr); going-concern risk; quant-trap
+Asia_Developed,RED,088790.KS,Jindo Co.,KR,Declining fur category (ESG headwinds + warmer winters); classic Korea family value trap
+Asia_Developed,RED,002990.KS,Kumho E&C,KR,Chaebol tunneling risk (Kumho Asiana group history); Korean construction in deep PF crisis
+Asia_Developed,RED,8333.HK,Astrum Financial,HK,GEM micro-cap broker with BVI sole-controller; textbook avoid
+Asia_Emerging,RED,BMSR.JK,PT Bintang Mitra Semestaraya,ID,Opaque BVI parent (Chance Stand Finance); serial business pivots in 15 yrs; no dividend track record
+Asia_Emerging,RED,KCLINFRA.BO,KCL Infra Projects,IN,Penny-stock shell pattern; promoter actually 22.88% (stale screen showed 48%); cash likely inaccessible
+LatAm,RED,MNPR3.SA,Minupar Participacoes,BR,Cash > EV is optical illusion - the cash belongs to PGFN/tax creditors after R$556M settlement
+LatAm,RED,HOOT4.SA,Hoteis Othon,BR,In formal judicial recovery (RJ) since November 2018; equity stub behind creditors
+LatAm,RED,LUXM4.SA,Trevisa Investimentos,BR,Perpetual holdco discount; -64% last year; opaque NAV; entrenched dual-family control
+LatAm,RED,WEST3.SA,Westwing Comercio Varejista,BR,Down 95% from IPO; 10:1 reverse split Jan 2025; going-concern overhang; dilution risk
+MEA,RED,IHLGM.IS,Ihlas Gayrimenkul,TR,Ihlas Holding group governance scandals; opaque cross-holdings
+MEA,RED,OSMEN.IS,Osmanli Yatirim Menkul,TR,Cycle-peak Turkish broker dressed as cash > EV (mostly client float not shareholder cash)
+MEA,RED,ODAS.IS,Odas Elektrik Uretim,TR,Overlevered FX-mismatched (USD debt vs TRY revenue); YEKDEM tariff rolloff coming
+MEA,RED,GLRYH.IS,Guler Yatirim Holding,TR,Nested cross-holding complexity for TRY 2.1B cap; cheap for a reason
+MEA,RED,HDFGS.IS,Hedef Girisim Sermayesi,TR,Self-marked illiquid VC book; no cash distribution track record
+MEA,RED,ESCOM.IS,Escort Teknoloji,TR,Story stock with no operating substance; serial pivots (electronics -> crypto -> AI)

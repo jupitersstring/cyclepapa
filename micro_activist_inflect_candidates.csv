@@ -1,0 +1,151 @@
+symbol,name,src,sector,industry,mcap_M,rev_M,ebm_pct,ev_ebitda_x,nd_eb,mom_pct,asym,infl,verdict,inflect_drv
+COHN,Cohen & Company Inc.,US,Financials,Capital Markets,29.0,305.0,15.8,0.1,0.67,61.0,0.693,0.688,YELLOW,NI++accel+250pp
+NPK.BK,New Plus Knitting Public Company Limited,TH,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",122.0,250.0,12.1,2.3,-3.28,18.0,0.681,0.734,YELLOW,FCF++CFO++NI++ROCE++margin+11.1pp+accel+30pp
+AWC.SI,Brook Crompton Holdings Ltd.,SG,Industrials,Electrical Equipment,22.0,62.0,8.5,0.7,-3.81,26.0,0.663,0.394,GREEN,accel+14pp
+0725.HK,Perennial International Limited,HK,Industrials,Electrical Equipment,211.0,396.0,12.6,2.1,-2.13,88.0,0.628,0.524,GREEN,accel+12pp
+NPK-R.BK,New Plus Knitting Public Company Limited,TH,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",122.0,250.0,12.1,2.3,-3.28,0.0,0.609,0.688,YELLOW,FCF++CFO++NI++ROCE++margin+11.1pp+accel+30pp
+REKA.HE,Reka Industrial Oyj,FI,Industrials,Electrical Equipment,25.0,32.0,10.8,1.3,-6.0,2.0,0.602,0.509,YELLOW,accel+27pp
+1433.HK,Cirtek Holdings Limited,HK,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",161.0,551.0,20.1,1.3,-0.01,6.0,0.6,0.746,GREEN,FCF++NI++ROCE++margin+16.2pp+accel+57pp
+0483.HK,Bauhaus International (Holdings) Limited,HK,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",96.0,194.0,27.7,1.1,-0.69,53.0,0.594,0.384,UNRESEARCHED,margin+3.0pp
+TUSK,"Mammoth Energy Services, Inc.",US,Energy,Energy Equipment & Services,154.0,91.0,15.5,2.3,-8.35,34.0,0.594,0.814,YELLOW,EBITDA++NI++margin+395.4pp+accel+82pp
+NTBR.L,Northern Bear PLC,UK,Industrials,Building Products,15.0,78.0,6.4,2.7,-0.35,57.0,0.591,0.522,GREEN,FCF++accel+15pp
+ZENIFIB.BO,Zenith Fibres Limited,IN,,,210.0,433.0,9.3,1.5,-4.02,-28.0,0.587,0.464,GREEN,accel+84pp
+HCO.PA,High Co. SA,FR,Communication Services,Diversified Telecommunication Services,73.0,99.0,13.4,0.0,-5.51,13.0,0.582,0.429,GREEN,accel+55pp
+S44.SI,EnGro Corporation Limited,SG,Materials,Construction Materials,118.0,248.0,11.6,2.8,-1.29,52.0,0.576,0.687,YELLOW,FCF++margin+7.2pp+accel+18pp
+S71.SI,Sunright Limited,SG,Information Technology,Semiconductors & Semiconductor Equipment,89.0,82.0,24.2,3.7,-3.62,281.0,0.573,0.574,GREEN,FCF++NI++ROCE++margin+11.6pp+accel+5pp
+ALGEV.PA,Gevelot SA,FR,Industrials,Machinery,155.0,156.0,7.9,3.8,-9.04,17.0,0.57,0.43,GREEN,FCF++accel+22pp
+AFC.BK,Asia Fiber Public Company Limited,TH,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",174.0,546.0,9.6,1.1,-2.81,3.0,0.563,0.321,YELLOW,FCF++margin+3.7pp
+CEMAT.CO,Cemat A/S,DK,Real Estate,Real Estate Management & Development,210.0,165.0,52.4,2.5,-0.17,-12.0,0.559,0.56,YELLOW,FCF++CFO++margin+2.9pp+accel+301pp
+1A1.SI,Wong Fong Industries Limited,SG,Industrials,Machinery,54.0,77.0,12.1,3.7,-1.94,45.0,0.559,0.511,YELLOW,accel+32pp
+CRL.L,Creightons Plc,UK,Consumer Staples,Household Products,15.0,54.0,9.7,2.8,-0.08,-41.0,0.558,0.477,GREEN,EBITDA++NI++ROCE++margin+12.0pp+accel+11pp
+ALWEC.PA,We.Connect SA,FR,Information Technology,"Electronic Equipment, Instruments & Components",79.0,454.0,9.3,1.2,-0.66,39.0,0.556,0.661,GREEN,margin+5.7pp+accel+38pp
+HST.VI,Hutter & Schrantz Stahlbau AG,AT,Materials,Metals & Mining,40.0,143.0,7.1,1.9,-2.5,55.0,0.555,0.607,YELLOW,accel+57pp
+ALLUX.PA,Installux S.A.,FR,Materials,Metals & Mining,80.0,165.0,13.0,2.4,-1.37,-3.0,0.554,0.309,UNRESEARCHED,accel+13pp
+0100.KL,ESCERAM,MY,,,85.0,457.0,6.4,0.9,-2.02,4.0,0.553,0.455,GREEN,FCF++margin+3.2pp
+HNNA,"Hennessy Advisors, Inc.",US,Financials,Capital Markets,78.0,34.0,43.7,0.4,-2.11,1.0,0.544,0.363,UNRESEARCHED,margin+2.5pp
+JRSH,"Jerash Holdings (US), Inc.",US,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",42.0,153.0,5.4,4.9,-0.21,9.0,0.544,0.681,UNRESEARCHED,NI++ROCE++margin+2.7pp+accel+40pp
+G0I.SI,Nam Lee Pressed Metal Industries Limited,SG,Industrials,Building Products,167.0,209.0,18.6,4.5,-0.28,87.0,0.544,0.496,UNRESEARCHED,FCF++margin+5.6pp
+5AB.SI,Trek 2000 International Ltd,SG,Information Technology,Communications Equipment,48.0,20.0,25.3,3.1,-6.75,42.0,0.541,0.405,UNRESEARCHED,FCF++CFO++margin+23.1pp
+MXC,Mexco Energy Corporation,US,Energy,"Oil, Gas & Consumable Fuels",19.0,7.0,61.8,3.9,-0.51,35.0,0.54,0.4,UNRESEARCHED,margin+2.2pp+accel+42pp
+CURN,"Currency Exchange International, Corp.",US,Financials,Capital Markets,106.0,72.0,32.1,0.7,-3.87,22.0,0.538,0.387,UNRESEARCHED,accel+21pp
+ASTAK.AT,Alpha Astika Akinita S.A.,GR,Financials,,103.0,20.0,33.4,5.9,-9.41,7.0,0.537,0.436,YELLOW,FCF++CFO++margin+17.1pp
+1059.HK,Kantone Holdings Limited,HK,,,154.0,152.0,11.5,0.8,-8.02,87.0,0.537,0.506,UNRESEARCHED,accel+18pp
+CILSEC.BO,CIL Securities Limited,IN,Financials,,194.0,84.0,30.0,5.5,-6.94,-16.0,0.534,0.16,UNRESEARCHED,FCF++CFO+
+SAF1R.RG,SAF Tehnika A/S,LV,Information Technology,Communications Equipment,31.0,42.0,16.2,3.9,-0.86,69.0,0.533,0.865,GREEN,EBITDA++NI++ROCE++margin+18.7pp+accel+23pp
+TON.L,Titon Holdings Plc,UK,Industrials,Building Products,8.0,16.0,6.5,5.5,-2.52,-1.0,0.526,0.553,UNRESEARCHED,EBITDA++NI++ROCE++margin+15.8pp+accel+24pp
+OMG.L,Oxford Metrics plc,UK,Information Technology,Software,50.0,45.0,12.5,3.4,-6.03,-22.0,0.52,0.353,YELLOW,FCF++CFO++accel+14pp
+S19.SI,Singapore Shipping Corporation Limited,SG,Industrials,Marine,120.0,51.0,49.5,1.6,-3.18,17.0,0.518,0.311,UNRESEARCHED,margin+7.3pp
+ARIP.BK,ARIP Public Company Limited,TH,Industrials,Professional Services,205.0,244.0,9.6,6.1,-5.05,12.0,0.518,0.396,YELLOW,accel+30pp
+CAM.L,Camellia Plc,UK,Consumer Staples,Household Products,141.0,268.0,6.0,5.9,-5.3,7.0,0.515,0.321,UNRESEARCHED,CFO+
+BKA.SI,Sin Heng Heavy Machinery Limited,SG,Industrials,Machinery,70.0,44.0,27.7,3.0,-2.78,30.0,0.515,0.279,UNRESEARCHED,accel+12pp
+8070.HK,Keen Ocean International Holding Limited,HK,Information Technology,"Electronic Equipment, Instruments & Components",168.0,388.0,14.2,1.9,-1.06,79.0,0.508,0.689,UNRESEARCHED,margin+4.6pp+accel+47pp
+ALNSC.PA,NSC Groupe SA,FR,Industrials,Machinery,28.0,71.0,14.1,2.0,0.23,2.0,0.504,0.266,UNRESEARCHED,FCF++CFO++margin+2.5pp
+FDEV.L,Frontier Developments plc,UK,Communication Services,Interactive Media & Services,140.0,91.0,40.7,3.5,-0.58,77.0,0.504,0.594,UNRESEARCHED,NI++ROCE++margin+30.3pp+accel+16pp
+BTG.SI,HG Metal Manufacturing Limited,SG,Materials,Metals & Mining,148.0,158.0,8.6,7.4,-3.23,54.0,0.503,0.46,UNRESEARCHED,NI++margin+5.6pp+accel+7pp
+COARO.BO,Coastal Roadways Limited,IN,,,131.0,416.0,6.9,2.6,-1.99,-1.0,0.503,0.358,UNRESEARCHED,FCF++CFO++accel+9pp
+3628.HK,RENHENG Enterprise Holdings Limited,HK,Industrials,Machinery,161.0,107.0,16.8,3.6,-5.31,68.0,0.5,0.371,UNRESEARCHED,margin+6.1pp
+SNX.L,Synectics plc,UK,Industrials,Professional Services,34.0,68.0,11.0,2.8,-1.67,-39.0,0.499,0.364,GREEN,accel+8pp
+AAG.DE,Aumann AG,DE,Industrials,Machinery,174.0,181.0,15.1,0.9,-5.27,8.0,0.497,0.266,UNRESEARCHED,margin+2.5pp
+GENL.L,Genel Energy plc,UK,Energy,"Oil, Gas & Consumable Fuels",141.0,72.0,64.5,0.1,-2.85,-6.0,0.491,0.406,YELLOW,margin+53.4pp
+MSGM,Motorsport Games Inc.,US,Communication Services,Interactive Media & Services,19.0,11.0,68.5,1.9,-0.64,83.0,0.488,0.663,UNRESEARCHED,EBITDA++FCF++CFO++NI++margin+72.4pp
+HSM.L,Samuel Heath & Sons plc,UK,Industrials,Building Products,8.0,15.0,13.1,3.0,-1.27,5.0,0.487,0.247,UNRESEARCHED,FCF++margin+2.6pp
+CWL.TO,The Caldwell Partners International Inc.,CA,Industrials,Professional Services,25.0,116.0,6.0,3.0,-0.52,20.0,0.486,0.499,UNRESEARCHED,accel+30pp
+HVTA.L,The Heavitree Brewery PLC,UK,Consumer Discretionary,"Hotels, Restaurants & Leisure",11.0,8.0,43.5,2.8,-0.21,32.0,0.486,0.327,UNRESEARCHED,margin+17.1pp
+BRK.AX,Brookside Energy Limited,AU,Energy,"Oil, Gas & Consumable Fuels",44.0,54.0,35.4,1.8,-0.58,26.0,0.484,0.424,GREEN,FCF++accel+23pp
+HGBL,Heritage Global Inc.,US,Financials,Capital Markets,41.0,51.0,13.2,5.2,-2.19,-45.0,0.484,0.349,UNRESEARCHED,accel+37pp
+O08.SI,Ossia International Limited,SG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",43.0,30.0,33.4,3.3,-0.8,18.0,0.483,0.323,UNRESEARCHED,CFO+
+LPSB3.SA,LPS Brasil - Consultoria de Imoveis S.A.,BR,Real Estate,Real Estate Management & Development,222.0,204.0,43.3,1.7,-0.66,4.0,0.483,0.285,UNRESEARCHED,margin+9.1pp
+VLE.L,Volvere plc,UK,Financials,Capital Markets,59.0,49.0,15.4,4.0,-4.1,21.0,0.481,0.417,UNRESEARCHED,margin+4.2pp
+TEM1V.HE,Tecnotree Oyj,FI,Information Technology,Software,129.0,70.0,30.8,4.6,-0.61,62.0,0.48,0.398,YELLOW,FCF++margin+2.3pp+accel+10pp
+MYE.AX,Mastermyne Group Limited,AU,Materials,Metals & Mining,73.0,214.0,5.5,3.6,-2.16,38.0,0.477,0.324,UNRESEARCHED,accel+15pp
+S9B.SI,Amcorp Global Limited,SG,Real Estate,Real Estate Management & Development,45.0,6.0,75.8,7.8,-2.77,-13.0,0.474,0.39,UNRESEARCHED,EBITDA++NI++ROCE++margin+89.1pp
+SK.BK,Sirakorn Public Company Limited,TH,Materials,Construction Materials,244.0,586.0,6.3,2.6,-5.68,-7.0,0.471,0.326,YELLOW,accel+22pp
+8066.HK,Phoenitron Holdings Limited,HK,Information Technology,Semiconductors & Semiconductor Equipment,242.0,146.0,23.0,6.2,-1.09,157.0,0.47,0.684,UNRESEARCHED,margin+12.2pp+accel+169pp
+PMI.L,Premier Miton Group plc,UK,Financials,Capital Markets,56.0,63.0,13.1,3.4,-3.55,-46.0,0.469,0.149,UNRESEARCHED,accel+5pp
+L19.SI,Lum Chang Holdings Limited,SG,Industrials,Construction & Engineering,206.0,463.0,6.7,5.6,-1.48,95.0,0.466,0.38,UNRESEARCHED,FCF++CFO++margin+2.5pp
+FWD.AX,Fleetwood Limited,AU,Financials,Diversified Financial Services,158.0,503.0,8.7,3.5,-0.77,-37.0,0.464,0.432,UNRESEARCHED,margin+3.0pp+accel+19pp
+GJAB.ST,Gullberg & Jansson,SE,,,118.0,260.0,11.8,4.9,-0.16,-9.0,0.462,0.445,UNRESEARCHED,EBITDA++margin+12.1pp+accel+17pp
+HVT.L,The Heavitree Brewery PLC,UK,Consumer Discretionary,"Hotels, Restaurants & Leisure",11.0,8.0,43.5,3.0,-0.21,2.0,0.459,0.252,UNRESEARCHED,margin+17.1pp
+ARIP-R.BK,ARIP Public Company Limited,TH,Industrials,Professional Services,205.0,244.0,9.6,6.1,-5.05,8.0,0.458,0.385,YELLOW,accel+30pp
+PZS.DE,Scherzer & Co. AG,DE,Industrials,Industrial Conglomerates,72.0,5.0,83.4,6.4,2.44,19.0,0.456,0.188,UNRESEARCHED,margin+63.1pp
+ING.L,Ingenta plc,UK,Information Technology,Software,14.0,10.0,18.8,5.6,-2.43,67.0,0.455,0.336,UNRESEARCHED,accel+6pp
+ALGLD.PA,Gold By Gold SA,FR,Materials,Metals & Mining,13.0,32.0,5.4,7.2,-0.56,53.0,0.453,0.675,UNRESEARCHED,margin+3.5pp+accel+95pp
+ADCON.BO,Adcon Capital Services Limited,IN,Financials,,166.0,42.0,66.7,5.9,-0.03,-32.0,0.453,0.386,UNRESEARCHED,margin+38.1pp
+AEIN.DE,Allgeier SE,DE,Information Technology,IT Services,194.0,344.0,12.4,7.5,-0.37,-3.0,0.451,0.241,UNRESEARCHED,accel+24pp
+5UL.SI,Atlantic Navigation Holdings (Singapore) Limited,SG,Industrials,Marine,61.0,20.0,37.8,5.8,-2.05,184.0,0.451,0.568,UNRESEARCHED,accel+103pp
+IOF.L,Iofina plc,UK,Materials,Chemicals,92.0,67.0,21.0,6.2,-0.36,104.0,0.448,0.516,GREEN,margin+6.9pp+accel+13pp
+KME.AX,Kip McGrath Education Centres Limited,AU,Consumer Staples,Household Products,31.0,31.0,24.8,3.2,-0.49,41.0,0.447,0.352,UNRESEARCHED,FCF++margin+4.6pp
+QLT.BK,Qualitech Public Company Limited,TH,Industrials,Professional Services,145.0,379.0,7.8,3.4,-1.47,-50.0,0.447,0.361,YELLOW,NI++ROCE++margin+3.5pp
+ENJU3.SA,Enjoei.com.br Atividades de Internet S.A.,BR,Consumer Discretionary,Internet & Direct Marketing Retail,217.0,266.0,13.0,1.0,-5.28,-12.0,0.443,0.373,YELLOW,margin+3.8pp
+TIME.L,Time Finance plc,UK,Financials,Consumer Finance,39.0,37.0,23.6,4.1,-0.32,-29.0,0.443,0.307,UNRESEARCHED,FCF++CFO++margin+3.9pp
+CVX.V,CEMATRIX Corporation,CA,Materials,Construction Materials,61.0,46.0,15.7,6.8,-1.74,76.0,0.44,0.627,UNRESEARCHED,margin+8.6pp+accel+61pp
+SK-R.BK,Sirakorn Public Company Limited,TH,Materials,Construction Materials,244.0,586.0,6.3,2.6,-5.68,-1.0,0.435,0.339,YELLOW,accel+22pp
+EMPR.V,Empress Royalty Corp.,CA,Materials,Metals & Mining,112.0,23.0,77.5,6.0,0.09,55.0,0.435,0.583,UNRESEARCHED,margin+23.1pp
+ESAU.MI,Esautomotion S.p.A.,IT,Industrials,Machinery,41.0,30.0,17.2,6.2,-1.8,6.0,0.432,0.398,UNRESEARCHED,margin+4.2pp+accel+34pp
+MAM.AX,Microequities Asset Management Group Limited,AU,Financials,Capital Markets,52.0,15.0,78.9,4.2,-0.13,-14.0,0.429,0.312,UNRESEARCHED,margin+10.3pp+accel+12pp
+CTP.AX,Central Petroleum Limited,AU,Energy,"Oil, Gas & Consumable Fuels",51.0,44.0,44.9,2.5,-0.07,13.0,0.428,0.328,UNRESEARCHED,accel+23pp
+WHITEORG.BO,White Organic Agro Limited,IN,Consumer Staples,,146.0,43.0,58.4,5.6,-0.09,-20.0,0.426,0.277,UNRESEARCHED,margin+50.1pp+accel+39pp
+SAG.L,Science Group plc,UK,Industrials,Professional Services,240.0,112.0,43.0,4.0,-1.26,26.0,0.426,0.339,UNRESEARCHED,margin+23.9pp
+CUE.AX,Cue Energy Resources Limited,AU,Energy,"Oil, Gas & Consumable Fuels",84.0,55.0,53.0,2.5,-0.36,22.0,0.426,0.315,UNRESEARCHED,accel+14pp
+5CT.SI,ecoWise Holdings Limited,SG,Industrials,Transportation Infrastructure,21.0,34.0,5.9,7.4,-3.36,-25.0,0.421,0.408,UNRESEARCHED,NI++ROCE++accel+9pp
+MAGI.ST,MAG Interactive AB (publ),SE,Communication Services,Interactive Media & Services,202.0,265.0,22.9,2.5,-0.86,-5.0,0.417,0.311,UNRESEARCHED,margin+2.5pp
+BTNC.BK,Boutique Newcity Public Company Limited,TH,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",179.0,245.0,21.3,1.9,-1.69,11.0,0.415,0.253,UNRESEARCHED,margin+13.3pp
+AIEA.L,AIREA plc,UK,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",11.0,21.0,6.3,6.6,-0.89,5.0,0.415,0.301,UNRESEARCHED,CFO++NI++margin+2.2pp
+42E.SI,Choo Chiang Holdings Ltd.,SG,Information Technology,"Electronic Equipment, Instruments & Components",95.0,93.0,14.0,4.5,-2.71,13.0,0.415,0.226,UNRESEARCHED,accel+5pp
+RSRV,The Reserve Petroleum Company,US,Energy,"Oil, Gas & Consumable Fuels",34.0,17.0,69.5,2.4,-0.46,58.0,0.415,0.389,UNRESEARCHED,margin+20.9pp
+NLG1V.HE,Nurminen Logistics Oyj,FI,Industrials,Road & Rail,69.0,111.0,13.5,5.6,-0.08,-20.0,0.415,0.21,UNRESEARCHED,accel+23pp
+PLC.MI,PLC S.p.A.,IT,Industrials,Construction & Engineering,79.0,85.0,17.4,3.6,-1.73,74.0,0.415,0.368,UNRESEARCHED,margin+5.9pp
+VBIND.BO,V. B. Industries Limited,IN,,,89.0,24.0,42.7,7.9,-0.56,-24.0,0.414,0.249,UNRESEARCHED,FCF++CFO++margin+40.1pp
+SMJ.L,J. Smart & Co. (Contractors) PLC,UK,Industrials,Construction & Engineering,44.0,23.0,32.1,4.3,-1.55,-6.0,0.412,0.279,UNRESEARCHED,CFO++margin+19.3pp
+BZAI,Blaize Holdings Inc. Common Stock,US,Information Technology,,186.0,39.0,80.3,5.6,-1.38,-40.0,0.412,0.641,UNRESEARCHED,EBITDA++margin+3074.6pp
+0049.KL,OCNCASH,MY,Financials,,35.0,67.0,12.4,3.9,-1.15,-64.0,0.412,0.13,UNRESEARCHED,FCF+
+6428.TWO,"Taiwan Taomee Co., Ltd.",TW,Communication Services,Interactive Media & Services,240.0,64.0,30.2,3.7,-9.14,25.0,0.411,0.301,UNRESEARCHED,margin+9.2pp
+SOND6.SA,Sondotecnica Engenharia de Solos S.A.,BR,Industrials,Construction & Engineering,171.0,232.0,23.6,2.5,-0.75,109.0,0.41,0.482,UNRESEARCHED,margin+7.1pp
+AAB.CO,Aalborg Boldspilklub A/S,DK,Consumer Discretionary,"Hotels, Restaurants & Leisure",69.0,74.0,29.4,2.6,-0.8,-1.0,0.409,0.327,UNRESEARCHED,EBITDA++NI++margin+62.2pp+accel+6pp
+BODI,The Beachbody Company Inc. Class A Common Stock,US,Information Technology,"Electronic Equipment, Instruments & Components",82.0,252.0,7.9,3.6,-0.68,146.0,0.409,0.539,UNRESEARCHED,EBITDA++FCF++ROCE++margin+12.0pp
+MEVA.AT,Mevaco S.A.,GR,Industrials,Industrial Conglomerates,91.0,73.0,19.6,5.7,-0.52,80.0,0.409,0.505,UNRESEARCHED,margin+6.7pp
+HOLCO.AS,Holland Colours NV,NL,Materials,Chemicals,78.0,112.0,10.4,5.9,-0.83,-10.0,0.408,0.271,UNRESEARCHED,accel+16pp
+5PF.SI,Jason Marine Group Limited,SG,Information Technology,"Electronic Equipment, Instruments & Components",19.0,35.0,6.7,6.7,-1.74,37.0,0.407,0.317,UNRESEARCHED,margin+4.0pp
+BTNC-R.BK,Boutique Newcity Public Company Limited,TH,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",179.0,245.0,21.3,1.9,-1.69,74.0,0.406,0.35,UNRESEARCHED,margin+13.3pp
+NANO.L,Nanoco Group plc,UK,Information Technology,Semiconductors & Semiconductor Equipment,13.0,8.0,6.3,1.7,-28.16,-39.0,0.406,0.301,UNRESEARCHED,ROCE+
+SOND5.SA,Sondotecnica Engenharia de Solos S.A.,BR,Industrials,Construction & Engineering,185.0,232.0,23.6,2.7,-0.75,163.0,0.405,0.478,UNRESEARCHED,margin+7.1pp
+FLXS,"Flexsteel Industries, Inc.",US,Consumer Discretionary,Household Durables,218.0,458.0,9.9,6.3,-0.07,63.0,0.404,0.446,UNRESEARCHED,margin+4.7pp
+8131.HK,abc Multiactive Limited,HK,Information Technology,Software,52.0,43.0,18.0,5.1,-1.55,7.0,0.403,0.438,UNRESEARCHED,EBITDA++NI++margin+32.8pp
+TRB.L,Tribal Group plc,UK,Information Technology,Software,134.0,93.0,18.2,6.5,-0.62,59.0,0.4,0.379,UNRESEARCHED,margin+5.7pp
+SYS1.L,System1 Group PLC,UK,Communication Services,Diversified Telecommunication Services,36.0,37.0,17.9,5.1,-1.43,-38.0,0.398,0.35,YELLOW,margin+3.3pp
+QLT-R.BK,Qualitech Public Company Limited,TH,Industrials,Professional Services,145.0,379.0,7.8,3.4,-1.47,-45.0,0.396,0.361,YELLOW,NI++ROCE++margin+3.5pp
+0040.KL,OPENSYS,MY,Information Technology,,143.0,110.0,25.9,4.4,-0.57,4.0,0.396,0.276,UNRESEARCHED,accel+7pp
+ERRIA.CO,Erria A/S,DK,Industrials,Marine,68.0,215.0,5.7,3.8,-0.51,-14.0,0.396,0.358,UNRESEARCHED,FCF++accel+17pp
+TENG.L,Ten Lifestyle Group Plc,UK,Consumer Discretionary,"Hotels, Restaurants & Leisure",89.0,70.0,18.6,6.9,-0.07,54.0,0.395,0.358,UNRESEARCHED,margin+2.7pp
+LIO.L,Liontrust Asset Management PLC,UK,Financials,Capital Markets,168.0,170.0,19.8,3.8,-1.42,-26.0,0.394,0.392,UNRESEARCHED,NI++ROCE++margin+12.9pp
+CLIG.L,City of London Investment Group PLC,UK,Financials,Capital Markets,212.0,73.0,45.1,5.6,-0.85,18.0,0.394,0.306,UNRESEARCHED,margin+2.5pp
+KMFBLDR.BO,KMF Builders & Developers Limited,IN,Real Estate,,77.0,28.0,38.7,4.6,-2.11,-36.0,0.394,0.2,UNRESEARCHED,margin+34.8pp
+SHM.AX,Shriro Holdings Limited,AU,Consumer Discretionary,Specialty Retail,48.0,103.0,14.7,3.5,-0.07,17.0,0.392,0.207,UNRESEARCHED,margin+2.1pp
+SIILI.HE,Siili Solutions Oyj,FI,Information Technology,IT Services,21.0,108.0,5.3,4.3,-1.55,-59.0,0.391,0.167,UNRESEARCHED,accel+5pp
+KUNSTOFF.BO,Kunststoffe Industries Limited,IN,Materials,,171.0,121.0,14.4,5.3,-5.09,-5.0,0.388,0.252,UNRESEARCHED,margin+2.7pp+accel+9pp
+J2T.SI,Hock Lian Seng Holdings Limited,SG,Industrials,Construction & Engineering,200.0,186.0,12.1,5.9,-2.93,4.0,0.388,0.212,UNRESEARCHED,accel+11pp
+EYAPS.AT,Thessaloniki Water Supply & Sewerage Co S.A.,GR,Utilities,,161.0,85.0,17.3,7.0,-4.19,39.0,0.386,0.358,UNRESEARCHED,margin+6.1pp
+SMID,Smith-Midland Corporation,US,Materials,Construction Materials,163.0,93.0,21.6,7.7,-0.36,-6.0,0.381,0.315,GREEN,FCF++margin+5.4pp
+LTHM.L,James Latham plc,UK,Industrials,Trading Companies & Distributors,200.0,367.0,8.2,4.9,-1.7,-9.0,0.381,0.172,UNRESEARCHED,accel+10pp
+SHANGAR.BO,Shangar Decor Limited,IN,,,118.0,170.0,13.9,4.8,-0.14,-68.0,0.381,0.328,UNRESEARCHED,accel+9pp
+RCT.AX,Reef Casino Trust,AU,Consumer Discretionary,"Hotels, Restaurants & Leisure",167.0,27.0,61.8,4.9,-0.17,17.0,0.378,0.27,UNRESEARCHED,accel+8pp
+03036.KL,RPLANET,MY,Energy,,102.0,33.0,27.2,4.5,-1.15,-39.0,0.377,0.261,UNRESEARCHED,FCF++CFO++margin+6.6pp
+CNE.L,Cairn Energy PLC,UK,Energy,"Oil, Gas & Consumable Fuels",222.0,136.0,43.9,2.3,-0.53,42.0,0.374,0.257,UNRESEARCHED,accel+7pp
+FBF.V,Fab-Form Industries Ltd.,CA,Materials,Construction Materials,9.0,5.0,18.2,5.4,-5.01,-27.0,0.37,0.212,UNRESEARCHED,accel+25pp
+ADZ.MC,"Adolfo Dominguez, S.A.",ES,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",50.0,139.0,15.2,4.4,-0.05,13.0,0.367,0.235,UNRESEARCHED,margin+2.8pp
+BIS.AX,Bisalloy Steel Group Limited,AU,Materials,Metals & Mining,212.0,153.0,20.2,7.6,-0.12,42.0,0.363,0.328,UNRESEARCHED,margin+3.2pp
+VINYOFL.BO,Vinyoflex Limited,IN,Materials,,225.0,392.0,10.4,4.5,-1.46,-26.0,0.36,0.151,UNRESEARCHED,accel+10pp
+TWFG,TWFG Inc. Class A Common Stock,US,Financials,Insurance,236.0,234.0,27.0,6.0,-2.34,-47.0,0.356,0.329,UNRESEARCHED,margin+4.1pp
+COLINZ.BO,Colinz Laboratories Limited,IN,,,128.0,58.0,13.7,5.8,-8.45,-6.0,0.346,0.172,UNRESEARCHED,margin+2.1pp
+03025.KL,ENEST,MY,Financials,,65.0,158.0,8.3,4.9,-0.14,0.0,0.339,0.246,UNRESEARCHED,FCF+
+HDSN,"Hudson Technologies, Inc.",US,Materials,Chemicals,207.0,247.0,10.0,7.9,-1.39,-38.0,0.339,0.224,UNRESEARCHED,accel+22pp
+QEPC,"Q.E.P. Co., Inc.",US,Industrials,Building Products,160.0,235.0,8.4,7.4,-0.69,39.0,0.338,0.333,UNRESEARCHED,NI++margin+2.1pp
+TITAN.HE,Titanium Oyj,FI,Financials,Capital Markets,65.0,20.0,37.0,6.5,-1.55,-5.0,0.334,0.158,UNRESEARCHED,accel+8pp
+RAVE,"RAVE Restaurant Group, Inc.",US,Consumer Discretionary,"Hotels, Restaurants & Leisure",37.0,12.0,32.3,6.4,-2.63,-5.0,0.328,0.224,UNRESEARCHED,margin+2.9pp
+BRM.V,BIOREM Inc.,CA,Industrials,Construction & Engineering,50.0,44.0,16.0,6.0,-1.03,55.0,0.326,0.455,UNRESEARCHED,margin+3.2pp
+CMT,"Core Molding Technologies, Inc.",US,Materials,Chemicals,205.0,274.0,9.9,8.0,-0.19,53.0,0.323,0.279,UNRESEARCHED,accel+6pp
+ABDP.L,AB Dynamics plc,UK,Consumer Discretionary,Auto Components,247.0,115.0,22.4,8.1,-1.53,-38.0,0.321,0.192,UNRESEARCHED,margin+2.1pp
+RAUTE.HE,Raute Oyj,FI,Industrials,Machinery,89.0,165.0,13.8,2.5,-1.4,-5.0,0.32,0.335,UNRESEARCHED,ROCE++margin+3.7pp
+BMT.SI,New Silkroutes Group Limited,SG,Energy,"Oil, Gas & Consumable Fuels",16.0,7.0,22.8,8.0,-1.69,0.0,0.317,0.335,UNRESEARCHED,EBITDA++NI++margin+36.1pp
+MLSDN.PA,La Savonnerie De Nyons,FR,Consumer Staples,Household Products,7.0,4.0,21.0,7.8,-0.83,7.0,0.316,0.254,UNRESEARCHED,margin+5.7pp
+TRT.L,Transense Technologies plc,UK,Consumer Discretionary,Auto Components,9.0,5.0,35.7,4.7,-0.3,-58.0,0.312,0.224,UNRESEARCHED,accel+5pp
