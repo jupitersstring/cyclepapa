@@ -141,11 +141,13 @@
  "qc_flag ev_ex_senior_claims": 696,
  "non-common securities: issuer fundamentals nulled": 1039,
  "qc_flag noncommon_security": 1039,
- "da_ttm (gap-fill from Yahoo statement)": 0,
- "financing_cf_ttm (gap-fill from Yahoo statement)": 0,
+ "da_ttm (gap-fill from Yahoo statement)": 4490,
+ "financing_cf_ttm (gap-fill from Yahoo statement)": 2001,
  "cash NULLED (impossible: > assets or > 25x Yahoo totalCash)": 207,
  "equity+book ratios NULLED (equity > assets)": 211,
  "tangible_equity+p_tb NULLED (> equity)": 341,
  "ebitda+ratios NULLED (> 2x revenue)": 235,
- "cash NULLED (impossible: > 25x Yahoo totalCash)": 1
+ "cash NULLED (impossible: > 25x Yahoo totalCash)": 1,
+ "da_ttm nulled (incoherent with EBITDA / revenue)": 417,
+ "qc_flag da_incoherent": 417
 }
