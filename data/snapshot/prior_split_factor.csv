@@ -1,0 +1,585 @@
+fund,ticker,factor
+Quadrature Capital (London Quant),UBXG,0.04
+Quadrature Capital (London Quant),ATRO,1.253
+Quadrature Capital (London Quant),DD,0.3333333333333333
+Quadrature Capital (London Quant),FDX,1.241
+Quadrature Capital (London Quant),HON,0.9535
+Quadrature Capital (London Quant),HDV,5.0
+Quadrature Capital (London Quant),IMUX,0.1
+Quadrature Capital (London Quant),TRI,0.984
+Clarkston Capital Partners,FDX,1.241
+Hosking Partners,BKNG,25.0
+AKO Capital LLP,BKNG,25.0
+Aquamarine Fund   Aquamarine Ca,SCO,0.25
+GAMCO Investors (Mario Gabelli),ATRO,1.253
+GAMCO Investors (Mario Gabelli),DD,0.3333333333333333
+GAMCO Investors (Mario Gabelli),FDX,1.241
+GAMCO Investors (Mario Gabelli),HON,0.9535
+GAMCO Investors (Mario Gabelli),IWF,4.0
+GAMCO Investors (Mario Gabelli),LILA,1.1
+GAMCO Investors (Mario Gabelli),LILAK,1.1
+GAMCO Investors (Mario Gabelli),VUG,6.0
+GAMCO Investors (Mario Gabelli),VO,4.0
+Polen Capital Management LLC,ATRO,1.253
+Polen Capital Management LLC,CVNA,5.0
+Polen Capital Management LLC,IWF,4.0
+Polen Capital Management LLC,POWL,3.0
+Polen Capital Management LLC,VUG,6.0
+Seilern Investment Management L,BKNG,25.0
+Stilwell Value LLC   Stilwell G,WHLR,0.08333333333333333
+Tocqueville Gold Fund (now Spro,PPLT,10.0
+Tocqueville Gold Fund (now Spro,BKNG,25.0
+Tocqueville Gold Fund (now Spro,FDX,1.241
+Tocqueville Gold Fund (now Spro,HON,0.9535
+Tocqueville Gold Fund (now Spro,IWF,4.0
+Tocqueville Gold Fund (now Spro,KLAC,10.0
+Tocqueville Gold Fund (now Spro,VUG,6.0
+Tocqueville Gold Fund (now Spro,VO,4.0
+Tocqueville Gold Fund (now Spro,VGT,8.0
+Nierenberg Investment Mgmt D3,SCYX,0.125
+Jensen Investment Management,KLAC,10.0
+Chesapeake Capital (Jerry Parke,KLAC,10.0
+Comgest (France),BKNG,25.0
+First Eagle Investment Manageme,ATRO,1.253
+First Eagle Investment Manageme,METCB,1.011977
+Horizon Kinetics Asset Manageme,HON,0.9535
+Horizon Kinetics Asset Manageme,KLAC,10.0
+Tributary Capital Management (W,BKNG,25.0
+"Tweedy, Browne Company LLC",FDX,1.241
+U.S. Global Investors (Frank Ho,BKNG,25.0
+U.S. Global Investors (Frank Ho,FDX,1.241
+Ensign Peak Advisors (LDS Church),ANAB,1.5
+Ensign Peak Advisors (LDS Church),ATRO,1.253
+Ensign Peak Advisors (LDS Church),BKNG,25.0
+Ensign Peak Advisors (LDS Church),CVNA,5.0
+Ensign Peak Advisors (LDS Church),DD,0.3333333333333333
+Ensign Peak Advisors (LDS Church),FDX,1.241
+Ensign Peak Advisors (LDS Church),HON,0.9535
+Ensign Peak Advisors (LDS Church),KLAC,10.0
+Ensign Peak Advisors (LDS Church),LILAK,1.1
+Ensign Peak Advisors (LDS Church),POWL,3.0
+Ensign Peak Advisors (LDS Church),TRI,0.984
+Findlay Park Partners,KLAC,10.0
+WCM Investment Management,SBS,5.0
+WCM Investment Management,FDX,1.241
+WCM Investment Management,IWF,4.0
+WCM Investment Management,KLAC,10.0
+Baillie Gifford & Co,BKNG,25.0
+Newtyn Management,ZOOZ,0.05
+Palogic Value Management,FDX,1.241
+Palogic Value Management,HON,0.9535
+North Peak Capital Management,CVNA,5.0
+Oaktree Capital Management (Howard Marks),LILA,1.1
+Oaktree Capital Management (Howard Marks),LILAK,1.1
+Caspian Capital,ATRO,1.253
+Sabby Management,BDRX,0.2
+Intrinsic Edge Capital,POWL,3.0
+Rokos Capital Management (Chris Rokos),FDX,1.241
+Rokos Capital Management (Chris Rokos),HON,0.9535
+RiverPark Advisors,ATRO,1.253
+RiverPark Advisors,BKNG,25.0
+RiverPark Advisors,CVNA,5.0
+ARK Investment Management (Cathie Wood),HON,0.9535
+ARK Investment Management (Cathie Wood),IWF,4.0
+ARK Investment Management (Cathie Wood),SLMT,0.1
+ARK Investment Management (Cathie Wood),VUG,6.0
+Kornitzer Capital (Buffalo Funds),BKNG,25.0
+Kornitzer Capital (Buffalo Funds),DD,0.3333333333333333
+Kornitzer Capital (Buffalo Funds),FDX,1.241
+Kornitzer Capital (Buffalo Funds),HON,0.9535
+Whale Rock Capital Management,CVNA,5.0
+Durable Capital Partners (Ellenbogen),CVNA,5.0
+Alkeon Capital Management,KLAC,10.0
+Greenoaks,CVNA,5.0
+Steadfast Capital Management,AVX,0.08333333333333333
+Steadfast Capital Management,LILAK,1.1
+AKO Capital (Nicolai Tangen),BKNG,25.0
+Acorn Capital,BCAB,0.02
+Atmos Capital (Brazil),BKNG,25.0
+Oaktop Capital Management II,KLAC,10.0
+Sassicaia Capital Advisers,JTAI,0.005
+Sassicaia Capital Advisers,PPCB,0.04
+Sassicaia Capital Advisers,SCO,0.25
+Kensico Capital Management (Michael Lowenstein),BKNG,25.0
+Cobalt Capital Management (Wayne Cooperman),HON,0.9535
+Metavasi Capital,CVNA,5.0
+General Equity Holdings,CVNA,5.0
+Kinetic Partners Management,CVNA,5.0
+Kinetic Partners Management,KLAC,10.0
+325 Capital,MSAI,0.025
+Apis Capital Advisors,ANAB,1.5
+Alta Fundamental Advisers,LILAK,1.1
+Quaker Capital Investments,LILAK,1.1
+Quaker Capital Investments,LILA,1.1
+Steinberg Asset Management,DD,0.3333333333333333
+Steinberg Asset Management,FDX,1.241
+Steinberg Asset Management,HON,0.9535
+L1 Capital (Australia),SCO,0.25
+Avala Global,CVNA,5.0
+Keywise Capital Management (HK),ZOOZ,0.05
+Dragoneer Investment Group,CVNA,5.0
+Gates Foundation Trust (Larson),FDX,1.241
+Woodbridge Co (Thomson Family),KLAC,10.0
+Woodbridge Co (Thomson Family),TRI,0.984
+Stockbridge Partners (Berkshire Ptrs),KLAC,10.0
+BlueCrest Capital (Michael Platt),HON,0.9535
+Man Group,ATRO,1.253
+Man Group,BKNG,25.0
+Man Group,CVNA,5.0
+Man Group,SBS,5.0
+Man Group,DD,0.3333333333333333
+Man Group,FDX,1.241
+Man Group,HON,0.9535
+Man Group,KLAC,10.0
+Man Group,LILAK,1.1
+Man Group,POWL,3.0
+Man Group,TRI,0.984
+Man Group,UPLD,0.1
+Mubadala Investment Company,FDX,1.241
+Third Point LLC,KLAC,10.0
+Lone Pine Capital LLC,BKNG,25.0
+Lone Pine Capital LLC,CVNA,5.0
+Coatue Management LLC,CVNA,5.0
+D1 Capital Partners,CVNA,5.0
+Sachem Head Capital Management,CVNA,5.0
+Magnetar Capital LLC,AMOD,0.025
+Magnetar Capital LLC,ATRO,1.253
+Magnetar Capital LLC,BARK,0.05
+Magnetar Capital LLC,BKNG,25.0
+Magnetar Capital LLC,FDX,1.241
+BVF Partners L.P.,IMUX,0.1
+EcoR1 Capital LLC,ANAB,1.5
+Armistice Capital LLC,BDRX,0.2
+Armistice Capital LLC,ICCM,0.03333333333333333
+Armistice Capital LLC,NUWE,0.02857142857142857
+Armistice Capital LLC,VRAX,0.04
+Armistice Capital LLC,WLDS,0.3333333333333333
+Hudson Bay Capital Management L,ATRO,1.253
+Hudson Bay Capital Management L,BKNG,25.0
+Hudson Bay Capital Management L,FDX,1.241
+Hudson Bay Capital Management L,HON,0.9535
+Hudson Bay Capital Management L,ICCM,0.03333333333333333
+Hudson Bay Capital Management L,IMUX,0.1
+Hudson Bay Capital Management L,KLAC,10.0
+Hudson Bay Capital Management L,POWL,3.0
+CAS Investment Partners,CDLX,0.1
+CAS Investment Partners,CVNA,5.0
+Voss Capital,POWL,3.0
+Dodge and Cox,BKNG,25.0
+Dodge and Cox,DD,0.3333333333333333
+Dodge and Cox,FDX,1.241
+Dodge and Cox,HON,0.9535
+Wedgewood Partners,BKNG,25.0
+Wedgewood Partners,IWF,4.0
+Dorsey Asset Management,BKNG,25.0
+Great Point Partners,SCYX,0.125
+Rubric Capital Management (David Rosen),LILA,1.1
+Rubric Capital Management (David Rosen),LILAK,1.1
+Orbis Allan Gray,BKNG,25.0
+Tang Capital Management (Kevin Tang),ANAB,1.5
+"VR Capital (VR Advisory Services, Richard Deitz)",ASBPW,0.03333333333333333
+Ancora Advisors   Ancora Holdin,PALL,5.0
+Ancora Advisors   Ancora Holdin,PPLT,10.0
+Ancora Advisors   Ancora Holdin,AIQUY,1.1
+Ancora Advisors   Ancora Holdin,BKNG,25.0
+Ancora Advisors   Ancora Holdin,CVNA,5.0
+Ancora Advisors   Ancora Holdin,SBS,5.0
+Ancora Advisors   Ancora Holdin,CURLF,0.3333333333333333
+Ancora Advisors   Ancora Holdin,DD,0.3333333333333333
+Ancora Advisors   Ancora Holdin,FDX,1.241
+Ancora Advisors   Ancora Holdin,HON,0.9535
+Ancora Advisors   Ancora Holdin,HDV,5.0
+Ancora Advisors   Ancora Holdin,IWF,4.0
+Ancora Advisors   Ancora Holdin,KLAC,10.0
+Ancora Advisors   Ancora Holdin,LILA,1.1
+Ancora Advisors   Ancora Holdin,LILAK,1.1
+Ancora Advisors   Ancora Holdin,SMERY,5.0
+Ancora Advisors   Ancora Holdin,TRI,0.984
+Ancora Advisors   Ancora Holdin,VUG,6.0
+Ancora Advisors   Ancora Holdin,VO,4.0
+Ancora Advisors   Ancora Holdin,MGK,5.0
+Ancora Advisors   Ancora Holdin,VGT,8.0
+Ancora Advisors   Ancora Holdin,UP,0.05
+Anson Funds Management LP,XXII,0.05
+Anson Funds Management LP,CVNA,5.0
+Aristeia Capital,ASBPW,0.03333333333333333
+Aristeia Capital,CVNA,5.0
+Boyar Value Group (Mark & Jonat,KLAC,10.0
+Brevan Howard Capital Managemen,ANAB,1.5
+Brevan Howard Capital Managemen,ATRO,1.253
+Brevan Howard Capital Managemen,BKNG,25.0
+Brevan Howard Capital Managemen,DD,0.3333333333333333
+Brevan Howard Capital Managemen,FDX,1.241
+Brevan Howard Capital Managemen,HON,0.9535
+Brevan Howard Capital Managemen,IMUX,0.1
+Brevan Howard Capital Managemen,KLAC,10.0
+Brevan Howard Capital Managemen,LILAK,1.1
+Brevan Howard Capital Managemen,NAKA,0.025
+Brevan Howard Capital Managemen,POWL,3.0
+CAS Investment Partners (Cliff ,CDLX,0.1
+CAS Investment Partners (Cliff ,CVNA,5.0
+Capula Investment Management,CVNA,5.0
+Capula Investment Management,FDX,1.241
+Capula Investment Management,HON,0.9535
+Capula Investment Management,KLAC,10.0
+Durable Capital Partners,CVNA,5.0
+Element Capital Management LP (,DD,0.3333333333333333
+ExodusPoint Capital Management ,ANAB,1.5
+ExodusPoint Capital Management ,ATRO,1.253
+ExodusPoint Capital Management ,BKNG,25.0
+ExodusPoint Capital Management ,FDX,1.241
+ExodusPoint Capital Management ,HON,0.9535
+ExodusPoint Capital Management ,METCB,1.011977
+ExodusPoint Capital Management ,TRI,0.984
+Highbridge Capital,AMOD,0.025
+Highbridge Capital,ASBPW,0.03333333333333333
+Highbridge Capital,DAIC,0.04
+Karpus Investment Management (P,VUG,6.0
+Karpus Investment Management (P,VGT,8.0
+Kerrisdale Capital Management,PRTS,0.1
+Lion Point Capital,CUE,0.03333333333333333
+Mangrove Partners,ANAB,1.5
+Mangrove Partners,ATRO,1.253
+Moore Capital Management LP (Lo,CVNA,5.0
+Moore Capital Management LP (Lo,DAIC,0.04
+Polar Asset Management Partners,IPST,0.05
+Polar Asset Management Partners,ASBPW,0.03333333333333333
+Renaissance Technologies LLC,PALL,5.0
+Renaissance Technologies LLC,AERT,0.125
+Renaissance Technologies LLC,AIOS,0.05
+Renaissance Technologies LLC,ANAB,1.5
+Renaissance Technologies LLC,ATRO,1.253
+Renaissance Technologies LLC,BARK,0.05
+Renaissance Technologies LLC,BCAB,0.02
+Renaissance Technologies LLC,CDLX,0.1
+Renaissance Technologies LLC,PRTS,0.1
+Renaissance Technologies LLC,CVNA,5.0
+Renaissance Technologies LLC,CENN,0.016666666666666666
+Renaissance Technologies LLC,SBS,5.0
+Renaissance Technologies LLC,CUE,0.03333333333333333
+Renaissance Technologies LLC,DKI,0.0625
+Renaissance Technologies LLC,NVDL,3.0
+Renaissance Technologies LLC,HKIT,0.006666666666666666
+Renaissance Technologies LLC,HON,0.9535
+Renaissance Technologies LLC,HUBC,0.001
+Renaissance Technologies LLC,IMUX,0.1
+Renaissance Technologies LLC,INLF,0.0625
+Renaissance Technologies LLC,NCT,0.04
+Renaissance Technologies LLC,IPST,0.05
+Renaissance Technologies LLC,HDV,5.0
+Renaissance Technologies LLC,IWF,4.0
+Renaissance Technologies LLC,JZ,0.02
+Renaissance Technologies LLC,KALA,0.02
+Renaissance Technologies LLC,LHSW,0.0625
+Renaissance Technologies LLC,LILA,1.1
+Renaissance Technologies LLC,LILAK,1.1
+Renaissance Technologies LLC,XXRP,0.1
+Renaissance Technologies LLC,NXPL,0.1
+Renaissance Technologies LLC,OPAD,0.1
+Renaissance Technologies LLC,POWL,3.0
+Renaissance Technologies LLC,PRHI,0.14285714285714285
+Renaissance Technologies LLC,METCB,1.011977
+Renaissance Technologies LLC,SCYX,0.125
+Renaissance Technologies LLC,SMSI,0.2
+Renaissance Technologies LLC,TRI,0.984
+Renaissance Technologies LLC,TDTH,0.03333333333333333
+Renaissance Technologies LLC,TOUR,0.1
+Renaissance Technologies LLC,UBXG,0.04
+Renaissance Technologies LLC,UPLD,0.1
+Renaissance Technologies LLC,VUG,6.0
+Renaissance Technologies LLC,VO,4.0
+Renaissance Technologies LLC,WYHG,0.25
+RiverNorth Capital   SPCZ ETF (,HUBC,0.001
+Royce Investment Partners,ATRO,1.253
+Royce Investment Partners,POWL,3.0
+Royce Investment Partners,LILAK,1.1
+Saba Capital Management,ASBPW,0.03333333333333333
+Saba Capital Management,AVX,0.08333333333333333
+Saba Capital Management,NAKA,0.025
+Schonfeld Strategic Advisors LL,SLMT,0.1
+Schonfeld Strategic Advisors LL,SBS,5.0
+Schonfeld Strategic Advisors LL,FDX,1.241
+Schonfeld Strategic Advisors LL,HON,0.9535
+Schonfeld Strategic Advisors LL,IMUX,0.1
+Schonfeld Strategic Advisors LL,KLAC,10.0
+Schonfeld Strategic Advisors LL,LILA,1.1
+Schonfeld Strategic Advisors LL,NAKA,0.025
+Schonfeld Strategic Advisors LL,SCO,0.25
+Spruce House Partnership,CVNA,5.0
+Stonepine Capital Management,BCAB,0.02
+Viking Global Investors LP (And,CVNA,5.0
+Viking Global Investors LP (And,FDX,1.241
+Voloridge Investment Management,ANAB,1.5
+Voloridge Investment Management,ATRO,1.253
+Voloridge Investment Management,BKNG,25.0
+Voloridge Investment Management,DD,0.3333333333333333
+Voloridge Investment Management,FDX,1.241
+Voloridge Investment Management,LILAK,1.1
+Whale Rock Capital Management (,CVNA,5.0
+Whitebox Advisors,ASBPW,0.03333333333333333
+Yakira Capital,SCYX,0.125
+AQR Capital Management LLC (Cli,ANAB,1.5
+AQR Capital Management LLC (Cli,ATRO,1.253
+AQR Capital Management LLC (Cli,BARK,0.05
+AQR Capital Management LLC (Cli,BKNG,25.0
+AQR Capital Management LLC (Cli,CVNA,5.0
+AQR Capital Management LLC (Cli,SBS,5.0
+AQR Capital Management LLC (Cli,DD,0.3333333333333333
+AQR Capital Management LLC (Cli,FDX,1.241
+AQR Capital Management LLC (Cli,HON,0.9535
+AQR Capital Management LLC (Cli,HDV,5.0
+AQR Capital Management LLC (Cli,IWF,4.0
+AQR Capital Management LLC (Cli,KLAC,10.0
+AQR Capital Management LLC (Cli,LILA,1.1
+AQR Capital Management LLC (Cli,LILAK,1.1
+AQR Capital Management LLC (Cli,POWL,3.0
+AQR Capital Management LLC (Cli,TRI,0.984
+AQR Capital Management LLC (Cli,VOOG,6.0
+AQR Capital Management LLC (Cli,VUG,6.0
+AQR Capital Management LLC (Cli,VO,4.0
+AQR Capital Management LLC (Cli,VGT,8.0
+AQR Capital Management LLC (Cli,MGK,5.0
+AQR Capital Management LLC (Cli,WGRX,0.02
+AQR Capital Management LLC (Cli,ZSPC,0.04
+Bridgewater Associates LP (Ray ,BKNG,25.0
+Bridgewater Associates LP (Ray ,SBS,5.0
+Bridgewater Associates LP (Ray ,FDX,1.241
+Bridgewater Associates LP (Ray ,KLAC,10.0
+Bridgewater Associates LP (Ray ,TRI,0.984
+Citadel Advisors LLC (Ken Griff,JEM,0.05
+Citadel Advisors LLC (Ken Griff,PALL,5.0
+Citadel Advisors LLC (Ken Griff,PPLT,10.0
+Citadel Advisors LLC (Ken Griff,AERT,0.125
+Citadel Advisors LLC (Ken Griff,AIFU,0.05
+Citadel Advisors LLC (Ken Griff,AIOS,0.05
+Citadel Advisors LLC (Ken Griff,ANAB,1.5
+Citadel Advisors LLC (Ken Griff,ATRO,1.253
+Citadel Advisors LLC (Ken Griff,AVX,0.08333333333333333
+Citadel Advisors LLC (Ken Griff,BCAB,0.02
+Citadel Advisors LLC (Ken Griff,BKNG,25.0
+Citadel Advisors LLC (Ken Griff,SLMT,0.1
+Citadel Advisors LLC (Ken Griff,PRTS,0.1
+Citadel Advisors LLC (Ken Griff,CVNA,5.0
+Citadel Advisors LLC (Ken Griff,CDTG,0.04
+Citadel Advisors LLC (Ken Griff,CENN,0.016666666666666666
+Citadel Advisors LLC (Ken Griff,CTNT,0.005
+Citadel Advisors LLC (Ken Griff,SBS,5.0
+Citadel Advisors LLC (Ken Griff,CUPR,0.125
+Citadel Advisors LLC (Ken Griff,DKI,0.0625
+Citadel Advisors LLC (Ken Griff,DD,0.3333333333333333
+Citadel Advisors LLC (Ken Griff,ERNA,0.04
+Citadel Advisors LLC (Ken Griff,EHGO,0.0625
+Citadel Advisors LLC (Ken Griff,FDX,1.241
+Citadel Advisors LLC (Ken Griff,FRGT,0.2
+Citadel Advisors LLC (Ken Griff,MULL,25.0
+Citadel Advisors LLC (Ken Griff,NVDL,3.0
+Citadel Advisors LLC (Ken Griff,GNLN,0.125
+Citadel Advisors LLC (Ken Griff,HCWB,0.16666666666666666
+Citadel Advisors LLC (Ken Griff,HON,0.9535
+Citadel Advisors LLC (Ken Griff,HCAI,0.03333333333333333
+Citadel Advisors LLC (Ken Griff,IMUX,0.1
+Citadel Advisors LLC (Ken Griff,INLF,0.0625
+Citadel Advisors LLC (Ken Griff,NCT,0.04
+Citadel Advisors LLC (Ken Griff,IPST,0.05
+Citadel Advisors LLC (Ken Griff,ISPC,0.025
+Citadel Advisors LLC (Ken Griff,JBDI,0.5
+Citadel Advisors LLC (Ken Griff,KALA,0.02
+Citadel Advisors LLC (Ken Griff,KLAC,10.0
+Citadel Advisors LLC (Ken Griff,LILA,1.1
+Citadel Advisors LLC (Ken Griff,LILAK,1.1
+Citadel Advisors LLC (Ken Griff,NAKA,0.025
+Citadel Advisors LLC (Ken Griff,NXPL,0.1
+Citadel Advisors LLC (Ken Griff,MI,0.0125
+Citadel Advisors LLC (Ken Griff,OPAD,0.1
+Citadel Advisors LLC (Ken Griff,POM,0.05555555555555555
+Citadel Advisors LLC (Ken Griff,POWL,3.0
+Citadel Advisors LLC (Ken Griff,PRHI,0.14285714285714285
+Citadel Advisors LLC (Ken Griff,BOIL,0.5
+Citadel Advisors LLC (Ken Griff,SCO,0.25
+Citadel Advisors LLC (Ken Griff,METCB,1.011977
+Citadel Advisors LLC (Ken Griff,SCYX,0.125
+Citadel Advisors LLC (Ken Griff,SILO,0.06666666666666667
+Citadel Advisors LLC (Ken Griff,SKK,0.1
+Citadel Advisors LLC (Ken Griff,SBFM,0.1
+Citadel Advisors LLC (Ken Griff,TRI,0.984
+Citadel Advisors LLC (Ken Griff,TJGC,0.3333333333333333
+Citadel Advisors LLC (Ken Griff,TOUR,0.1
+Citadel Advisors LLC (Ken Griff,UCAR,0.1
+Citadel Advisors LLC (Ken Griff,VO,4.0
+Citadel Advisors LLC (Ken Griff,VGT,8.0
+Citadel Advisors LLC (Ken Griff,WFF,0.2
+Citadel Advisors LLC (Ken Griff,UP,0.05
+Citadel Advisors LLC (Ken Griff,WYHG,0.25
+Citadel Advisors LLC (Ken Griff,YMT,0.06666666666666667
+Citadel Advisors LLC (Ken Griff,ZSPC,0.04
+Coatue Management LLC (Philippe,CVNA,5.0
+D.E. Shaw & Co LP,ANAB,1.5
+D.E. Shaw & Co LP,ASBPW,0.03333333333333333
+D.E. Shaw & Co LP,ATRO,1.253
+D.E. Shaw & Co LP,BARK,0.05
+D.E. Shaw & Co LP,BKNG,25.0
+D.E. Shaw & Co LP,CVNA,5.0
+D.E. Shaw & Co LP,DD,0.3333333333333333
+D.E. Shaw & Co LP,FDX,1.241
+D.E. Shaw & Co LP,HON,0.9535
+D.E. Shaw & Co LP,KLAC,10.0
+D.E. Shaw & Co LP,LILA,1.1
+D.E. Shaw & Co LP,LILAK,1.1
+D.E. Shaw & Co LP,POWL,3.0
+D.E. Shaw & Co LP,METCB,1.011977
+D.E. Shaw & Co LP,TRI,0.984
+D.E. Shaw & Co LP,UPLD,0.1
+Funicular Funds LP   Cable Car ,SLMT,0.1
+Gotham Asset Management LLC   J,ANAB,1.5
+Gotham Asset Management LLC   J,ATRO,1.253
+Gotham Asset Management LLC   J,BKNG,25.0
+Gotham Asset Management LLC   J,CVNA,5.0
+Gotham Asset Management LLC   J,DD,0.3333333333333333
+Gotham Asset Management LLC   J,FDX,1.241
+Gotham Asset Management LLC   J,HON,0.9535
+Gotham Asset Management LLC   J,IWF,4.0
+Gotham Asset Management LLC   J,HDV,5.0
+Gotham Asset Management LLC   J,KLAC,10.0
+Gotham Asset Management LLC   J,POWL,3.0
+Gotham Asset Management LLC   J,TRI,0.984
+Gotham Asset Management LLC   J,VOOG,6.0
+Gotham Asset Management LLC   J,VO,4.0
+Gotham Asset Management LLC   J,VUG,6.0
+Gotham Asset Management LLC   J,MGK,5.0
+Gotham Asset Management LLC   J,VGT,8.0
+Gotham Asset Management LLC   J,UP,0.05
+Iconiq Capital LLC,IWF,4.0
+Iconiq Capital LLC,HDV,5.0
+Iconiq Capital LLC,VUG,6.0
+Iconiq Capital LLC,MGK,5.0
+Lone Pine Capital LLC (Stephen ,BKNG,25.0
+Lone Pine Capital LLC (Stephen ,CVNA,5.0
+Point72 Asset Management LP,ANAB,1.5
+Point72 Asset Management LP,ATRO,1.253
+Point72 Asset Management LP,BKNG,25.0
+Point72 Asset Management LP,CVNA,5.0
+Point72 Asset Management LP,DD,0.3333333333333333
+Point72 Asset Management LP,FDX,1.241
+Point72 Asset Management LP,HON,0.9535
+Point72 Asset Management LP,KLAC,10.0
+Point72 Asset Management LP,LILA,1.1
+Point72 Asset Management LP,LILAK,1.1
+Point72 Asset Management LP,WGRX,0.02
+Soros Fund Management LLC (Geor,DD,0.3333333333333333
+Soros Fund Management LLC (Geor,HON,0.9535
+Two Sigma Investments LP,ANAB,1.5
+Two Sigma Investments LP,ATRO,1.253
+Two Sigma Investments LP,BKNG,25.0
+Two Sigma Investments LP,CVNA,5.0
+Two Sigma Investments LP,DD,0.3333333333333333
+Two Sigma Investments LP,FDX,1.241
+Two Sigma Investments LP,HON,0.9535
+Two Sigma Investments LP,IMUX,0.1
+Two Sigma Investments LP,IWF,4.0
+Two Sigma Investments LP,KLAC,10.0
+Two Sigma Investments LP,LILAK,1.1
+Two Sigma Investments LP,LNKS,0.004
+Two Sigma Investments LP,POWL,3.0
+Two Sigma Investments LP,PRHI,0.14285714285714285
+Two Sigma Investments LP,QNCX,0.005000000000000001
+Two Sigma Investments LP,TRI,0.984
+Two Sigma Investments LP,UPLD,0.1
+Two Sigma Investments LP,VOOG,6.0
+Two Sigma Investments LP,VUG,6.0
+Two Sigma Investments LP,VGT,8.0
+Two Sigma Investments LP,MGK,5.0
+Two Sigma Investments LP,UP,0.05
+Two Sigma Investments LP,WYHG,0.25
+Balyasny Asset Management LP (D,ANAB,1.5
+Balyasny Asset Management LP (D,BKNG,25.0
+Balyasny Asset Management LP (D,CVNA,5.0
+Balyasny Asset Management LP (D,SBS,5.0
+Balyasny Asset Management LP (D,DD,0.3333333333333333
+Balyasny Asset Management LP (D,FDX,1.241
+Balyasny Asset Management LP (D,HON,0.9535
+Balyasny Asset Management LP (D,KLAC,10.0
+Balyasny Asset Management LP (D,LILA,1.1
+Balyasny Asset Management LP (D,POWL,3.0
+Maverick Capital Ltd (Lee Ainsl,BKNG,25.0
+Maverick Capital Ltd (Lee Ainsl,CVNA,5.0
+Maverick Capital Ltd (Lee Ainsl,FDX,1.241
+Millennium Management LLC (Isra,PALL,5.0
+Millennium Management LLC (Isra,PPLT,10.0
+Millennium Management LLC (Isra,YYAI,0.025
+Millennium Management LLC (Isra,ANAB,1.5
+Millennium Management LLC (Isra,ATRO,1.253
+Millennium Management LLC (Isra,BCAB,0.02
+Millennium Management LLC (Isra,BKNG,25.0
+Millennium Management LLC (Isra,CDLX,0.1
+Millennium Management LLC (Isra,CVNA,5.0
+Millennium Management LLC (Isra,SBS,5.0
+Millennium Management LLC (Isra,DD,0.3333333333333333
+Millennium Management LLC (Isra,FDX,1.241
+Millennium Management LLC (Isra,HON,0.9535
+Millennium Management LLC (Isra,IMUX,0.1
+Millennium Management LLC (Isra,IWF,4.0
+Millennium Management LLC (Isra,KLAC,10.0
+Millennium Management LLC (Isra,LILA,1.1
+Millennium Management LLC (Isra,NAKA,0.025
+Millennium Management LLC (Isra,PSTV,0.04
+Millennium Management LLC (Isra,POWL,3.0
+Millennium Management LLC (Isra,QNCX,0.005000000000000001
+Millennium Management LLC (Isra,METCB,1.011977
+Millennium Management LLC (Isra,SCYX,0.125
+Millennium Management LLC (Isra,TRI,0.984
+Millennium Management LLC (Isra,VUG,6.0
+Tudor Investment Corporation,PPLT,10.0
+Tudor Investment Corporation,ANAB,1.5
+Tudor Investment Corporation,ATRO,1.253
+Tudor Investment Corporation,BKNG,25.0
+Tudor Investment Corporation,DD,0.3333333333333333
+Tudor Investment Corporation,FDX,1.241
+Tudor Investment Corporation,HON,0.9535
+Tudor Investment Corporation,HDV,5.0
+Tudor Investment Corporation,POWL,3.0
+Tudor Investment Corporation,VUG,6.0
+Tudor Investment Corporation,VGT,8.0
+Tudor Investment Corporation,MGK,5.0
+Tudor Investment Corporation,VO,4.0
+Tudor Investment Corporation,VOOG,6.0
+Weiss Asset Management (Boston),SLMT,0.1
+Weiss Asset Management (Boston),DD,0.3333333333333333
+Ariel Investments LLC (John Rog,FDX,1.241
+Brandes Investment Partners LP,FDX,1.241
+Caxton Associates LP (Bruce Kov,ATRO,1.253
+Caxton Associates LP (Bruce Kov,BKNG,25.0
+Caxton Associates LP (Bruce Kov,DD,0.3333333333333333
+Caxton Associates LP (Bruce Kov,FDX,1.241
+Caxton Associates LP (Bruce Kov,KLAC,10.0
+Davidson Kempner Capital Manage,BKNG,25.0
+Davidson Kempner Capital Manage,CVNA,5.0
+Discovery Capital Management LL,METCB,1.011977
+Giverny Capital (François Rocho,BKNG,25.0
+Linden Advisors,ASBPW,0.03333333333333333
+Marshall Wace LLP,ANAB,1.5
+Marshall Wace LLP,ATRO,1.253
+Marshall Wace LLP,BCAB,0.02
+Marshall Wace LLP,BKNG,25.0
+Marshall Wace LLP,CVNA,5.0
+Marshall Wace LLP,DD,0.3333333333333333
+Marshall Wace LLP,FDX,1.241
+Marshall Wace LLP,HON,0.9535
+Marshall Wace LLP,IMUX,0.1
+Marshall Wace LLP,KLAC,10.0
+Marshall Wace LLP,LILA,1.1
+Marshall Wace LLP,OPAD,0.1
+Marshall Wace LLP,METCB,1.011977
+Marshall Wace LLP,SBS,5.0
+Marshall Wace LLP,TRI,0.984
+Nantahala Capital Management,IMUX,0.1
+RV Capital   Business Owner Fun,CVNA,5.0
+Southeastern Asset Management I,FDX,1.241
+Knighthead Capital Management,UP,0.05
+Sculptor Capital Management,ASBPW,0.03333333333333333
+Troy Asset Mgmt Trojan Fund,BKNG,25.0
+Findlay Park Partners (Kingsley,KLAC,10.0
+Mawer Investment Management (Ca,BKNG,25.0
+Mawer Investment Management (Ca,KLAC,10.0
+Periscope Capital Inc (Jamie Wi,ASBPW,0.03333333333333333
+Periscope Capital Inc (Jamie Wi,DAIC,0.04
+RIT Capital Partners plc (RCP.L,BKNG,25.0

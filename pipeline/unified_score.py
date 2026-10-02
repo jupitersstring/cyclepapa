@@ -1,0 +1,724 @@
+"""Unified per-ticker score combining every signal we have.
+
+Inputs (joined per ticker):
+  - fund_13f_holdings       smart money holding count + position size
+  - fund_positions          XLSX-derived signals by section
+  - holder_13d              SC 13D/G filings + activist pct
+  - insider_clusters        live insider buy cluster (window_end ≤180d)
+  - form4_transactions      recent open-market buys (code=P)
+  - ticker_meta             mcap, exchange, ADV, price (from enrich_tickers.py)
+  - candidates              curated qualitative tier + sector
+  - expected_return         base-rate weighted ER
+
+Output table: unified_signal (ticker, components, score, mcap_bucket)
+Score formula:
+  smart_money       =  log(1 + n_funds_13F)
+  S3_new_init       =  3 * n_funds_section3   (latest 13F quarter's new positions where
+  S4_material_add   =  1.5 * n_funds_section4  a fund has a current book; researcher notes
+  S1_top_pick       =  2 * n_funds_section1    otherwise; S1 only while still held)
+  activist_13G_pct  =  0.5 * max_pct_class (capped at 30)
+  insider_cluster   =  +5 if live cluster, +10 if 3+ insiders, +15 if 5+
+  form4_buying      =  log(1 + cumulative_open_market_$M)
+  micro_bonus       =  +5 if mcap <$300M, +3 if <$2B
+  expected_return   =  ER% * 0.5
+"""
+import math, os, re, sqlite3, sys
+
+DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
+
+# Approximate FX -> USD (mid-2026). ticker_yf.mcap_m is in the LISTING currency;
+# without conversion, foreign mega/micro-caps size and bucket by their raw local
+# number (Samsung ₩1.87e15 -> "$1.87 quadrillion"; FPT.VN's $5M co -> "large").
+# Minor units (GBp pence, ZAc cents) convert via their major /100. A currency
+# absent here yields mcap=None (unknown bucket) rather than a wrong USD figure.
+_FX_USD = {
+    "USD": 1.0, "CAD": 0.73, "EUR": 1.08, "GBP": 1.28, "GBp": 0.0128, "JPY": 0.0064,
+    "HKD": 0.128, "AUD": 0.66, "CHF": 1.12, "SGD": 0.74, "INR": 0.012, "KRW": 0.00073,
+    "TWD": 0.031, "ZAR": 0.055, "ZAc": 0.00055, "NOK": 0.093, "DKK": 0.145, "SEK": 0.095,
+    "PLN": 0.25, "IDR": 0.0000615, "TRY": 0.030, "HUF": 0.0028, "MYR": 0.21, "CNY": 0.138,
+    "BRL": 0.18, "MXN": 0.055, "THB": 0.028, "PHP": 0.017, "NZD": 0.60, "ILS": 0.27, "ILA": 0.0027, "GBX": 0.0128,
+    "VND": 0.0000393, "AED": 0.272, "SAR": 0.267, "QAR": 0.275, "EGP": 0.020, "NGN": 0.00065,
+    "CLP": 0.00105, "RUB": 0.0125, "KWD": 3.26, "KWF": 0.00326,
+}
+
+_MINOR = {"GBp": "GBP", "GBX": "GBP", "ZAc": "ZAR", "ILA": "ILS", "KWF": "KWD"}
+
+def fx_major(ccy):
+    """USD per MAJOR unit of a listing currency. Aggregates (market cap, EV)
+    are quoted in the major unit even where the PRICE is in a minor one (London
+    in pence, Johannesburg in cents): the minor rate divided every London mcap
+    by 100 (Rolls-Royce read $1.5B, Diageo $463M). None when unknown."""
+    ccy = ccy or "USD"
+    return _FX_USD.get(_MINOR.get(ccy, ccy))
+
+# --- security-type classification -------------------------------------------
+# 13F filings include ETFs, preferreds, warrants, units and CVRs. Those are
+# hedges/arb legs, not stock picks — an index fund held by 50 quants must not
+# rank as a "consensus idea". Classified here once; pick sheets filter to
+# sec_type='common' while reference sheets keep everything.
+_ETF_TICKERS = frozenset("""SPY QQQ QQQM IWM IWN IWO IWF IWD IVV VOO DIA MDY RSP
+ GLD SLV TLT IEF SHY HYG LQD JNK EEM EFA VWO FXI EWJ EWZ EZU ASHR GDX GDXJ GDXD
+ USO UNG SMH SOXX XBI IBB KRE KBE VNQ ARKK GSG TIP ITA ITB IYE IYW IYM IYT IEO
+ IEZ IXC SCJ LEMB XLE XLF XLK XLU XLV XLI XLY XLP XLB XLRE XLC BOXX MAGS TQQQ
+ SQQQ""".split())
+_ETF_NAME_RE = re.compile(
+    r"\b(ETF|ETN)\b|iShares|SPDR|ProShares|Direxion|VanEck|WisdomTree|Global X|"
+    r"YieldMax|GraniteShares|Xtrackers|Roundhill|Defiance|Pacer |Amplify |"
+    r"First Trust|Invesco (QQQ|S&P|Exchange)|Vanguard .*(ETF|Index)|"
+    r"Strategy Shares|Tidal Trust|Index Fund", re.I)
+_PREF_RE = re.compile(r"-P[A-Z]{0,2}$")
+
+def classify_sec_type(tkr, name, names):
+    """names: {ticker: company name} for the whole universe — lets the suffix
+    heuristic verify that RVMDW's base ticker RVMD is the SAME issuer (warrant
+    quotes carry the issuer's name), so ARW/SNOW-style tickers never match."""
+    nm = name or ""
+    # BOND DESCRIPTORS: OpenFIGI names convertible notes like "MSTR 0.625
+    # 03-15-30" — a real ticker never contains a space. 171 such notes had
+    # scored as common stock picks.
+    if " " in tkr:
+        low = tkr.lower()                   # "HTZ (warrant)": a warrant line tagged by its filed title
+        return "warrant" if "(warrant)" in low else "right" if "(right)" in low else "note"
+    # PREFERRED — by ticker suffix OR the unambiguous "PFD" name token / coupon-pfd
+    # (NCR Corp "5.5% PFD CNV A" is a preferred, not $138B of NCR common stock).
+    # "Preferred" spelled out too: Alphabet's 2026 mandatory convertible
+    # (GOOGN, "...Series B Mandatory Convertible Preferred Stock") scored as a
+    # $283B common stock. Operating names ("Preferred Bank") stay common.
+    if (_PREF_RE.search(tkr) or re.search(r"\bPFD\b|\bPFD\.|% PFD|CNV PFD|PREF\b", nm, re.I)
+            or re.search(r"\bpreferred\s+(stock|shares?|securities)\b|\bconvertible\s+preferred\b", nm, re.I)):
+        return "preferred"
+    if tkr.endswith(("-RI", "-R")) or re.search(r"\bCVR\b|contingent value|\bright(s)?\b(?!s? of)", nm, re.I):
+        return "right"
+    if tkr.endswith(("-UN", "-U", ".U", ".UN")):
+        return "unit"                       # SPAC units (TRAD-UN, GLED-UN, NWAX.U)
+    # "-WS" is NYSE's warrant suffix (ACHR-WS, GME-WS scored as common stock)
+    if tkr.endswith(("-WT", "+", "-WS", ".WS", ".WT")) or re.search(r"\bwarrant", nm, re.I):
+        return "warrant"
+    # CLOSED-END FUNDS: names ending in "Fund"/"Fund Inc" (Nuveen/PIMCO/Eaton Vance
+    # income & municipal funds) are fund vehicles, not operating stocks. Anchored
+    # to the end so operating names ("Preferred Bank", "SoFi") stay common.
+    if (tkr in _ETF_TICKERS or _ETF_NAME_RE.search(nm)
+            or re.search(r"\bFUND\.?(\s+(INC|LP|LTD)\.?)?\s*$", nm, re.I)
+            or re.search(r"\b(MUNICIPAL|MUNI)\b.*\bFUND\b|CLOSED[\s-]END", nm, re.I)):
+        return "etf"
+    if re.search(r"\bunits?\b", nm, re.I) and re.search(r"acquisition|SPAC", nm, re.I):
+        return "unit"
+    # suffix heuristic: 5+ letter ticker ending W/U/P/O whose BASE ticker trades
+    # too, and either we have no name, or the name matches the base issuer's name.
+    # P/O catch hyphen-less preferred/depositary listings (STRRP = Star Equity
+    # pfd next to STRR; TCBIO = Texas Capital depositary next to TCBI).
+    if len(tkr) >= 5 and "-" not in tkr and tkr[:-1] in names:
+        base_nm = names.get(tkr[:-1]) or ""
+        same_issuer = (not nm) or (base_nm and nm[:12].upper() == base_nm[:12].upper())
+        if same_issuer:
+            if tkr.endswith("W"):
+                return "warrant"
+            if tkr.endswith("U"):
+                return "unit"
+            if tkr.endswith(("P", "O")):
+                return "preferred"
+            if tkr.endswith("Z"):
+                return "right"              # LGNDZ: Ligand's rights next to LGND
+    if re.search(r"\bnotes? due\b|% notes\b", nm, re.I):
+        return "note"
+    return "common"
+
+# A fund that hasn't filed a 13F since this date is dormant/closed — its last
+# (stale) holdings must NOT count as CURRENT smart money. Genuinely-active funds
+# (incl. those that migrated CIKs) file quarterly, so anything filed in the last
+# ~18 months is current. Holdings stay in the DB; they're just gated from the score.
+# Equity lines only. A CUSIP whose issue code (chars 7-8) holds letters is DEBT:
+# convertible notes filed as 'SH' (EchoStar, Celcuity, Dexcom: 66 lines, $1.7B)
+# or as 'PRN' must not count as holders of the stock, nor as %-of-book in it
+# (a convert-arb fund's 5% Lumentum note is not a 5% Lumentum equity bet).
+_EQUITY = ("AND sh_type IN ('SH','') AND substr(cusip,7,1) BETWEEN '0' AND '9' "
+           "AND substr(cusip,8,1) BETWEEN '0' AND '9' ")
+# Rolling, not a fixed date: a fund that has missed two quarterly 13F cycles
+# (~200 days) is dormant. A hard-coded 2025-01-01 had kept funds whose last
+# 13F was November 2025 (Engine No. 1, Aurelius, Sagard...) scored as CURRENT
+# smart money in September 2026 on year-old positions.
+import datetime as _dt
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from ingest_13f import DORMANT_DAYS       # same window that archives dormant books
+from ingest_sec_events import parent_ticker
+STALE_FUND_CUTOFF = (_dt.date.today() - _dt.timedelta(days=DORMANT_DAYS)).isoformat()
+_FRESH = (f"AND fund NOT IN (SELECT fund FROM fund_13f_state "
+          f"WHERE last_filed IS NOT NULL AND last_filed < '{STALE_FUND_CUTOFF}')")
+# One vote per filing. Ten managers sit on the roster under two names (Tiger
+# Global, Coatue, Lone Pine, AKO, Durable...) and the same 13F book, same
+# accession, is stored under both: every holding counted twice in the holder
+# count and the 5%-of-book cluster. The filing, not the name, is the vote.
+_ONE_BOOK = "AND fund IN (SELECT MIN(fund) FROM fund_13f_holdings GROUP BY accession) "
+
+def run():
+    conn = sqlite3.connect(DB)
+    conn.row_factory = sqlite3.Row
+    conn.executescript("""
+    DROP TABLE IF EXISTS unified_signal;
+    CREATE TABLE unified_signal (
+      ticker TEXT PRIMARY KEY,
+      name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
+      mcap_bucket TEXT,
+      smart_money_n REAL,
+      s1_top INTEGER, s2_thresh INTEGER, s3_new REAL, s4_add REAL,
+      activist_filings INTEGER, activist_max_pct REAL,
+      insider_cluster_dollars_m REAL, insider_n INTEGER,
+      form4_buy_usd_m REAL, form4_sell_usd_m REAL,
+      form4_buy_30d_m REAL, form4_sell_30d_m REAL,
+      max_pct_book REAL, n_funds_5pct_book INTEGER,
+      global_score REAL,        -- score using only signals that work cross-listing
+      is_us INTEGER,            -- 1 if US-registered (no dot suffix), 0 otherwise
+      cat8k_ma INTEGER, cat8k_dir INTEGER, cat8k_ctrl INTEGER,
+      cat8k_pipe INTEGER, cat8k_bnk INTEGER, cat8k_n INTEGER,
+      ev_ebitda REAL, pb_ratio REAL, pe_ttm REAL,
+      revealed_pref REAL,       -- active accumulation: 2*s3 + s4 + 0.5*s1
+      asymmetry_score REAL,     -- downside protection × upside potential
+      expected_return_pct REAL,
+      entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
+      sec_type TEXT,            -- 'common'|'etf'|'preferred'|'warrant'|'unit'|'right'|'delisted'
+      score REAL,
+      components TEXT
+    );
+    CREATE INDEX idx_us_score ON unified_signal(score DESC);
+    CREATE INDEX idx_us_bucket ON unified_signal(mcap_bucket);
+    CREATE INDEX idx_us_pb ON unified_signal(max_pct_book DESC);
+    CREATE INDEX idx_us_entry ON unified_signal(entry_bucket);
+    """)
+
+    # Per-ticker signals.
+    # smart_money_n is CONVICTION-WEIGHTED, not a raw holder count. A fund's vote
+    # diffuses as it holds more names: pod-shops / quants (Citadel 6687 names,
+    # Millennium 4030, AQR 3739) run statistical-arb books where holding a stock
+    # conveys ~no conviction, so each fund's vote is weighted min(1, CAP/n_names).
+    # A focused book (<=CAP names) counts fully; a 600-name diversified book ~0.1;
+    # a 6000-name quant ~0.01 — heavily downweighted, as intended.
+    SM_CAP = 75.0
+    fund_hn = {r[0]: r[1] for r in conn.execute(
+        "SELECT fund, COUNT(DISTINCT cusip) FROM fund_13f_holdings "
+        "WHERE ticker IS NOT NULL " + _EQUITY + _ONE_BOOK + "GROUP BY fund")}
+    fund_w = {f: min(1.0, SM_CAP / hn) for f, hn in fund_hn.items() if hn > 0}
+    sm = {}
+    for tk, fund in conn.execute(
+            "SELECT DISTINCT ticker, fund FROM fund_13f_holdings "
+            "WHERE ticker IS NOT NULL " + _EQUITY + _FRESH + " " + _ONE_BOOK):
+        sm[tk] = sm.get(tk, 0.0) + fund_w.get(fund, 1.0)
+    sm = {tk: round(v, 1) for tk, v in sm.items()}
+    # Section counts dedupe by CANONICAL manager, not raw fund string — the same
+    # manager appears under several name variants ("CAS Investment Partners",
+    # "... (Cliff", "... Sosin"), which inflated counts (NVDA S1 was 52 strings
+    # but only 37 real managers). 552 strings -> 445 canonical managers.
+    from _canon import canon
+    # S1 / S3 / S4 were read only from the researcher spreadsheet (compiled
+    # May-June 2026, describing mostly Q4 2025 - Q1 2026 filings). Where a fund
+    # has a current, comparable 13F book the filing supersedes those notes:
+    #   S3 new initiations / S4 material adds = its moves in the latest
+    #     quarter (fund_moves; spin-offs and new-at-listing lines excluded —
+    #     not open-market decisions);
+    #   S1 top picks count only while it still holds the stock (any share
+    #     class) — 564 of its top-pick notes were stocks it had since sold.
+    # Funds with no current book (non-US managers, non-filers) keep their notes:
+    # they are all we have.
+    from fund_moves import section_evidence
+    _ev, _st = section_evidence(conn)
+    # weighted by the fund's focus like the holder count: a 20-name book's new
+    # position counts 1, a 750-name book's 0.1 (unweighted, MSFT's adds jumped
+    # 8 -> 20 on diversified books topping up); research notes count 1
+    _sec_mgrs = {}
+    for tk, secs in _ev.items():
+        for sec, mgrs in secs.items():
+            _sec_mgrs[(tk, sec)] = {m: e["w"] for m, e in mgrs.items()}
+    print(f"S1/S3/S4: {_st['fresh']} funds with a current 13F book — their researcher notes superseded "
+          f"(S3 {_st['dropped'][3]}, S4 {_st['dropped'][4]} replaced by {_st['n_fresh'][3]} new / "
+          f"{_st['n_fresh'][4]} added positions from the latest quarter; {_st['dropped'][1]} S1 top picks "
+          f"no longer held dropped; {_st['dropped']['dormant']} notes of dormant managers dropped)")
+    s_by = {}
+    for (tk, sec), mgrs in _sec_mgrs.items():
+        s_by.setdefault(tk, {})[sec] = round(sum(mgrs.values()), 1)
+    act = {}
+    for r in conn.execute("""SELECT subject_ticker, COUNT(*) n, MAX(pct_class) m
+        FROM holder_13d WHERE subject_ticker IS NOT NULL
+          AND filed >= date('now','-24 months')
+        GROUP BY subject_ticker"""):
+        # Recency window: a 13D/G filed years ago (oldest row: 2005!) says nothing
+        # about TODAY's register — holders exit without us seeing every amendment.
+        # Only filings from the last 24 months count as a live activist signal.
+        act[r["subject_ticker"]] = (r["n"], r["m"] or 0)
+    cl = {}
+    for r in conn.execute("""SELECT ticker, n_insiders, total_usd_m FROM insider_clusters
+        WHERE DATE(window_end) >= DATE('now', '-180 days')"""):
+        cl[r["ticker"]] = (r["n_insiders"], r["total_usd_m"] or 0)
+    # Form 4 buys (P-code, acquired) — time-decayed weighting:
+    #   ≤30 days   : weight 1.0
+    #   31–60 days : weight 0.6
+    #   61–120 days: weight 0.3
+    #   121–180    : weight 0.1
+    # Recent buying is much more informative than 6-month-old buying.
+    f4 = {}                   # weighted dollar exposure
+    f4_raw = {}               # unweighted 180d sum (for display)
+    f4_30 = {}                # ≤30d dollar exposure (very-recent signal)
+    # Sanity guards — exclude parse artifacts from both buy and sell signals:
+    #  (a) a single trade worth more than the company's market cap (ADS-ratio
+    #      mismatch — SVRE reported ordinary shares at the per-ADS price,
+    #      43,200x inflation — or a corrupted price field);
+    #  (b) a transaction price wildly off the known market price (>5x or <0.10x).
+    #      Catches local-currency filings (INFY sells at Rs.1,178 vs $10.78) and
+    #      corrupted fields (SBLK "px=$227,538"). The band is ASYMMETRIC on
+    #      purpose: buys far below today's price are often REAL pre-runup entries
+    #      (MANE insiders bought at $17 before a run to $127 = 0.13x; CIFR $6 vs
+    #      $29 = 0.21x) — only <0.10x is treated as data corruption.
+    # NB: outer columns MUST be table-qualified inside the correlated subquery —
+    # a bare `price` here resolves to ticker_yf.price (inner scope), turning the
+    # band check into y.price > y.price*5 (never true) and silently disabling it.
+    _F4_SANE = """AND NOT EXISTS (SELECT 1 FROM ticker_yf y
+              WHERE y.ticker = form4_transactions.ticker
+                AND ((y.mcap_m > 0
+                      AND form4_transactions.shares*form4_transactions.price/1e6 > y.mcap_m)
+                  OR (y.price > 0 AND (form4_transactions.price > y.price*5
+                                    OR form4_transactions.price < y.price*0.10))))
+          AND NOT (form4_transactions.shares*form4_transactions.price/1e6 > 250
+                   AND NOT EXISTS (SELECT 1 FROM ticker_yf y2
+                                   WHERE y2.ticker = form4_transactions.ticker))"""
+    for r in conn.execute("""
+        SELECT ticker, SUM(shares*price)/1e6 AS usd_m,
+               julianday('now') - julianday(trans_date) AS days_old
+        FROM form4_transactions
+        WHERE code='P' AND acquired=1 AND price IS NOT NULL
+          AND trans_date >= date('now','-180 days')
+          """ + _F4_SANE + """
+        GROUP BY ticker, days_old"""):
+        tk = r["ticker"]; d = r["days_old"] or 0; u = r["usd_m"] or 0
+        if   d <= 30:  w = 1.0
+        elif d <= 60:  w = 0.6
+        elif d <= 120: w = 0.3
+        else:          w = 0.1
+        f4[tk] = f4.get(tk, 0) + u * w
+        f4_raw[tk] = f4_raw.get(tk, 0) + u
+        if d <= 30:
+            f4_30[tk] = f4_30.get(tk, 0) + u
+
+    f4_sell = {}              # weighted dollar exposure
+    f4_sell_raw = {}
+    f4_sell_30 = {}
+    for r in conn.execute("""
+        SELECT ticker, SUM(shares*price)/1e6 AS usd_m,
+               julianday('now') - julianday(trans_date) AS days_old
+        FROM form4_transactions
+        WHERE code='S' AND price IS NOT NULL
+          AND trans_date >= date('now','-180 days')
+          """ + _F4_SANE + """
+        GROUP BY ticker, days_old"""):
+        tk = r["ticker"]; d = r["days_old"] or 0; u = r["usd_m"] or 0
+        if   d <= 30:  w = 1.0
+        elif d <= 60:  w = 0.6
+        elif d <= 120: w = 0.3
+        else:          w = 0.1
+        f4_sell[tk] = f4_sell.get(tk, 0) + u * w
+        f4_sell_raw[tk] = f4_sell_raw.get(tk, 0) + u
+        if d <= 30:
+            f4_sell_30[tk] = f4_sell_30.get(tk, 0) + u
+    # entry-intact / in-the-money — current price vs smart-money entry anchor
+    entry = {}
+    for r in conn.execute("""SELECT ticker, bucket, vs_entry_pct, anchor_px, anchor_source
+        FROM ticker_entry_intact"""):
+        entry[r["ticker"]] = (r["bucket"], r["vs_entry_pct"], r["anchor_px"], r["anchor_source"])
+
+    # Valuation ratios — EV/EBITDA and P/B.
+    # PREFER yfinance (ticker_yf) — Yahoo's authoritative pre-computed values
+    # handle dual-class, ADRs, currency correctly. Fall back to SEC-derived
+    # ticker_valuation only where yfinance has no value.
+    # EV/EBITDA is only meaningful when BOTH EV>0 and EBITDA>0. A negative EV
+    # (net cash > market cap) or negative EBITDA (unprofitable) makes the ratio
+    # meaningless — and neg/neg yields a deceptively cheap positive (e.g. LAB
+    # showed 2.0x from -137M EV / -68M EBITDA). Guard at the source.
+    valn = {}
+    try:
+        for r in conn.execute("""SELECT ticker,
+                CASE WHEN ev_m > 0 AND ebitda_ttm > 0 THEN ev_ebitda END AS ev_ebitda,
+                CASE WHEN pb_ratio > 0 AND pb_ratio <= 30 THEN pb_ratio END AS pb_ratio
+                FROM ticker_valuation"""):
+            valn[r["ticker"]] = (r["ev_ebitda"], r["pb_ratio"])
+    except Exception:
+        pass
+    yf_pe = {}; yf_mcap = {}; yf_name = {}
+    try:
+        # P/B only meaningful with a sane positive book. >30 is almost always a
+        # data artifact — an ADR/foreign currency mismatch (TSM "98x", real ~7x)
+        # or a near-zero book — so reject it rather than display a false multiple.
+        # mcap is FX-converted to USD: ticker_yf.mcap_m is in the LISTING currency,
+        # so foreign names (Samsung ₩1.87e15, FPT.VN) otherwise size + bucket as if
+        # the raw number were USD. Convert once here so every sheet is correct.
+        for r in conn.execute("""SELECT ticker,
+            CASE WHEN enterprise_value_m > 0 AND ebitda_m > 0 THEN ev_ebitda END AS ev_ebitda,
+            -- >30 was an ADR currency artifact on YAHOO rows; FMP computes P/B
+            -- in one currency, so a high FMP P/B is real (AAPL 46x, asset-light)
+            CASE WHEN pb_ratio > 0 AND (pb_ratio <= 30 OR src = 'fmp') THEN pb_ratio END AS pb_ratio,
+            pe_ttm, mcap_m, long_name, currency
+            FROM ticker_yf"""):
+            ev, pb = r["ev_ebitda"], r["pb_ratio"]
+            prev = valn.get(r["ticker"], (None, None))
+            # yfinance wins when present; keep SEC value only for the missing leg
+            valn[r["ticker"]] = (ev if ev is not None else prev[0],
+                                 pb if pb is not None else prev[1])
+            yf_pe[r["ticker"]] = r["pe_ttm"]
+            if r["mcap_m"]:
+                # Yahoo reports marketCap in the MAJOR currency even when the
+                # price currency is a minor unit (GBp pence, ZAc cents) — using
+                # the minor rate divided every London mcap by 100 (Rolls-Royce
+                # showed $1.5B). Map minor units to their major rate for MCAP.
+                fx = fx_major(r["currency"])
+                yf_mcap[r["ticker"]] = (r["mcap_m"] * fx) if fx is not None else None
+            if r["long_name"]:
+                yf_name[r["ticker"]] = r["long_name"]
+    except Exception:
+        pass  # ticker_yf may not exist yet
+
+    # 8-K catalysts — count of each material item type in the last 180d
+    # SEC event filings (ingest_sec_events): a live proxy contest, a tender or
+    # going-private offer, a spin-off being registered (on the parent)
+    events = {}
+    try:
+        for kind, form, tk, detail in conn.execute("""SELECT kind, form, subject_ticker, detail FROM sec_events
+                WHERE kind IN ('proxy', 'tender', 'spin') AND filed >= date('now', '-180 days')"""):
+            if kind == "spin":
+                ptk = parent_ticker(detail)
+                if ptk:
+                    events.setdefault(ptk, set()).add("spin")
+            elif tk:
+                events.setdefault(tk, set()).add(kind)
+    except sqlite3.OperationalError:
+        pass
+    cat8k = {}     # ticker -> dict of has_ma/has_director/has_control/has_pipe/has_bankruptcy
+    for r in conn.execute("""SELECT ticker,
+            MAX(has_ma) AS ma, MAX(has_director) AS dir, MAX(has_control) AS ctrl,
+            MAX(has_pipe) AS pipe, MAX(has_bankruptcy) AS bnk,
+            SUM(has_ma + has_director + has_control + has_pipe + has_bankruptcy) AS event_count,
+            MAX(filed) AS latest
+        FROM catalysts_8k
+        WHERE filed >= date('now','-180 days')
+        GROUP BY ticker"""):
+        cat8k[r["ticker"]] = {
+            "ma":   r["ma"] or 0,
+            "dir":  r["dir"] or 0,
+            "ctrl": r["ctrl"] or 0,
+            "pipe": r["pipe"] or 0,
+            "bnk":  r["bnk"] or 0,
+            "n":    r["event_count"] or 0,
+            "latest": r["latest"],
+        }
+    # pct_book — highest %-of-fund-book any single fund has assigned to this ticker
+    pct_book_max = {}
+    pct_book_n5 = {}
+    for r in conn.execute("""SELECT ticker, MAX(pct_book) AS m,
+        SUM(CASE WHEN pct_book >= 5 THEN 1 ELSE 0 END) AS n5
+        FROM fund_13f_holdings
+        WHERE ticker IS NOT NULL AND pct_book IS NOT NULL
+          AND pct_book <= 100
+        """ + _EQUITY + _FRESH + " " + _ONE_BOOK + """
+        GROUP BY ticker"""):
+        pct_book_max[r["ticker"]] = r["m"] or 0
+        pct_book_n5[r["ticker"]] = r["n5"] or 0
+    # Augment max with researcher-disclosed book weights (fund_positions, kind
+    # 'book', sane 0–100) so foreign / non-13F positions (e.g. material adds in
+    # funds that don't file 13F) carry a real concentration figure instead of 0.
+    for r in conn.execute("""SELECT ticker, MAX(pct_value) AS m
+        FROM fund_positions
+        WHERE ticker IS NOT NULL AND pct_kind = 'book'
+          AND pct_value IS NOT NULL AND pct_value > 0 AND pct_value <= 100
+        GROUP BY ticker"""):
+        if (r["m"] or 0) > pct_book_max.get(r["ticker"], 0):
+            pct_book_max[r["ticker"]] = r["m"]
+    er = {r[0]: r[1] for r in conn.execute(
+        "SELECT ticker, weighted_excess_12m FROM expected_return")}
+    tm = {}
+    for r in conn.execute("""SELECT ticker, name, exchange, sector, mcap_m, price
+        FROM ticker_meta"""):
+        tm[r["ticker"]] = dict(r)
+    # backfill curated candidates for tickers not in ticker_meta yet
+    for r in conn.execute("""SELECT ticker, name, sector, mcap_m, price FROM candidates"""):
+        if r["ticker"] not in tm:
+            tm[r["ticker"]] = {"ticker": r["ticker"], "name": r["name"], "exchange": None,
+                               "sector": r["sector"], "mcap_m": r["mcap_m"], "price": r["price"]}
+
+    universe = set(sm) | set(s_by) | set(act) | set(cl) | set(pct_book_max)
+    # ticker -> name map for sec_type's same-issuer suffix check
+    _names = {t: (tm.get(t, {}).get("name") or yf_name.get(t)) for t in universe}
+    # Name-less tickers (no Yahoo quote yet) fall back to the 13F issuer string —
+    # our own holdings say "INVESCO GALAXY BITCOIN ETF" even when Yahoo is silent,
+    # so the ETF/preferred name rules still get to see a name.
+    _noname = [t for t, n in _names.items() if not n]
+    if _noname:
+        ph = ",".join("?" * len(_noname))
+        for t, iss in conn.execute(
+                f"""SELECT ticker, MAX(issuer) FROM fund_13f_holdings
+                    WHERE ticker IN ({ph}) GROUP BY ticker""", _noname):
+            _names[t] = iss
+    # Delisted set (quote 404s under valid crumb auth — the 2025-26 M&A wave):
+    # a "pick" that can no longer be bought is noise; classified out of pick
+    # sheets but kept in reference sheets like everything else.
+    # tickers whose CUSIPs the filings title as warrants / rights (map_cusip_fmp 3b)
+    try:
+        _titled = {t: st for t, st in conn.execute(
+            "SELECT ticker, sec_type FROM cusip_map WHERE sec_type IN ('warrant', 'right') AND ticker IS NOT NULL")}
+    except sqlite3.OperationalError:
+        _titled = {}
+    # The filings' title of class, per ticker, by majority of its holding lines:
+    # listings the ticker rules can't see are units or preferreds — Southern's
+    # 2028 equity units (SOMN, "UNIT 12/15/2028"), PPL's (PPLC), Strategy's
+    # perpetual preferred (STRK, "SERIES A PERP PF"), SPAC units whose base
+    # ticker doesn't trade (GTERU, "UNIT 99/99/9999") had all scored as common.
+    # Narrow on purpose: MLP units ("COM UNIT", "UNIT LTD PARTN": WES, PAA)
+    # and preferred ADRs (Itau, Bradesco) ARE those companies' equity lines.
+    from collections import Counter as _Counter
+
+    def _title_kind(title):
+        tt = (title or "").upper()
+        if re.search(r"\bADR|\bADS\b|DEPOSITARY RECEIPT|AMERICAN DEP|\bSPON", tt):
+            return None
+        if re.search(r"\bUNITS?\s+\d{1,2}/\d{1,2}/\d{2,4}", tt):
+            return "unit"                    # dated: SPAC units, mandatory-convertible equity units
+        if re.search(r"\bPFD|PREFERRED|\bPREF\b|\bPERP\b|\bPF\b|% CUM", tt):
+            return "preferred"
+        return None
+    _forms = {}
+    try:
+        for tk, title in conn.execute("""SELECT h.ticker, f.title_class FROM fund_13f_holdings h
+                JOIN holding_sec_form f ON f.accession = h.accession AND f.cusip = h.cusip
+                WHERE h.ticker IS NOT NULL"""):
+            _forms.setdefault(tk, _Counter())[_title_kind(title)] += 1
+    except sqlite3.OperationalError:
+        pass
+    for tk, cnt in _forms.items():
+        form, n = cnt.most_common(1)[0]
+        if form and n > sum(cnt.values()) / 2 and tk not in _titled:
+            _titled[tk] = form
+    try:
+        _dead = {r[0] for r in conn.execute("SELECT ticker FROM yf_dead")}
+    except Exception:
+        _dead = set()
+    # FMP's own ETF / fund flag (enrich_fmp) is authoritative where the name
+    # heuristics miss: closed-end funds and trusts (ASA Gold, PSLV, Cornerstone,
+    # Central Securities, muni funds) had been scoring as common stock picks.
+    try:
+        _fund = {r[0] for r in conn.execute("SELECT ticker FROM ticker_yf WHERE is_fund = 1")}
+    except Exception:
+        _fund = set()
+    print(f"scoring {len(universe)} tickers")
+    n = 0
+    for tkr in universe:
+        n13f = sm.get(tkr, 0)
+        sec_counts = s_by.get(tkr, {})
+        s1 = sec_counts.get(1, 0); s2 = sec_counts.get(2, 0)
+        s3 = sec_counts.get(3, 0); s4 = sec_counts.get(4, 0)
+        n13d, pct = act.get(tkr, (0, 0))
+        ins_n, ins_m = cl.get(tkr, (0, 0))
+        f4m = f4.get(tkr, 0)               # time-decayed (recent buys weighted more)
+        f4m_raw = f4_raw.get(tkr, 0)       # raw 180d sum for display
+        f4m_30 = f4_30.get(tkr, 0)         # ≤30d buys
+        f4sell_m = f4_sell.get(tkr, 0)     # time-decayed sells
+        f4sell_raw = f4_sell_raw.get(tkr, 0)
+        f4sell_30 = f4_sell_30.get(tkr, 0)
+        max_pb = pct_book_max.get(tkr, 0)
+        n5_pb = pct_book_n5.get(tkr, 0)
+        er_pct = er.get(tkr, 0) or 0
+        meta = tm.get(tkr, {})
+        # Prefer yfinance mcap (authoritative — handles dual-class/ADR) over
+        # the SEC-derived ticker_meta mcap.
+        mcap = yf_mcap.get(tkr) or meta.get("mcap_m") or 0
+        e = entry.get(tkr, (None, None, None, None))
+        entry_bucket, vs_entry_pct, anchor_px, anchor_src = e
+        c8 = cat8k.get(tkr, {})
+        c8_ma   = c8.get("ma",   0)
+        c8_dir  = c8.get("dir",  0)
+        c8_ctrl = c8.get("ctrl", 0)
+        c8_pipe = c8.get("pipe", 0)
+        c8_bnk  = c8.get("bnk",  0)
+        ev_ebitda, pb_ratio = valn.get(tkr, (None, None))
+        pe_ttm = yf_pe.get(tkr)
+        # Dead-check applies only to what would otherwise be COMMON stock:
+        # ETFs/warrants often lack the equity fields (marketCap/EV/PE) in
+        # quoteSummary and would misclassify as delisted when they are simply
+        # fund-type quotes — their real class already excludes them from picks.
+        sec_type = classify_sec_type(tkr, _names.get(tkr), _names)
+        if sec_type == "common" and tkr in _titled:
+            sec_type = _titled[tkr]          # the filings' own title says warrant / right / unit / preferred
+        if sec_type == "common" and tkr in _fund:
+            sec_type = "etf"
+        if sec_type == "common" and tkr in _dead:
+            sec_type = "delisted"
+        # Revealed preference — what funds are ACTIVELY doing (not just holding):
+        # new major positions weigh 2×, material adds 1×, top-conviction holds 0.5×
+        revealed_pref = 2.0 * s3 + 1.0 * s4 + 0.5 * s1
+
+        # scoring
+        # Count-based curated terms are CAPPED. Uncapped, they made the ranking a
+        # popularity contest (AMZN's s1=35 -> 70pts dwarfed everything and pinned
+        # mega-caps at the top). The Nth fund calling a name a "top pick" adds
+        # little beyond a strong consensus, so we saturate: 8-12 funds captures
+        # ~all the credit. Preserves ordering, removes the mega-cap runaway.
+        smart_money       = math.log1p(n13f) * 2
+        s3_new_init       = 3.0 * min(s3, 8)      # was 3.0*s3 (uncapped)
+        s4_material_add   = 1.5 * min(s4, 10)     # was 1.5*s4
+        s1_top_pick       = 2.0 * min(s1, 12)     # was 2.0*s1  (AMZN 70 -> 24)
+        activist_pct      = 0.5 * min(pct, 30)
+        # max_pct_book of 10%+ = HIGH conviction; 20%+ = HYPER
+        max_pb_term       = 0.6 * min(max_pb, 25)
+        cluster_pct_book  = 1.5 * min(n5_pb, 12)   # capped like the other counts
+        insider_cluster   = (5 if ins_n >= 1 else 0) + (5 if ins_n >= 3 else 0) + (5 if ins_n >= 5 else 0)
+        insider_dollars   = math.log1p(ins_m) * 3 if ins_m > 0 else 0
+        # form4_buying uses time-decayed sum: recent buys weight more
+        form4_buying      = math.log1p(f4m) * 2 if f4m > 0 else 0
+        # extra kicker for very-recent (≤30d) buying — heaviest signal
+        form4_recent_bonus = math.log1p(f4m_30) * 2 if f4m_30 > 0 else 0
+        form4_selling     = -math.log1p(f4sell_m) * 1.5 if f4sell_m > 0 else 0
+        # very-recent sells hit harder
+        form4_recent_sell_penalty = -math.log1p(f4sell_30) * 1.5 if f4sell_30 > 0 else 0
+        micro_bonus       = (5 if 0 < mcap < 300 else 3 if 0 < mcap < 2000 else 0)
+        # expected_return REMOVED from the live score: it covered only 14 of ~8,900
+        # tickers and derives from a 19-event backtest with n=0-2 base rates (see
+        # AUDIT_2026-07.md #2/#9). Kept as a research column (expected_return_pct),
+        # not a scoring input, until it has a statistically sound basis.
+        er_contribution   = 0.0
+        # in-the-money / entry-intact — REVISED per adversarial review.
+        # Reviewers found pattern: drawdowns >50% almost always signal
+        # (a) stale anchor from pre-event cohort, (b) busted thesis with
+        # stuck holders, or (c) parse errors. Sweet spot is -30 to -5%.
+        entry_bonus       = 0
+        if entry_bucket == "BELOW_ENTRY" and vs_entry_pct:
+            x = abs(vs_entry_pct)
+            if 5 <= x <= 30:
+                entry_bonus = x / 6.0      # peaks at +5 around -30%
+            elif 30 < x <= 50:
+                entry_bonus = 5.0 - (x - 30) * 0.25  # tapers from +5 → 0
+            else:  # x > 50  — busted thesis territory
+                entry_bonus = -3.0
+        elif entry_bucket == "NEAR_ENTRY":
+            entry_bonus = 1.5
+        elif entry_bucket == "WELL_ABOVE":
+            entry_bonus = -3.0
+
+        # NEW: sponsor-stake / sole-concentrator detection.
+        # If single fund concentration is >50% AND no cluster of other funds
+        # >=5%, treat as a legacy / sponsor stake not a smart-money conviction
+        # cluster. Cap the pct_book contribution.
+        if max_pb > 50 and n5_pb < 3:
+            max_pb_term = 0.3 * min(max_pb, 25)   # halve the bonus
+
+        # NEW: 8-K catalyst bonuses/penalties
+        #   M&A entry (1.01) or completion (2.01)  = +5  (takeover catalyst)
+        #   Control change (5.01)                  = +4  (often pre-takeover)
+        #   Director change (5.02)                 = +1  (could be activist)
+        #   PIPE / dilution (3.02)                 = -3  (counter-signal)
+        #   Bankruptcy (1.03)                      = -10 (counter-signal)
+        #   SEC events: proxy contest +4 · tender / going-private +5 (unless an
+        #   M&A 8-K already counts the deal) · spin-off being registered +2
+        ev = events.get(tkr, set())
+        catalyst_evt = (4 * ("proxy" in ev) + (5 if ("tender" in ev and not c8_ma) else 0)
+                        + 2 * ("spin" in ev))
+        catalyst_8k = (5 * c8_ma + 4 * c8_ctrl + 1 * c8_dir
+                       - 3 * c8_pipe - 10 * c8_bnk)
+
+        score = (smart_money + s3_new_init + s4_material_add + s1_top_pick +
+                 activist_pct + max_pb_term + cluster_pct_book +
+                 insider_cluster + insider_dollars +
+                 form4_buying + form4_recent_bonus +
+                 form4_selling + form4_recent_sell_penalty +
+                 micro_bonus + er_contribution + entry_bonus +
+                 catalyst_8k + catalyst_evt)
+
+        # ASYMMETRY — margin-of-safety (downside protection) × upside potential.
+        # The multibagger setup: cheap valuation + smart money already in below
+        # current price + catalyst + small enough to multiply, bounded downside.
+        ms_cheap = 0.0
+        if ev_ebitda is not None and 0 < ev_ebitda <= 15:
+            ms_cheap += (15 - ev_ebitda) * 0.45          # 0–6.75 pts, cheaper = more
+        if pb_ratio is not None and 0 < pb_ratio <= 2.0:
+            ms_cheap += (2.0 - pb_ratio) * 2.5           # 0–5 pts, low P/B = asset floor
+        ms_entry = 0.0
+        if entry_bucket == "BELOW_ENTRY" and vs_entry_pct:
+            x = abs(vs_entry_pct)
+            ms_entry = (x/8.0) if x <= 40 else max(0, 5 - (x-40)*0.3)  # sweet spot, decay >40%
+        up_conviction = 0.5 * min(max_pb, 20) + math.log1p(n13f) * 1.2 + 2.0*s3 + 1.0*s4
+        up_catalyst   = 0.4 * min(pct, 30) + insider_cluster + (5 if c8_ma else 0) + (math.log1p(f4m_30)*2 if f4m_30 else 0)
+        up_size       = 6 if (0 < mcap < 300) else 4 if (mcap < 2000) else 2 if (mcap < 10000) else 0
+        pen = 0.0
+        if ev_ebitda is not None and ev_ebitda > 30: pen += 5
+        if c8_pipe: pen += 3
+        if c8_bnk:  pen += 8
+        if f4sell_30 and f4sell_30 > 1: pen += math.log1p(f4sell_30)
+        if entry_bucket == "WELL_ABOVE": pen += 3
+        asymmetry_score = round(ms_cheap + ms_entry + up_conviction + up_catalyst + up_size - pen, 2)
+
+        # GLOBAL-FAIR score: drops the US-only terms (Form 4, insider clusters)
+        # so foreign-exchange tickers (.L .T .TO .HK .AX etc.) — which can never
+        # have those signals because SEC doesn't cover them — rank fairly.
+        # Used for the Global Picks sheet.
+        global_score = (smart_money + s3_new_init + s4_material_add + s1_top_pick +
+                        activist_pct + max_pb_term + cluster_pct_book +
+                        micro_bonus + er_contribution + entry_bonus)
+        is_us = 0 if "." in tkr else 1
+
+        if not mcap or mcap <= 0:
+            bucket = "unknown"
+        elif mcap < 50:    bucket = "nano"
+        elif mcap < 300:   bucket = "micro"
+        elif mcap < 2000:  bucket = "small"
+        elif mcap < 10000: bucket = "mid"
+        elif mcap < 200000: bucket = "large"
+        else:              bucket = "mega"
+
+        components = (f"sm={smart_money:.1f} s3*={s3_new_init:.1f} s4*={s4_material_add:.1f} "
+                      f"s1*={s1_top_pick:.1f} act={activist_pct:.1f} pb_max={max_pb_term:.1f} "
+                      f"pb_n5={cluster_pct_book:.1f} clust={insider_cluster:.0f} "
+                      f"clust$={insider_dollars:.1f} f4buy={form4_buying:.1f} f4rec+={form4_recent_bonus:.1f} "
+                      f"f4sell={form4_selling:.1f} f4recsell={form4_recent_sell_penalty:.1f} "
+                      f"mic={micro_bonus:.0f} er={er_contribution:.1f} entry={entry_bonus:.1f} cat8k={catalyst_8k:.0f} evt={catalyst_evt:.0f}")
+
+        conn.execute("""INSERT INTO unified_signal VALUES
+            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (tkr, meta.get("name") or yf_name.get(tkr), meta.get("exchange"), meta.get("sector"),
+             mcap, meta.get("price"), bucket,
+             n13f, s1, s2, s3, s4,
+             n13d, pct, ins_m, ins_n,
+             f4m_raw, f4sell_raw,
+             f4m_30, f4sell_30,
+             max_pb, n5_pb,
+             global_score, is_us,
+             c8_ma, c8_dir, c8_ctrl, c8_pipe, c8_bnk, c8.get("n", 0),
+             ev_ebitda, pb_ratio, pe_ttm, revealed_pref, asymmetry_score,
+             er_pct,
+             entry_bucket, vs_entry_pct, anchor_px, anchor_src,
+             sec_type, score, components))
+        n += 1
+    conn.commit()
+    print(f"wrote {n} unified_signal rows")
+
+    # Summary by bucket
+    print("\n=== TOP 25 BY SCORE (ex mega/ETF) ===")
+    MEGA = {'AMZN','MSFT','NVDA','META','GOOGL','GOOG','AAPL','TSLA','BRK-A','BRK-B',
+            'JPM','BAC','WFC','UNH','JNJ','V','MA','XOM','CVX','HD','PG','KO','PEP',
+            'COST','AVGO','ORCL','WMT','DIS','NFLX','CRM','ABBV','TMO','ABT','MRK',
+            'LLY','NKE','MCD','CSCO','INTC','AMD','ADBE','QCOM','TXN','HON',
+            'SPY','QQQ','VOO','IWM','IEF','GLD','SLV','TLT','EFA','EEM','BIL','IVV',
+            'HYG','XBI'}
+    print(f"{'tkr':<8} {'score':>6} {'mcap$M':>9} {'buc':<5} {'13F':>3} {'S3':>2} {'S4':>2} {'S1':>2} {'13D':>2} {'pct%':>4} {'clu$M':>5}")
+    rank = 0
+    for r in conn.execute("""SELECT ticker, score, mcap_m, mcap_bucket, smart_money_n,
+        s3_new, s4_add, s1_top, activist_filings, activist_max_pct,
+        insider_cluster_dollars_m FROM unified_signal ORDER BY score DESC"""):
+        if r[0] in MEGA: continue
+        rank += 1; mc = r[2] or 0
+        print(f"  {r[0]:<6} {r[1]:>6.1f} ${mc:>7,.0f} {r[3]:<5} {r[4]:>3} {r[5]:>2} {r[6]:>2} {r[7]:>2} {r[8]:>2} {r[9] or 0:>4.1f} ${r[10] or 0:>3.0f}")
+        if rank >= 25: break
+
+    print("\n=== MICRO/SMALL CAP LEADERBOARD ===")
+    rank = 0
+    for r in conn.execute("""SELECT ticker, score, mcap_m, mcap_bucket, smart_money_n,
+        s3_new, s4_add, s1_top, activist_max_pct, insider_cluster_dollars_m, sector, name
+        FROM unified_signal WHERE mcap_bucket IN ('nano','micro','small')
+        ORDER BY score DESC LIMIT 25"""):
+        if r[0] in MEGA: continue
+        rank += 1; mc = r[2] or 0
+        print(f"  {r[0]:<6} {r[1]:>6.1f} ${mc:>7,.0f} {r[3]:<5} {r[4]:>3} S3={r[5]} S4={r[6]} S1={r[7]} act={r[8] or 0:.1f}% clu=${r[9] or 0:.1f}M  {(r[10] or '')[:25]:<25} {(r[11] or '')[:30]}")
+
+if __name__ == "__main__":
+    run()
