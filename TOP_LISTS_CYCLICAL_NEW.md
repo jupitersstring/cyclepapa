@@ -3,12 +3,12 @@
 Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP cache (audit gate 240 checks, 0 FAIL); ranked by the archetype's own spirit score (how strongly a member embodies the thesis, 0-1), then USD market cap. Filters: one line per company (the primary listing from the company map), data-quality clean, not a price ghost, market cap >= $10m, dollar volume not below $100k/day. EXC = spirit >= 0.75, ELITE = spirit >= 0.90. mcap in USD; off_52w_high negative = below the high. 
 ## CYCLE FAMILY (trough / regime / big-bath / resource)
 
-### regime_cyclical — 1,162 fire, 979 clean
+### regime_cyclical — 1,161 fire, 978 clean
 *Regime-Change Cyclical*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | FEEXF | Ferrexpo plc | CH | 235M | 0.92 | ELITE |  | 0.32 | -19.4% |  | -7.6% | 43.2% |
+| 1 | FEEXF | Ferrexpo plc | CH | 235M | 0.91 | ELITE |  | 0.32 | -19.4% |  | -7.6% | 43.2% |
 | 2 | 2YU.F | China Yuhua Education Corp. Ltd. | CN | 194M | 0.90 | EXC | -0.6 | 0.14 | 59.4% | -31% | 20.9% | 5.4% |
 | 3 | SYR.AX | Syrah Resources Limited | AU | 187M | 0.89 | EXC |  | 0.29 | -33.2% | -70% | -274.2% | 5.9% |
 | 4 | NORSE.OL | Norse Atlantic ASA | NO | 92M | 0.89 | EXC |  |  | -22.2% | -96% | -20.7% | 30.8% |
@@ -19,7 +19,7 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 9 | TAO.V | TAG Oil Ltd. | CA | 25M | 0.84 | EXC |  | 0.65 | -13.3% | -36% |  | 58.6% |
 | 10 | YYAPI.IS | Yesil Yapi Endustrisi A.S. | TR | 29M | 0.83 | EXC |  | 0.26 | 4.1% | -74% |  | 208.8% |
 
-### fixed_cost_demand_shock — 1,719 fire, 1,501 clean
+### fixed_cost_demand_shock — 1,718 fire, 1,501 clean
 *Fixed-Cost + Demand Shock*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -35,7 +35,7 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 9 | MP | Mp Materials Corp. / De | US | 9.0B | 0.86 | EXC |  | 4.59 | -5.3% | -29% | -41.5% | 49.8% |
 | 10 | GORO | Gold Resource Corporation | US | 488M | 0.86 | EXC |  | 11.53 | -1.5% | -37% | 20.3% | 99.8% |
 
-### xr_cyclical_trough — 456 fire, 411 clean
+### xr_cyclical_trough — 454 fire, 409 clean
 *XR: Cyclical Trough*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -51,7 +51,7 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 9 | 0213.KL | MTAG | MY | 33M | 0.82 | EXC |  | 0.60 | 6.6% | -28% | 4.1% | -45.7% |
 | 10 | ENW.L | Enwell Energy plc | UK | 53M | 0.80 | EXC |  | 0.32 | -3.3% | -46% |  | -92.6% |
 
-### xr_double_trough — 685 fire, 627 clean
+### xr_double_trough — 683 fire, 625 clean
 *XR: Double Trough*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -59,15 +59,15 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 1 | 060570.KQ | Dreamus Company | KR | 49M | 0.91 | ELITE | 4.5 | 0.46 | -19.9% | -59% | -0.7% | -2.4% |
 | 2 | CTT.AX | Cettire Limited | AU | 51M | 0.89 | EXC |  | 2.57 | -1.4% | -77% | -0.7% | -0.0% |
 | 3 | RAJESHEXPO.NS | Rajesh Exports Limited | IN | 242M | 0.88 | EXC | 5.0 | 0.13 |  | -65% | 0.0% | 164.0% |
-| 4 | 356890.KQ | CyberOne Co., Ltd | KR | 20M | 0.87 | EXC |  | 0.91 | 0.9% | -53% | 7.9% | -29.3% |
-| 5 | 285490.KQ | NOVATECH Co., Ltd. | KR | 77M | 0.86 | EXC |  | 1.13 | -3.7% | -63% | -0.2% | -24.6% |
-| 6 | 048430.KQ | Yura Tech. Co., Ltd. | KR | 47M | 0.86 | EXC |  | 0.49 | 13.1% | -37% | -3.7% | -2.6% |
+| 4 | 048430.KQ | Yura Tech. Co., Ltd. | KR | 47M | 0.87 | EXC |  | 0.49 | 13.1% | -37% | -3.7% | -2.6% |
+| 5 | 356890.KQ | CyberOne Co., Ltd | KR | 20M | 0.87 | EXC |  | 0.91 | 0.9% | -53% | 7.9% | -29.3% |
+| 6 | 285490.KQ | NOVATECH Co., Ltd. | KR | 77M | 0.86 | EXC |  | 1.13 | -3.7% | -63% | -0.2% | -24.6% |
 | 7 | SIGA | SIGA Technologies, Inc. | US | 218M | 0.85 | EXC |  | 1.32 | -8.7% | -56% | -20.8% | -31.8% |
 | 8 | USNA | USANA Health Sciences, Inc. | US | 278M | 0.84 | EXC |  | 0.53 | 6.1% | -37% | 5.0% | 8.3% |
 | 9 | 4880.T | CellSource Co., Ltd. | JP | 39M | 0.84 | EXC | 6.2 | 1.05 | 4.2% | -34% | 7.3% | -14.8% |
 | 10 | 126880.KQ | JNK Heaters Co., Ltd. | KR | 38M | 0.84 | EXC |  | 0.48 | -22.2% | -43% |  | 17.4% |
 
-### xr_bigbath_rebound — 646 fire, 592 clean
+### xr_bigbath_rebound — 647 fire, 593 clean
 *XR: Big Bath Rebound*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -83,7 +83,7 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 9 | ANZLY | Air New Zealand Limited | US | 653M | 0.83 | EXC |  | 0.66 | -30.1% | -51% | -6.2% | 0.0% |
 | 10 | SHREYANIND.NS | Shreyans Industries Limited | IN | 19M | 0.82 | EXC |  | 0.43 | -0.7% | -42% | -3.3% | -9.3% |
 
-### xr_latent_bath_floor — 583 fire, 532 clean
+### xr_latent_bath_floor — 582 fire, 531 clean
 *XR: Latent Bath Floor*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -92,14 +92,14 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 2 | IRI.AX | Integrated Research Limited | AU | 36M | 0.88 | EXC |  | 0.52 | 24.0% | -19% | 7.5% |  |
 | 3 | 048430.KQ | Yura Tech. Co., Ltd. | KR | 47M | 0.87 | EXC |  | 0.49 | 13.1% | -37% | -3.7% | -2.6% |
 | 4 | AWC.SI | Brook Crompton Holdings Ltd. | SG | 16M | 0.87 | EXC |  | 0.43 | 4.1% | -13% | -0.5% | -0.2% |
-| 5 | 1531.TW | Kaulin Mfg. Co., Ltd. | TW | 67M | 0.86 | EXC |  | 0.61 | 15.1% | -12% | -6.5% | -8.9% |
+| 5 | 1531.TW | Kaulin Mfg. Co., Ltd. | TW | 67M | 0.85 | EXC |  | 0.61 | 15.1% | -12% | -6.5% | -8.9% |
 | 6 | BDU.SI | Federal International (2000) Ltd | SG | 26M | 0.85 | EXC |  | 0.51 | 26.0% | -32% | 3.2% | 190.0% |
 | 7 | SHREYANIND.NS | Shreyans Industries Limited | IN | 19M | 0.83 | EXC |  | 0.43 | -0.7% | -42% | -3.3% | -9.3% |
 | 8 | 088910.KQ | Dongwoo Farm To Table Co.,Ltd | KR | 35M | 0.82 | EXC | 3.8 | 0.24 | 44.6% | -23% | 5.3% | 9.0% |
 | 9 | 0609.HK | Tiande Chemical Holdings Limited | HK | 117M | 0.81 | EXC | 36.8 | 0.32 | 13.5% | -38% | 0.5% | 1.2% |
 | 10 | 8512.HK | Hyfusin Group Holdings Limited | HK | 44M | 0.80 | EXC | 0.0 | 0.45 | 40.9% | -14% | 7.4% | -1.2% |
 
-### capex_famine_harvest — 1,063 fire, 943 clean
+### capex_famine_harvest — 1,062 fire, 942 clean
 *Forensic: Capex-Famine Harvest*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -126,7 +126,7 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 4 | 601001.SS | Jinneng Holding Shanxi Coal Indust | CN | 4.1B | 0.43 |  | 7.1 | 1.45 | 8.3% | -28% | 18.4% | -12.8% |
 | 5 | GAU.TO | Galiano Gold Inc. | CA | 560M | 0.32 |  | 2.2 | 1.78 | 1.7% | -36% |  | 132.4% |
 
-### templeton_pessimism — 1,794 fire, 1,669 clean
+### templeton_pessimism — 1,789 fire, 1,666 clean
 *Templeton Maximum Pessimism*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -158,7 +158,7 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 9 | 2930.T | Kitanotatsujin Corporation | JP | 110M | 0.69 |  |  | 2.27 | 4.8% | -8% | -3.2% | -5.2% |
 | 10 | 002271.SZ | Beijing Oriental Yuhong Waterproof | CN | 3.6B | 0.68 |  | 15.2 | 1.18 | 11.2% | -43% | 8.2% | -1.1% |
 
-### mb_fallen_below_cycle — 1,755 fire, 1,718 clean
+### mb_fallen_below_cycle — 1,754 fire, 1,717 clean
 *MB: Fallen Below Its Own Cycle*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -170,37 +170,37 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 5 | NETBAY.BK | Netbay Public Company Limited | TH | 74M | 0.76 | EXC | 9.7 | 5.77 | 5.9% | -48% | 30.8% | 17.8% |
 | 6 | 4880.T | CellSource Co., Ltd. | JP | 39M | 0.75 |  | 6.2 | 1.05 | 4.2% | -34% | 7.3% | -14.8% |
 | 7 | 300595.SZ | Autek China Inc. | CN | 1.3B | 0.74 |  | 16.1 | 1.77 | 5.2% | -36% | 35.2% | 2.6% |
-| 8 | 688050.SS | Eyebright Medical Technology (Beij | CN | 1.1B | 0.74 |  | 21.5 | 2.53 | 2.3% | -40% | 26.1% | 8.0% |
-| 9 | REG1V.HE | Revenio Group Oyj | FI | 448M | 0.74 |  | 83.5 | 2.68 | 2.1% | -37% | 8.4% | 7.3% |
-| 10 | 067160.KQ | AfreecaTV Co., Ltd. | KR | 259M | 0.74 |  |  | 1.17 | 14.9% | -51% |  | 12.5% |
+| 8 | REG1V.HE | Revenio Group Oyj | FI | 448M | 0.74 |  | 83.5 | 2.68 | 2.1% | -37% | 8.4% | 7.3% |
+| 9 | 067160.KQ | AfreecaTV Co., Ltd. | KR | 259M | 0.74 |  |  | 1.17 | 14.9% | -51% |  | 12.5% |
+| 10 | 7061.T | Japan Hospice Holdings Inc. | JP | 28M | 0.74 |  | 15.0 | 1.24 | -5.4% | -66% | 6.9% | 17.0% |
 
-### mb_asset_trough_informed — 24 fire, 24 clean
+### mb_asset_trough_informed — 22 fire, 22 clean
 *MB: Asset Trough + Informed Buyer (asset business, sales/share ahead of price, insider or 13D: lift 2.2x, blow-up 19%)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | NXXT | NextNRG Inc. Common Stock | US | 25M | 0.83 | EXC |  |  | -64.6% | -90% | -50.9% | 194.7% |
-| 2 | KSN.AX | Kingston Resources Limited | AU | 28M | 0.73 |  |  | 0.21 | -41.3% | -75% | -1.6% | -12.2% |
-| 3 | 603113.SS | Jinneng Science & Technology Co.,  | CN | 630M | 0.64 |  |  | 0.53 | -24.2% | -35% | -17.5% | 4.0% |
-| 4 | OSG | Overseas Shipholding Group, Inc. | US | 218M | 0.61 |  |  | 0.31 | -28.5% | -52% | -8.6% | 23.3% |
-| 5 | MAGN | Magnera Corporation Common Stock | US | 417M | 0.60 |  | 12.4 | 0.41 | 25.3% | -19% | 1.5% | -7.1% |
-| 6 | KRAS.JK | PT Krakatau Steel (Persero) Tbk Cl | ID | 253M | 0.58 |  |  | 0.47 | -74.0% | -42% | -2.8% | 2.3% |
-| 7 | GEOS | Geospace Technologies Corp | US | 66M | 0.57 |  |  | 0.69 | -51.0% | -81% | -44.7% | -32.3% |
-| 8 | ARQ | Arq Inc. Common Stock | US | 96M | 0.56 |  | 145.3 | 0.56 | -5.1% | -66% | -43.3% | 10.4% |
-| 9 | SALASAR.NS | Salasar Techno Engineering Limited | IN | 92M | 0.56 |  | 16.0 | 1.06 | -2.1% | -52% | 1.8% | 29.8% |
-| 10 | 000422.SZ | Hubei Yihua Chemical Industry Co., | CN | 2.0B | 0.55 |  | 30.2 | 2.16 | -4.6% | -37% | 6.5% | 1.0% |
+| 2 | KSN.AX | Kingston Resources Limited | AU | 28M | 0.72 |  |  | 0.21 | -41.3% | -75% | -1.6% | -12.2% |
+| 3 | 603113.SS | Jinneng Science & Technology Co.,  | CN | 630M | 0.65 |  |  | 0.53 | -24.2% | -35% | -17.5% | 4.0% |
+| 4 | OSG | Overseas Shipholding Group, Inc. | US | 218M | 0.62 |  |  | 0.31 | -28.5% | -52% | -8.6% | 23.3% |
+| 5 | KRAS.JK | PT Krakatau Steel (Persero) Tbk Cl | ID | 253M | 0.60 |  |  | 0.47 | -74.0% | -42% | -2.8% | 2.3% |
+| 6 | ARQ | Arq Inc. Common Stock | US | 96M | 0.57 |  | 145.3 | 0.56 | -5.1% | -66% | -43.3% | 10.4% |
+| 7 | SALASAR.NS | Salasar Techno Engineering Limited | IN | 92M | 0.57 |  | 16.0 | 1.06 | -2.1% | -52% | 1.8% | 29.8% |
+| 8 | 000422.SZ | Hubei Yihua Chemical Industry Co., | CN | 2.0B | 0.56 |  | 30.2 | 2.16 | -4.6% | -37% | 6.5% | 1.0% |
+| 9 | CLNE | Clean Energy Fuels Corp. | US | 359M | 0.55 |  |  | 0.65 | 6.3% | -43% | -4.8% | 2.2% |
+| 10 | PED | PEDEVCO Corp. | US | 197M | 0.55 |  | 6.9 | 0.99 | 16.3% | -24% | 14.0% | 15.7% |
 
-### mb_industry_trough_cheapest — 192 fire, 185 clean
+### mb_industry_trough_cheapest — 193 fire, 186 clean
 *MB: Fallen, Cheapest on Sales, Industry at Its Own Trough (robust lift 5.2-5.8x, 10-12 years, 8-12 markets, blow-up 8-11%)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | WJG.L | Watkin Jones Plc | UK | 55M | 0.76 | EXC |  | 0.33 | -34.2% | -46% | -4.5% | -22.8% |
+| 1 | WJG.L | Watkin Jones Plc | UK | 55M | 0.77 | EXC |  | 0.33 | -34.2% | -46% | -4.5% | -22.8% |
 | 2 | NEGG | Newegg Commerce, Inc. | US | 308M | 0.72 |  | 45.2 | 1.80 | 0.1% | -84% | -0.7% | 16.9% |
 | 3 | 002731.SZ | Shenyang Cuihua Gold and Silver Je | CN | 29M | 0.72 |  |  | 0.11 | -42.0% | -96% | 13.3% | 0.5% |
 | 4 | 093240.KS | hyungji Elite Co., Ltd. | KR | 14M | 0.71 |  | 10.3 | 0.25 | -82.8% | -86% | 3.7% | 40.8% |
-| 5 | SAP.JO | Sappi Ltd. | ZA | 475M | 0.70 |  |  | 0.27 | -13.1% | -70% | -3.7% | -3.1% |
-| 6 | 08IA.F | iDreamSky Technology Holdings Limi | CN | 14M | 0.70 |  | 247.1 | 0.43 |  |  | 4.1% |  |
+| 5 | 08IA.F | iDreamSky Technology Holdings Limi | CN | 14M | 0.70 |  | 247.1 | 0.43 |  |  | 4.1% |  |
+| 6 | SAP.JO | Sappi Ltd. | ZA | 475M | 0.69 |  |  | 0.27 | -13.1% | -70% | -3.7% | -3.1% |
 | 7 | KMD.NZ | Kathmandu Holdings Limited | NZ | 53M | 0.69 |  |  | 0.08 |  | -62% | -0.5% | 0.8% |
 | 8 | G5EN.ST | G5 Entertainment AB | SE | 50M | 0.69 |  |  | 9.97 | 7.8% | -34% | -3.7% | -8.2% |
 | 9 | FUBO | Fubotv Inc. | US | 355M | 0.68 |  |  | 0.43 | 36.5% | -78% | -1.4% | 183.6% |
@@ -224,7 +224,7 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 
 ## NEWEST ARCHETYPES (pass-3 audit set)
 
-### psix — 218 fire, 187 clean
+### psix — 208 fire, 187 clean
 *PSIX (low expectations, survivable balance sheet, revenue accelerating, gross margin rising, incremental operating margin above the existing margin, self-funded, no dilution, still cheap vs its own history)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -233,30 +233,30 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 2 | FNLPF | Fresnillo plc | US | 29.5B | 0.83 | EXC | 7.5 | 5.76 | 7.7% | -30% | 63.0% | 30.5% |
 | 3 | 3640.T | Densan Co., Ltd. | JP | 95M | 0.83 | EXC | 3.3 | 0.96 | 25.4% | -27% | 9.6% | 17.3% |
 | 4 | 3793.T | Drecom Co.,Ltd. | JP | 89M | 0.80 | EXC | 5.5 | 2.75 | 10.4% | -7% | 6.3% | 29.4% |
-| 5 | 9992.HK | Pop Mart International Group Limit | HK | 25.8B | 0.78 | EXC | 6.9 | 7.53 | 5.6% | -43% | 43.1% | 106.9% |
-| 6 | AGI.TO | Alamos Gold Inc. | CA | 14.9B | 0.78 | EXC | 10.5 | 3.15 | 2.4% | -32% | 66.5% | 53.9% |
-| 7 | ESSA.JK | PT Surya Esa Perkasa Tbk | ID | 620M | 0.78 | EXC | 8.0 | 1.35 | 20.7% | -23% | 17.4% | 8.6% |
-| 8 | ANGPY | Anglo American Platinum Limited | US | 23.5B | 0.77 | EXC | 6.4 | 3.44 | 10.8% | -24% | 36.7% | 6.7% |
-| 9 | 002414.SZ | Wuhan Guide Infrared Co., Ltd. | CN | 7.8B | 0.77 | EXC | 22.1 | 6.25 | 1.8% | -33% | 35.0% | 72.5% |
+| 5 | 9992.HK | Pop Mart International Group Limit | HK | 25.8B | 0.79 | EXC | 6.9 | 7.53 | 5.6% | -43% | 43.1% | 106.9% |
+| 6 | ANGPY | Anglo American Platinum Limited | US | 23.5B | 0.78 | EXC | 6.4 | 3.44 | 10.8% | -24% | 36.7% | 6.7% |
+| 7 | AGI.TO | Alamos Gold Inc. | CA | 14.9B | 0.78 | EXC | 10.5 | 3.15 | 2.4% | -32% | 66.5% | 53.9% |
+| 8 | ESSA.JK | PT Surya Esa Perkasa Tbk | ID | 620M | 0.78 | EXC | 8.0 | 1.35 | 20.7% | -23% | 17.4% | 8.6% |
+| 9 | CS1.F | Chesapeake Energy Corporation | US | 21.5B | 0.77 | EXC | 8.4 | 1.13 | 11.1% | -20% | 26.3% | 240.9% |
 | 10 | 1768.T | Sonec Corporation | JP | 47M | 0.77 | EXC | 3.0 | 0.73 | 41.4% | -41% | 8.1% | -6.1% |
 
-### cheap_net_cash_steady_earner — 61 fire, 57 clean
+### cheap_net_cash_steady_earner — 60 fire, 57 clean
 *Cheap Net-Cash Steady Earner (EV/EBIT < 5x, net cash, a profit in 90%+ of years, capital not wasted or diluted, low starting expectations)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | EGG.AX | Enero Group Limited | AU | 17M | 0.80 | EXC | 1.3 | 0.25 | 22.7% | -62% | 4.6% | -76.7% |
-| 2 | 2779.HK | China Xinhua Education Group Limit | HK | 68M | 0.74 |  | 0.8 | 0.11 | 83.3% | -49% | 57.4% | 1.5% |
-| 3 | JUBILE.BK | Jubilee Enterprise Public Company  | TH | 41M | 0.74 |  | 3.6 | 0.77 | 19.2% | -3% | 9.6% | -15.1% |
-| 4 | 1425.HK | Justin Allen Holdings Limited | HK | 96M | 0.72 |  | 1.8 | 0.77 | 19.6% | -12% | 10.5% | 2.9% |
+| 2 | JUBILE.BK | Jubilee Enterprise Public Company  | TH | 41M | 0.74 |  | 3.6 | 0.77 | 19.2% | -3% | 9.6% | -15.1% |
+| 3 | 2779.HK | China Xinhua Education Group Limit | HK | 68M | 0.73 |  | 0.8 | 0.11 | 83.3% | -49% | 57.4% | 1.5% |
+| 4 | 1425.HK | Justin Allen Holdings Limited | HK | 96M | 0.71 |  | 1.8 | 0.77 | 19.6% | -12% | 10.5% | 2.9% |
 | 5 | CASS.JK | PT Cardig Aero Services Tbk | ID | 214M | 0.68 |  | 2.9 | 2.21 | 17.5% | -42% | 26.6% | 16.9% |
 | 6 | 1061.HK | Essex Bio-Technology Limited | HK | 149M | 0.68 |  | 2.4 | 0.46 | 10.9% | -50% | 17.6% | 8.6% |
 | 7 | 267980.KQ | Maeil Dairies Co., Ltd. | KR | 164M | 0.65 |  | 3.0 | 0.39 | 33.7% | -14% | 4.0% | 2.4% |
-| 8 | UTP.BK | United Paper Public Company Limite | TH | 178M | 0.63 |  | 3.4 | 1.17 | 13.3% | -9% | 20.1% | -4.1% |
-| 9 | 0922.HK | Anxian Yuan China Holdings Limited | HK | 29M | 0.63 |  | 2.1 | 0.28 | 15.5% | -29% | 21.7% | -16.9% |
+| 8 | 0922.HK | Anxian Yuan China Holdings Limited | HK | 29M | 0.64 |  | 2.1 | 0.28 | 15.5% | -29% | 21.7% | -16.9% |
+| 9 | UTP.BK | United Paper Public Company Limite | TH | 178M | 0.63 |  | 3.4 | 1.17 | 13.3% | -9% | 20.1% | -4.1% |
 | 10 | QES.SI | China Sunsine Chemical Holdings Lt | SG | 467M | 0.62 |  | 2.4 | 0.70 | 3.8% | -20% | 10.8% | -6.8% |
 
-### mb_wave_neglected_value_accel — 460 fire, 446 clean
+### mb_wave_neglected_value_accel — 454 fire, 445 clean
 *MB: Neglected Value Accelerating in a Depressed Market (10x lift 21x, ~19% went 10x, blow-up 6-13%)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -264,13 +264,13 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 1 | S.TO | Sherritt International Corporation | CA | 131M | 0.82 | EXC |  | 0.37 | 17.2% | -46% | -59.4% | 8.9% |
 | 2 | FIEE | FiEE Inc Common Stock | US | 34M | 0.78 | EXC | 5.3 | 3.50 | 12.7% | -63% | 43.0% |  |
 | 3 | 1202.HK | Chengdu PUTIAN Telecommunications  | HK | 76M | 0.77 | EXC | 0.7 | 0.62 | -14.4% | -21% | 26.2% | 21.2% |
-| 4 | 6840.T | AKIBA Holdings Co.,Ltd. | JP | 45M | 0.76 | EXC | 6.7 | 1.53 | -1.3% | -48% | 4.0% | 15.3% |
-| 5 | YYGH | YY Group Holding Limited Class A O | SG | 12M | 0.76 | EXC |  | 1.86 | -20.3% |  | -30.6% | 39.3% |
+| 4 | YYGH | YY Group Holding Limited Class A O | SG | 12M | 0.77 | EXC |  | 1.86 | -20.3% |  | -30.6% | 39.3% |
+| 5 | 6840.T | AKIBA Holdings Co.,Ltd. | JP | 45M | 0.76 | EXC | 6.7 | 1.53 | -1.3% | -48% | 4.0% | 15.3% |
 | 6 | 0842.HK | Leoch International Technology Lim | HK | 159M | 0.75 |  |  | 0.23 | -22.1% | -64% | 5.0% | 6.2% |
 | 7 | 201490.KQ | Me2on Co., Ltd. | KR | 58M | 0.75 |  |  | 0.51 | 22.7% | -49% | 16.9% | 28.3% |
 | 8 | 241840.KQ | ASTORY Co.,Ltd | KR | 14M | 0.75 | EXC |  | 0.68 | -45.6% | -73% | -72.9% | 16.5% |
 | 9 | BCG.NS | Brightcom Group Limited | IN | 211M | 0.74 |  | 0.4 | 0.19 | -9.8% | -40% | 21.2% | 40.2% |
-| 10 | VATE | INNOVATE Corp. Common Stock | US | 98M | 0.73 |  |  |  |  | -65% | 2.0% | 12.5% |
+| 10 | 187870.KQ | DeviceENG.CO.,Ltd | KR | 88M | 0.73 |  | 1.4 | 2.01 | -0.4% | -65% | 33.7% | 125.9% |
 
 ### mb_peer_worst_cheapest — 26 fire, 26 clean
 *MB: Peer Group's Worst Name at Its Lowest Multiple (10x lift 24-29x, 22-27% went 10x, blow-up 11-24%)*
@@ -281,12 +281,12 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 2 | 043610.KQ | Genie Music Corporation | KR | 45M | 0.73 |  | 3.5 | 0.62 | 25.5% | -42% | 5.5% | 2.4% |
 | 3 | 001130.KS | Daehan Flour Mills Co.,Ltd | KR | 125M | 0.62 |  | 4.0 | 0.19 | 46.6% | -29% | 2.1% | -0.4% |
 | 4 | 000860.KS | Kangnam Jevisco Co., Ltd | KR | 107M | 0.62 |  | 6.2 | 0.29 | 3.7% | -33% | 0.6% | -6.0% |
-| 5 | MRVE3.SA | MRV Engenharia e Participacoes S.A | BR | 621M | 0.61 |  | 5.4 | 0.71 | 11.0% | -47% | 13.3% | 26.5% |
-| 6 | MGPI | MGP Ingredients, Inc. | US | 316M | 0.61 |  | 9.2 | 0.53 | 0.3% | -37% | 14.8% | -25.9% |
-| 7 | 2745.TWO | Life Travel & Tourist Service Co., | TW | 91M | 0.61 |  | 4.3 | 3.14 | 10.5% | -21% | 6.1% | 14.4% |
-| 8 | 4845.T | Scala, Inc. | JP | 37M | 0.61 |  | 8.5 | 1.24 | 0.5% | -9% | 8.0% | -30.8% |
-| 9 | PRIC-B.ST | Pricer AB (publ) | SE | 69M | 0.60 |  | 5.4 | 0.59 | 18.2% | -15% | 2.2% | -20.4% |
-| 10 | 4222.T | Kodama Chemical Industry Co.,Ltd. | JP | 63M | 0.60 |  | 5.4 | 0.35 | 9.3% | -53% | 4.7% | 7.8% |
+| 5 | MGPI | MGP Ingredients, Inc. | US | 316M | 0.61 |  | 9.2 | 0.53 | 0.3% | -37% | 14.8% | -25.9% |
+| 6 | 2745.TWO | Life Travel & Tourist Service Co., | TW | 91M | 0.61 |  | 4.3 | 3.14 | 10.5% | -21% | 6.1% | 14.4% |
+| 7 | MRVE3.SA | MRV Engenharia e Participacoes S.A | BR | 621M | 0.60 |  | 5.4 | 0.71 | 11.0% | -47% | 13.3% | 26.5% |
+| 8 | PRIC-B.ST | Pricer AB (publ) | SE | 69M | 0.60 |  | 5.4 | 0.59 | 18.2% | -15% | 2.2% | -20.4% |
+| 9 | 4222.T | Kodama Chemical Industry Co.,Ltd. | JP | 63M | 0.60 |  | 5.4 | 0.35 | 9.3% | -53% | 4.7% | 7.8% |
+| 10 | 4845.T | Scala, Inc. | JP | 37M | 0.60 |  | 8.5 | 1.24 | 0.5% | -9% | 8.0% | -30.8% |
 
 ### mb_leader_in_wave — 7 fire, 7 clean
 *MB: Recognised Leader in a Wave (covered, price ahead of sales, margins rising, industry up: lift 11-12x, blow-up 12-18%)*
@@ -317,20 +317,20 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 9 | 000636.SZ | Guangdong Fenghua Advanced Technol | CN | 9.5B | 0.70 |  | 77.2 | 5.08 | -0.0% | -42% | 4.3% | 33.9% |
 | 10 | 307950.KS | Hyundai Autoever Corporation | KR | 7.0B | 0.70 |  | 31.5 | 11.46 | 1.7% | -63% | 2.3% | 17.3% |
 
-### mb_hiring_beating_uncovered — 34 fire, 30 clean
+### mb_hiring_beating_uncovered — 30 fire, 30 clean
 *MB: Hiring, Beating, Uncovered (headcount up, margins at own best, beats, no analyst: lift 2.1x, blow-up 15%)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | 002491.SZ | Tongding Interconnection Informati | CN | 3.9B | 0.77 | EXC |  | 9.76 | -0.5% | -49% | 15.2% | 17.1% |
 | 2 | 300475.SZ | Anhui Julong Transmission Technolo | CN | 20.9B | 0.70 |  |  | 11.03 | 5.4% | -49% | 7.6% | 45.2% |
-| 3 | 8271.TW | Apacer Technology Inc. | TW | 846M | 0.70 |  |  | 2.81 | -12.9% |  | 36.1% | 90.6% |
-| 4 | 6442.TW | EZconn Corporation | TW | 4.2B | 0.66 |  |  | 9.86 | 1.8% | -30% | 32.1% | 64.2% |
-| 5 | 8042.TWO | Taiwan Chinsan Electronic Industri | TW | 471M | 0.65 |  | 44.4 | 3.21 | -4.0% | -51% | 7.4% | 9.8% |
+| 3 | 8271.TW | Apacer Technology Inc. | TW | 846M | 0.69 |  |  | 2.81 | -12.9% |  | 36.1% | 90.6% |
+| 4 | 6442.TW | EZconn Corporation | TW | 4.2B | 0.64 |  |  | 9.86 | 1.8% | -30% | 32.1% | 64.2% |
+| 5 | 8042.TWO | Taiwan Chinsan Electronic Industri | TW | 471M | 0.64 |  | 44.4 | 3.21 | -4.0% | -51% | 7.4% | 9.8% |
 | 6 | IDR | Idaho Strategic Resources, Inc | US | 489M | 0.62 |  | 35.2 | 4.06 | 4.5% | -41% | 45.1% | 92.5% |
-| 7 | 4739.TW | Coremax Corporation | TW | 307M | 0.61 |  | 11.5 | 1.50 | -14.7% | -38% | 13.2% | 51.2% |
+| 7 | 4739.TW | Coremax Corporation | TW | 307M | 0.62 |  | 11.5 | 1.50 | -14.7% | -38% | 13.2% | 51.2% |
 | 8 | BOF | Branchout Food Inc. | US | 63M | 0.58 |  |  | 13.32 | -14.7% | -27% | -50.7% | 113.3% |
-| 9 | BWAY.TA | BrainsWay Ltd. | IL | 584M | 0.56 |  | 67.7 | 20.81 | 1.0% | -13% | 14.0% | 37.1% |
+| 9 | BWAY.TA | BrainsWay Ltd. | IL | 584M | 0.55 |  | 67.7 | 20.81 | 1.0% | -13% | 14.0% | 37.1% |
 | 10 | 6498.TWO | Powertip Image Corp | TW | 99M | 0.55 |  | 5.0 | 2.00 | 6.6% | -34% | 29.3% | 19.8% |
 
 ### mb_compounder_insiders_at_high — 11 fire, 10 clean
@@ -365,23 +365,23 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 9 | LKNCY | Luckin Coffee Inc. | US | 9.9B | 0.70 |  | 11.6 | 4.49 | 5.1% | -15% | 10.3% | 62.3% |
 | 10 | GOLD | Gold.Com, Inc. | US | 1.4B | 0.69 |  | 15.0 | 1.60 | 90.1% | -30% | 0.9% | 137.3% |
 
-### mb_model_uncovered_not_fallen — 100 fire, 98 clean
+### mb_model_uncovered_not_fallen — 105 fire, 103 clean
 *MB: Model's Own Ground (top 5% of market, not fallen, in no rule archetype: lift 3.1x / 2.6x, blow-up 22-30%)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | 6570.TWO | Aplex Technology Inc. | TW | 56M | 0.88 | EXC |  | 2.09 | -1.7% | -21% | 11.5% | 3.0% |
-| 2 | 6642.TWO | Fuzetec Technology Co., Ltd. | TW | 91M | 0.87 | EXC |  | 2.64 | -10.6% | -18% | 21.8% | 5.8% |
-| 3 | 5471.TW | Sonix Technology Co.,Ltd. | TW | 274M | 0.85 | EXC |  | 2.39 | 2.9% | -12% | 9.1% | -2.5% |
+| 2 | 5471.TW | Sonix Technology Co.,Ltd. | TW | 274M | 0.86 | EXC |  | 2.39 | 2.9% | -12% | 9.1% | -2.5% |
+| 3 | 6642.TWO | Fuzetec Technology Co., Ltd. | TW | 91M | 0.86 | EXC |  | 2.64 | -10.6% | -18% | 21.8% | 5.8% |
 | 4 | 2401.TW | Sunplus Technology Company Limited | TW | 449M | 0.83 | EXC |  | 1.68 | -1.9% | -28% | 7.8% | -2.0% |
 | 5 | 002951.SZ | Sichuan Jinshi Technology Co.,Ltd | CN | 934M | 0.82 | EXC |  | 4.16 | -5.4% | -36% | -42.7% | 13.2% |
 | 6 | 4956.TW | Epileds Technologies, Inc. | TW | 102M | 0.82 | EXC |  | 1.90 | 1.1% | -37% | 5.1% | 4.2% |
-| 7 | 688004.SS | Beijing Bohui Science & Technology | CN | 225M | 0.81 | EXC |  | 2.67 | -0.7% | -29% | -85.4% | -1.1% |
-| 8 | 300097.SZ | Dalian Zhiyun Automation Co., Ltd. | CN | 418M | 0.76 | EXC |  | 14.85 | 0.0% | -20% |  | -54.7% |
-| 9 | 006400.KS | Samsung SDI Co., Ltd. | KR | 28.1B | 0.72 |  | 154.3 | 2.36 | -5.0% | -24% | -6.6% | -17.6% |
-| 10 | 3675.TWO | Eris Technology Corporation | TW | 435M | 0.72 |  | 30.4 | 4.68 | 1.5% | -39% | 14.9% | -8.7% |
+| 7 | 688004.SS | Beijing Bohui Science & Technology | CN | 225M | 0.80 | EXC |  | 2.67 | -0.7% | -29% | -85.4% | -1.1% |
+| 8 | 2474.TW | Catcher Technology Co., Ltd. | TW | 3.3B | 0.74 |  | 32.5 | 0.79 | -2.1% | -18% | 6.4% | 1.9% |
+| 9 | 300097.SZ | Dalian Zhiyun Automation Co., Ltd. | CN | 418M | 0.74 |  |  | 14.85 | 0.0% | -20% |  | -54.7% |
+| 10 | 000815.SZ | MCC Meili Cloud Computing Industry | CN | 1.6B | 0.73 |  | 123.6 | 6.23 | 2.4% | -31% | 27.1% | -62.4% |
 
-### mb_model_confluence — 916 fire, 899 clean
+### mb_model_confluence — 874 fire, 857 clean
 *MB: Model Confluence (a rule archetype member the model also ranks in the top decile of its market)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -389,13 +389,13 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 1 | AZEV4.SA | Azevedo & Travassos S.A. | BR | 29M | 0.97 | ELITE |  | 0.36 |  | -80% | 6.2% | 193.7% |
 | 2 | AEZ.F | Mercer International Inc. | CA | 25M | 0.94 | ELITE |  | 0.14 |  | -87% | -12.7% | -9.4% |
 | 3 | PROP | Pledge Petroleum Corp. | US | 51M | 0.91 | ELITE | 3.4 | 0.21 | -93.7% | -82% | 19.1% |  |
-| 4 | NXXT | NextNRG Inc. Common Stock | US | 25M | 0.90 | EXC |  |  | -64.6% | -90% | -50.9% | 194.7% |
-| 5 | 004870.KS | Tway Holdings Incorporation | KR | 17M | 0.90 | EXC |  | 0.57 | -0.6% | -61% | -64.6% | -4.1% |
-| 6 | ITD.BK | Italian-Thai Development Public Co | TH | 55M | 0.89 | EXC |  | 0.62 | 80.9% | -28% | 0.1% | -48.0% |
-| 7 | BRKM5.SA | Bankinter, S.A. | BR | 807M | 0.88 | EXC |  |  |  | -65% | 17.4% | -13.8% |
-| 8 | 200488.SZ | Shandong Chenming Paper Holdings L | CN | 240M | 0.88 | EXC |  | 10.33 | -16.4% | -39% | -14.9% | -65.1% |
-| 9 | HCTI | Healthcare Triangle Inc. Common St | US | 11M | 0.88 | EXC |  | 1.07 |  |  | -57.4% | 18.8% |
-| 10 | 688089.SS | CABIO Biotech(Wuhan) Co., Ltd. | CN | 211M | 0.87 | EXC |  | 0.94 | 2.5% | -68% | -129.1% | -18.5% |
+| 4 | NXXT | NextNRG Inc. Common Stock | US | 25M | 0.91 | ELITE |  |  | -64.6% | -90% | -50.9% | 194.7% |
+| 5 | 004870.KS | Tway Holdings Incorporation | KR | 17M | 0.90 | ELITE |  | 0.57 | -0.6% | -61% | -64.6% | -4.1% |
+| 6 | BRKM5.SA | Bankinter, S.A. | BR | 807M | 0.88 | EXC |  |  |  | -65% | 17.4% | -13.8% |
+| 7 | 200488.SZ | Shandong Chenming Paper Holdings L | CN | 240M | 0.88 | EXC |  | 10.33 | -16.4% | -39% | -14.9% | -65.1% |
+| 8 | ITD.BK | Italian-Thai Development Public Co | TH | 55M | 0.88 | EXC |  | 0.62 | 80.9% | -28% | 0.1% | -48.0% |
+| 9 | 3856.T | Abalance Corporation | JP | 27M | 0.87 | EXC |  | 0.10 | 73.4% | -79% | 28.9% | -2.9% |
+| 10 | LGO.TO | Largo Resources Ltd. | CA | 69M | 0.86 | EXC |  | 0.52 | -56.6% | -62% | -9.7% | -12.6% |
 
 ### mb_preprofit_beats_rewarded — 292 fire, 283 clean
 *MB: Pre-Profit, Beats Rewarded (loss-maker that beats and whose beats the market rewards: 10x lift 30-35x, blow-up 30-50%)*
@@ -413,7 +413,7 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 9 | VISN | Vistance Networks, Inc. | US | 1.5B | 0.72 |  | 31.7 | 0.60 | 5.9% | -49% | 2.2% | -83.9% |
 | 10 | 603326.SS | Nanjing OLO Home Furnishing Co.,Lt | CN | 348M | 0.71 |  | 9.1 | 2.04 | 6.6% | -26% | 18.9% | -9.4% |
 
-### mb_model_region_rule — 653 fire, 633 clean
+### mb_model_region_rule — 652 fire, 633 clean
 *MB: Model Region Rule (fell far more than its market, very volatile, tiny or long in drawdown: leaf lifts 3.1-3.9x, blow-up 30-38%)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -537,17 +537,17 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 5 | 281820.KS | KCTech Co., Ltd. | KR | 876M | 0.43 |  | 10.2 | 2.35 | 1.6% | -45% | 22.3% | 19.7% |
 | 6 | 002138.SZ | Shenzhen Sunlord Electronics Co.,L | CN | 5.7B | 0.27 |  | 34.2 | 5.85 | 1.9% | -44% | 15.6% | 12.3% |
 
-### mb_industry_trough_cheapest — 192 fire, 185 clean
+### mb_industry_trough_cheapest — 193 fire, 186 clean
 *MB: Fallen, Cheapest on Sales, Industry at Its Own Trough (robust lift 5.2-5.8x, 10-12 years, 8-12 markets, blow-up 8-11%)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | WJG.L | Watkin Jones Plc | UK | 55M | 0.76 | EXC |  | 0.33 | -34.2% | -46% | -4.5% | -22.8% |
+| 1 | WJG.L | Watkin Jones Plc | UK | 55M | 0.77 | EXC |  | 0.33 | -34.2% | -46% | -4.5% | -22.8% |
 | 2 | NEGG | Newegg Commerce, Inc. | US | 308M | 0.72 |  | 45.2 | 1.80 | 0.1% | -84% | -0.7% | 16.9% |
 | 3 | 002731.SZ | Shenyang Cuihua Gold and Silver Je | CN | 29M | 0.72 |  |  | 0.11 | -42.0% | -96% | 13.3% | 0.5% |
 | 4 | 093240.KS | hyungji Elite Co., Ltd. | KR | 14M | 0.71 |  | 10.3 | 0.25 | -82.8% | -86% | 3.7% | 40.8% |
-| 5 | SAP.JO | Sappi Ltd. | ZA | 475M | 0.70 |  |  | 0.27 | -13.1% | -70% | -3.7% | -3.1% |
-| 6 | 08IA.F | iDreamSky Technology Holdings Limi | CN | 14M | 0.70 |  | 247.1 | 0.43 |  |  | 4.1% |  |
+| 5 | 08IA.F | iDreamSky Technology Holdings Limi | CN | 14M | 0.70 |  | 247.1 | 0.43 |  |  | 4.1% |  |
+| 6 | SAP.JO | Sappi Ltd. | ZA | 475M | 0.69 |  |  | 0.27 | -13.1% | -70% | -3.7% | -3.1% |
 | 7 | KMD.NZ | Kathmandu Holdings Limited | NZ | 53M | 0.69 |  |  | 0.08 |  | -62% | -0.5% | 0.8% |
 | 8 | G5EN.ST | G5 Entertainment AB | SE | 50M | 0.69 |  |  | 9.97 | 7.8% | -34% | -3.7% | -8.2% |
 | 9 | FUBO | Fubotv Inc. | US | 355M | 0.68 |  |  | 0.43 | 36.5% | -78% | -1.4% | 183.6% |
@@ -590,16 +590,16 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | CANG | Cango Inc. | US | 75M | 0.90 | ELITE |  | 0.19 |  | -90% | -49.3% | 618.2% |
-| 2 | AMBP3.SA | Ambipar Participacoes e Empreendim | BR | 45M | 0.90 | ELITE | 6.3 | 0.21 |  | -65% | 19.1% | 48.6% |
-| 3 | 002731.SZ | Shenyang Cuihua Gold and Silver Je | CN | 29M | 0.88 | EXC |  | 0.11 | -42.0% | -96% | 13.3% | 0.5% |
-| 4 | 093240.KS | hyungji Elite Co., Ltd. | KR | 14M | 0.87 | EXC | 10.3 | 0.25 | -82.8% | -86% | 3.7% | 40.8% |
-| 5 | GEM.AX | G8 Education Limited | AU | 65M | 0.84 | EXC | 11.4 | 0.19 | 78.0% | -84% | 8.3% | -6.7% |
-| 6 | 214330.KS | Kumho HT, Inc | KR | 43M | 0.83 | EXC | 2.8 | 0.22 | -7.0% | -52% | 1.9% | -17.3% |
-| 7 | 3856.T | Abalance Corporation | JP | 27M | 0.83 | EXC |  | 0.10 | 73.4% | -79% | 28.9% | -2.9% |
-| 8 | DCGO | DocGo Inc. Common Stock | US | 35M | 0.80 | EXC |  | 0.29 | -64.8% | -65% | -62.2% | -47.7% |
-| 9 | 1655.HK | Okura Holdings Limited | HK | 15M | 0.79 | EXC | 49.9 | 0.21 | 66.9% | -53% | 18.6% | 3.2% |
-| 10 | HAPV3.SA | Hapvida Participacoes e Investimen | BR | 657M | 0.77 | EXC |  | 0.07 | 53.3% | -78% |  | 10.1% |
+| 1 | PROP | Pledge Petroleum Corp. | US | 51M | 0.92 | ELITE | 3.4 | 0.21 | -93.7% | -82% | 19.1% |  |
+| 2 | CANG | Cango Inc. | US | 75M | 0.90 | ELITE |  | 0.19 |  | -90% | -49.3% | 618.2% |
+| 3 | AMBP3.SA | Ambipar Participacoes e Empreendim | BR | 45M | 0.90 | ELITE | 6.3 | 0.21 |  | -65% | 19.1% | 48.6% |
+| 4 | 002731.SZ | Shenyang Cuihua Gold and Silver Je | CN | 29M | 0.88 | EXC |  | 0.11 | -42.0% | -96% | 13.3% | 0.5% |
+| 5 | 093240.KS | hyungji Elite Co., Ltd. | KR | 14M | 0.87 | EXC | 10.3 | 0.25 | -82.8% | -86% | 3.7% | 40.8% |
+| 6 | GEM.AX | G8 Education Limited | AU | 65M | 0.84 | EXC | 11.4 | 0.19 | 78.0% | -84% | 8.3% | -6.7% |
+| 7 | 214330.KS | Kumho HT, Inc | KR | 43M | 0.83 | EXC | 2.8 | 0.22 | -7.0% | -52% | 1.9% | -17.3% |
+| 8 | 3856.T | Abalance Corporation | JP | 27M | 0.83 | EXC |  | 0.10 | 73.4% | -79% | 28.9% | -2.9% |
+| 9 | DCGO | DocGo Inc. Common Stock | US | 35M | 0.80 | EXC |  | 0.29 | -64.8% | -65% | -62.2% | -47.7% |
+| 10 | 1655.HK | Okura Holdings Limited | HK | 15M | 0.79 | EXC | 49.9 | 0.21 | 66.9% | -53% | 18.6% | 3.2% |
 
 ### mb_cheap_vs_sector_recovering — 26 fire, 26 clean
 *MB: Cheap vs Peers, Recovering, FCF Streak Rising (robust lift 4.7x, 16 markets, blow-up 20%)*
@@ -612,12 +612,12 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 4 | 6LD1.F | SemiLEDs Corporation | TW | 17M | 0.69 |  |  | 5.50 | 23.1% | -43% |  | 565.8% |
 | 5 | ADV | Advantage Solutions Inc. | US | 443M | 0.65 |  | 61.2 | 1.06 | 15.8% | -34% | 1.1% | -0.7% |
 | 6 | TPIS3.SA | Triunfo Participacoes e Investimen | BR | 89M | 0.64 |  |  | 0.92 | 44.6% | -15% |  | -29.4% |
-| 7 | VNCE | Vince Holding Corp. | US | 67M | 0.63 |  | 22.2 | 1.34 | 4.4% | -22% | 3.4% | 2.2% |
+| 7 | VNCE | Vince Holding Corp. | US | 67M | 0.62 |  | 22.2 | 1.34 | 4.4% | -22% | 3.4% | 2.2% |
 | 8 | 1676.HK | China Shenghai Group Limited | HK | 18M | 0.62 |  |  | 1.34 | -11.7% |  | -19.4% | 302.8% |
 | 9 | COOK | Traeger, Inc | US | 138M | 0.59 |  |  | 0.82 | 45.2% | -42% | -17.1% | -19.7% |
 | 10 | 195870.KS | HAESUNG DS Co., Ltd. | KR | 557M | 0.56 |  | 11.0 | 2.82 | 0.8% | -54% | 5.8% | 16.8% |
 
-### derate_through_growth — 6,302 fire, 5,810 clean
+### derate_through_growth — 6,297 fire, 5,806 clean
 *Derating Through Growth (grew into its valuation)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -635,7 +635,7 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 
 ## GAYNER (Markel) ARCHETYPES
 
-### gayner_four_lens — 554 fire, 500 clean
+### gayner_four_lens — 552 fire, 498 clean
 *Gayner Four-Lens (Markel catechism: profitable with lindy ROIC >= 12%, talent + integrity read from the statements, a reinvestment runway in any of its three forms, and a FAIR price: EV/EBIT <= 1.5x its market's median)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -699,7 +699,7 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 9 | DRR.AX | Deterra Royalties Limited | AU | 1.5B | 0.62 |  | 10.3 | 15.39 | 5.9% | -10% | 92.6% | 9.5% |
 | 10 | ELA | Envela Corporation | US | 349M | 0.62 |  | 15.7 | 4.36 | 7.5% | -53% | 8.4% | 33.6% |
 
-### gayner_wiggle_not_obsolete — 482 fire, 434 clean
+### gayner_wiggle_not_obsolete — 481 fire, 433 clean
 *Gayner Wiggle, Not Obsolete (the full 8-year record on file, at most one non-COVID loss year, 20%+ off the 5-year high with perception turned against it, yet sales not shrinking and margin >= 75% of its through-cycle median: alcohol and bread, not newspapers)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
@@ -713,7 +713,7 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 7 | BBW.SI | Azeus Systems Holdings Ltd. | SG | 226M | 0.72 |  |  | 9.09 | 6.1% | -34% | 36.5% | -1.7% |
 | 8 | SAKSOFT.NS | Saksoft Limited | IN | 197M | 0.71 |  | 10.4 | 2.40 | 6.0% | -30% | 16.8% | 31.1% |
 | 9 | BOL.BK | Business Online Public Company Lim | TH | 127M | 0.71 |  | 11.1 | 3.74 | 2.9% | -8% | 42.9% | 12.9% |
-| 10 | ROL | Rollins Inc | US | 16.7B | 0.70 |  | 30.6 | 11.69 | 2.8% | -45% | 18.9% | 15.8% |
+| 10 | AUTO.L | Auto Trader Group plc | UK | 5.1B | 0.70 |  | 11.0 | 9.91 | 8.1% | -39% | 62.2% | 5.3% |
 
 ## CANNABIS AND SENIOR SECURITIES
 
@@ -733,21 +733,21 @@ Source: archetype_tags / archetype_tiers rebuilt 2 Oct 2026 from the filled FMP 
 | 9 | VREOD | Vireo Growth Inc. | US | 494M | 0.63 |  |  | 1.67 | -23.9% | -57% | 16.7% | 252.6% |
 | 10 | ACB.TO | Aurora Cannabis Inc. | CA | 235M | 0.63 |  |  | 0.62 | -15.6% | -38% | -12.9% | 38.4% |
 
-### senior_security_value — 20 fire, 19 clean
+### senior_security_value — 20 fire, 20 clean
 *Senior Security Value (a preferred or exchange-traded note yielding >= 1.25x the median senior line in its currency, from an issuer that earns a profit, is not melting and covers its interest)*
 
 | # | symbol | name | venue | mcap | spirit | tier | EV/EBIT | P/B | FCF yld | off 52w hi | op margin | rev yoy |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | BHFAP | Brighthouse Financial, Inc. | US | 837M | 0.87 | EXC |  |  |  | -14% |  | 45.4% |
-| 2 | BHFAO | Brighthouse Financial, Inc. | US | 951M | 0.81 | EXC | 0.7 | 0.12 | -56.6% | -14% |  | 26.6% |
-| 3 | DBRG-PH | Digitalbridge Group, Inc. | US | 2.8B | 0.78 | EXC |  |  |  | -31% |  | 5.5% |
-| 4 | BHFAN | Brighthouse Financial, Inc. | US | 751M | 0.78 | EXC | 0.7 | 0.10 | -71.7% | -12% |  | 26.6% |
-| 5 | DBRG-PI | Digitalbridge Group, Inc. | US | 2.8B | 0.77 | EXC |  |  |  | -32% |  | 5.5% |
-| 6 | BHFAL | Brighthouse Financial, Inc. | US | 901M | 0.76 | EXC |  |  |  | -17% |  |  |
-| 7 | DBRG-PJ | Digitalbridge Group, Inc. | US | 2.9B | 0.75 | EXC |  |  |  | -31% |  | 5.5% |
-| 8 | BHFAM | Brighthouse Financial, Inc. | US | 663M | 0.72 |  | 0.7 | 0.09 | -81.2% | -15% |  | 26.6% |
-| 9 | AFSIP | AmTrust Financial Services, Inc. | US | 2.9B | 0.67 |  |  | 1.18 | -21.4% |  | -3.3% |  |
-| 10 | AFSIM | AmTrust Financial Services, Inc. | US | 2.9B | 0.64 |  |  | 1.22 | -21.3% |  | -3.3% |  |
+| 1 | OROVF | Orient Overseas (International) Li | US | 12.1B | 0.79 | EXC | 5.4 | 0.87 | -0.2% |  | 13.9% | -9.2% |
+| 2 | BHFAP | Brighthouse Financial, Inc. | US | 837M | 0.78 | EXC | 0.7 | 0.12 | -64.2% | -14% |  | 45.4% |
+| 3 | BHFAO | Brighthouse Financial, Inc. | US | 951M | 0.76 | EXC | 0.7 | 0.12 | -56.6% | -14% |  | 26.6% |
+| 4 | BHFAN | Brighthouse Financial, Inc. | US | 751M | 0.75 | EXC | 0.7 | 0.10 | -71.7% | -12% |  | 26.6% |
+| 5 | COVH.PA | Covivio | FR | 3.9B | 0.72 |  | 22.8 | 0.94 | 1.0% | -9% | 73.8% | 18.8% |
+| 6 | DBRG-PH | Digitalbridge Group, Inc. | US | 2.8B | 0.71 |  |  |  |  | -31% |  | 5.5% |
+| 7 | BHFAM | Brighthouse Financial, Inc. | US | 663M | 0.71 |  | 0.7 | 0.09 | -81.2% | -15% |  | 26.6% |
+| 8 | DBRG-PI | Digitalbridge Group, Inc. | US | 2.8B | 0.70 |  |  |  |  | -32% |  | 5.5% |
+| 9 | DBRG-PJ | Digitalbridge Group, Inc. | US | 2.9B | 0.68 |  |  |  |  | -31% |  | 5.5% |
+| 10 | BHFAL | Brighthouse Financial, Inc. | US | 901M | 0.68 |  |  | 0.14 |  | -17% |  |  |
 
 ### wolf_emerging — 7 fire, 3 clean
 *Wolf Emerging-Sector Profit*
