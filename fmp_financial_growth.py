@@ -118,14 +118,15 @@ def universe(min_mcap: float) -> list[str]:
     t = pd.read_csv("archetype_tags.csv", usecols=["symbol", "archetype_count"], low_memory=False)
     g = pd.read_csv("asymmetry_global.csv", usecols=["symbol", "market_cap_usd"], low_memory=False)
     m = t.merge(g, on="symbol", how="left")
-    m = m[pd.to_numeric(m["market_cap_usd"], errors="coerce") >= min_mcap]
+    if min_mcap > 0:   # 0 = every name, incl. those with no market cap yet
+        m = m[pd.to_numeric(m["market_cap_usd"], errors="coerce") >= min_mcap]
     return m.sort_values("archetype_count", ascending=False)["symbol"].astype(str).tolist()
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--max", type=int, default=0)
-    ap.add_argument("--min-mcap", type=float, default=10e6)
+    ap.add_argument("--min-mcap", type=float, default=0)
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--checkpoint-every", type=int, default=250)
     ap.add_argument("--gc-max-mb", type=int, default=3500)

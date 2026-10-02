@@ -442,7 +442,7 @@ def _flush(rows):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--relevant", default="archetype_tags.csv")
-    ap.add_argument("--scope", choices=["nonus_edgar_gap", "firers", "all"], default="nonus_edgar_gap")
+    ap.add_argument("--scope", choices=["nonus_edgar_gap", "firers", "all"], default="all")
     ap.add_argument("--max", type=int, default=0)
     ap.add_argument("--checkpoint-every", type=int, default=150)
     ap.add_argument("--gc-max-mb", type=int, default=3000)

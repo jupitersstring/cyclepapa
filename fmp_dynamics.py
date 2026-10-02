@@ -212,7 +212,7 @@ def enrich_symbol(sym: str) -> dict:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--relevant", default="archetype_tags.csv")
-    ap.add_argument("--scope", choices=["dynamic", "firers", "all"], default="dynamic")
+    ap.add_argument("--scope", choices=["dynamic", "firers", "all"], default="all")
     ap.add_argument("--max", type=int, default=0, help="0 = no cap")
     ap.add_argument("--checkpoint-every", type=int, default=200)
     ap.add_argument("--gc-max-mb", type=int, default=300)

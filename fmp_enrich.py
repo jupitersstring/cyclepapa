@@ -301,7 +301,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--relevant", default="archetype_tags.csv",
                     help="source of the archetype-relevant symbol set")
-    ap.add_argument("--per-symbol-scope", choices=["value", "firers", "none"], default="firers")
+    ap.add_argument("--per-symbol-scope", choices=["value", "firers", "all", "none"], default="all")
     ap.add_argument("--max-per-symbol", type=int, default=0, help="0 = no cap")
     ap.add_argument("--gc-max-mb", type=int, default=300)
     ap.add_argument("--skip-bulk", action="store_true")
@@ -323,19 +323,27 @@ def main() -> None:
     elif args.per_symbol_scope == "firers":
         ac = t.get("archetype_count", pd.Series(0, index=t.index)).fillna(0)
         mask = us & (ac >= 1)
+    elif args.per_symbol_scope == "all":
+        mask = us
     else:
         mask = pd.Series(False, index=t.index)
     per_syms = t.loc[mask, "symbol"].tolist()
+    # earnings surprises exist worldwide (unlike the SEC insider / exec-comp
+    # endpoints), so scope=all reads them for every name in the universe
+    earn_syms = t["symbol"].tolist() if args.per_symbol_scope == "all" else per_syms
     if args.max_per_symbol:
         per_syms = per_syms[: args.max_per_symbol]
-    print(f"per-symbol scope={args.per_symbol_scope}: {len(per_syms)} US symbols")
+        earn_syms = earn_syms[: args.max_per_symbol]
+    print(f"per-symbol scope={args.per_symbol_scope}: {len(per_syms)} US symbols (alignment), "
+          f"{len(earn_syms)} symbols (earnings)")
 
     frames = []
     if not args.skip_bulk:
         frames.append(enrich_bulk(universe))
     if per_syms:
         frames.append(enrich_alignment(per_syms, gc_bytes))
-        frames.append(enrich_earnings(per_syms, gc_bytes))
+    if earn_syms:
+        frames.append(enrich_earnings(earn_syms, gc_bytes))
 
     out = _merge_on_symbol(frames)
     out.to_csv(OUT, index=False)

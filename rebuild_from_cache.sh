@@ -63,7 +63,7 @@ echo "$(ts) rebuild_from_cache start | free $(df -h / | tail -1 | awk '{print $4
 if [ -z "${ONLY_MASTER:-}" ]; then
     run hydrate "$PY" fmp_hydrate_statements.py || true
     (
-        engine statements    fmp_statements.csv     -- "$PY" fmp_statements.py --workers 2 --gc-max-mb 0
+        engine statements    fmp_statements.csv     -- "$PY" fmp_statements.py --scope all --workers 2 --gc-max-mb 0
         engine throughcycle  fmp_throughcycle.csv   -- "$PY" fmp_throughcycle.py
         engine quarterly     fmp_quarterly.csv      -- "$PY" fmp_quarterly.py --workers 2 --gc-max-mb 0
         engine quarterly_ext fmp_quarterly_ext.csv  -- "$PY" fmp_quarterly_ext.py
