@@ -109,8 +109,11 @@ def dedupe_display(df: pd.DataFrame, name_col: str = 'name',
     _nm = df[name_col].fillna('').astype(str).str.lower()
     _noncommon = (_sym.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')
                   | _sym.str.match(r'^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$')
-                  | _nm.str.contains(r'preferred|% notes|depositary sh|'
-                                     r'perpetual pref|warrant', regex=True))
+                  | _nm.str.contains(r'preferred|% notes|'
+                                     r'perpetual pref|warrant', regex=True)
+                  # "American Depositary Shares" is an ADR of the COMMON — kept;
+                  # depositary shares of a PREFERRED series are not (audit 2026-10-02)
+                  | _nm.str.contains(r'depositary.*(?:preferred|pfd|perpetual|series|%)', regex=True))
     df = df[~_noncommon]
     if df.empty:
         return df

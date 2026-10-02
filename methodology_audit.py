@@ -469,7 +469,11 @@ def _integrity(t, g):
         _exempt = ["arch_analyst_awakening", "arch_analyst_rerating_confirmed",
                    "arch_oneil_canslim",
                    "arch_weinstein_stage2", "arch_kullamagie_breakout",
-                   "arch_biotech_deep_value"]
+                   "arch_biotech_deep_value",
+                   # (2026-10-02) archetypes whose thesis IS the clinical name
+                   # (their comments promise the exemption)
+                   "arch_mb_biotech_financed_hiring", "arch_special_situation",
+                   "arch_senior_security_value"]
         _fund = [c for c in t.columns if c.startswith("arch_") and c not in _exempt]
         _fund_ct = t.loc[:, _fund].apply(pd.to_numeric, errors="coerce").sum(axis=1)
         clin_fund = (_clin & (_fund_ct > 0)).sum()
@@ -502,9 +506,27 @@ def _integrity(t, g):
                    | _s.str.contains(r"\.PR\.[A-Z]$", regex=True)
                    | _s.str.contains(r"-PR[-.]?[A-Z]?$", regex=True)
                    | _s.str.contains(r"-P[A-Z]?\.[A-Z]{1,3}$", regex=True))
-        nc_fire = ((_ncmask) & (n(t, "archetype_count") > 0)).sum()
-        check("integrity: no archetype flags on preferred/warrant/unit lines",
-              nc_fire == 0, f"{int(nc_fire)} non-common securities firing archetypes")
+        # (2026-10-02) senior securities are judged on their own terms by
+        # arch_senior_security_value (own coupon yield vs peers, issuer can
+        # pay) — the only archetype allowed on them; every common-equity
+        # archetype must stay off them, and the senior archetype must stay
+        # off common stock.
+        _sen = "arch_senior_security_value"
+        _eq_cols = [c for c in t.columns if c.startswith("arch_") and c != _sen]
+        _eq_ct = t.loc[:, _eq_cols].apply(pd.to_numeric, errors="coerce").sum(axis=1)
+        _nc_all = _ncmask | (n(t, "non_common_flag") == 1) if "non_common_flag" in t.columns else _ncmask
+        nc_fire = (_nc_all & (_eq_ct > 0)).sum()
+        check("integrity: no common-equity archetype flags on preferred/warrant/unit lines",
+              nc_fire == 0, f"{int(nc_fire)} non-common securities firing common-equity archetypes")
+        if _sen in t.columns and "security_type" in t.columns:
+            _sen_bad = ((n(t, _sen) == 1)
+                        & ~t["security_type"].astype(str).isin(["preferred", "note_or_preferred"])).sum()
+            check("integrity: senior_security_value fires only on preferred / note lines",
+                  _sen_bad == 0, f"{int(_sen_bad)} common or other lines in senior_security_value")
+            _sy = pd.to_numeric(t.get("senior_yield"), errors="coerce")
+            _sy_bad = ((n(t, _sen) == 1) & ~_sy.between(0.005, 0.25)).sum()
+            check("senior: coupon yield of every senior_security_value member inside 0.5-25%",
+                  _sy_bad == 0, f"{int(_sy_bad)} members outside the band")
 
     # No impossible margins (gross>100%, or ebitda/net >120% = one-off).
     _gm = n(g, "gross_margin"); _em = n(g, "ebitda_margin")
@@ -897,6 +919,7 @@ def _figure_coverage(t, g):
         "fcf_conversion", "gross_profitability", "berezin_score",
         "cheapness_under_7x_flag", "symbol",
         "yf_beta", "yf_recommendation_mean",   # Yahoo-native bounded sentiment passthroughs
+        "fmp_last_dividend",   # profile coupon; consumed only as coupon/price, bounded 0.5-25% by the senior gate and checked above
     }
     unchecked = sorted(consumed - CHECKED - EXEMPT)
     check("coverage: every gate-consumed master figure is checked or exempted",

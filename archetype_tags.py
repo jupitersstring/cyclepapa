@@ -9337,7 +9337,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # genuine share classes (LILAK / LILAB, ATROB, BKUTK) are untouched.
         | _sfx_pref_line
         | _nm_nc.str.contains(r'senior notes|notes due|% notes', case=False, regex=True)
-        | _nm_nc.str.contains(r'preferred|pfd| pref |depositary|% notes|perpetual|warrant',
+        | _nm_nc.str.contains(r'preferred|pfd| pref |% notes|perpetual|warrant',
+                              case=False, regex=True)
+        # "Depositary" alone is an ADR / depositary receipt of the COMMON
+        # (Woodside, Haleon, Rentokil, ABN AMRO): non-common only beside a
+        # preferred-type word (depositary shares in a preferred series).
+        # (audit 2026-10-02: the bare word scrubbed 71 ordinary shares)
+        | _nm_nc.str.contains(r'depositary.*(?:preferred|pfd|perpetual|series|%)',
                               case=False, regex=True)
         # (surgical audit) BANKRUPTCY STUB: the old 5th-letter-Q convention
         # (OPIRQ, BLIAQ/BLIBQ) marks a security still IN Chapter 11 / delisted,
@@ -9431,7 +9437,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                          | _senior_twin)] = 'note_or_preferred'
     _st[_is_noncommon & (_pref_series | _sfx_pref_line | _sym_nc.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')
                          | _sym_nc.str.contains(r'\.PR\.[A-Z]$|-PR[-.]?[A-Z]?$|-P[A-Z]?\.[A-Z]{1,3}$', regex=True)
-                         | _nm_nc.str.contains(r'preferred|pfd|depositary|perpetual', case=False, regex=True))] = 'preferred'
+                         | _nm_nc.str.contains(r'preferred|pfd|perpetual', case=False, regex=True))] = 'preferred'
     _st[_is_etf_line] = 'etf_etn'
     df['security_type'] = _st.values
     # SENIOR SECURITY VALUE: a preferred / note line that is cheap on its OWN

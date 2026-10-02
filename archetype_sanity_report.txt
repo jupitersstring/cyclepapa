@@ -1,7 +1,6 @@
 ABSENT COLUMNS (requested by gates, not in frame — gate legs read all-NaN):
   MISSING  cash_roiic_1y_positive_flag
   MISSING  fcf_margin_lindy
-  MISSING  forensic_hidden_pct
   MISSING  is_otc
   MISSING  rev_yoy_streak_q_eff
   MISSING  roic_latest
@@ -17,4 +16,3 @@ NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
   SPARSE   seg_mix_uplift                        1.44%
   SPARSE   seg_oplev                             1.52%
   SPARSE   assets_held_for_sale                  1.73%
-  ZERO     arch_wolf_emerging fires on NOBODY — investigate
