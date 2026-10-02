@@ -1527,8 +1527,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # relative lag (behind its own market while growing) and ignored evidence
     _lag_rel = ((_ncol('ts_rs_pct_mkt') <= 40) & (_ncol('fq_rev_growth') >= 0.15)).fillna(False)
     _lag_ign = (_ncol('evt_ignored_beats_2y') >= 2).fillna(False)
-    df['narrative_lag_lenses'] = (sum(v.astype(int) for v in _hz.values())
-                                  + _lag_rel.astype(int) + _lag_ign.astype(int)).astype(int)
+    # (audit 2026-10-02) the relative-strength and ignored-beats lenses carry
+    # no valuation anchor and no price test (two ignored beats in two years is
+    # a third of the US feed), so on their own they are not "unpriced advance":
+    # 1,240 fires (AAPL, JNJ, Tencent, KO) had no anchored lag at all. They now
+    # add breadth ONLY beside at least one anchored horizon.
+    _anch_n = sum(v.astype(int) for v in _hz.values())
+    df['narrative_lag_lenses'] = (_anch_n + ((_lag_rel.astype(int) + _lag_ign.astype(int))
+                                             * (_anch_n >= 1).astype(int))).astype(int)
     # THE LAG IS ALL THE LAGS, AND LONGER IS STRONGER. A story that has lagged
     # its fundamentals for five years is more mispriced (and more persistent)
     # than a one-year gap, and a lag visible on every horizon is more
@@ -1664,7 +1670,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_discounted_vehicle'] = (
         is_operating &                                   # (G1) exclude financials/REITs/utilities
         (pb > 0) & (pb < 0.85) &
-        (((cash_gt_ev > 0) & ~(net_cash_pct > 1.0)) | (net_cash_pct_sane > 0.20)) &  # (G2) drop >100%-of-mcap shells (on the flag leg too)
+        (((cash_gt_ev > 0) & (_ncol('net_cash_pct_mcap') > 0) & ~(net_cash_pct > 1.0))   # (audit 2026-10-02) the flag (recomputed at source) cannot stand in for an unmeasured or negative net cash (TMC.BK, 088790.KS)
+         | (net_cash_pct_sane > 0.20)) &  # (G2) drop >100%-of-mcap shells (on the flag leg too)
         ~((nde >= 1.0) & (nde < 90)) &                   # (tail) net-cash claim not contradicted by REAL net debt (nde 99 = unknown, stays permissive; Newtree nde+2.1 excluded)
         _not_melting &                                   # (deep-audit) the net-cash claim doesn't stop an OPERATING melter sitting on cash: CHGG roce-95%, WISH roce-87%, FOM roce-98% passed on one-off working-cap FCF. Sibling dead_option carries the returns floor; add it here.
         (mcap > 0) & (mcap < 2e9)   # mcap>0: missing mcap must not auto-pass the size gate
@@ -1979,7 +1986,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # cheap_per_roiic = more reinvestment yield per multiple paid. Threshold
     # 1.5 means "you're paying < 1.5x EV/EBITDA per percent of lindy ROIIC".
     _DEMOTED.setdefault('cheap_per_roiic', []).extend([(_ncol('ev_ebitda').where(_ncol('ev_ebitda') > 0), -1)])
+    # (audit 2026-10-02) cpr <= 1.5 lets EV/EBITDA reach 1.5 x ROIIC% (30x at
+    # 20%, 45x at 30%): 89% of high-ROIIC names passed (NVDA 26x, ASML 43x), so
+    # the leg measured nothing. "Cheap" is now read against PEERS: the
+    # cheapest fifth of the sector on the same EV/EBITDA-per-ROIIC measure
+    # (1.5 stays as the ceiling); ROIIC in the sane band durable_reinvestment
+    # uses (<= 100%), and an EV that is not an artefact (_ev_sane).
+    _cpr_pool = is_operating & (cheap_per_roiic > 0) & (roiic_lindy > 0.10)
+    _cpr_rank = cheap_per_roiic.where(_cpr_pool).groupby(sector).rank(pct=True)
     df['arch_cheap_per_roiic'] = (
+        (_cpr_rank <= 0.20) & (roiic_lindy <= 1.0) & _ev_sane &
         is_operating &                          # (R1b) exclude financials/REITs
         _roce_now_ok & _not_melting &           # (R4/fresh) current returns not negative + not a cash-burner (KPLT fcf-41%)
         (roic_lindy >= 0.05) &                  # (G3/topcheck) POSITIVE base ROIC — ROIIC on a negative base (KPLT roic_lindy -0.15) is loss-narrowing noise, not reinvestment
@@ -2782,6 +2798,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (_ncol('revenue_ttm_usd') >= 20e6) &
         (fcf_margin_v > -0.05) & _roce_now_ok & (rev_yoy > -0.05) &
         (s('op_margin', np.nan) > 0) &
+        # (audit 2026-10-02) BECOMING low-beta means the 1-year beta is now
+        # below its market's median (rank <= 0.50: NVDA at 0.83 and AAPL at 0.65
+        # were "becoming"), positive (a non-positive panel beta is the
+        # non-trading artifact the bab_low_beta comment names: 342 fires, 22 of
+        # the top-50 spirit, AZTEF -0.55), and read on a traded line
+        # (_bab_liquid, as bab_low_beta)
+        (_ncol('ts_beta_1y') > 0) & (_b1 <= 0.50) & _bab_liquid &
         _compress))
 
     # ---------- Lynch multiples (One Up on Wall Street) ----------
@@ -2833,13 +2856,29 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _pegy_ttm = (_ncol('p_e') / ((_g_ly * 100) + (_dy_ly * 100))).where(
         (_ncol('p_e') > 0) & _g_ly.between(0.08, 0.50))
     df['lynch_pegy_ttm'] = _pegy_ttm.round(4)
+    # (audit 2026-10-02) the archetype's OWN durable PEGY is the core and it
+    # REPLACES Yahoo's ratio instead of being AND-ed onto it (Yahoo pegy covers
+    # 19% of US names and correlates 0.44 with the durable one: 625 own-core
+    # names were dropped for a missing or > 1 Yahoo ratio). An UNMEASURED growth
+    # chain now FAILS: the old measured= fallback kept Yahoo's pegy exactly where
+    # its growth sat at/above the 50% clip the comment above calls unmeasured
+    # (306 fires, e.g. CHL.F at 849%, RWEA.F, 6RV.MU). Closed-end funds / BDCs
+    # are not earnings growers (EMF: P/E 2.4 on mark-to-market gains). The
+    # Yahoo rule stays as lynch_pegy_watch.
+    _ly_watch = df['arch_lynch_pegy'].astype(int).copy()
+    _ly_fund = (_ind_all.str.contains(r'closed-end|business development|investment trust|\bfund\b', regex=True)
+                | (df['name'].astype(str).str.contains(r'\bfund\b', case=False, regex=True)
+                   if 'name' in df.columns else False))
+    _ly_core = ((_pegy_ttm <= 1.0) & ((_ncol('fqx_eps_pos_share_8') >= 0.75)   # (audit 3) ONE durability definition: EPS UP year-on-year in >= 75% of the last 8 quarters, else NI UP on the year in >= 75% of the last (<= 5) FYs
+                                      | (_ncol('fqx_eps_pos_share_8').isna() & (_ncol('fmp_st_ni_up_share_5') >= 0.75)))
+                & ~(_ncol('net_income_ttm') > 2.0 * _ncol('ni_avg'))   # (audit 3) a one-off gain year (NI > 2x the 5-year average) is not the growth
+                & ~_ly_fund).fillna(False)
+    df['arch_lynch_pegy'] = (_ly_watch.astype(bool) | _ly_core).astype(int)
     _tier('lynch_pegy',
-          (_pegy_ttm <= 1.0) & ((_ncol('fqx_eps_pos_share_8') >= 0.75)   # (audit 3) ONE durability definition: EPS UP year-on-year in >= 75% of the last 8 quarters, else NI UP on the year in >= 75% of the last (<= 5) FYs
-                                | (_ncol('fqx_eps_pos_share_8').isna() & (_ncol('fmp_st_ni_up_share_5') >= 0.75)))
-          & ~(_ncol('net_income_ttm') > 2.0 * _ncol('ni_avg')),   # (audit 3) a one-off gain year (NI > 2x the 5-year average) is not the growth
+          _ly_core,
           (_pegy_ttm <= 0.6) & (_ncol('tc_years') >= 5) & (_ncol('tc_opinc_pos') >= _ncol('tc_years')),   # operating income positive every year on file
-          elite_metric=_pegy_ttm, higher=False,
-          measured=_g_ly.notna())
+          elite_metric=_pegy_ttm, higher=False)
+    df['lynch_pegy_watch'] = _ly_watch.values
     # (G9) require real positive EBITDA on the EBITDA-yield path (a negative
     # EBITDA makes the ratio meaningless), and drop the sales (psg/evsg)
     # fallback for negative-EBITDA names while guarding a near-zero-EV
@@ -3259,15 +3298,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # by PER-SHARE FCF growth (immune to acquisition-by-dilution), self-funding
     # unit economics, and not overpriced on EV/sales. The home for genuine
     # small-cap compounders the base-effect growth guards now exclude.
-    _sr3 = _num('rev_3y_cagr'); _sry = _num('rev_yoy'); _sfps = _num('fcf_per_share_yoy')
+    # (audit 2026-10-02) the DURABLE 3y CAGR is the dense, statement-filled
+    # revenue_3y_cagr (72% populated); rev_3y_cagr is 5% populated, so 162 of
+    # 167 fires passed on one year's growth (TLS +52% on a -8.7%/yr 3 years)
+    _sr3 = _num('revenue_3y_cagr'); _sry = _num('rev_yoy'); _sfps = _num('fcf_per_share_yoy')
     _sfm = _num('fcf_margin'); _ssh3 = _num('shares_3y_cagr'); _srev = _num('revenue_ttm_usd')   # (R6+FX) USD revenue, not raw local currency
     _sroic = _num('roic_after_sbc'); _sevs = _num('ev_sales')
     # (endpoint matrix, PROXY) FCF PER SHARE also from the quarterly panel:
     # TTM FCF per diluted share vs a year ago (date-matched, both positive) —
     # a further per-share lens beside the snapshot fcf_per_share_yoy.
     _sfps_any = ((_sfps > 0) | (_num('fqx_fcf_ps_g') > 0)).fillna(False)
-    _durable_growth = (((_sr3 >= 0.15) & (_sr3 <= 1.0))
-                       | ((_sry >= 0.15) & (_sry <= 1.0) & _sfps_any))
+    # (audit 2026-10-02) DURABLE = the two horizons do not contradict each
+    # other at the rule's own 15% bar: a one-year print needs the 3y CAGR (where
+    # measured) and a 3y CAGR needs the latest year (where measured)
+    _durable_growth = (((_sr3 >= 0.15) & (_sr3 <= 1.0) & ~(_sry < 0.15))
+                       | ((_sry >= 0.15) & (_sry <= 1.0) & _sfps_any
+                          & ~(_sr3 < 0.15)))
     _self_funding = _sfps_any | (_sfm > 0.03) | (_sroic >= 0.10)
     _not_pricey = ((_sevs > 0) & (_sevs <= 8)) | _sevs.isna()
     _DEMOTED.setdefault('sustainable_scaler', []).extend([(_ncol('net_debt_ebitda'), -1)])
@@ -3282,7 +3328,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # EV/sales < 3x, growth >= 25%) are the core; the engine's looser rule stays
     # as sustainable_scaler_watch
     _tier('sustainable_scaler',
-          (mcap < 300e6) & ((_sevs > 0) & (_sevs < 3.0)) & ((_sr3 >= 0.25) | (_sry >= 0.25)),
+          (mcap < 300e6) & ((_sevs > 0) & (_sevs < 3.0))
+          & (((_sr3 >= 0.25) & ~(_sry < 0.15)) | ((_sry >= 0.25) & ~(_sr3 < 0.15))),   # (audit 2026-10-02) each horizon at the source's 25% with the other not below the 15% durability bar where measured
           measured=_sevs.notna() & (_sr3.notna() | _sry.notna()))
 
     # ==================================================================
@@ -3412,16 +3459,28 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # >= 25% YoY (date-matched); "L": RS top 20% of the listing market; "N":
     # within 15% of the 52w high. Exceptional: EPS accelerating, a consistent
     # EPS record, and "M" — a healthy market (>= half of it above its 30w MA).
+    # (audit 2026-10-02) two mask fixes. (1) Where C and L are MEASURED the
+    # core REPLACES the proxy rule instead of being AND-ed onto it: 105 names
+    # passing every measured leg (ASML EPS q +28% / RS 92, DELL +282% / RS 97)
+    # were dropped for want of a 2-quarter Yahoo EPS streak or +20% revenue.
+    # (2) Every core leg is applied wherever ITS input is present: an unmeasured
+    # C/L no longer skips the A legs (Neste NTOIF/NTOIY passed with 3-year NI
+    # per share -92%, BeiGene 49BA.F with EPS deceleration -169).
+    _on_watch = df['arch_oneil_canslim'].astype(int).copy()
+    _on_meas = _ncol('fqx_eps_q_yoy').notna() & _ncol('ts_rs_pct_mkt').notna()
+    _on_core = (~(_ncol('fqx_eps_q_yoy') < 0.25) & ~(_ncol('ts_rs_pct_mkt') < 80) & ~(_ncol('ts_dist_hi52') < 0.85)
+                & ~(_ncol('fqx_eps_accel') < 0)            # (audit 3) C: the latest quarter not DECELERATING (two-quarter shape)
+                & ~(_ncol('fq_disc_ops_share') > 0.20)     # (audit 3) continuing operations (O'Neil excludes non-recurring items)
+                & (_roce_v >= 0.15) & ~_roce_oneoff_suspect   # (audit 3) A in the core: annual returns >= 15%
+                & ~(_ncol('fg_ni_ps_3y') < 0.953)            # (financial-growth) A: 3-year NI per share >= +95% (1.25^3 - 1 = 25%/yr) where measured
+                & ~_clin_bio_e).fillna(False)              # (audit 3) a clinical binary is not an earnings leader
+    df['arch_oneil_canslim'] = (_on_watch.astype(bool)
+                                | (_on_meas & _on_core & _live_tape & (s('op_margin', np.nan) > 0))).astype(int)
     _tier('oneil_canslim',
-          (_ncol('fqx_eps_q_yoy') >= 0.25) & (_ncol('ts_rs_pct_mkt') >= 80) & (_ncol('ts_dist_hi52') >= 0.85)
-          & ~(_ncol('fqx_eps_accel') < 0)            # (audit 3) C: the latest quarter not DECELERATING (two-quarter shape)
-          & ~(_ncol('fq_disc_ops_share') > 0.20)     # (audit 3) continuing operations (O'Neil excludes non-recurring items)
-          & (_roce_v >= 0.15) & ~_roce_oneoff_suspect   # (audit 3) A in the core: annual returns >= 15%
-          & ~(_ncol('fg_ni_ps_3y') < 0.953)            # (financial-growth) A: 3-year NI per share >= +95% (1.25^3 - 1 = 25%/yr) where measured
-          & ~_clin_bio_e,                           # (audit 3) a clinical binary is not an earnings leader
+          _on_core,
           (_ncol('fqx_eps_accel') > 0) & (_ncol('fqx_eps_pos_share_8') >= 0.75) & (_ncol('ts_mkt_breadth30') >= 0.5),
-          elite_metric=_ncol('fqx_eps_q_yoy'),
-          measured=_ncol('fqx_eps_q_yoy').notna() & _ncol('ts_rs_pct_mkt').notna())
+          elite_metric=_ncol('fqx_eps_q_yoy'))
+    df['oneil_canslim_watch'] = _on_watch.values
     df['oneil_score'] = (df['oneil_score'] * df['arch_oneil_canslim']).round(3)
 
     # ---------- Peter Cundill deep value ----------
@@ -3707,11 +3766,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_liger_asset_backed'] = (
         is_operating &                              # (G1) exclude financials/REITs/utilities
         (mcap > 0) & (mcap < 400e6) &
-        (net_cash_pct_c >= 0.20) & _netcash_not_contradicted &  # GENUINE net cash (nde not materially positive)
+        # (audit 2026-10-02) GENUINE net cash on the house (G2) clamp: net cash
+        # above 100% of mcap is the shell/holdco artifact every sibling vetoes
+        # (323 fires were above it, ATPC at 1,025%); the clipped value let them in
+        (net_cash_pct_sane >= 0.20) & _netcash_not_contradicted &  # GENUINE net cash (nde not materially positive)
         ((pb > 0) & (pb < 3.0)) &                   # "asset-backed" needs a real book anchor (WINE.L pb 75 is not asset-backed)
         # (audit 3) ASSET-BACKED: the book or the cash carries the cap — net cash
         # >= 50% of mcap, NCAV >= 80%, or at/below tangible book
-        ((net_cash_pct_c >= 0.50) | (ncav_pct >= 0.80) | ((p_tb > 0) & (p_tb <= 1.0))) &
+        ((net_cash_pct_sane >= 0.50) | (ncav_pct >= 0.80) | ((p_tb > 0) & (p_tb <= 1.0))) &
         ~(_ncol('fq_shares_yoy') > 0.03) &          # (audit 3) dilution limited on the quarterly count (SBC alone misses placings)
         # (audit 3) neglect OBSERVED where any coverage field exists; a name
         # with no coverage field at all is neglected only at sub-$500M scale
@@ -3741,9 +3803,23 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (((cash_conv_w >= 0.80) & (ebitda_ttm_v > 0)) | (fcf_margin_w > 0)) &
         _clean_bs(1.5) &                            # clean b/s (nde OR net-cash)
         (~(_liger_cov > 4)) &                         # (twosided) MISSING coverage = MOST neglected (the thesis); observed coverage first (endpoint matrix)
+        # (audit 2026-10-02) ...but only at the sibling liger_asset_backed's
+        # sub-$500M scale: a line with no coverage field at $484B (TCTZF) or a
+        # Frankfurt line of KLA is an uncovered LINE, not a neglected company
+        ~(_ncol('sent_n_analysts').isna() & _ncol('n_analysts').isna() & _ncol('n_analysts_pew').isna()
+          & ~(mcap < 500e6)) &
         low_sbc_liger &
         liger_sector_ok &
-        (flat_or_down | beaten_down_any(0.30)     # presence-aware lag/drawdown
+        # (audit 2026-10-02) the LAG is read panel-first: the weekly 52-week
+        # total return decides "flat or down" where it exists (the quote-time
+        # price_yoy / momentum fields passed SKUYF at r52 +113% and Infomart at
+        # +107%), a drawdown counts only when the name is not UP on the year
+        # (98 spike-and-pullback fires up > 50%: YZOFF +2,110%), and no lag lens
+        # holds when the two-year base shows the price OUTRUNNING sales
+        # (bs_coil_rev < 0, 333 fires) — the opposite of "not processed"
+        ~(_num('bs_coil_rev') < 0) &
+        ((_ts_r52 <= 0.0).where(_ts_r52.notna(), flat_or_down).astype(bool)
+         | (beaten_down_any(0.30) & ~(_ts_r52 > 0.0))
          | (_num('bs_is_base') == 1).fillna(False)   # ...or a two-year flat base (weekly panel)
          # (endpoint matrix, PROXY) the lag MEASURED against the advance: TTM
          # sales grew >= 15% more than the 52-week total return (1-year coil),
@@ -3777,7 +3853,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # sequential drift). Exceptional: observed coverage <= 1, TTM EBIT +30%.
     _tier('liger_neglected_survivor',
           (ebitda_first_pos > 0) | (ni_first_pos > 0) | (_ncol('fqx_eps_turned') == 1)
-          | (_ncol('fqx_inc_ebit_margin') >= 0.20),
+          # (audit 2026-10-02) the domain-checked incremental margin (<= 1; above
+          # that is a cost cut / loss unwind, not drop-through: TVAGF 1.78, HT
+          # Media 2.64) and only on GROWING revenue (on falling revenue the ratio
+          # is two negatives: Kogan -18%)
+          | ((_fqx_inc >= 0.20) & (_ncol('fq_rev_growth') > 0)),
           (_ncol('sent_n_analysts') <= 1) & (_ncol('fqx_ebit_ttm_g') >= 0.30),   # OBSERVED coverage <= 1
           elite_metric=_ncol('fqx_ebit_ttm_g'))
 
@@ -3848,7 +3928,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # (audit 3) the author's discount legs: P/B < 0.5, P/S < 0.3 or a net-net
         # (the multiples composite is not "price / assets very low")
         (((pb > 0) & (pb < 0.5)) | ((s('p_s', np.nan) > 0) & (s('p_s', np.nan) < 0.3)) | (ncav_pct >= 0.5)) &
-        (cash_pct_mcap_v >= 0.20) &
+        # (audit 2026-10-02) "real cash" is NET cash (the sibling
+        # oak_resource_leverage's rule): gross cash >= 20% passed 288 fires
+        # carrying net debt (VW net debt 4.5x mcap, Nissan, Casino 36x); gross
+        # cash stands in only where net cash is unmeasured
+        ((_ncol('net_cash_pct_mcap') >= 0.20)
+         | (_ncol('net_cash_pct_mcap').isna() & (cash_pct_mcap_v >= 0.20))) &
         ~(_ncol('shares_yoy') > 0.05) & _no_rsplit_yoy &   # (audit 3) "repeated dilution" is the reject; a reverse split too
         (ebitda_ttm_v > 0) & ((fcf_ttm_v > 0) | (cfo_ttm_v > 0)) &
         _not_melting &   # (deep-audit) a one-off FCF/CFO print defeats the Belluscura burner-guard: RFT.AX roce-24%, UBI.PA op-149%/roce-69%, RENT roce-51% passed while operating-melting. Sibling oak_order_conversion carries _not_melting; add it here.
@@ -3860,6 +3945,33 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # deep book discount with a high yield. Cannot capture true NAV (marks on
     # unlisted assets) or his dividend-cover >=1.2x test.
     _ptb_nav = _ncol('p_tb')
+    # (audit 2026-10-02) P/TB is tangible equity over price, so it can never sit
+    # below P/B: a p_tb under 0.98x pb is a mixed-snapshot artifact (INL.JO
+    # p_tb 0.03 on pb 1.01) and is not read as a discount.
+    _ptb_nav = _ptb_nav.where(~(_ptb_nav < 0.98 * _ncol('pb')))
+    # (audit 2026-10-02) BOOK TWIN SANITY: a line that shares its company name
+    # with a more-traded line but reads a P/B under a THIRD of that line's
+    # (the audit's 3x tolerance) is not the common's book over the common's
+    # price: exchange-traded notes and preferreds (Stifel SFB, Prudential PRS,
+    # AMG MGR/MGRB/MGRE baby bonds, Comcast ZONES CCZ) and stale OTC lines
+    # (BXDIF pb 0.15 vs BAM 10.0) that the senior-twin scrub misses because
+    # their share count differs from the common's. Used by the book/NAV
+    # discount gates below (oak_nav_discount, xr_look_through_value).
+    _nm_tw = (df['name'].fillna('').astype(str).str.lower()
+              .str.replace(r'common stock|ordinary shares', '', regex=True)
+              .str.replace(r'[^a-z0-9 ]', '', regex=True)
+              .str.replace(r'\b(corp|corporation|inc|incorporated|company|co|ltd|limited|plc|holdings?|group|the|sa|ag|nv|se)\b',
+                           '', regex=True).str.replace(r'\s+', ' ', regex=True).str.strip())
+    _pb_tw = _ncol('pb')
+    _tw = pd.DataFrame({'nm': _nm_tw, 'pb': _pb_tw,
+                        'dv': _ncol('ts_dvol26_usd').fillna(_ncol('pew_avg_dollar_volume')).fillna(-1.0)},
+                       index=df.index)
+    _tw = _tw[(_tw['nm'] != '') & (_tw['nm'] != 'nan')]
+    _tw_g = _tw.groupby('nm')
+    _tw_n = _tw_g['nm'].transform('size').reindex(df.index)
+    _tw_prim_pb = _nm_tw.map(_tw.loc[_tw_g['dv'].idxmax().values].set_index('nm')['pb'])
+    _book_twin_bad = ((_tw_n >= 2) & (_pb_tw > 0) & (_tw_prim_pb > 0)
+                      & (_pb_tw < _tw_prim_pb / 3.0)).fillna(False)
     # (rank520) narrow to REAL NAV vehicles — closed-end funds, investment
     # trusts, holdcos, asset managers — where book ~ NAV. An operating bank or
     # insurer at 0.7x book is just a cheap financial, NOT a NAV-discount holdco;
@@ -3874,6 +3986,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & ~_ind_all.str.contains(
             r'bank|insur|thrift|mortgage|reinsur|credit|securit|broker|exchange',
             regex=True)
+        # (audit 2026-10-02) 'investment trust' also matched "Equity Real Estate
+        # Investment Trusts (REITs)": a REIT's book is depreciated cost, not NAV,
+        # and REITs are not in the vehicle list (19 of 95 fires, TRGYO.IS, Fibra
+        # Danhos, ARI)
+        & ~_ind_all.str.contains(r'reit', regex=False)
         & ~_nm_l.str.contains(r'securit|broker|\bbank\b|insur', regex=True))
     # (tail) a NAV-discount thesis needs NAV that is HOLDING, not eroding. A
     # BDC/holdco bleeding book value via losses (MLCI roce-0.84, BBXIA fcf-0.92,
@@ -3893,6 +4010,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                       | (_evt_age_days('evt_tender_date') <= 365)).fillna(False)
     df['arch_oak_nav_discount'] = (
         _nav_vehicle & _nav_not_eroding &   # (audit 3) the industry test (holdco / investment company / trust / asset manager) in ANY sector
+        ~_book_twin_bad &                   # (audit 2026-10-02) the book is the common's, not a note's / stale OTC line's
         (((pb > 0) & (pb < 0.7)) | ((_ptb_nav > 0) & (_ptb_nav < 0.7))) &
         _lev_ok(3.0) &                      # net debt low (nde, else debt/assets, debt/equity or net cash; unmeasured passes)
         _nav_addressed
@@ -4132,7 +4250,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # (audit 3) HIDDEN means a portfolio: associate / long-term investment
         # stakes >= 10% of mcap where the line is disclosed; a pure net-cash
         # pile with no stakes is negative_ev_value / net_cash_returner ground
-        ~((_assoc_ha / _mc_ha.where(_mc_ha > 0)) < 0.10) &
+        # (audit 2026-10-02) ...and the stake must be DISCLOSED: the NaN-
+        # permissive form passed 1,376 of 1,397 fires with no associates line,
+        # i.e. the pure net-cash pile this comment excludes. Associates (FMP)
+        # or equity-method investments (EDGAR), >= 10% of mcap.
+        ((pd.concat([_assoc_ha, _ncol('equity_method_investments')], axis=1).max(axis=1)
+          / _mc_ha.where(_mc_ha > 0)) >= 0.10) &
         (pb > 0) & (pb <= 1.0) &                    # at/below book: the portfolio is not being paid for
         _not_melting &                              # a real business under the portfolio
         ((s('op_margin', np.nan) > 0) | (fcf_yield > 0) | (ebitda_ttm_v > 0))
@@ -4171,6 +4294,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & (_dna_implied <= 0.35 * _rev_loc))
     _dna_loc = _dna_audited.where(_dna_audited.notna(), _dna_implied)
     _dna_loc = _dna_loc.where(_dna_loc >= 0)
+    # (audit 2026-10-02) the D&A currency mix on USD-quoted ADR/OTC lines is
+    # fixed at source; this archetype-level guard stays after it: D&A above
+    # EBITDA (or above revenue) is not a depreciation fact but a unit / basis
+    # error (ASEKY D&A 2.65e11 on $32.5B revenue, SNEJF OE/NI 167x). Used by
+    # the harvest / amortisation / over-depreciation gates only.
+    _dna_sane = ~((_dna_loc > _ncol('ebitda_ttm')) | (_dna_loc > _ncol('revenue_ttm')))
+    # (audit 2026-10-02) D&A SANITY: D&A above EBITDA (EBIT < 0) or above
+    # revenue is not an over-depreciated base but a basis error — home-currency
+    # da_ttm on a USD line (TOELF ¥81.3B beside $5.0B NI; TCMFF ARS vs USD;
+    # BC94.L KRW) or inconsistent same-currency rows (VW D&A 39.5B vs EBITDA
+    # 19-22B). The currency is being converted at source (data layer); this
+    # guard stays for the same-currency mismatches. Unknown EBITDA passes.
+    _dna_sane = (~(_dna_loc > 1.05 * _ncol('ebitda_ttm')) & ~(_dna_loc > _rev_loc)).fillna(True)
     _capex_loc = _ncol('capex_ttm')
     # (audit #2/#4/#5) MAINTENANCE capex = the CONSERVATIVE (higher) of the
     # single TTM window and the 5yr EDGAR annual average. The harvest / owner-
@@ -4193,7 +4329,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((_dna_loc / _rev_loc) >= 0.05) &          # a real fixed-asset business (D&A >= 5% of sales)
         (_maint_capex >= 0) & (_maint_capex <= 0.6 * _dna_loc) &  # replacement (incl. 5yr avg) FAR below depreciation — not a single collapsed TTM window
         ~(_ncol('fq_capex_to_da') > 0.8) &         # (audit 3) the quarterly date-matched capex / D&A agrees where measured
-        ~(_ncol('rev_3y_cagr') < -0.02) &          # (audit 3) a HELD top line over three years (the melter must not wear the scrapyard label)
+        _dna_sane &                                # (audit 2026-10-02) D&A <= EBITDA and <= revenue (110 fires had D&A > revenue: HNDAF, TYIDY)
+        ~(_ncol('revenue_3y_cagr') < -0.02) &      # (audit 3) a HELD top line over three years (the melter must not wear the scrapyard label); (audit 2026-10-02) the populated revenue_3y_cagr, not the 95%-NaN rev_3y_cagr
         ~(_ncol('fq_da_to_ppe') < 0.05) &          # (audit 3) an old, depreciating base (D&A >= 5% of net PP&E where measured)
         (s('op_margin', np.nan) > 0) &             # profitable harvest, not decay
         (rev_yoy_c >= -0.05) &                     # the "worn-out" assets still produce
@@ -4247,9 +4384,23 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _gm_loc = s('gross_margin', np.nan)
     _mc_loc = _ncol('market_cap')
     _gp_mcap = (_gm_loc * _rev_loc / _mc_loc.where(_mc_loc > 0))
+    # (audit 2026-10-02) the gate never measured the expensed SPEND: 175 of 203
+    # fires with an R&D read spent < 2% of revenue, and IN/JP "gross margin" is
+    # revenue less materials (SAIL.NS 50%), so fat-GM-thin-OM was a reporting
+    # convention and the top spirit was cash cows (POLYSPIN 97% FCF yield).
+    # The spend is now read directly — SG&A (quarterly panel) + R&D, over
+    # revenue — MEASURED and at/above its industry median among operating
+    # peers (a peer frame, as the Gayner frugal-operator lens reads SG&A).
+    # R&D missing counts 0 beside a measured SG&A (often reported inside it).
+    _sga_eg = _ncol('fq_sga') / _ncol('fq_revenue').where(_ncol('fq_revenue') > 0)
+    _spend_eg = (_sga_eg + _ncol('fmp_rd_to_revenue').fillna(0.0)).where(_sga_eg.notna())
+    _ind_eg = _ind_all
+    _spend_eg_med = _spend_eg.where(is_operating & (_ind_eg != '')).groupby(_ind_eg).transform('median')
+    _spend_eg_ok = (_spend_eg.notna() & (_spend_eg >= _spend_eg_med)).fillna(False)
     _DEMOTED.setdefault('expensed_growth_value', []).extend([(_ncol('fcf_yield'), 1), (_ncol('fq_shares_yoy'), -1)])
     df['arch_expensed_growth_value'] = (
         is_operating &
+        _spend_eg_ok &                              # (audit 2026-10-02) the expensed growth spend, measured, >= industry median
         _fx_coherent &                              # (gate audit #2) GP/mcap is level-over-mcap
         (_ncol('revenue_ttm_usd') >= 5e6) &        # base-effect guard (microcap sweet spot kept)
         (_gm_loc >= 0.40) & (_gm_loc <= 0.98) &    # real unit economics; exactly-100% GM = missing-COGS artifact, not a margin
@@ -4319,9 +4470,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (_mc_ca > 0) &
         _fx_coherent &
         (_ni_ca > 0) & (_dna_loc > 0) & (_capex_loc >= 0) &
+        _dna_sane &                                 # (audit 2026-10-02) D&A <= EBITDA and <= revenue (16 fires had D&A > revenue: TCMFF/CVHSY ARS, Niraku JPY vs HKD)
         (_oe_ratio >= 1.4) &                        # owner earnings far above accounting earnings
         ~(_ncol('fmp_st_owner_earnings_yield') < 0.08) &   # (audit 3) cheap on the STATEMENT-HISTORY owner-earnings yield too where it exists (both sources agree)
-        ~(_ncol('rev_3y_cagr') < -0.02) &           # (audit 3) the mechanism is benign: a held top line, not deferred maintenance on a decliner
+        ~(_ncol('revenue_3y_cagr') < -0.02) &       # (audit 3) the mechanism is benign: a held top line, not deferred maintenance on a decliner  (audit 2026-10-02: the dense revenue_3y_cagr — rev_3y_cagr is 5% populated, Maersk -12.8%/yr passed)
         # cheap on the truer measure — LATEST OE, or (Graham/Templeton) the
         # 5-YEAR AVERAGE OE with the latest still positive: one weak or quirky
         # accounting year must neither admit nor exclude a name on its own.
@@ -4465,6 +4617,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (mcap > 0) &
         (pb > 0) & (pb < 1.0) &                       # buying below book
         _shrink_f12 &
+        # (audit 2026-10-02) net shrinkage is the FACT: no present share-count
+        # lens may show growth. The master shares_yoy alone admitted issuers the
+        # date-matched quarterly count contradicts (ODTech -12.9% vs +6.2%,
+        # POSCO, Renault, Sainsbury); NaN lenses stay neutral
+        ~(_ncol('fq_shares_yoy') > 0) & ~(_ncol('shares_yoy') > 0) &
         _no_rsplit_yoy &                              # (audit 3) a -30% collapse is a split / restructuring unless a buyback corroborates it
         ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)
          | (fcf_yield > 0)) &
@@ -4502,12 +4659,26 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # series to fake (audited, cumulative), and a discount on a compounding
     # book is latent value by arithmetic. REITs excluded; financials ALLOWED
     # (book compounding is the native lens there).
-    _eqc_f14 = _ncol('equity_cagr_5y').fillna(_ncol('fg_eq_ps_5y_cagr'))   # (financial-growth) book value PER SHARE, 5-year CAGR, global where the EDGAR series is absent
+    # (audit 2026-10-02) book value PER SHARE first, total equity only where
+    # the per-share series is absent (the order was reversed: 1,156 of 1,204
+    # fires read total equity; Credit Agricole 184%/yr total vs 6.5% per share)
+    _eqc_f14 = _ncol('fg_eq_ps_5y_cagr').fillna(_ncol('equity_cagr_5y'))   # (financial-growth) book value PER SHARE, 5-year CAGR, global where the EDGAR series is absent
+    # nominal book growth is judged against the MARKET's own: in a
+    # high-inflation market (TR median 58%/yr, AR 78%) the 8% bar is cleared by
+    # translation; the bar is the higher of 8% and the country median
+    _eqc_med_f14 = _eqc_f14.where((is_operating | is_financial) & (mcap > 0)).groupby(country).transform('median')
+    # an 8%/yr book compounding FROM EARNINGS needs a return on equity of at
+    # least 8% (TTM or 5-year average NI over equity) — below that the book
+    # grows by revaluation, FX translation or issuance (335 fires had ROE < 5%)
+    _roe5_f14 = _ncol('ni_avg') / _ncol('equity').where(_ncol('equity') > 0)
+    _roe_f14 = pd.concat([_ncol('roe'), _roe5_f14], axis=1).max(axis=1)
     df['arch_book_compounder_discount'] = (
         (is_operating | is_financial) & ~is_utility & (mcap > 0) &   # (audit) exclude UTILITY preferreds (DTE/WEL stubs) that passed ~is_reit; keep financials (book-compounding is native there)
-        (_eqc_f14 >= 0.08) &
+        (_eqc_f14 >= 0.08) & ~(_eqc_f14 < _eqc_med_f14) &
+        ~(_roe_f14 < 0.08) &
         ~(_ncol('shares_growth_5y') > 0.05) &        # (audit 3) TOTAL equity compounding on issuance is not book-per-share compounding
-        (pb > 0) & (pb < 1.0) &
+        ~((_ncol('shares_growth_5y') < -0.30) & ~(_ncol('buyback_yield') > 0)) &   # (audit 2026-10-02) a reverse split is not compounding (PHL.NZ 752%/yr on shares -99.99%)
+        (pb >= 0.15) & (pb < 1.0) &                  # (audit 2026-10-02) < 0.15x book is a price/currency-basis artifact (financials_value's floor; MELI.BA CEDEAR 0.074)
         ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)) &
         _not_melting
     ).fillna(False).astype(int)
@@ -4524,10 +4695,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # take it after tax (the higher of the name's ETR and the 21% statutory)
     _lifo_f15 = _ncol('lifo_reserve') * (1.0 - _ncol('effective_tax_rate').clip(0.0, 0.40).fillna(0.21).clip(lower=0.21))
     _lifo_pct_f15 = (_lifo_f15 / mcap.where(mcap > 0))
-    _adj_book_f15 = (1.0 / pb).where(pb > 0, np.nan) + _lifo_pct_f15   # (book + LIFO)/mcap
+    # (audit 2026-10-02) NaN-preserving P/B: the 99-fill made a missing P/B
+    # read 1/99, so "below adjusted book" collapsed to "reserve >= ~99% of
+    # mcap" (ACH, a delisted Chalco ADR: $83M cap vs a 658M reserve)
+    _pb_f15 = _ncol('pb')
+    _adj_book_f15 = (1.0 / _pb_f15).where(_pb_f15 > 0, np.nan) + _lifo_pct_f15   # (book + LIFO)/mcap
     _real_sector_f = ~_sec_l.isin(['', 'nan', 'none', 'null'])   # a real operating company, not a null-sector ETN/artifact mapped to an issuer CIK (VYLD = a JPMorgan ETN inheriting JPM's pension)
     df['arch_lifo_hidden_reserve'] = (
         is_operating & _real_sector_f & (mcap > 0) & (_lifo_f15 > 0)
+        & _fx_coherent                         # (audit 2026-10-02) reserve and mcap on one currency basis
         & (_lifo_pct_f15 >= 0.10)              # reserve material vs mcap
         & (_adj_book_f15 >= 1.0)               # priced at/below LIFO-adjusted book
         & _not_melting
@@ -4538,7 +4714,28 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # the operating business, not the surplus.
     # (audit 3) a surplus reverts only after reversion excise and corporate
     # tax (US), or as avoided service cost over years — take HALF of it
-    _pfs_f16 = _ncol('pension_funded_status') * 0.5
+    _pfs_raw = _ncol('pension_funded_status')
+    # (audit 2026-10-02) the extractor DERIVES funded status as plan assets -
+    # obligation without matching dates: WY = 2010 plan assets with no
+    # obligation, CAL = 2026 assets - a 2018 PBO, SCHL / MAGN likewise (4 of 5
+    # fires). A surplus counts only from the DIRECT funded-status concept, or
+    # from assets and PBO reported for the SAME balance-sheet date, dated
+    # within the last two fiscal years of the data date (else unmeasured).
+    if os.path.exists('edgar_universe_facts.csv'):
+        _pf_cols = ['pension_funded_status_end', 'pension_plan_assets_end', 'pension_obligation_end']
+        _pf = (pd.read_csv('edgar_universe_facts.csv', low_memory=False,
+                           usecols=lambda c: c == 'symbol' or c in _pf_cols)
+               .drop_duplicates('symbol', keep='last').set_index('symbol')
+               .reindex(columns=_pf_cols).reindex(df['symbol'].astype(str).values))
+        _pf.index = df.index
+        _pf_d = {c: pd.to_datetime(_pf[c], errors='coerce') for c in _pf_cols}
+        _pf_fresh = {c: ((_asof - v).dt.days <= 730) for c, v in _pf_d.items()}
+        _pf_direct = _pf_d['pension_funded_status_end'].notna() & _pf_fresh['pension_funded_status_end']
+        _pf_derived = (_pf_d['pension_funded_status_end'].isna()
+                       & (_pf_d['pension_plan_assets_end'] == _pf_d['pension_obligation_end'])
+                       & _pf_fresh['pension_plan_assets_end'])
+        _pfs_raw = _pfs_raw.where(_pf_direct | _pf_derived)
+    _pfs_f16 = _pfs_raw * 0.5
     _pfs_pct_f16 = (_pfs_f16 / mcap.where(mcap > 0))
     df['arch_pension_overfunded'] = (
         is_operating & _real_sector_f & (mcap > 0) & (_pfs_f16 > 0)
@@ -4608,11 +4805,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # hidden-asset gap) exactly as operating INFLECTION evidence appears
     # (a first-positive print, or acceleration with operating leverage), on a
     # beaten-down tape. Downside = the floor; upside = the re-rate.
+    # (audit 2026-10-02) the hidden-asset leg only where an associate/equity-
+    # method line EXISTS: _hidden_pct falls back to plain net cash when the
+    # line is missing (94% of names), which cut net cash at 40% beside the
+    # explicit 50% leg (JD Health, Tsingtao, 3SBio entered at 43-48%)
     _xr_floor = ((ncav_pct >= 0.80) | (net_cash_pct_c >= 0.50)
-                 | (_hidden_pct >= 0.40))
+                 | ((_hidden_pct >= 0.40) & (_ncol('investments_associates') > 0)))
+    # (audit 2026-10-02) "acceleration" is of a GROWING top line: rev_accel > 0
+    # on a falling revenue is a decline slowing (160 fires had revenue down)
     _xr_inflect = ((ebitda_first_pos > 0) | (cfo_first_pos > 0)
                    | (fcf_first_pos > 0) | (ni_first_pos > 0)
-                   | ((rev_accel > 0) & season_robust))
+                   | ((rev_accel > 0) & (_ncol('rev_yoy') > 0) & season_robust))
     df['arch_xr_floor_inflection'] = (
         is_operating & (mcap > 0) &
         _fx_coherent &
@@ -4661,9 +4864,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # base — while the business on top GROWS. Convexity nobody screens for
     # because the support is not in standard metrics.
     _re_mc_x5 = (_ncol('retained_earnings') / _mc_ca.where(_mc_ca > 0))   # (gate-audit) currency-adjusted mcap (_mc_ca), matching the sibling multiple_gap
-    _xr5_floor = ((_hidden_pct >= 0.50)
+    # (audit 2026-10-02) INVISIBLE means off-EV: the hidden-asset leg needs a
+    # disclosed associate / investment stake >= 10% of mcap (the hidden_assets
+    # rule) — net cash alone (229 of 246) is on the EV line, not hidden; the
+    # over-depreciation leg needs a sane D&A basis (106 fires had D&A > 50% of
+    # revenue: BC94.L KRW, ADTTF JPY) and depreciation rather than acquired-
+    # intangible amortisation (AMGN/Horizon, NONOF: the xr_amortization_mask
+    # thesis), as xr_depreciation_cliff already requires
+    _xr5_floor = (((_hidden_pct >= 0.50) & ((_assoc_ha / _mc_ha.where(_mc_ha > 0)) >= 0.10))
                   | ((_re_mc_x5 >= 1.5) & (_re_mc_x5 <= 5.0))   # (gate-audit) upper cap: raw RE/mcap>10x (ANG-PD, LGNDZ) is a scale/currency artifact, not a bargain — mirror the >=1.5 lower guard the sibling already carries
-                  | ((_dna_loc > 0) & (_maint_capex >= 0)
+                  | ((_dna_loc > 0) & (_maint_capex >= 0) & _dna_sane
+                     & ~(_ncol('goodwill_intangibles_pct_assets') > 0.15)
                      & (_maint_capex <= 0.5 * _dna_loc) & ((_dna_loc / _rev_loc.where(_rev_loc > 0)) >= 0.05)))   # MAINTENANCE capex (TTM or 5yr avg, the higher), as F1
     df['arch_xr_forensic_floor_growth'] = (
         is_operating & (mcap > 0) &
@@ -4685,6 +4896,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_forensic_multiple_gap'] = (
         is_operating & (_mc_ca > 0) &
         _fx_coherent &
+        _dna_sane &                                    # (audit 2026-10-02) D&A <= EBITDA and <= revenue: 214 of 360 fires had D&A > EBITDA (TOELF/NTDOY/CUAEF home-currency D&A on USD lines; VW x6 inconsistent rows)
         ((_mc_ca / _oe_best) <= 6.0) &                 # forensic multiple: cheap...
         ((_mc_ca / _oe_best) >= 1.5) &                 # ...but a sub-1.5x "multiple" is a currency artifact, not a bargain (900920.SS at 0.2x)
         # (gate-audit) the thesis is a SPREAD (headline multiple >> forensic
@@ -4704,10 +4916,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # being converted to cash) — handed BACK to owners at >=6% combined
     # payout, priced below book as if terminally dying. The distribution
     # stream alone can return the price while the pessimism unwinds.
-    _payout_x7 = (_ncol('dividend_yield').fillna(0) + _ncol('buyback_yield').fillna(0))
+    # (audit 2026-10-02) the global FY buyback yield fills the EDGAR-only one
+    # (as _payout_any and buyback_compounder already do)
+    _payout_x7 = (_ncol('dividend_yield').fillna(0)
+                  + _ncol('buyback_yield').fillna(_ncol('fmp_st_buyback_yield_y0')).fillna(0))
     df['arch_xr_harvest_distribution'] = (
         is_operating & (mcap > 0) &
         _fx_coherent &
+        _dna_sane &                                         # (audit 2026-10-02) D&A <= EBITDA / revenue (21 fires were home-currency D&A on USD lines)
+        (_ncol('rev_yoy') >= -0.05) &                       # (audit 2026-10-02) "harvest, not decay" must be OBSERVED (rev_yoy_c zero-fills NaN)
         (_dna_loc > 0) & (_maint_capex >= 0) & (_maint_capex <= 0.5 * _dna_loc) &  # (audit #5) harvest measured on MAINTENANCE capex (incl. 5yr avg), not a single collapsed TTM window (KSS/LKQ)
         (_payout_x7 >= 0.06) &
         (pb > 0) & (pb < 1.0) &
@@ -4876,11 +5093,25 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # net PP&E) while replacement spend stays low — reported earnings are a
     # coiled spring that RELEASES mechanically as charges roll off, and the
     # cash was real all along. Priced on the depressed accounting earnings.
-    _ppe_x14 = _ncol('ppe_net')
+    # (audit 2026-10-02) the depreciating base is the WHOLE fixed-asset line:
+    # EDGAR ppe_net leaves out vessels, lease fleets and rental equipment (all 5
+    # fires were that artifact: Genco "vessels, net" D&A/PP&E 11.8, Willis
+    # Lease engines 3.8, Alta's rental fleet), so take the larger of it and the
+    # statement PP&E (fq_ppe_net, fleet-inclusive) where ppe_net is measured
+    # (fq_ppe_net alone also carries lease ROU assets, whose short lease lives
+    # read as a "cliff" at every retailer, so it does not widen coverage on its
+    # own; the US-only reach stays a known TIGHT). The base must be material (>= 5% of assets: a $17k
+    # PP&E shell is not a cliff), the D&A basis sane, and a rental fleet whose
+    # purchases run through operating cash has no visible replacement capex.
+    _ppe_x14 = pd.concat([_ncol('ppe_net'), _ncol('fq_ppe_net')], axis=1).max(axis=1).where(_ncol('ppe_net').notna())
     _dna_ppe_x14 = (_dna_loc / _ppe_x14.where(_ppe_x14 > 0))
+    _assets_x14 = _ncol('assets').fillna(_ncol('fq_total_assets'))
     df['arch_xr_depreciation_cliff'] = (
         is_operating & (_mc_ca > 0) & _fx_coherent &
         (_dna_loc > 0) & (_dna_ppe_x14 >= 0.35) &           # < ~3yr of book life left
+        _dna_sane &
+        ((_ppe_x14 / _assets_x14.where(_assets_x14 > 0)) >= 0.05) &
+        ~_ind_all.str.contains(r'rental|leasing', regex=True) &
         ~(_ncol('goodwill_intangibles_pct_assets') > 0.15) &   # (audit 3) depreciation, not acquired-intangible amortisation (that is amortization_mask)
         (_maint_capex >= 0) & (_maint_capex <= 0.6 * _dna_loc) &   # replacement spend low on MAINTENANCE capex, not one collapsed TTM window
         (_oe_loc > 0) & ((_mc_ca / _oe_loc) <= 10.0) &      # cheap on the true cash take
@@ -4925,6 +5156,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_amortization_mask'] = (
         is_operating & (_mc_ca > 0) & _fx_coherent &
         (_ncol('goodwill_intangibles_pct_assets') >= 0.30) &   # the mask exists
+        _dna_sane &                                            # (audit 2026-10-02) D&A <= EBITDA / revenue (SNEJF, BMBOY unit artefacts)
         (_ni_ca > 0) & (_oe_ratio >= 1.5) &                    # OE >> NI through the mask
         (fcf_yield >= 0.07) &                                  # cash confirms
         ((_ncol('p_e') >= 15) | _ncol('p_e').isna()) &         # priced on masked EPS
@@ -5369,8 +5601,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _fq_capint = (_fq_cx / _ncol('fq_revenue').where(_ncol('fq_revenue') > 0)).where(lambda x: x < 1.0)
     _ps31 = _ncol('p_s').where(_ncol('p_s') > 0)
     _gcx_y = (_fq_capint * (1.0 - 1.0 / _fq_ratio).clip(lower=0) / _ps31)
-    _maint_y31 = _maint_y31.fillna(fcf_yield + _gcx_y)
-    _capex_over_da31 = (_cx31 / _dna31.where(_dna31 > 0)).fillna(_fq_ratio)
+    # (audit 2026-10-02) the level D&A (_dna_loc) can sit in a different
+    # currency from capex/CFO on cross-listed lines (MELI.BA capex/D&A 2,197x,
+    # ERO 193x, VISTAA.MX 28x; the panel reads 0.71 / 2.37 / 1.62). The
+    # same-statement panel ratio is read beside the level one and, where both
+    # exist, the LOWER of the two is taken (a currency-mixed D&A inflates the
+    # level ratio; an off-statement panel spike, EYE 14x, the panel one); the
+    # level maintenance yield is used only where the panel is missing, the
+    # level D&A is missing (lens b needs no D&A) or the two ratios agree within
+    # 2x — else the currency-free panel yield. The
+    # FCF yield is read NaN-preserving (the zero-filled one passed 5OC.SI,
+    # 1742.HK, 9998.HK as "reported FCF suppressed" with no FCF on file).
+    # (Depends on the pending D&A currency fix in the data layer.)
+    _fcfy31 = _ncol('fcf_yield')
+    _lvl_ratio31 = _cx31 / _dna31.where(_dna31 > 0)
+    _lvl_ok31 = (_fq_ratio.isna() | _lvl_ratio31.isna()
+                 | (_lvl_ratio31 / _fq_ratio).between(0.5, 2.0))
+    _maint_y31 = _maint_y31.where(_lvl_ok31).fillna(_fcfy31 + _gcx_y)
+    _capex_over_da31 = pd.concat([_fq_ratio, _lvl_ratio31], axis=1).min(axis=1)
     df['arch_xr_growth_capex_masked'] = (
         is_operating & (_mc_ca > 0) & _fx_coherent &
         (_capex_over_da31 >= 1.5) &                        # capex FAR above replacement (D&A)
@@ -5378,7 +5626,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((s('roce', np.nan) >= 0.12) | (_ncol('roiic_lindy') >= 0.12)
          | (_ncol('fqx_ebit_ttm_g') >= _ncol('fq_rev_growth'))) &   # (audit 3) returns ON the capex — EBIT keeping pace with revenue, or the audited ROIIC
         (rev_yoy_c >= 0.10) &                              # the growth is real
-        (fcf_yield < 0.04) &                               # reported FCF suppressed
+        (_fcfy31 < 0.04) &                                 # reported FCF suppressed (MEASURED: audit 2026-10-02)
         (_maint_y31 >= 0.07) &                             # ...but maintenance cash take is fat
         ~(_ncol('shares_yoy') > 0.05) &
         ~_financing_fragile &
@@ -5396,6 +5644,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_look_through_value'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         (_assoc_pct32 >= 0.30) &                          # off-consol stakes >= 30% of mcap
+        ~_book_twin_bad &                                  # (audit 2026-10-02) not a debt / stale line carrying the common's stakes (CCZ Comcast ZONES: pb 0.17 vs CMCSA 1.0)
         _profit_present &                                  # consolidated business is real
         (((pb > 0) & (pb < 1.5)) | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 10))) &  # cheap on consol
         _not_melting
@@ -5531,12 +5780,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _sbest_x38 = _ncol('seg_best_ebit_usd')
     _stot_x38 = _ncol('seg_total_ebit_usd')
     _ev_usd_x38 = _ncol('enterprise_value_usd')
+    # (audit 2026-10-02) segment EBIT is BEFORE unallocated corporate costs
+    # (segment total ran a median 1.86x group EBIT; FTEK and SKIL fired on a
+    # negative group EBIT): corporate overhead is a real negative segment, so
+    # "the rest comes free" needs the overhead charged. The best segment
+    # carries its pro-rata share: scaled by group EBIT (op margin x USD
+    # revenue) / segment total, never scaled UP, and the group must earn.
+    _grp_ebit_x38 = _ncol('op_margin') * _ncol('revenue_ttm_usd')
+    _alloc_x38 = (_grp_ebit_x38 / _stot_x38.where(_stot_x38 > 0)).clip(upper=1.0)
+    _sbest_net_x38 = _sbest_x38 * _alloc_x38
     df['arch_xr_segment_justifies_whole'] = (
         is_operating & (mcap > 0) & _fx_coherent
         & (_ncol('revenue_ttm_usd') >= 20e6)
         & (_ncol('segment_count') >= 2)                     # a real segment mix — "the rest" exists
         & (_sbest_x38 > 0) & (_ev_usd_x38 > 0)              # positive best-segment EBIT and a real EV
-        & (_sbest_x38 * 12.0 >= _ev_usd_x38)                # best segment alone at ~12x EBIT >= the whole EV
+        & (_grp_ebit_x38 > 0)                               # (audit 2026-10-02) the consolidated group earns after overhead
+        & (_sbest_net_x38 * 12.0 >= _ev_usd_x38)            # best segment, net of its share of corporate cost, at ~12x >= the whole EV
         & (_stot_x38 > _sbest_x38)                          # other segments are NET-POSITIVE contributors (free)
         & (df.get('data_quality_flag', 0) == 0)
         & _not_melting
@@ -5617,14 +5876,27 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # NI crossed <=0 -> >0 (the mandate-unlock trigger) — on the annual
         # figures OR the date-matched quarterly TTM (the turn, whichever
         # cadence shows it first; the exact window is secondary)
-        & ((s('net_income_first_positive', 0) == 1) | (_ncol('fqx_eps_turned') == 1)
-           | (_ncol('fmp_dyn_ni_turned_positive') == 1))
+        # (audit 2026-10-02) the TURN is the index test itself: the TRAILING-
+        # 4-quarter NI sum crossing from <= 0 to > 0 (year-ago TTM vs TTM), or
+        # an annual first profit after a real loss record (>= 2 loss years on
+        # file). fmp_dyn_ni_turned_positive ("latest quarter > 0 after ANY one
+        # of the prior four <= 0") was the only turn for 1,331 fires, 983 of
+        # them with no loss year in eight (QCOM, HON, Astellas: one charge
+        # quarter, index-eligible all along); fqx_eps_turned is one quarter.
+        & ((((_ncol('fq_ni_p') <= 0) & (_ncol('fq_ni') > 0)).fillna(False))
+           | ((s('net_income_first_positive', 0) == 1) & (_ncol('tc_loss_years') >= 2)).fillna(False))
         & (_ni_now_x41 > 0)
         & (_ncol('op_margin') > 0)                          # OPERATIONAL profit, not a one-off gain (audit 3: EBITDA > 0 is not operating profit)
         & ((_ncol('net_income_ttm') / _ncol('revenue_ttm').where(_ncol('revenue_ttm') > 0) >= 0.02)
            | (_ncol('earnings_yield') >= 0.02))              # (audit 3) a crossing of substance, not within rounding of zero
         & ~(_ncol('shares_yoy') > 0.10)                      # (audit 3) the first profit of a serial issuer is the cardinal-sin case
         & ~(s('is_price_ghost', 0) == 1) & ~(s('is_otc', 0) == 1)  # listing exists for the demand to unlock into
+        # (audit 2026-10-02) is_otc is not a column (the leg was dead: 372 OTC
+        # F/Y lines fired): read the listing venue, and a US 5-letter F/Y line
+        # with no venue on file
+        & ~(df['fmp_exchange'].astype(str).str.upper().eq('OTC') if 'fmp_exchange' in df.columns else False)
+        & ~((country == 'US') & df['symbol'].astype(str).str.match(r'^[A-Z]{4}[FY]$')
+            & (df['fmp_exchange'].isna() if 'fmp_exchange' in df.columns else True))
         & _not_melting
     ).fillna(False).astype(int)
 
@@ -5755,9 +6027,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # clean mask. (The bare NI<continuing test was noisy: continuing-ops is
         # pre-minority-interest while NI is attributable-to-parent, so the gap
         # could be just NCI, not a discontinued drag.)
-        ((_ni_x43 <= 0) & (_cont_x45 > 0) & ~_x45_fmp)       # consolidated LOSS but continuing ops profitable
+        # (audit 2026-10-02) the loss must BE the discontinued drag: a reported
+        # discops loss covering >= half the continuing-to-consolidated gap
+        # (37 fires had NI <= 0 with no discops item at all: Ford, Molson
+        # Coors, Angi impairments / period mismatches)
+        ((_ni_x43 <= 0) & (_cont_x45 > 0) & ~_x45_fmp
+         & (_disc_x45 < 0) & ((-_disc_x45) >= 0.5 * (_cont_x45 - _ni_x43)))   # consolidated LOSS but continuing ops profitable
         | ((_disc_x45 < 0) & ((-_disc_x45) >= _cont_x45 * 0.20))  # discops loss material vs the core
-        | ((_ahfs_x45 / mcap) >= 0.15)                       # a large block being divested
+        | ((_ahfs_x45 / _mc_x45.where(_mc_x45 > 0)) >= 0.15)     # a large block being divested ((audit 2026-10-02) local AHFS over the LOCAL cap)
     )
     df['arch_xr_discops_mask'] = (
         is_operating & (mcap > 0) & _fx_coherent
@@ -6359,7 +6636,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (cash_gt_ev > 0) |                       # cash exceeds EV
         (net_cash_pct_sane >= 0.75)              # (G2) net cash 75-100% of mcap (sane)
     )
-    _DEMOTED.setdefault('negative_ev_value', []).extend([(_ncol('fmp_altman_z'), 1)])
+    # (audit 2026-10-02) 73% of fires come through the P/B < 0.7 branch, most
+    # carrying net debt (Kobe Steel, Hankook). Leverage is a WEIGHT, not a gate
+    # (house rule): net cash over mcap ranks the members, so the "paid to own
+    # it" names lead and the levered sub-book ones trail. The cash > EV leg
+    # still reads cash_gt_ev_flag (stale on 471 rows; data-layer fix pending).
+    _DEMOTED.setdefault('negative_ev_value', []).extend([(_ncol('fmp_altman_z'), 1),
+                                                         (_ncol('net_cash_pct_mcap').clip(-2.0, 1.0), 1)])
     df['arch_negative_ev_value'] = (
         is_operating &                                # (G1) exclude financials/REITs/utilities
         (mcap > 0) & (mcap < 5e9) &
@@ -7619,7 +7902,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # revealed CORPORATE conviction (global): a buyback executed or the share count shrinking now; and 13F new
     # positions (US-listed) — the non-SEC arrival legs the informed-buyer archetypes lacked (audit 3, #1)
     _corp_conviction = ((_ncol('fmp_st_buyback_yield_y0') > 0.01) | (_ncol('fqx_share_shrink_now') == 1)).fillna(False)
-    _inst_arrival = (_ncol('fmp_inst_new_q0') >= 1).fillna(False)
+    # (audit 2026-10-02) ">= 1 new 13F holder" is true for 96% of the covered
+    # liquid US base (median 24 new holders a quarter), so it was not an
+    # informed buyer ARRIVING. Relative test: new holders as a share of all
+    # holders in the TOP QUINTILE of the 13F-covered market this quarter
+    # (size-neutral; >= 15 holders for the share to mean something, as in
+    # institutional_accumulation's validity leg).
+    _inst_new_sh = (_ncol('fmp_inst_new_q0') / _ncol('fmp_inst_holders').where(_ncol('fmp_inst_holders') >= 15))
+    _inst_arrival = (_inst_new_sh >= _inst_new_sh.quantile(0.80)).fillna(False)
     _operating_not_asset = ~(_ncol('ncav_pct_mcap') >= 0.5)
     _margins_not_consistent = ~(_ncol('fqx_opm_consist') > 0.5)
     df['arch_mb_fallen_insider'] = (_mb_base & _mb_fallen & _ins_2q & _operating_not_asset
@@ -7723,20 +8013,44 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    change point and new highs only ~6 months before. Two or more of the
     #    fundamental signs first appeared 3-18 months ago and the tape has NOT
     #    yet ignited: the window before the move.
-    _signs = sum((_ncol(f'fqx_m_since_{k}').between(3, 18)).fillna(False).astype(int)
-                 for k in ('rev_accel', 'margin_inflect', 'turn_positive', 'share_shrink'))
+    # (audit 2026-10-02) "FIRST APPEARED" must be an observed START: the
+    # producer's fqx_m_since_* is the first occurrence INSIDE the 18-month
+    # window, so a sign live for years reads ~18 months (583 fires on perpetual
+    # buybacks: GOOG, NFLX, NVSEF). A sign at the window's oldest quarter
+    # (> 16.5 months) has no observed absence before it and does not count. At
+    # least one sign must still be live (967 fires had none), and the top line
+    # not shrinking (779 fires) — the sequence is a business turning UP.
+    # (The exact run start belongs in fmp_quarterly_ext.py.)
+    _sq_keys = ('rev_accel', 'margin_inflect', 'turn_positive', 'share_shrink')
+    _signs = sum((_ncol(f'fqx_m_since_{k}').between(3, 16.5)).fillna(False).astype(int)
+                 for k in _sq_keys)
+    _sq_live = sum(((_ncol(f'fqx_m_since_{k}').between(3, 16.5)) & (_ncol(f'fqx_{k}_now') == 1)).fillna(False).astype(int)
+                   for k in _sq_keys)
     df['mb_sequence_signs'] = _signs
     _not_ignited = ((_ncol('ts_dist_hi52') < 0.90) & ~(_ncol('bs_cp_dvol_z13') >= 1.5)
                     & ~(_ncol('ts_r13') > 0.15)).fillna(False)
-    df['arch_mb_sequence_preignition'] = (_mb_base & (_signs >= 2) & _not_ignited).astype(int)
+    df['arch_mb_sequence_preignition'] = (_mb_base & (_signs >= 2) & (_sq_live >= 1) & _not_ignited
+                                          & ~(_ncol('fq_rev_growth') < 0).fillna(False)).astype(int)
     # INTERSECTIONS that beat their parts (second investigation, §5): insider
     # conviction inside the smart-money wreckage (lift 5.8x vs 3.9x / 4.7x,
     # blow-up 31%), and left-for-dead value with insider conviction (5.5x)
     # literal confluence: insiders PLUS a second, independent arrival (audit 3: with one leg the
     # intersection reduced algebraically to fallen_insider & deep value)
+    # (audit 2026-10-02) the SECOND, independent arrival must be one: "at least
+    # one new 13F holder" is true for 77% of the US liquid base (30 of 33 fires
+    # carried it), so the institutional leg counts here only when holders on
+    # NET arrived (more holders this quarter than last — the sign) and the new
+    # holders sit in the top quintile of new-holders / holders across the base
+    # (a peer frame). The fall must be per share, not a dilution collapse
+    # (GPUS shares +9,945%): the fallen-angel sibling's 3-year count guard.
+    _new_share_cc = _ncol('fmp_inst_new_q0') / _ncol('fmp_inst_holders').where(_ncol('fmp_inst_holders') > 0)
+    _new_q80_cc = _new_share_cc.where(_mb_base).quantile(0.80)
+    _inst_arrival_cc = ((_ncol('fmp_inst_holders_chg_q0') > 0) & (_new_share_cc >= _new_q80_cc)).fillna(False)
+    _smart_legs_cc = _smart_legs - _inst_arrival.astype(int) + _inst_arrival_cc.astype(int)
     df['arch_mb_conviction_confluence'] = ((df['arch_mb_fallen_insider'] == 1)
                                            & (df['arch_mb_smart_money_wreckage'] == 1)
-                                           & (_smart_legs >= 2)).astype(int)
+                                           & (_smart_legs_cc >= 2)
+                                           & ~(_ncol('shares_growth_3y') > 0.20).fillna(False)).astype(int)
     df['arch_mb_left_for_dead_insider'] = ((df['arch_mb_left_for_dead_value'] == 1)
                                            & (df['arch_mb_fallen_insider'] == 1)).astype(int)
     _SPIRITED += ['mb_conviction_confluence', 'mb_left_for_dead_insider']
@@ -8979,6 +9293,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_flyover'] = (
         is_operating &
         ~(n_analysts_v >= 5) &                          # low / no coverage, < 5 (missing => undiscovered => pass)
+        # (audit 2026-10-02) coverage is shared across a company's lines at
+        # source; a count still missing on EVERY feed reads as "undiscovered"
+        # only below the 60th percentile of its market's operating caps (970
+        # NaN fires included Tencent, LVMH, Airbus, Equinor OTC lines)
+        ~(_ncol('sent_n_analysts').fillna(_ncol('n_analysts')).fillna(_ncol('n_analysts_pew')).isna()
+          & (mcap > mcap.where(is_operating & (mcap > 0)).groupby(country).transform(lambda x: x.quantile(0.60)))) &
         ~(_ncol('sent_n_analysts') > 2) &               # (audit 3) neglect OBSERVED where estimate coverage exists: <= 2 analysts
         (insider >= 0.20) &                             # family / insider control
         (((s('roce', np.nan) >= 0.15) & ~_roce_oneoff_suspect)
@@ -9271,10 +9591,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # where op<0). Fire definitive deals on the EVENT alone; keep the
     # viability + value/NAV floor only on the softer TENDER path (rumored /
     # partial → the downside floor matters if the deal breaks).
+    # (audit 2026-10-02) the EDGAR merger / tender flags are UNDATED (any form
+    # in ~24 months) and ROLE-BLIND (a bidder's SC TO-T, an issuer's own SC
+    # TO-I buyback, an acquirer's DEFM14A all set them): BMY, OXY, JAZZ, RPRX,
+    # LEN, ZTO fired with no live spread. A deal counts only with a DATED
+    # anchor inside the file's own 270-day deal window — the merger proxy /
+    # M&A-target date, or a THIRD-PARTY tender (SC TO-T / SC 14D9: fmp_events
+    # leaves out the issuer's SC TO-I) — and a blank-check / fund vehicle's
+    # merger vote (de-SPAC, BDC roll-up) is not a spread trade. Going-private
+    # (SC 13E3) is target-side by construction and stays.
+    _deal_dated = lambda c: (_evt_age_days(c) <= 270).fillna(False)
+    _merger_ss = (_merger == 1) & (_deal_dated('evt_merger_proxy_date') | _deal_dated('evt_ma_target_date'))
+    _tender_ss = (_tender == 1) & _deal_dated('evt_tender_date')
+    _ss_vehicle = (_inst_fund | (is_financial & _nm_l.str.contains(
+        r'acquisition|merger corp|merger i|blank check|\bcapital corp', regex=True)))   # SPACs (series I/II/III) and BDCs (FS KKR / Monroe Capital Corp)
     df['arch_special_situation'] = (
-        (mcap > 0) &
-        (((_merger == 1) | (_gopriv == 1))              # definitive/cash deal — spread capture
-         | ((_tender == 1) & _not_melting
+        (mcap > 0) & ~_ss_vehicle &
+        ((_merger_ss | (_gopriv == 1))                  # definitive/cash deal — spread capture
+         | (_tender_ss & _not_melting
             & ((is_operating & _excellent_value)
                | ((is_financial | is_reit) & (pb > 0) & (pb < 1.0)))))
     ).fillna(False).astype(int)
@@ -9291,6 +9625,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & (_nol_to_mcap >= 0.5) & (_nol_to_mcap <= 20.0)   # sane band (a >20x ratio is a currency/mcap artifact)
         & ((net_cash_pct_sane >= 0.10) | (cash_gt_ev > 0))   # (audit 3) a SHELL is cash-backed; an ordinary cheap profitable NOL user is xr_nol_shield / tax_efficient ground, not this
         & (s('op_margin', np.nan) > -0.30)                 # (topcheck) survivable, not a >100%-mcap/yr burner (ONCO/ASTC)
+        & ~(_ncol('shares_yoy') > 0.05)                    # (audit 2026-10-02) Section 382: heavy issuance is the ownership change that caps the NOL (sibling xr_monetization_trifecta's rule); the stale cash>EV flag is fixed at source
         & _not_melting
         & ~(fcf_yield < -0.25)   # (deep-audit) op_margin>-0.30 does NOT capture cash burn: CNTY fcf-119%/op+9.2%, NEON fcf-80% behind a 355% op artifact torched the balance sheet while passing the op gate. An NOL on a dying balance sheet is un-monetizable (missing fcf stays permissive).
     ).fillna(False).astype(int)
@@ -9399,21 +9734,29 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _sh_sn = _num('shares_outstanding').round(-3)
     _cur_sn = df['currency'].astype(str) if 'currency' in df.columns else pd.Series('', index=df.index)
     _dv_sn = _ncol('pew_avg_dollar_volume').fillna(-1.0)
-    _sn = pd.DataFrame({'nm': _nm_sn, 'sh': _sh_sn, 'cur': _cur_sn, 'dv': _dv_sn,
+    # (2026-10-02 rework) grouped by company name + currency only: notes and
+    # preferreds often carry a share count of their own (CCZ 240M vs Comcast's
+    # 3.56B, TBB 7.9B vs AT&T's 6.9B), and the dollar volume is missing for
+    # many large caps — the primary is the line with the largest market cap.
+    _mc_sn = _num('market_cap_usd').fillna(-1.0)
+    _sn = pd.DataFrame({'nm': _nm_sn, 'cur': _cur_sn, 'mc': _mc_sn,
                         'px': _price_sn, 'y': _yld_sn, 'sym': _sym_nc}, index=df.index)
-    _sn_valid = (_sn['nm'] != '') & (_sn['nm'] != 'nan') & (_sn['sh'] > 0)
-    _g_sn = _sn[_sn_valid].groupby(['nm', 'sh', 'cur'])
+    _sn_valid = (_sn['nm'] != '') & (_sn['nm'] != 'nan')
+    _g_sn = _sn[_sn_valid].groupby(['nm', 'cur'])
     _n_sn = _g_sn['sym'].transform('size').reindex(df.index)
-    _prim_i = _g_sn['dv'].idxmax()
-    _prim_map = _sn.loc[_prim_i.values, ['nm', 'sh', 'cur', 'px', 'y', 'sym']].rename(
+    _prim_i = _g_sn['mc'].idxmax()
+    _prim_map = _sn.loc[_prim_i.values, ['nm', 'cur', 'px', 'y', 'sym']].rename(
         columns={'px': 'ppx', 'y': 'py', 'sym': 'psym'})
-    _sn_m = _sn[['nm', 'sh', 'cur']].reset_index().merge(_prim_map, on=['nm', 'sh', 'cur'], how='left').set_index('index')
+    _sn_m = _sn[['nm', 'cur']].reset_index().merge(_prim_map, on=['nm', 'cur'], how='left').set_index('index')
+    # the lowest-priced sibling of the same company (the common, for a $1,000-par preferred)
+    _min_px = _g_sn['px'].transform('min').reindex(df.index)
     _px_ratio = (_sn['px'] / _sn_m['ppx'].where(_sn_m['ppx'] > 0))
     _y_ratio = (_sn['y'] / _sn_m['py'].where(_sn_m['py'] > 0))
-    _senior_twin = ((_n_sn >= 2) & (_sn['sym'] != _sn_m['psym'])
-                    & _price_sn.between(15.0, 30.0) & _yld_sn.between(0.04, 0.15)
-                    & ((_px_ratio > 1.3) | (_px_ratio < 1 / 1.3))
-                    & ~_y_ratio.between(0.8, 1.25)).fillna(False)
+    _not_prim = (_sn['sym'] != _sn_m['psym'])
+    _par25 = (_price_sn.between(15.0, 30.0) & ((_px_ratio > 1.3) | (_px_ratio < 1 / 1.3)))
+    _par1000 = (_price_sn.between(500.0, 1500.0) & (_min_px < _price_sn / 20.0))
+    _senior_twin = ((_n_sn >= 2) & _yld_sn.between(0.04, 0.15)
+                    & ((_par25 & _not_prim & ~_y_ratio.between(0.8, 1.25)) | _par1000)).fillna(False)
     _b4 = _sym_nc.str[:4]
     _ser5 = ((_sym_nc.str.len() == 5) & _sym_nc.str.isalpha() & _sym_nc.str[4].isin(list('PONML')))
     _ser_n = pd.Series(0, index=df.index)
@@ -9421,9 +9764,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _ser_n.loc[_ser5] = (pd.DataFrame({'b4': _b4[_ser5], 'nm': _nm_sn[_ser5]})
                              .groupby(['b4', 'nm'])['b4'].transform('size').values)
     _pref_series = _ser5 & (_ser_n >= 2)
+    # Exchangeable / zero-coupon debt listed under the issuer's own name and
+    # priced off a reference stock, so neither the par band nor the coupon tell
+    # applies — named explicitly (Comcast ZONES, exchangeable into Charter).
+    _known_debt = _sym_nc.isin({'CCZ'})
     _cvr_line = (_sym_nc.str.contains(r'-(?:RI|CVR)$', regex=True)
                  | _nm_nc.str.contains(r'contingent value', case=False, regex=True))
-    _is_noncommon = (_is_noncommon | _senior_twin | _pref_series | _cvr_line).fillna(False)
+    _is_noncommon = (_is_noncommon | _senior_twin | _pref_series | _cvr_line | _known_debt).fillna(False)
     # security_type: one label per line (books show it; nothing is dropped)
     _st = pd.Series('common', index=df.index, dtype=object)
     _st[_is_noncommon] = 'other_non_common'
@@ -9434,7 +9781,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _st[_sym_nc.str.match(r'^[A-Z]{1,5}[-.](?:R|RT)$') | (_sym_nc.str.match(r'^[A-Z]{4}R$') & _is_noncommon)] = 'right'
     _st[_cvr_line] = 'cvr'
     _st[_is_noncommon & (_nm_nc.str.contains(r'senior notes|notes due|% notes|debenture', case=False, regex=True)
-                         | _senior_twin)] = 'note_or_preferred'
+                         | _senior_twin | _known_debt)] = 'note_or_preferred'
     _st[_is_noncommon & (_pref_series | _sfx_pref_line | _sym_nc.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')
                          | _sym_nc.str.contains(r'\.PR\.[A-Z]$|-PR[-.]?[A-Z]?$|-P[A-Z]?\.[A-Z]{1,3}$', regex=True)
                          | _nm_nc.str.contains(r'preferred|pfd|perpetual', case=False, regex=True))] = 'preferred'
