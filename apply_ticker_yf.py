@@ -146,7 +146,15 @@ def main():
         if int(_has_br0.sum()):
             for _ylc in ("yf_revenue", "yf_ebitda", "yf_cash", "yf_total_debt",
                          "yf_cfo", "yf_fcf", "yf_net_income", "yf_fcf_stmt",
-                         "yf_cfo_stmt", "yf_capex_stmt", "yf_book_value"):
+                         "yf_cfo_stmt", "yf_capex_stmt", "yf_book_value",
+                         # (audit 4, root cause 1) the statement D&A, financing
+                         # CF, debt issuance and buyback are FINANCIAL-currency
+                         # levels too. Left out of this list they reached
+                         # bridged ADR/OTC rows raw (TOELF D&A = JPY 81.3B next
+                         # to USD 5.0B NI; ASEKY 2.65e11; TLK financing IDR
+                         # -20.2T) while capex, from the same feed, was bridged.
+                         "yf_da_stmt", "yf_financing_cf_stmt",
+                         "yf_net_debt_issuance_stmt", "yf_buyback_stmt"):
                 if _ylc in y.columns:
                     _yv0 = pd.to_numeric(y[_ylc], errors="coerce")
                     y.loc[_has_br0, _ylc] = (_yv0 * _br_y0)[_has_br0]
@@ -175,6 +183,7 @@ def main():
     except FileNotFoundError:
         ed = pd.DataFrame()
     _edavg_merged_n = 0
+    _edavg_has = {}   # (audit 4) per-column mask of rows the audited EDGAR merge set this run
     # Audited MULTI-YEAR fields (Graham/Templeton averages, equity CAGR,
     # forensic balance items) merge STRUCTURALLY here — they were previously
     # carried into master by a one-off merge, so a rebuild silently dropped
@@ -202,6 +211,7 @@ def main():
             _upd = _vv.notna()
             m.loc[_upd, _ac] = _vv[_upd]
             _n_avg += int(_upd.sum())
+            _edavg_has[_ac] = _upd
         _edavg_merged_n = _n_avg
     except FileNotFoundError:
         pass
@@ -604,16 +614,27 @@ def main():
     # adjudicated against the audited accounts (US names, n>4.7k): yf/EDGAR
     # median = 1.000 for both (same sign, no scale drift), so the statement
     # figure is a clean extension of the same measure, not a different one.
+    # (audit 4, root cause 1) GAP-FILL ONLY left every value filled BEFORE the
+    # source bridge covered these columns frozen in the financial currency on
+    # bridged rows (4,458 bridged rows carried the raw Yahoo D&A, 1,957 the raw
+    # financing CF). On a bridged row (ccy_bridge set) the stored figure has no
+    # currency provenance, so the now-bridged statement figure is RE-ADOPTED
+    # every run — except where audited EDGAR supplied the value this run (EDGAR
+    # stays authoritative; its 20-F levels already sit in the quote currency:
+    # median EDGAR / bridged-Yahoo = 1.00 on the 86 bridged overlaps).
+    _br_row = (pd.to_numeric(m["ccy_bridge"], errors="coerce").notna()
+               if "ccy_bridge" in m.columns else pd.Series(False, index=m.index))
+    _no_ed = lambda _c: ~_edavg_has.get(_c, pd.Series(False, index=m.index)).reindex(m.index).fillna(False)
     if "da_ttm" in m.columns and "yf_da_stmt" in y.columns:
         _da_cur = pd.to_numeric(m["da_ttm"], errors="coerce")
         _da_stmt = pd.to_numeric(y["yf_da_stmt"], errors="coerce").reindex(m.index)
-        _da_fill = _da_cur.isna() & _da_stmt.notna()
+        _da_fill = (_da_cur.isna() | (_br_row & _no_ed("da_ttm"))) & _da_stmt.notna()
         m.loc[_da_fill, "da_ttm"] = _da_stmt[_da_fill]
         recon["da_ttm (gap-fill from Yahoo statement)"] = int(_da_fill.sum())
     if "financing_cf_ttm" in m.columns and "yf_financing_cf_stmt" in y.columns:
         _fin_cur = pd.to_numeric(m["financing_cf_ttm"], errors="coerce")
         _fin_stmt = pd.to_numeric(y["yf_financing_cf_stmt"], errors="coerce").reindex(m.index)
-        _fin_fill = _fin_cur.isna() & _fin_stmt.notna()
+        _fin_fill = (_fin_cur.isna() | (_br_row & _no_ed("financing_cf_ttm"))) & _fin_stmt.notna()
         m.loc[_fin_fill, "financing_cf_ttm"] = _fin_stmt[_fin_fill]
         recon["financing_cf_ttm (gap-fill from Yahoo statement)"] = int(_fin_fill.sum())
 
@@ -1671,6 +1692,27 @@ def main():
         recon["no-anchor mixed-ccy group: quote-vs-level ratios nulled"] = int(_noanchor_mask.sum())
         _qc_flag(_noanchor_mask, "ccy_mismatch_suspect")
 
+    # D&A COHERENCE BACKSTOP (audit 4, root cause 1): after the currency
+    # repair, a D&A that is still impossible against the row's own (final)
+    # EBITDA / revenue is a units or window artifact that inflates every
+    # owner-earnings construction (NI + D&A - capex). Null it (wrong is worse
+    # than missing) and flag: (a) negative D&A; (b) D&A above revenue on a
+    # positive-EBITDA row (pre-revenue burners legitimately depreciate more
+    # than their tiny revenue, so they keep theirs); (c) D&A above 2x EBITDA
+    # while the operating margin is positive (EBIT > 0 forces D&A < EBITDA;
+    # 2x leaves room for TTM-window drift between the two sources).
+    if "da_ttm" in m.columns:
+        _da_bs = pd.to_numeric(m["da_ttm"], errors="coerce")
+        _eb_bs = pd.to_numeric(m.get("ebitda_ttm"), errors="coerce")
+        _rv_bs = pd.to_numeric(m.get("revenue_ttm"), errors="coerce")
+        _om_bs = pd.to_numeric(m.get("op_margin"), errors="coerce")
+        _da_bad = ((_da_bs < 0)
+                   | ((_eb_bs > 0) & (_rv_bs > 0) & (_da_bs > _rv_bs))
+                   | ((_eb_bs > 0) & (_om_bs > 0) & (_da_bs > 2.0 * _eb_bs))).fillna(False)
+        m.loc[_da_bad, "da_ttm"] = np.nan
+        recon["da_ttm nulled (incoherent with EBITDA / revenue)"] = int(_da_bad.sum())
+        _qc_flag(_da_bad, "da_incoherent")
+
     # NORMALIZED-PAIR ORDERING: normalized_ebit (5yr avg EBIT) can only exceed
     # normalized_ebitda (5yr avg EBITDA) through negative D&A — impossible in
     # any filing — so an inverted pair means the two averages were taken over
@@ -1822,6 +1864,35 @@ def main():
     has_yf_val = pd.to_numeric(y.get("yf_ev_ebitda"), errors="coerce").reindex(m.index).notna() \
         if "yf_ev_ebitda" in y.columns else pd.Series(False, index=m.index)
     m.loc[has_yf_val.fillna(False), "valuation_source"] = "yahoo"
+
+    # CASH > EV FLAG — RECOMPUTED (audit 4, root cause 6). The flag was set
+    # once by the per-country builders (yartseva_db / edgar_to_yartseva) and
+    # never refreshed while this harmonizer moves cash, debt, mcap and EV, so
+    # 471 of 1,733 flags contradicted today's figures (net-debt names leaking
+    # into discounted_vehicle / nol_shell / oak_asset_floor / negative_ev).
+    # Same definition as the builder (EV > 0, cash > EV, net cash > 0, cash
+    # <= 3x mcap), from the FINAL quote-currency levels; NaN where cash or EV is
+    # missing (never a silent 0). cash_pct_ev, its companion, likewise.
+    if "cash_gt_ev_flag" in m.columns:
+        _ca_f = pd.to_numeric(m.get("cash"), errors="coerce")
+        _ev_f = pd.to_numeric(m.get("enterprise_value"), errors="coerce")
+        _td_f = pd.to_numeric(m.get("total_debt"), errors="coerce")
+        _mc_f = pd.to_numeric(m.get("market_cap"), errors="coerce")
+        _known_f = _ca_f.notna() & _ev_f.notna()
+        # builder parity: EV > 0 (a negative EV is its own leg in every gate
+        # that reads this flag) and a KNOWN positive net cash (debt missing ->
+        # 0, as yartseva_db does)
+        _flag_f = ((_ev_f > 0) & (_ca_f > _ev_f) & _td_f.notna() & ((_ca_f - _td_f) > 0)
+                   & ~((_mc_f > 0) & (_ca_f > 3.0 * _mc_f)))
+        _old_f = pd.to_numeric(m["cash_gt_ev_flag"], errors="coerce")
+        _new_f = _flag_f.astype(float).where(_known_f)
+        recon["cash_gt_ev_flag recomputed (changed)"] = int(
+            (_old_f.fillna(-1) != _new_f.fillna(-1)).sum())
+        m["cash_gt_ev_flag"] = _new_f
+        if "cash_pct_ev" in m.columns:
+            # (cash > 20x mcap stays nulled: the ccy-mismatch class above)
+            m["cash_pct_ev"] = (_ca_f / _ev_f).where(
+                _known_f & (_ev_f > 0) & ~((_mc_f > 0) & (_ca_f > 20 * _mc_f)))
 
     # USD-TWIN CONSISTENCY (recompute from CURRENT levels): the _usd twins
     # were built once by fix_pipeline (level x fx_to_usd) and go stale the

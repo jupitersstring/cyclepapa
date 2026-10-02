@@ -123,4 +123,24 @@ def dedupe_display(df: pd.DataFrame, name_col: str = 'name',
     key = names.where(names != '', df.get('symbol', names))
     if within is not None and within in df.columns:
         key = df[within].astype(str) + '|' + key
+    # (audit 4, root cause 5) COMPANY MAP: an ADR / OTC / Frankfurt line of a
+    # company already listed is a second line, not a second company (195 of
+    # dead_option's and 78 of gayner_four_lens's fires). Collapse by
+    # company_key (fix_pipeline.add_company_map) as well as by name. The group
+    # keeps the rank of its best-ranked line, but DISPLAYS the primary listing
+    # when the primary is in the frame (the caller sorted best-first).
+    if 'company_key' in df.columns:
+        import numpy as np
+        _sym = df.get('symbol', pd.Series('', index=df.index)).astype(str)
+        ck = df['company_key'].astype(str).where(df['company_key'].notna(), 'sym:' + _sym)
+        if within is not None and within in df.columns:
+            ck = df[within].astype(str) + '|' + ck
+        sec = (pd.to_numeric(df['is_secondary_listing'], errors='coerce').fillna(0).values
+               if 'is_secondary_listing' in df.columns else np.zeros(len(df)))
+        pos = np.arange(len(df))
+        lead = pd.Series(pos).groupby(ck.values).transform('min').values
+        order = np.lexsort((pos, sec, lead))
+        df, key, ck = df.iloc[order], key.iloc[order], ck.iloc[order]
+        first = ~ck.duplicated(keep='first').values
+        df, key = df[first], key[first]
     return df[~key.duplicated(keep='first')]

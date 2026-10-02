@@ -93,7 +93,11 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
     ws.row_dimensions[3].height = 4
 
     # Archetypes ordered by in-country match count, skip empty ones
-    counts = [(col, int(cdf[col].fillna(0).sum())) for col in arch_cols]
+    # (audit 4) "N matches" counts COMPANIES: a company's second lines
+    # (company_key) are one match, as dedupe_display shows them as one row
+    _ck_n = (cdf['company_key'].fillna(cdf['symbol']).astype(str)
+             if 'company_key' in cdf.columns else cdf['symbol'].astype(str))
+    counts = [(col, int(_ck_n[cdf[col].fillna(0) == 1].nunique())) for col in arch_cols]
     counts = [(col, n) for col, n in counts if n > 0]
     counts.sort(key=lambda x: -x[1])
 

@@ -337,6 +337,30 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         df['pct_off_52w_high'] = (_lp - 1.0).where(
             _fresh, pd.to_numeric(df.get('pct_off_52w_high'), errors='coerce'))
 
+    # (audit 4, root cause 3) ANALYST COVERAGE IS A COMPANY FACT, NOT A LINE
+    # FACT. OTC / Frankfurt / second lines carry no count while the primary
+    # line is covered by 12-46 analysts, and every neglect gate reads a
+    # missing count as "undiscovered" (flyover: 970 of 1,400 fires; also
+    # coiled_base, coiled_fallen_angel, base_ignition,
+    # mb_fallen_ignored_believers). Each line takes the MAX count over its
+    # company_key (fix_pipeline.add_company_map), so a missing or lower count
+    # on a second line inherits the covered line's. Lines whose company has
+    # no count anywhere stay NaN (neglect is then still the honest read).
+    if 'company_key' in df.columns:
+        _ck_cov = df['company_key'].astype(str).where(
+            df['company_key'].notna(), 'sym:' + df['symbol'].astype(str))
+        _cov_shared = pd.Series(False, index=df.index)
+        for _acol in ('n_analysts', 'n_analysts_pew', 'sent_n_analysts'):
+            if _acol in df.columns:
+                _av = pd.to_numeric(df[_acol], errors='coerce')
+                _amax = _av.groupby(_ck_cov).transform('max')
+                _up = _amax.notna() & (_av.isna() | (_amax > _av))
+                _cov_shared |= _up
+                df[_acol] = _av.where(~_up, _amax)
+        df['analyst_cov_shared'] = _cov_shared.astype(int)
+        print(f'  analyst coverage shared across company lines: '
+              f'{int(_cov_shared.sum()):,} lines', file=sys.stderr)
+
     # Use the asymmetry sector/market_cap as primary; fall back to yartseva.
     for c in ('sector','industry','market_cap'):
         if c + '_y' in df.columns:
@@ -9881,6 +9905,29 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     if _is_shell.any():
         df.loc[_is_shell.values, _scrub_cols] = 0
         print(f'  scrubbed {int(_is_shell.sum())} sub-$2M micro-shells',
+              file=sys.stderr)
+
+    # ===== DEAD-LISTING SCRUB (audit 4, root cause 4): a line with no live
+    # market evidence — no USD market cap OR no price, AND no price bar in
+    # the last 30 days (fix_pipeline freshness: price_age_days) — or whose
+    # last bar is > 90 days old, is a delisted / taken-over / renamed line
+    # (Swedish Match SWMAF/SWMAY, FLIR, VIAC, FLT, Smurfit Kappa) whose stale
+    # fundamentals still pass every gate that lacks an `mcap > 0` leg
+    # (no_dilution, cash_quality, buyback_compounder, capital_light_pivot,
+    # durable_reinvestment, lindy_fcf, cash_reinvest ...). Zero every common-
+    # equity archetype + gated score (_scrub_cols keeps senior_security_value).
+    # stale_price alone is NOT used: 93% of its rows have a 1-5 day bar and
+    # only a stale lynch tape. =====
+    _mcu_dead = _ncol('market_cap_usd')
+    _px_dead = _ncol('price')
+    _age_dead = _ncol('price_age_days')
+    _is_dead = (((~(_mcu_dead > 0)) | (~(_px_dead > 0))) & ~(_age_dead <= 30)) \
+        | (_age_dead > 90)
+    _is_dead = _is_dead.fillna(False)
+    df['dead_listing_flag'] = _is_dead.astype(int).values
+    if _is_dead.any():
+        df.loc[_is_dead.values, _scrub_cols] = 0
+        print(f'  scrubbed {int(_is_dead.sum())} dead listings (no live mcap/price)',
               file=sys.stderr)
 
     # ===== PRICE-GHOST DEDUP SCRUB: a duplicate line of the SAME security with

@@ -920,7 +920,12 @@ def _figure_coverage(t, g):
         "cheapness_under_7x_flag", "symbol",
         "yf_beta", "yf_recommendation_mean",   # Yahoo-native bounded sentiment passthroughs
         "fmp_last_dividend",   # profile coupon; consumed only as coupon/price, bounded 0.5-25% by the senior gate and checked above
+        "price_age_days",      # freshness flag (fix_pipeline); read only by the dead-listing scrub, bounds checked below
     }
+    _pa = (pd.to_numeric(g["price_age_days"], errors="coerce") if "price_age_days" in g.columns
+           else pd.Series(dtype=float))
+    check("freshness: price_age_days never negative (a future-dated bar is a clock/feed error)",
+          int((_pa < -1).sum()) == 0, f"{int((_pa < -1).sum())} rows with a future-dated last bar")
     unchecked = sorted(consumed - CHECKED - EXEMPT)
     check("coverage: every gate-consumed master figure is checked or exempted",
           len(unchecked) == 0,

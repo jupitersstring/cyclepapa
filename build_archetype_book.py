@@ -651,7 +651,9 @@ def main():
         arch_summary.append({
             'arch_col': col,
             'label': ARCHETYPE_LABELS.get(col, col),
-            'matches': len(sub_df),
+            # (audit 4) companies, not lines: second listings share company_key
+            'matches': (int(sub_df['company_key'].fillna(sub_df['symbol']).nunique())
+                        if 'company_key' in sub_df.columns else len(sub_df)),
             'green': int((sub_df['verdict'] == 'GREEN').sum()),
             'yellow': int((sub_df['verdict'] == 'YELLOW').sum()),
             'unr': int((sub_df['verdict'] == 'UNRESEARCHED').sum()),
@@ -685,9 +687,10 @@ def main():
     tab_colors.set_tab(density_sheet, tab_colors.COVER)
     df_density = df.copy()
     df_density['_arch_n'] = df_density[arch_cols].fillna(0).astype(int).sum(axis=1)
-    df_density_top = df_density.sort_values(
+    # (audit 4) one line per company on the density board too
+    df_density_top = dedupe_display(df_density.sort_values(
         ['_arch_n', sort_col], ascending=[False, False]
-    ).head(args.n).reset_index(drop=True)
+    )).head(args.n).reset_index(drop=True)
     _write_archetype_table(density_sheet, df_density_top,
                             "Cross-Archetype Density (top by archetype_count)",
                             n_total, sort_col)
