@@ -35,5 +35,5 @@ while read -r path sha; do
   if [ "$acc" -ge $((BATCH_MB*1048576)) ]; then flush; fi
 done < /tmp/repack_objs.txt
 flush
-git prune --expire=now 2>/dev/null
+git prune 2>/dev/null   # default 2-week grace: never drop objects an in-flight operation may still need
 echo "done: packs $(ls .git/objects/pack/*.pack | wc -l) | loose left $(find .git/objects/?? -type f | wc -l) | .git $(du -sh .git | cut -f1) | free $(df -h / | tail -1 | awk '{print $4}')"

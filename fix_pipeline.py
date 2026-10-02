@@ -207,7 +207,8 @@ def apply_fmp_profile(df: pd.DataFrame) -> pd.DataFrame:
             'exchange': 'fmp_exchange', 'isActivelyTrading': 'is_actively_trading', 'isAdr': 'is_adr',
             'ipoDate': 'ipo_date', 'fullTimeEmployees': 'fmp_employees',
             'marketCap': 'fmp_market_cap', 'currency': 'fmp_currency',
-            'isEtf': 'is_etf', 'isFund': 'is_fund', 'companyName': 'fmp_company_name'}
+            'isEtf': 'is_etf', 'isFund': 'is_fund', 'companyName': 'fmp_company_name',
+            'lastDividend': 'fmp_last_dividend'}
     p = p[['symbol'] + [c for c in keep if c in p.columns]].rename(columns=keep)
     # the bulk parquet comes back Arrow-backed (large_string); fillna rejects
     # those arrays, so work in plain object dtype
@@ -216,8 +217,9 @@ def apply_fmp_profile(df: pd.DataFrame) -> pd.DataFrame:
         if c != 'symbol':
             p[c] = p[c].replace('', np.nan)
     # the bulk parquet stores every field as text
-    if 'fmp_market_cap' in p.columns:
-        p['fmp_market_cap'] = pd.to_numeric(p['fmp_market_cap'], errors='coerce')
+    for _c in ('fmp_market_cap', 'fmp_last_dividend'):
+        if _c in p.columns:
+            p[_c] = pd.to_numeric(p[_c], errors='coerce')
     # the profile's country is ISO-2; the master's is the full name (Yahoo /
     # pew). Fill in the master's own vocabulary so one column keeps one coding;
     # the ISO code is kept beside it as domicile_iso2 for every name.
@@ -235,7 +237,8 @@ def apply_fmp_profile(df: pd.DataFrame) -> pd.DataFrame:
         elif c in m.columns:
             df[c] = m[c]
     for c in ('isin', 'cik', 'fmp_exchange', 'is_actively_trading', 'is_adr', 'ipo_date', 'fmp_employees',
-              'domicile_iso2', 'is_etf', 'is_fund', 'fmp_company_name', 'fmp_currency'):
+              'domicile_iso2', 'is_etf', 'is_fund', 'fmp_company_name', 'fmp_currency',
+              'fmp_last_dividend'):
         if c in m.columns:
             df[c] = m[c] if c not in df.columns else df[c].fillna(m[c])
     # MARKET CAP: the profile's marketCap is in the LISTING currency (audit
@@ -251,6 +254,10 @@ def apply_fmp_profile(df: pd.DataFrame) -> pd.DataFrame:
         _prof = m['fmp_currency'].astype(str).map(lambda c: _sub.get(c, c)) if 'fmp_currency' in m.columns \
             else pd.Series(np.nan, index=df.index)
         _mc = pd.to_numeric(df['market_cap'], errors='coerce')
+        # a value this step filled on an EARLIER run is re-filled from today's
+        # profile, never carried forward as if the pipeline had produced it
+        if 'market_cap_src' in df.columns:
+            _mc = _mc.where(df['market_cap_src'].astype(str) != 'fmp_profile')
         _fill = _mc.isna() & (m['fmp_market_cap'].values > 0) & (_own.values == _prof.values)
         if 'market_cap_src' not in df.columns:
             df['market_cap_src'] = pd.Series(np.where(_mc.notna(), 'pipeline', None), index=df.index, dtype=object)

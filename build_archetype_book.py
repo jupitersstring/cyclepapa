@@ -86,6 +86,8 @@ ARCHETYPE_LABELS = {
     'arch_gayner_missed_it': "Gayner 'I Missed It' (5-year per-share compounding >= 12%/yr with lindy ROIC >= 12%, earnings still growing, while the tape is flat for a year or 20%+ off its 5-year high: Markel sitting at 32 'for a while')",
     'arch_gayner_frugal_operator': "Gayner Frugal Operator (SG&A/revenue and operating margin no worse than the industry median, SBC <= 2% of revenue, no uncovered payout or dilution, insiders aligned, lindy ROIC >= 12%: the $89 suit)",
     'arch_gayner_wiggle_not_obsolete': "Gayner Wiggle, Not Obsolete (the full 8-year record on file, at most one non-COVID loss year, 20%+ off the 5-year high with perception turned against it, yet sales not shrinking and margin >= 75% of its through-cycle median: alcohol and bread, not newspapers)",
+    'arch_cannabis_operator': "Cannabis Operator (every operating cannabis business with revenue: growers, MSOs, LPs, CBD brands; ranked by growth, cash from operations, margin, net cash and EV/sales)",
+    'arch_senior_security_value': "Senior Security Value (a preferred or exchange-traded note yielding >= 1.25x the median senior line in its currency, from an issuer that earns a profit, is not melting and covers its interest)",
     'arch_mb_model_region_rule': "MB: Model Region Rule (fell far more than its market, very volatile, tiny or long in drawdown: leaf lifts 3.1-3.9x, blow-up 30-38%)",
     'arch_mb_model_top': 'MB: Model Top 5% of Market (walk-forward model over every feature; lift and blow-up in MULTIBAGGER_MODEL.md)',
     'arch_mb_cheap_growth_targets_up': 'MB: Cheap Growth, Targets Rising (revenue +15%, EV/EBIT <= 10 or FCF yield + growth >= 20%, targets revised up: lift 1.25x, blow-up 8%)',
